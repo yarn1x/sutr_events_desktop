@@ -1,0 +1,26 @@
+﻿<Application x:Class="college_events_desktop.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:college_events_desktop"
+             xmlns:converter="clr-namespace:college_events_desktop.Converter" 
+             StartupUri="/View/Windows/LoginWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            
+            <!--стили-->
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/View/Styles/ButtonStyles.xaml"/>
+                <ResourceDictionary Source="/View/Styles/TextBlockStyles.xaml"/>
+                <ResourceDictionary Source="/View/Styles/ScrollBarStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <!--изображения-->
+            <BitmapImage x:Key="caret_down" UriSource="/View/Resources/ico_caret_down.png"/>
+            <BitmapImage x:Key="caret_up" UriSource="/View/Resources/ico_caret_up.png"/>
+
+            <!--конвертеры-->
+            <converter:DateTimeToStringConverter x:Key="DateTimeConverter"/>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,20 @@
+﻿college_events
+
+
+winexe
+C#
+.cs
+C:\Desktop\Prog\СИстемный прогер\college_events\obj\Debug\
+college_events
+none
+false
+DEBUG;TRACE
+C:\Desktop\Prog\СИстемный прогер\college_events\App.xaml
+17-1511062892
+
+301310650940
+142134956952
+View\Controls\events_nav_buttons.xaml;View\Controls\event_element.xaml;View\Controls\loading_interface.xaml;View\Layers\Tables\page_table_EventGroup.xaml;View\Layers\Tables\table_tuple_EventGroup.xaml;View\Controls\SearchBar.xaml;View\Controls\users_nav_buttons.xaml;View\Layers\page_EventList.xaml;View\Layers\page_EventListHelp.xaml;View\Layers\page_EventList_edit.xaml;View\Layers\page_EventList_save.xaml;View\Layers\page_EventList_seeEvent.xaml;View\Layers\page_NewAccount.xaml;View\Styles\ButtonStyles.xaml;View\Styles\TextBlockStyles.xaml;View\Windows\LoginWindow.xaml;View\Windows\MainWindow.xaml;
+
+False
+

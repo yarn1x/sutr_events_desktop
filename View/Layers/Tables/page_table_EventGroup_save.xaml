@@ -1,0 +1,109 @@
+﻿<Page x:Class="college_events_desktop.View.Layers.Tables.page_table_EventGroup_save"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:college_events_desktop.View.Layers.Tables"
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="1000"
+      Title="Таблица составления отчёта">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <!--Заголовки-->
+        <Grid Background="#FFDDEEFF" Margin="5,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.3*"/>
+                <ColumnDefinition Width="1.3*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            
+            <Border BorderBrush="Black" BorderThickness="1, 1, 0, 1">
+                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" Text="Группа"/>
+            </Border>
+            
+            <Border BorderBrush="Black" BorderThickness="1, 1, 0, 1" Grid.Column="1">
+                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" Text="Куратор"/>
+            </Border>
+            
+            <Grid Grid.Column="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1.5*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Border BorderBrush="Black" BorderThickness="1, 1, 0, 1" Grid.ColumnSpan="2">
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" Text="Кол-во слушателей" TextWrapping="Wrap" TextAlignment="Center"/>
+                </Border>
+                <Border BorderBrush="Black" BorderThickness="1, 0, 1, 1" Grid.Row="1" Background="#FFC6E3FF">
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" Text="Заявлено" TextWrapping="Wrap" TextAlignment="Center"/>
+                </Border>
+                <Border BorderBrush="Black" BorderThickness="0, 0, 0, 1" Grid.Row="1" Grid.Column="1" Background="#FFC6E3FF">
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" Text="Фактически" TextWrapping="Wrap" TextAlignment="Center"/>
+                </Border>
+            </Grid>
+
+            <Grid Grid.Column="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1.5*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Border BorderBrush="Black" BorderThickness="1, 1, 0, 1" Grid.ColumnSpan="2">
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" Text="Кол-во активных участников" TextWrapping="Wrap" TextAlignment="Center"/>
+                </Border>
+                <Border BorderBrush="Black" BorderThickness="1, 0, 1, 1" Grid.Row="1" Background="#FFC6E3FF">
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" Text="Заявлено" TextWrapping="Wrap" TextAlignment="Center"/>
+                </Border>
+                <Border BorderBrush="Black" BorderThickness="0, 0, 0, 1" Grid.Row="1" Grid.Column="1" Background="#FFC6E3FF">
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" Text="Фактически" TextWrapping="Wrap" TextAlignment="Center"/>
+                </Border>
+            </Grid>
+
+            <Grid Grid.Column="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1.5*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Border BorderBrush="Black" BorderThickness="1, 1, 0, 1" Grid.ColumnSpan="2">
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" Text="Кол-во супер-участников" TextWrapping="Wrap" TextAlignment="Center"/>
+                </Border>
+                <Border BorderBrush="Black" BorderThickness="1, 0, 1, 1" Grid.Row="1" Background="#FFC6E3FF">
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" Text="Заявлено" TextWrapping="Wrap" TextAlignment="Center"/>
+                </Border>
+                <Border BorderBrush="Black" BorderThickness="0, 0, 0, 1" Grid.Row="1" Grid.Column="1" Background="#FFC6E3FF">
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" Text="Фактически" TextWrapping="Wrap" TextAlignment="Center"/>
+                </Border>
+            </Grid>
+            
+            <Border BorderBrush="Black" BorderThickness="1, 1, 1, 1" Grid.Column="5">
+                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14" Text="Баллы за мероприятие" TextWrapping="Wrap" TextAlignment="Center"/>
+            </Border>
+            
+        </Grid>
+
+        
+        
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden">
+            <StackPanel x:Name="stack_table_rows"/>
+        </ScrollViewer>
+
+    </Grid>
+</Page>

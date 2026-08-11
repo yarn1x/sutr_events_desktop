@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="college_events_desktop.View.Controls.SearchBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:college_events_desktop.View.Controls"
+             mc:Ignorable="d" >
+    <Grid>
+        <TextBox x:Name="edit_searchbox" Grid.Column="5" VerticalAlignment="Center" FontSize="16" Height="25" GotFocus="search_gotFocus" LostFocus="search_lostFocus" TextChanged="edit_searchbox_TextChanged"/>
+        <TextBlock x:Name="edit_placeholder" IsHitTestVisible="False" Text="Поиск по содержанию" Foreground="#FF666666" VerticalAlignment="Center" Margin="5,0,3,2" FontSize="16" HorizontalAlignment="Left"/>
+        <Border HorizontalAlignment="Right" IsHitTestVisible="False" Background="#FF0150BB" Width="20" VerticalAlignment="Center" Height="20" Margin="0,0,3,0">
+            <Border.OpacityMask>
+                <ImageBrush ImageSource="../Resources/ico_search.png"/>
+            </Border.OpacityMask>
+        </Border>
+    </Grid>
+</UserControl>

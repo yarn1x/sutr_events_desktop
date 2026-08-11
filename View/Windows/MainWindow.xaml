@@ -1,0 +1,174 @@
+﻿<Window x:Class="college_events_desktop.View.Windows.MainWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:local="clr-namespace:college_events_desktop"
+        xmlns:controls="clr-namespace:college_events_desktop.View.Controls"
+		mc:Ignorable="d"
+		Title="Главная - список мероприятий" 
+		Height="768" Width="1366"
+		MinHeight="738" MinWidth="1366"
+		WindowState="Maximized">
+    
+    <Grid x:Name="grid_main">
+        <Grid.ColumnDefinitions>
+			<ColumnDefinition Width="240"/>
+			<ColumnDefinition/>
+		</Grid.ColumnDefinitions>
+
+		<!--Боковая панель навигации-->
+        <Border BorderThickness="1" BorderBrush="#FF666666" />
+        
+
+		<ScrollViewer Margin="10" Grid.Row="1" VerticalScrollBarVisibility="Hidden">
+			<StackPanel Grid.Row="1">
+
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="btn_nav_menu_drop" Background="#FF003D97" BorderBrush="{x:Null}" Cursor="Hand" Width="60" Height="60" Style="{DynamicResource ButtonStyle_accent}" Padding="0,1,1,1" Click="btn_nav_menu_drop_Click">
+                        <Button.OpacityMask>
+                            <ImageBrush ImageSource="/View/Resources/img_logoSmallSochiGU.png"/>
+                        </Button.OpacityMask>
+                    </Button>
+                    <TextBlock d:Text="test" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="20"/>
+                </StackPanel>
+
+                <Button x:Name="btn_menu_events" Height="50" Style="{DynamicResource ButtonStyle_accent}" BorderBrush="{x:Null}" Click="open_events_nav_menu" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Cursor="Hand" Margin="0,10,0,0">
+					<Grid>
+						<!--Нет реализации обновления после изменений в списке: ellipse показывает статус новых мероприятий (если видим, то новое мероприятие на модерации). Так же изменить статус в подменю event_nav_buttons-->
+						<Ellipse x:Name="ellipse_new_event_status" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Top" Width="8" Height="8" Fill="Red"/>
+						<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0">
+							<Border Background="White" Width="25" Height="25" Margin="0,0,10,0">
+								<Border.OpacityMask>
+									<ImageBrush ImageSource="/View/Resources/ico_calendar_star.png"/>
+								</Border.OpacityMask>
+							</Border>
+							<TextBlock Text="Мероприятия" FontSize="14" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+						</StackPanel>
+                        <Border x:Name="border_events_caret" Background="White" Width="15" Height="15" HorizontalAlignment="Right" Margin="0,0,10,0">
+                            <Border.OpacityMask>
+                                <ImageBrush ImageSource="/View/Resources/ico_caret_down.png">
+                                    <ImageBrush.RelativeTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="1.5" ScaleY="1.5"/>
+                                            <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                                            <RotateTransform CenterX="0.5" CenterY="0.5"/>
+                                            <TranslateTransform X="0"/>
+                                        </TransformGroup>
+                                    </ImageBrush.RelativeTransform>
+                                </ImageBrush>
+                            </Border.OpacityMask>
+                        </Border>
+                    </Grid>
+				</Button>
+				
+				<ContentControl x:Name="submenu_events"/>
+				
+				<Button x:Name="btn_otganizers" Height="50" Style="{DynamicResource ButtonStyle_accent}" BorderBrush="{x:Null}" Margin="0,10,0,0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Cursor="Hand">
+					<Grid>
+						<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0">
+							<Border Background="White" Width="25" Height="25" Margin="0,0,10,0">
+								<Border.OpacityMask>
+									<ImageBrush ImageSource="/View/Resources/ico_idea.png"/>
+								</Border.OpacityMask>
+							</Border>
+                            <TextBlock Text="Организаторы" FontSize="14" VerticalAlignment="Center"  TextTrimming="CharacterEllipsis" Margin="0.4,0,0,0"/>
+						</StackPanel>
+					</Grid>
+				</Button>
+
+				<Button x:Name="btn_groups" Height="50" Style="{DynamicResource ButtonStyle_accent}" BorderBrush="{x:Null}" Margin="0,10,0,0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Cursor="Hand">
+					<Grid>
+						<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0">
+							<Border Background="White" Width="25" Height="25" Margin="0,0,10,0">
+								<Border.OpacityMask>
+									<ImageBrush ImageSource="/View/Resources/ico_users.png"/>
+								</Border.OpacityMask>
+							</Border>
+                            <TextBlock Text="Группы" FontSize="14" VerticalAlignment="Center"  TextTrimming="CharacterEllipsis"/>
+						</StackPanel>
+					</Grid>
+				</Button>
+
+                <Button Margin="0,10,0,0" Height="50" Style="{DynamicResource ButtonStyle_accent}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center">
+                        <Border Width="25" Height="25" Margin="0,0,10,0" Background="White">
+                            <Border.OpacityMask>
+                                <ImageBrush ImageSource="/View/Resources/ico_glasses.png"/>
+                            </Border.OpacityMask>
+                        </Border>
+                        <TextBlock Text="Кураторы" FontSize="14" VerticalAlignment="Center"  TextTrimming="CharacterEllipsis"/>
+                    </StackPanel>
+                </Button>
+
+                <Button x:Name="btn_users" Height="50" Style="{DynamicResource ButtonStyle_accent}" BorderBrush="{x:Null}" Margin="0,10,0,0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Click="open_users_nav_menu_Click" Cursor="Hand">
+					<Grid>
+						<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0">
+							<Border Background="White" Width="25" Height="25" Margin="0,0,10,0">
+								<Border.OpacityMask>
+									<ImageBrush ImageSource="/View/Resources/ico_user_gear.png"/>
+								</Border.OpacityMask>
+							</Border>
+                            <TextBlock Text="Пользователи" FontSize="14" VerticalAlignment="Center"  TextTrimming="CharacterEllipsis"/>
+						</StackPanel>
+						<Border x:Name="border_supervisors_caret" Background="White" Width="15" Height="15" Margin="0,0,10,0" HorizontalAlignment="Right">
+							<Border.OpacityMask>
+								<ImageBrush ImageSource="/View/Resources/ico_caret_down.png">
+									<ImageBrush.RelativeTransform>
+										<TransformGroup>
+											<ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="1.5" ScaleY="1.5"/>
+											<SkewTransform CenterX="0.5" CenterY="0.5"/>
+											<RotateTransform CenterX="0.5" CenterY="0.5"/>
+											<TranslateTransform X="0"/>
+										</TransformGroup>
+									</ImageBrush.RelativeTransform>
+								</ImageBrush>
+							</Border.OpacityMask>
+						</Border>
+					</Grid>
+				</Button>
+
+                <ContentControl x:Name="submenu_users"/>
+            </StackPanel>
+		</ScrollViewer>
+
+
+
+		<!--Навигируемая часть страницы-->
+		<Frame x:Name="mainframe" Grid.Column="1" />
+        <!--доп. фрейм для окон поверх основного-->
+        <Grid d:Visibility="Visible" x:Name="grid_overlay" Background="#66000000" Grid.Column="0" Grid.ColumnSpan="2" Visibility="Collapsed">
+
+            <Grid x:Name="OverlayBorder" d:Background="#FF6B0771" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid d:Width="100" d:Height="100" d:Background="#FFCA0AB1">
+                    <Grid.OpacityMask>
+                        <VisualBrush>
+                            <VisualBrush.Visual>
+                                <Border 
+									CornerRadius="10"
+									Background="Black" 
+									Width="{Binding ElementName=OverlayBorder, Path=ActualWidth}" 
+									Height="{Binding ElementName=OverlayBorder, Path=ActualHeight}"
+								/>
+                            </VisualBrush.Visual>
+                        </VisualBrush>
+                    </Grid.OpacityMask>
+
+                    <Frame x:Name="frame_overlay" NavigationUIVisibility="Hidden"/>
+                </Grid>
+                <Button x:Name="btn_close_overlay" Width="25" Height="25" Style="{DynamicResource ButtonStyle_X}" Content="×" FontSize="22" Padding="1,-5,1,1" Click="btn_close_overlay_Click" Cursor="Hand" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,5,0"/>
+            </Grid>
+
+        </Grid>
+
+        <!--интерфейс загрузки любой процедуры-->
+        <Grid x:Name="loading_overlay" Grid.ColumnSpan="2" Background="#66000000" Visibility="Collapsed">
+            <Border Background="White" Padding="40" CornerRadius="10" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel>
+                    <TextBlock Text="Дождитесь завершения процесса" FontSize="14" FontWeight="Bold" Foreground="#FF1455AB"/>
+					<controls:loading_interface HorizontalAlignment="Center"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>

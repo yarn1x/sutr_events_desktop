@@ -1,0 +1,43 @@
+﻿<Page x:Class="college_events_desktop.View.Layers.page_EventListHelp"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:college_events_desktop.View.Layers"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Справочный материал по списку мероприятий">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border Background="#FFDDEEFF" Height="50">
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" Text="Список мероприятий. Справочный материал" FontWeight="Bold" Foreground="#FF666666"/>
+        </Border>
+        <StackPanel Margin="10" Grid.Row="1">
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <Border CornerRadius="20" Background="#FFA7A7A7" Width="20" Height="20"/>
+                <TextBlock Text="Мероприятие прошло, отчёт составлен" Margin="10,0,0,0" FontSize="14"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <Border CornerRadius="20" Background="#FF48AFFF" Width="20" Height="20"/>
+                <TextBlock Text="Мероприятие прошло, требуется составить отчёт" Margin="10,0,0,0" FontSize="14"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <Border CornerRadius="20" Background="#FFFFDD3C" Width="20" Height="20"/>
+                <TextBlock Text="Предложено новое мероприятие, требуется подтверждение" Margin="10,0,0,0" FontSize="14"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <Border CornerRadius="20" Background="#FFFF4949" Width="20" Height="20"/>
+                <TextBlock Text="Предложено новое мероприятие, в назначенное время уже существует мероприятие" Margin="10,0,0,0" FontSize="14"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <Border CornerRadius="20" Background="#FF66FF3D" Width="20" Height="20"/>
+                <TextBlock Text="Мероприятие принято для проведения " Margin="10,0,0,0" FontSize="14"/>
+            </StackPanel>
+            <Button Content="Назад" HorizontalAlignment="Left" Margin="0,10,0,0" Style="{DynamicResource ButtonStyle_accent}" BorderBrush="{x:Null}" Width="100" Height="30" Click="go_back"/>
+        </StackPanel>
+    </Grid>
+</Page>
