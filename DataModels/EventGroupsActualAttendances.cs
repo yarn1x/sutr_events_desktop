@@ -9,6 +9,7 @@ namespace college_events_desktop.DataModels
         public int actualListenersCount { get; set; }
         public int actualParticipantsCount { get; set; }
         public int actualSuperParticipantsCount { get; set; }
+        public int totalScore { get; set; }
         public string this[string columnName]
         {
             get
@@ -40,7 +41,7 @@ namespace college_events_desktop.DataModels
         }
         public string Error
         {
-            get { throw new NotImplementedException(); }
+            get { return string.Empty; }
         }
     }
 }

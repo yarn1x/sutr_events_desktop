@@ -1,4 +1,8 @@
-﻿using System;
+﻿using college_events_desktop.DataModels;
+using college_events_desktop.Model;
+using college_events_desktop.View.Layers.Tables;
+using college_events_desktop.View.Windows;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,14 +19,28 @@ using System.Windows.Shapes;
 
 namespace college_events_desktop.View.Layers
 {
-    /// <summary>
-    /// Логика взаимодействия для page_EventList_seeEvent.xaml
-    /// </summary>
     public partial class page_EventList_seeEvent : Page
     {
-        public page_EventList_seeEvent()
+
+        private MainWindow mainWindow;
+        private DataService _dataService;
+        private Event _Event;
+        //page_table_EventGroup_edit _table;
+
+
+        public page_EventList_seeEvent(Window win, DataService dataService, Event _event)
         {
             InitializeComponent();
+
+            mainWindow = win as MainWindow;
+            _dataService = dataService;
+            _Event = _event;
+            DataContext = _Event;
+        }
+
+        private void goback_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.mainframe.GoBack();
         }
     }
 }

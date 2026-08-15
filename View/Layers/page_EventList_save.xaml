@@ -23,7 +23,7 @@
         <!--Заголовок-->
         <Border Background="#FFDDEEFF">
             <StackPanel Orientation="Horizontal">
-                <TextBlock x:Name="text_header" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" Text="Название мероприятия" FontWeight="Bold" Foreground="#FF666666"/>
+                <TextBlock x:Name="text_header" d:Text="_Event.title" Text="{Binding title}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" FontWeight="Bold" Foreground="#FF666666"/>
                 <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Text=". Составление отчёта" FontWeight="Bold" Foreground="#FF666666"/>
             </StackPanel>
         </Border>

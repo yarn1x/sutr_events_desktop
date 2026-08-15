@@ -8,20 +8,38 @@ using System.Threading.Tasks;
 
 namespace college_events_desktop.Model
 {
+    /// <summary>
+    /// DataService - класс для представления информации, взятой из БД. Класс хранит, но не получает информацию. Для получения исп. ApiClient
+    /// </summary>
     public class DataService
     {
+        /// <summary> Экземпляр класса для совершения http запросов к серверу </summary>
         internal readonly ApiClient apiClient;
+
+        /// <summary> Возвращает jwt токен сессии</summary>
         internal string _jwtToken { get; private set; }
+
+        /// <summary> Возвращает "Срок годности" токена сессии в минутах </summary>
         internal int _jwtExpiresIn { get; private set; }
 
+        /// <summary> Возвращает полученный список мероприятий из БД </summary>
+        /// Для получения, вызвать метод.
         public List<Event> events { get; private set; }
 
+        /// <summary> Возвращает полученный список направлений из БД </summary>
+        /// Для получения, вызвать метод.
         public List<Category> categories { get; private set; }
 
+        /// <summary> Возвращает полученный список организаторов из БД </summary>
+        /// Для получения, вызвать метод.
         public List<Organizer> organizers {  get; private set; }
 
+        /// <summary> Возвращает полученный список групп из БД </summary>
+        /// Для получения, вызвать метод.
         public List<Group> groups { get; private set; }
 
+        /// <summary> Возвращает полученный список локаций из БД </summary>
+        /// Для получения, вызвать метод.
         public List<Location> places { get; private set; }
 
         public DataService(ApiClient apiClient)
@@ -34,6 +52,14 @@ namespace college_events_desktop.Model
             places = new List<Location>();
         }
 
+        #region Методы получения данных
+
+        /// <summary>
+        /// Метод, получающий от сервера jwt токен
+        /// </summary>
+        /// <param name="login">логин пользователя</param>
+        /// <param name="password">пароль пользователя</param>
+        /// <returns></returns>
         public async Task GetSessionToken(string login, string password)
         {
             AuthResponse response = await apiClient.LoginAsync(login, password);
@@ -66,5 +92,7 @@ namespace college_events_desktop.Model
         {
             places = await apiClient.GetListOfPlaces();
         }
+
+        #endregion
     }
 }

@@ -125,7 +125,7 @@ namespace college_events_desktop.View.Layers
         }
 
 
-        public int validation_errors_count = 0;
+        public int validation_errors_count = 0; //используется (как минимум) в 'table_tuple_EventGroup_edit.cs' в методе 'edit_expectedCount_Error()' для счёта кол-ва ошибок в введённых данных пользователем
         private async void btn_save_Click(object sender, RoutedEventArgs e)
         {
             btn_save.IsEnabled = false;
@@ -162,6 +162,18 @@ namespace college_events_desktop.View.Layers
         {
             _overlayService.Open(new page_NewLocation(mainWindow));
         }
+
+
+        /// <summary>
+        /// TODO: EDIT УДАЛИТЬ ПРИ ВНЕДРЕНИИ!! Показывает выбранную дату при скрытии календаря
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void datePicker_date_CalendarClosed(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show($"displayDate={datePicker_date.DisplayDate}\nstart={datePicker_date.DisplayDateStart}\nend={datePicker_date.DisplayDateEnd}");
+        }
+
         #endregion
 
 
@@ -221,6 +233,11 @@ namespace college_events_desktop.View.Layers
             }
         }
 
+        /// <summary>
+        /// Метод, позволяющий из строки ФИО (ПОРЯДОК ПОЛНОГО ИМЕНИ ОБЯЗАТЕЛЕН ЧЕРЕЗ ПРОБЕЛ) определить ID организатора в БД
+        /// </summary>
+        /// <param name="content">строка ФИО</param>
+        /// <returns>уникальный идентификатор организатора</returns>
         private int GetOrganizerId(string content)
         {
             string organizerName = content.Split(' ')[1];
@@ -229,11 +246,21 @@ namespace college_events_desktop.View.Layers
             return _dataService.organizers.Find(o => o.firstName == organizerName && o.lastName == organizerSurName && o.middleName == organizerLastName).userId;
         }
 
+        /// <summary>
+        /// Метод, позволяющий из строки с наименованием категории (направления) определить ID в БД
+        /// </summary>
+        /// <param name="content">категория (направление)</param>
+        /// <returns>уникальный идентификатор категории</returns>
         private int GetCategoryId(string content)
         {
             return _dataService.categories.Find(c => c.name == content).categoryId;
         }
 
+        /// <summary>
+        /// метод для создания кнопки с локацией. НЕ УНИВЕРСАЛЬНЫЙ! НЕ ПОДХОДИТ ДЛЯ ЛЮБОГО КОНТЕЙНЕРА!
+        /// </summary>
+        /// <param name="location">Класс локации</param>
+        /// <returns>кнопка</returns>
         private Button CreateLocationButton(Location location)
         {
             var btn = new Button()
@@ -249,16 +276,11 @@ namespace college_events_desktop.View.Layers
                 Cursor = System.Windows.Input.Cursors.Hand
             };
 
+            //не универсальный, потому что событие нажатия строго определено для удаления из stack_places
             btn.Click += (s, e) => stack_places.Children.Remove(btn);
             return btn;
         }
         #endregion
 
-        private void datePicker_date_CalendarClosed(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show($"displayDate={datePicker_date.DisplayDate}\nstart={datePicker_date.DisplayDateStart}\nend={datePicker_date.DisplayDateEnd}");
-        }
-
-        
     }
 }

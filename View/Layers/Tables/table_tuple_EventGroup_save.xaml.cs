@@ -1,20 +1,9 @@
 ﻿using college_events_desktop.DataModels;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace college_events_desktop.View.Layers.Tables
 {
@@ -22,7 +11,7 @@ namespace college_events_desktop.View.Layers.Tables
     {
         #region Поля класса
         private readonly page_table_EventGroup_save _table;
-        private EventGroups _group;
+        public EventGroups _group { get; private set; }
         private page_EventList_save _page;
         #endregion
 
@@ -39,6 +28,7 @@ namespace college_events_desktop.View.Layers.Tables
         {
             if (_group != null)
             {
+                Tag = _group.eventGroupId;
                 combobox_group.Text = _group.name;
                 text_supervisor_name.Text = $"{_group.supervisorSurname} {_group.supervisorName} {_group.supervisorLastname}";
                 edit_expectedListenersCount.Text = _group.expectedListenersCount.ToString();
@@ -73,12 +63,12 @@ namespace college_events_desktop.View.Layers.Tables
 
         private void btn_delete_group_Click(object sender, RoutedEventArgs e)
         {
-
+            //TODO: SAVE спросить про удаление строчек таблицы
         }
 
         private void combobox_group_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            //TODO: SAVE спросить про добавление новых строчек
         }
 
         private void edit_actualCount_Error(object sender, ValidationErrorEventArgs e)

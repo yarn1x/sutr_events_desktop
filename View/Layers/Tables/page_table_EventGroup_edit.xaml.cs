@@ -99,6 +99,7 @@ namespace college_events_desktop.View.Layers.Tables
         /// <returns>Список групп, зарегистрированных на мероприятие</returns>
         private List<EventGroups> CollectGroupsFromUI()
         {
+            MessageBox.Show(stack_table_rows.Children.Count.ToString());
             return stack_table_rows.Children
                 .OfType<table_tuple_EventGroup_edit>()
                 .Where(g => g._group != null) 

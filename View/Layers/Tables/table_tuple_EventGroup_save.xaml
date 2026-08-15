@@ -46,7 +46,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Border BorderThickness="1, 0, 1, 1" BorderBrush="#FF666666" Grid.Column="0">
-                    <TextBox x:Name="edit_expectedListenersCount" FontSize="14" BorderThickness="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="0" IsHitTestVisible="False"/>
+                    <TextBox x:Name="edit_expectedListenersCount" IsReadOnly="True" FontSize="14" BorderThickness="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="0" IsHitTestVisible="False"/>
                 </Border>
                 <Border BorderThickness="0, 0, 1, 1" BorderBrush="#FF666666" Grid.Column="1">
                     <TextBox x:Name="edit_actualListenersCount" Validation.Error="edit_actualCount_Error" FontSize="14" BorderThickness="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
@@ -65,7 +65,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Border BorderThickness="1, 0, 1, 1" BorderBrush="#FF666666" Grid.Column="0">
-                    <TextBox x:Name="edit_expectedParticipantsCount" FontSize="14" BorderThickness="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="0" IsHitTestVisible="False"/>
+                    <TextBox x:Name="edit_expectedParticipantsCount" IsReadOnly="True" FontSize="14" BorderThickness="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="0" IsHitTestVisible="False"/>
                 </Border>
                 <Border BorderThickness="0, 0, 1, 1" BorderBrush="#FF666666" Grid.Column="3">
                     <TextBox x:Name="edit_actualParticipantsCount" Validation.Error="edit_actualCount_Error" FontSize="14" BorderThickness="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
@@ -84,7 +84,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Border BorderThickness="1, 0, 0, 1" BorderBrush="#FF666666" Grid.Column="0">
-                    <TextBox x:Name="edit_expectedSuperParticipantsCount" FontSize="14" BorderThickness="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="0" IsHitTestVisible="False"/>
+                    <TextBox x:Name="edit_expectedSuperParticipantsCount" IsReadOnly="True" FontSize="14" BorderThickness="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Text="0" IsHitTestVisible="False"/>
                 </Border>
                 <Border BorderThickness="1, 0, 1, 1" BorderBrush="#FF666666" Grid.Column="4">
                     <TextBox x:Name="edit_actualSuperParticipantsCount" Validation.Error="edit_actualCount_Error" FontSize="14" BorderThickness="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">

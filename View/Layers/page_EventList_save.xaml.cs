@@ -1,21 +1,16 @@
 ﻿using college_events_desktop.DataModels;
 using college_events_desktop.Model;
+using college_events_desktop.Services;
 using college_events_desktop.View.Layers.Tables;
 using college_events_desktop.View.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace college_events_desktop.View.Layers
 {
@@ -25,6 +20,9 @@ namespace college_events_desktop.View.Layers
         private MainWindow mainWindow;
         private DataService _dataService;
         private Event _Event;
+        page_table_EventGroup_save _table;
+
+        ILoadingService _loadingService;
         #endregion
 
         #region Конструктор
@@ -35,6 +33,9 @@ namespace college_events_desktop.View.Layers
             _dataService = dataService;
             _Event = _event;
             DataContext = _Event;
+            _table = new page_table_EventGroup_save(this, _dataService, _Event);
+            
+            _loadingService = new LoadingService(mainWindow);
             Loaded += Page_EventList_save_Loaded;
         }
         #endregion
@@ -43,7 +44,7 @@ namespace college_events_desktop.View.Layers
         private async void Page_EventList_save_Loaded(object sender, RoutedEventArgs e)
         {
             await LoadInformation();
-            frame_table.Navigate(new page_table_EventGroup_save(this, _dataService, _Event));
+            frame_table.Navigate(_table);
         }
 
         private void goback_Click(object sender, RoutedEventArgs e)
@@ -51,18 +52,39 @@ namespace college_events_desktop.View.Layers
             mainWindow.mainframe.GoBack();
         }
 
-        private void btn_save_Click(object sender, RoutedEventArgs e)
+        private async void btn_save_Click(object sender, RoutedEventArgs e)
         {
-
+            btn_save.IsEnabled = false;
+            using (_loadingService.StartLoading())
+            {
+                try
+                {
+                    //TODO: SAVE валидация данных
+                    //если в ячейке данные не валидны, система заменяет их автоматом на 0
+                    bool response = await _dataService.apiClient.UpdateEventGroupsStatistics(_Event.eventId, _table.EventGroupsActualAttendances);
+                    bool updStatusResponse = await _dataService.apiClient.UpdateEventStatus(_Event.eventId, 4);
+                    if (!response && !updStatusResponse)
+                    {
+                        MessageBox.Show("Произошла ошибка обновления.\n\nCode=page_EventList_saveAA003", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    MessageBox.Show("Отчёт успешно составлен!", "Успешно!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    mainWindow.mainframe.GoBack();
+                }
+                catch (HttpRequestException httpEx)
+                {
+                    MessageBox.Show($"Возникла ошибка отправки запроса на сервер.\n\nCode=page_EventList_saveAA001\nMessage={httpEx.Message}", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Возникла непредвиденная ошибка.\n\nCode=page_EventList_saveAA002\nMessage={ex}", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            btn_save.IsEnabled = true;
         }
         #endregion
 
         private async Task LoadInformation()
         {
-            //данные о мероприятии
-            //edit_organizer_name.Text = $"{_Event.organizerSurname} {_Event.organizerName} {_Event.organizerLastname}";
-            //edit_event_direction.Text = _Event.categoryName;
-
             // добавление мест проведения мероприятия
             foreach (Location location in _Event.locations)
             {

@@ -125,7 +125,7 @@ namespace college_events_desktop.View.Controls
 
 		private void btn_see_event_report_Click(object sender, RoutedEventArgs e)
 		{
-			mainWindow.mainframe.Navigate(new page_EventList_seeEvent());
+			mainWindow.mainframe.Navigate(new page_EventList_seeEvent(mainWindow, _dataService, _Event));
 		}
 
 
