@@ -10,6 +10,11 @@ namespace college_events_desktop.DataModels
         public int actualParticipantsCount { get; set; }
         public int actualSuperParticipantsCount { get; set; }
         public int totalScore { get; set; }
+        public int groupId { get; set; }
+        public string groupName { get; set; }
+        public string supervisorName { get; set; }
+        public string supervisorSurname { get; set; }
+        public string supervisorLastname { get; set; }
         public string this[string columnName]
         {
             get

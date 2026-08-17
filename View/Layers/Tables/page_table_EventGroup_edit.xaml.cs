@@ -80,7 +80,7 @@ namespace college_events_desktop.View.Layers.Tables
                 _groups = groups;
                 foreach (var group in groups)
                 {
-                    GroupSupervisor.Add(group.groupName, $"{group.supervisorSurname} {group.supervisorName} {group.supervisorMiddlename}");
+                    GroupSupervisor.Add(group.groupName, $"{group.supervisorSurname} {group.supervisorName} {group.supervisorLastname}");
                 }
 
                 stack_table_rows.Children.Clear();

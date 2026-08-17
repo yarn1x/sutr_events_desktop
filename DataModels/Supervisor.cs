@@ -11,9 +11,9 @@ namespace college_events_desktop.DataModels
     {
         public string firstName {  get; set; }
         public string lastName {  get; set; }
-        public string middleName {  get; set; }
+        public string surName {  get; set; }
         public string email {  get; set; }
-        public string mobilePhone {  get; set; }
+        public string phone {  get; set; }
         public List<Group> groups { get; set; }
     }
 }

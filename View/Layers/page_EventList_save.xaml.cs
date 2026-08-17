@@ -41,9 +41,9 @@ namespace college_events_desktop.View.Layers
         #endregion
 
         #region Обработчики событий
-        private async void Page_EventList_save_Loaded(object sender, RoutedEventArgs e)
+        private void Page_EventList_save_Loaded(object sender, RoutedEventArgs e)
         {
-            await LoadInformation();
+            LoadInformation();
             frame_table.Navigate(_table);
         }
 
@@ -83,15 +83,17 @@ namespace college_events_desktop.View.Layers
         }
         #endregion
 
-        private async Task LoadInformation()
+        private void LoadInformation()
         {
+            _Event.locations.ForEach(g => stack_places.Children.Add(CreateLocationButton(g)));
             // добавление мест проведения мероприятия
-            foreach (Location location in _Event.locations)
-            {
-                stack_places.Children.Add(CreateLocationButton(location));
-            }
+            //foreach (Location location in _Event.locations)
+            //{
+            //    stack_places.Children.Add(CreateLocationButton(location));
+            //}
         }
 
+        //TODO: CODE REVEAL: поместить в отдельный класс
         private Button CreateLocationButton(Location location)
         {
             var btn = new Button()

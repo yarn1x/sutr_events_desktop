@@ -12,6 +12,7 @@
                 <ResourceDictionary Source="/View/Styles/ButtonStyles.xaml"/>
                 <ResourceDictionary Source="/View/Styles/TextBlockStyles.xaml"/>
                 <ResourceDictionary Source="/View/Styles/ScrollBarStyles.xaml"/>
+                <ResourceDictionary Source="/View/Styles/DataGridStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <!--изображения-->

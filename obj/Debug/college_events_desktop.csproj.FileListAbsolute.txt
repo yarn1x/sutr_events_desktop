@@ -57,3 +57,4 @@ C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Controls\TextPlaceholder.baml
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Layers\page_NewLocation.g.cs
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Layers\page_NewLocation.baml
+C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Styles\DataGridStyles.baml

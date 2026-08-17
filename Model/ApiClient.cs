@@ -229,5 +229,7 @@ namespace college_events_desktop.Model
         /// Список всех организаторов.
         /// </returns>
         internal async Task<List<Organizer>> GetListOfOrganizers() => await GetAsync<List<Organizer>>("organizers");
+
+        internal async Task<List<EventGroupsActualAttendances>> GetListOfEventGroupsStatistics(int eventId) => await GetAsync<List<EventGroupsActualAttendances>>($"events/{eventId}/statistics");
     }
 }

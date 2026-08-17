@@ -12,7 +12,7 @@ namespace college_events_desktop.DataModels
         public string groupName { get; set; }
         public string supervisorName { get; set; }
         public string supervisorSurname { get; set; }
-        public string supervisorMiddlename { get; set; }
+        public string supervisorLastname { get; set; }
         public string supervisorEmail { get; set; }
         public string supervisorPhone { get; set; }
         public int eventsCount { get; set; }

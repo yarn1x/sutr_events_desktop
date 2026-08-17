@@ -158,28 +158,17 @@ namespace college_events_desktop.View.Layers.Tables
         /// </summary>
         private void LoadGroups()
         {
-            //проходимся по списку всех учебных групп для добавления списка в combobox
-            foreach (var group in _table._groups)
-            {
-                bool already_added = false;
-                //Для каждой добавляемой в список группы, мы проходимся по уже созданным таким же combobox-ам
-                foreach (var element in _table.stack_table_rows.Children)
-                {
-                    if (element is table_tuple_EventGroup_edit tuple)
-                    {
-                        //и смотрим совпадает ли текст в combobox с названием группы, которую хотим добавить в новый combobox
-                        if (tuple.combobox_group.Text == group.groupName)
-                        {
-                            //если совпадают, то мы сообщаем, что группа уже в списке на участие в мероприятии и прерываем проверять уже созданные combobox-ы
-                            already_added = true;
-                            break;
-                        }
-                    }
-                }
-
-                //Если значение отрицательно, добавляем группу в комбобокс
-                if (!already_added) combobox_group.Items.Add(group.groupName);
-            }
+            //.OfType<...>() — выбирает из списка элементов только нужные строки таблицы
+            //.Any(...) — проверяет, занято ли уже имя группы в созданных комбобоксах
+            //.Where(...) — фильтрует и оставляет только свободные группы
+            //.ForEach(...) — добавляет каждую оставшуюся группу в ваш новый комбобокс.
+            _table._groups
+                .Where(g => 
+                    !_table.stack_table_rows.Children.OfType<table_tuple_EventGroup_edit>()
+                    .Any(t => t.combobox_group.Text == g.groupName)
+                )
+                .ToList()
+                .ForEach(g => combobox_group.Items.Add(g.groupName));
         }
 
         /// <summary>

@@ -186,12 +186,9 @@ namespace college_events_desktop.View.Layers
             //данные о мероприятии
             combobox_organizer_name.Text = $"{_Event.organizerSurname} {_Event.organizerName} {_Event.organizerLastname}";
             combobox_event_direction.Text = _Event.categoryName;
-            
+
             // добавление мест проведения мероприятия (именно что кнопок - конкретно зафиксированных мест для мероприятия)
-            foreach (Location location in _Event.locations)
-            {
-                stack_places.Children.Insert(stack_places.Children.Count - 1, CreateLocationButton(location));
-            }
+            _Event.locations.ForEach(location => stack_places.Children.Insert(stack_places.Children.Count - 1, CreateLocationButton(location)));
 
             //подгрузка информации из БД
             await _dataService.LoadGroupsListAsync();
@@ -210,7 +207,7 @@ namespace college_events_desktop.View.Layers
             {
                 ///аналогично. добавление фулл списка огранизаторов в комбобокс
                 var organizers = _dataService.organizers
-                    .Select(o => $"{o.lastName} {o.firstName} {o.middleName}".Trim())
+                    .Select(o => $"{o.surName} {o.firstName} {o.lastName}".Trim())
                     .ToArray();
                 combobox_organizer_name.ItemsSource = organizers;
             }
@@ -233,6 +230,7 @@ namespace college_events_desktop.View.Layers
             }
         }
 
+        //TODO: CODE REVEAL: поместить в отдельный класс
         /// <summary>
         /// Метод, позволяющий из строки ФИО (ПОРЯДОК ПОЛНОГО ИМЕНИ ОБЯЗАТЕЛЕН ЧЕРЕЗ ПРОБЕЛ) определить ID организатора в БД
         /// </summary>
@@ -243,9 +241,10 @@ namespace college_events_desktop.View.Layers
             string organizerName = content.Split(' ')[1];
             string organizerSurName = content.Split(' ')[0];
             string organizerLastName = content.Split(' ')[2];
-            return _dataService.organizers.Find(o => o.firstName == organizerName && o.lastName == organizerSurName && o.middleName == organizerLastName).userId;
+            return _dataService.organizers.Find(o => o.firstName == organizerName && o.surName == organizerSurName && o.lastName == organizerLastName).userId;
         }
 
+        //TODO: CODE REVEAL: поместить в отдельный класс
         /// <summary>
         /// Метод, позволяющий из строки с наименованием категории (направления) определить ID в БД
         /// </summary>
@@ -256,6 +255,8 @@ namespace college_events_desktop.View.Layers
             return _dataService.categories.Find(c => c.name == content).categoryId;
         }
 
+
+        //TODO: CODE REVEAL: поместить в отдельный класс
         /// <summary>
         /// метод для создания кнопки с локацией. НЕ УНИВЕРСАЛЬНЫЙ! НЕ ПОДХОДИТ ДЛЯ ЛЮБОГО КОНТЕЙНЕРА!
         /// </summary>

@@ -10,8 +10,8 @@ namespace college_events_desktop.DataModels
     {
         public int userId { get; set; }
         public string firstName { get; set; }
+        public string surName { get; set; }
         public string lastName { get; set; }
-        public string middleName { get; set; }
         public int typeId { get; set; }
         public string typeName { get; set; }
         public string email {  get; set; }
