@@ -49,7 +49,7 @@ namespace college_events_desktop.View.Layers
                     bool response = await mainWindow._dataService.apiClient.CreateLocation(body);
                     if (response)
                     {
-                        MessageBox.Show("Успешно!", $"{edit_location.Text} создано!");
+                        MessageBox.Show($"{edit_location.Text} создано!\n\nПЕРЕЗАЙДИТЕ НА СТРАНИЦУ ИЛИ ОБНОВИТЕ ИНФОРМАЦИЮ ДЛЯ ОТОБАЖЕНИЯ НОВОГО МЕСТА", "Успешно!", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                     else
                     {

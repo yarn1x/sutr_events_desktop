@@ -1,7 +1,7 @@
 ﻿using college_events_desktop.DataModels;
 using college_events_desktop.Model;
 using college_events_desktop.View.Controls;
-using college_events_desktop.View.Layers;
+using college_events_desktop.View.Layers.Events;
 using college_events_desktop.View.Windows;
 using System;
 using System.Collections.Generic;

@@ -1,11 +1,15 @@
 ﻿using college_events_desktop.Model;
 using college_events_desktop.Services;
 using college_events_desktop.View.Controls;
-using college_events_desktop.View.Layers;
+using college_events_desktop.View.Layers.Events;
+using college_events_desktop.View.Layers.Organizers;
+using college_events_desktop.View.Layers.Settings;
 using college_events_desktop.ViewModels;
 using System;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 
 namespace college_events_desktop.View.Windows
@@ -13,8 +17,9 @@ namespace college_events_desktop.View.Windows
 	public partial class MainWindow : Window
 	{
         #region Поля класса
-        //различные UI элементы
+        //UI элементы
         page_EventList eventList;
+        page_OrganizerList organizerList;
         events_nav_buttons events_Nav_Buttons;
         users_nav_buttons users_Nav_Buttons;
 
@@ -23,7 +28,6 @@ namespace college_events_desktop.View.Windows
         internal readonly IOverlayService _overlayService;
 
         //остальные переменные
-        private bool isNavButtonTextVisible = true;
         #endregion
 
 
@@ -35,6 +39,7 @@ namespace college_events_desktop.View.Windows
             //присвоение переменным значений
             _dataService = dataService;
             eventList = new page_EventList(this, _dataService);
+            organizerList = new page_OrganizerList(this, _dataService);
 			events_Nav_Buttons = new events_nav_buttons(this, eventList);
             users_Nav_Buttons = new users_nav_buttons(this);
             _overlayService = new OverlayService(this);
@@ -49,25 +54,48 @@ namespace college_events_desktop.View.Windows
 
         #region Обработчики событий
 
-        private void btn_nav_menu_drop_Click(object sender, RoutedEventArgs e)
-        {
-            if (isNavButtonTextVisible)
-            {
-                grid_main.ColumnDefinitions[0].Width = new GridLength(90);
-                isNavButtonTextVisible = false;
-            }
-            else
-            {
-                grid_main.ColumnDefinitions[0].Width = new GridLength(240);
-                isNavButtonTextVisible = true;
-            }
-        }
-
-
         private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
 		{
 			mainframe.Navigate(eventList);
 			await eventList.Page_EventList_Loaded();
+        }
+
+
+        private bool isNavButtonTextVisible = true;
+        private void btn_nav_menu_drop_Click(object sender, RoutedEventArgs e)
+        {
+            //меняем состояние флага
+            isNavButtonTextVisible = !isNavButtonTextVisible;
+
+            //целевая ширина для Border
+            double targetWidth = isNavButtonTextVisible ? 240 : 90;
+            
+            DoubleAnimation widthAnimation = new DoubleAnimation
+            {
+                From = border_basement_menu.ActualWidth,
+                To = targetWidth,
+                Duration = TimeSpan.FromMilliseconds(250),
+                EasingFunction = new CubicEase { EasingMode = EasingMode.EaseInOut }
+            };
+
+            //управление моментом отображения текста на кнопках навигации
+            if (isNavButtonTextVisible)
+            {
+                //если меню открывается, включаем текст сразу, чтобы он плавно выезжал
+                ShowNavButtonsText(true);
+            }
+            else
+            {
+                //если меню закрывается, ждем окончания анимации, чтобы текст не пропал резко в процессе
+                widthAnimation.Completed += (s, args) =>
+                {
+                    if (!isNavButtonTextVisible)
+                    {
+                        ShowNavButtonsText(false);
+                    }
+                };
+            }
+            border_basement_menu.BeginAnimation(Border.WidthProperty, widthAnimation);
         }
 
 
@@ -80,8 +108,8 @@ namespace college_events_desktop.View.Windows
         }
 
 
-        private bool isEventsNavMenuOpened = false;
         
+        private bool isEventsNavMenuOpened = false;
         private void open_events_nav_menu(object sender, RoutedEventArgs e)
 		{
             if (!isEventsNavMenuOpened)
@@ -97,6 +125,7 @@ namespace college_events_desktop.View.Windows
 				isEventsNavMenuOpened = false;
 			}
 		}
+
 
 
         private bool isSupervisorsNavMenuOpened = false;
@@ -116,9 +145,25 @@ namespace college_events_desktop.View.Windows
             }
         }
 
+
+
+        private page_Settings page_settings = new page_Settings();
+        private void btn_settings_Click(object sender, RoutedEventArgs e)
+        {
+            _overlayService.Open(page_settings);
+        }
+
+
+
         private void btn_close_overlay_Click(object sender, RoutedEventArgs e)
         {
             _overlayService.Close();
+        }
+
+
+        private void btn_otganizers_Click(object sender, RoutedEventArgs e)
+        {
+            mainframe.Navigate(organizerList);
         }
 
         /// <summary>
@@ -131,6 +176,7 @@ namespace college_events_desktop.View.Windows
             Loaded -= MainWindow_Loaded;
             EventNotification.StatusChanged -= EventNotification_StatusChanged;
         }
+
         #endregion
 
 
@@ -165,7 +211,15 @@ namespace college_events_desktop.View.Windows
             grid_main.IsEnabled = !show;
         }
 
+        private void ShowNavButtonsText(bool state)
+        {
+            Visibility visibility = state ? Visibility.Visible : Visibility.Collapsed;
+            text_menu_events.Visibility = visibility;
+            text_menu_organizers.Visibility = visibility;
+            text_menu_groups.Visibility = visibility;
+            text_menu_supervisors.Visibility = visibility;
+            text_menu_users.Visibility = visibility;
+        }
         #endregion
-
     }
 }

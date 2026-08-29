@@ -10,7 +10,7 @@
         MinHeight="600" MinWidth="800"
         WindowState="Maximized">
     <Grid x:Name="grid_main">
-        <Image Source="/View/Resources/img_uetk_photo.png" Stretch="UniformToFill" HorizontalAlignment="Center" >
+        <Image Source="/View/Resources/images/img_uetk_photo.png" Stretch="UniformToFill" HorizontalAlignment="Center" >
             <Image.Effect>
                 <BlurEffect Radius="10"/>
             </Image.Effect>

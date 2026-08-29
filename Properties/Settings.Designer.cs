@@ -22,5 +22,89 @@ namespace college_events_desktop.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double eventList_moving_panel_X {
+            get {
+                return ((double)(this["eventList_moving_panel_X"]));
+            }
+            set {
+                this["eventList_moving_panel_X"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double eventList_moving_panel_Y {
+            get {
+                return ((double)(this["eventList_moving_panel_Y"]));
+            }
+            set {
+                this["eventList_moving_panel_Y"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool status_filter_grey {
+            get {
+                return ((bool)(this["status_filter_grey"]));
+            }
+            set {
+                this["status_filter_grey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool status_filter_blue {
+            get {
+                return ((bool)(this["status_filter_blue"]));
+            }
+            set {
+                this["status_filter_blue"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool status_filter_yellow {
+            get {
+                return ((bool)(this["status_filter_yellow"]));
+            }
+            set {
+                this["status_filter_yellow"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool status_filter_red {
+            get {
+                return ((bool)(this["status_filter_red"]));
+            }
+            set {
+                this["status_filter_red"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool status_filter_green {
+            get {
+                return ((bool)(this["status_filter_green"]));
+            }
+            set {
+                this["status_filter_green"] = value;
+            }
+        }
     }
 }

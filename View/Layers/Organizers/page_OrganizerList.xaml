@@ -1,0 +1,65 @@
+﻿<Page x:Class="college_events_desktop.View.Layers.Organizers.page_OrganizerList"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:college_events_desktop.View.Layers.Organizers"
+      xmlns:control="clr-namespace:college_events_desktop.View.Controls" 
+      mc:Ignorable="d" 
+      d:DesignHeight="900" d:DesignWidth="900"
+      Title="page_OrganizerList">
+
+    <Grid Background="White" Grid.Row="1" Grid.Column="1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <!--Шапка-->
+        <StackPanel Background="#FFDDEEFF" Orientation="Horizontal">
+            <Button x:Name="btn_update_page" Padding="5" VerticalAlignment="Center" Style="{DynamicResource ButtonStyle_accent}" Margin="10,0,0,0">
+                <StackPanel Orientation="Horizontal">
+                    <Border Background="White" Width="20" Height="20">
+                        <Border.OpacityMask>
+                            <ImageBrush ImageSource="/View/Resources/icons/ico_rotate_reverse.png"/>
+                        </Border.OpacityMask>
+                    </Border>
+                    <TextBlock Text="Обновить страницу" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                </StackPanel>
+            </Button>
+
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" Text="Список организаторов" FontWeight="Bold" Foreground="#FF666666"/>
+        </StackPanel>
+
+        <Grid Margin="20, 0, 20, 0" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="110"/>
+                <RowDefinition/>
+                <RowDefinition Height="52"/>
+            </Grid.RowDefinitions>
+            <Border BorderThickness="1" CornerRadius="10" Height="70" BorderBrush="#FF666666" Margin="0,10,0,0" Background="White">
+                <Grid>
+                    <Border CornerRadius="5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Background="#FF008CFF" Margin="10,-9,0,0" Height="20">
+                        <TextBlock Foreground="White" FontSize="14" Text="Фильтры" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    </Border>
+                    <control:SearchBar Margin="10,0,20,0" VerticalAlignment="Center"/>
+                </Grid>
+            </Border>
+            
+            
+            <Border Height="2" Background="#FFDDEEFF" VerticalAlignment="Bottom"/>
+
+            
+            <TextBlock Text="ОРГАНИЗАТОРЫ!!" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            
+            
+            <Border Height="2" Background="#FFDDEEFF" VerticalAlignment="Top" Grid.Row="2"/>
+
+
+            <!--Навигация-->
+            <StackPanel x:Name="stack_bottom" Margin="0,7,5,5" Orientation="Horizontal" Grid.Row="6">
+                <Button x:Name="btn_goback" Style="{DynamicResource ButtonStyle_accent_extra}" Width="140" FontSize="14" Content="Назад" Click="goback_Click"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

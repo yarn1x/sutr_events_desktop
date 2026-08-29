@@ -1,4 +1,4 @@
-﻿using college_events_desktop.View.Layers;
+﻿using college_events_desktop.View.Layers.Events;
 using college_events_desktop.View.Windows;
 using college_events_desktop.ViewModels;
 using System;

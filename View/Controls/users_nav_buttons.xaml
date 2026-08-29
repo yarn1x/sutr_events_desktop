@@ -12,7 +12,7 @@
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,10,0">
                         <Border Background="White" Width="23" Height="23" Margin="0,0,5,0">
                             <Border.OpacityMask>
-                                <ImageBrush ImageSource="/View/Resources/ico_rectangle_list_solid.png"/>
+                                <ImageBrush ImageSource="/View/Resources/icons/ico_rectangle_list_solid.png"/>
                             </Border.OpacityMask>
                         </Border>
                         <TextBlock Text="Список" VerticalAlignment="Center" FontSize="14"/>
@@ -23,7 +23,7 @@
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,10,0">
                         <Border Background="White" Width="23" Height="23" Margin="0,0,5,0">
                             <Border.OpacityMask>
-                                <ImageBrush ImageSource="/View/Resources/ico_user_add.png"/>
+                                <ImageBrush ImageSource="/View/Resources/icons/ico_user_add.png"/>
                             </Border.OpacityMask>
                         </Border>
                         <TextBlock Text="Новый" VerticalAlignment="Center" FontSize="14"/>

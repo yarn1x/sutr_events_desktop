@@ -5,7 +5,7 @@
     <Style x:Key="DataGridColumnHeaderStyle" TargetType="DataGridColumnHeader">
         <Setter Property="Background" Value="#FFDDEEFF"/>
         <Setter Property="BorderBrush" Value="Black"/>
-        <Setter Property="BorderThickness" Value="0,0,1,0"/>
+        <Setter Property="BorderThickness" Value="0.5"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="FontWeight" Value="Normal"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -31,7 +31,7 @@
     <!-- Стиль для ячеек -->
     <Style x:Key="DataGridCellStyle" TargetType="DataGridCell">
         <Setter Property="BorderBrush" Value="Black"/>
-        <Setter Property="BorderThickness" Value="0,1,1,0"/>
+        <Setter Property="BorderThickness" Value="0.5"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="Height" Value="35"/>
         <Setter Property="Background" Value="White"/>
@@ -57,7 +57,7 @@
         </Style.Triggers>
     </Style>
 
-    <!-- Стиль для строк (убираем кнопку выбора строки) -->
+    <!-- Стиль для строк -->
     <Style x:Key="DataGridRowStyle" TargetType="DataGridRow">
         <Setter Property="Background" Value="White"/>
         <Setter Property="BorderBrush" Value="Black"/>
@@ -67,7 +67,8 @@
                 <ControlTemplate TargetType="DataGridRow">
                     <Border Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="10">
                         <SelectiveScrollingGrid>
                             <SelectiveScrollingGrid.ColumnDefinitions>
                                 <!-- Убираем колонку для RowHeader (кнопка выбора строки) -->
@@ -132,8 +133,7 @@
                 <ControlTemplate TargetType="DataGrid">
                     <Border Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="0">
+                            BorderThickness="{TemplateBinding BorderThickness}">
                         <ScrollViewer x:Name="DG_ScrollViewer" Focusable="false">
                             <ScrollViewer.Template>
                                 <ControlTemplate TargetType="ScrollViewer">

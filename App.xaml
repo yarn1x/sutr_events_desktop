@@ -16,11 +16,26 @@
             </ResourceDictionary.MergedDictionaries>
 
             <!--изображения-->
-            <BitmapImage x:Key="caret_down" UriSource="/View/Resources/ico_caret_down.png"/>
-            <BitmapImage x:Key="caret_up" UriSource="/View/Resources/ico_caret_up.png"/>
+            <BitmapImage x:Key="caret_down" UriSource="/View/Resources/icons/ico_caret_down.png"/>
+            <BitmapImage x:Key="caret_up" UriSource="/View/Resources/icons/ico_caret_up.png"/>
 
             <!--конвертеры-->
             <converter:DateTimeToStringConverter x:Key="DateTimeConverter"/>
+
+            <ControlTemplate x:Key="DisabledStatusCircle" TargetType="Control">
+                <Grid Width="25" Height="25">
+                    <!-- Сам цветной круг -->
+                    <Border CornerRadius="20" Background="{TemplateBinding Background}"/>
+
+                    <!-- Идеальный векторный крестик с отступами (внутри области 20х20) -->
+                    <Canvas Width="25" Height="25">
+                        <!-- Белая обводка крестика -->
+                        <Path Data="M 5,5 L 20,20 M 20,5 L 5,20" Stroke="White" StrokeThickness="4" StrokeStartLineCap="Round" StrokeEndLineCap="Round"/>
+                        <!-- Красный внутренний крестик -->
+                        <Path Data="M 5,5 L 20,20 M 20,5 L 5,20" Stroke="Red" StrokeThickness="2" StrokeStartLineCap="Round" StrokeEndLineCap="Round"/>
+                    </Canvas>
+                </Grid>
+            </ControlTemplate>
 
         </ResourceDictionary>
     </Application.Resources>

@@ -15,7 +15,7 @@
                 <RotateTransform/>
             </Border.RenderTransform>
             <Border.OpacityMask>
-                <ImageBrush ImageSource="../Resources/ico_gear.png"/>
+                <ImageBrush ImageSource="../Resources/icons/ico_gear.png"/>
             </Border.OpacityMask>
             <Border.Triggers>
                 <EventTrigger RoutedEvent="Loaded">
@@ -37,7 +37,7 @@
                 <RotateTransform/>
             </Border.RenderTransform>
             <Border.OpacityMask>
-                <ImageBrush ImageSource="../Resources/ico_gear.png"/>
+                <ImageBrush ImageSource="../Resources/icons/ico_gear.png"/>
             </Border.OpacityMask>
             <Border.Triggers>
                 <EventTrigger RoutedEvent="Loaded">

@@ -99,6 +99,7 @@
     <Compile Include="Model\DataService.cs" />
     <Compile Include="Services\LoadingService.cs" />
     <Compile Include="Services\OverlayService.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="ViewModels\EventListEditViewModel.cs" />
     <Compile Include="ViewModels\EventListViewModel.cs" />
     <Compile Include="ViewModels\UIAnimations.cs" />
@@ -114,16 +115,19 @@
     <Compile Include="View\Controls\loading_interface.xaml.cs">
       <DependentUpon>loading_interface.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Layers\Organizers\page_OrganizerList.xaml.cs">
+      <DependentUpon>page_OrganizerList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Layers\page_NewLocation.xaml.cs">
       <DependentUpon>page_NewLocation.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Layers\Tables\page_table_EventGroup_edit.xaml.cs">
+    <Compile Include="View\Layers\Events\Tables\page_table_EventGroup_edit.xaml.cs">
       <DependentUpon>page_table_EventGroup_edit.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Layers\Tables\page_table_EventGroup_save.xaml.cs">
+    <Compile Include="View\Layers\Events\Tables\page_table_EventGroup_save.xaml.cs">
       <DependentUpon>page_table_EventGroup_save.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Layers\Tables\table_tuple_EventGroup_edit.xaml.cs">
+    <Compile Include="View\Layers\Events\Tables\table_tuple_EventGroup_edit.xaml.cs">
       <DependentUpon>table_tuple_EventGroup_edit.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Controls\SearchBar.xaml.cs">
@@ -132,25 +136,28 @@
     <Compile Include="View\Controls\users_nav_buttons.xaml.cs">
       <DependentUpon>users_nav_buttons.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Layers\page_EventList.xaml.cs">
+    <Compile Include="View\Layers\Events\page_EventList.xaml.cs">
       <DependentUpon>page_EventList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Layers\page_EventListHelp.xaml.cs">
+    <Compile Include="View\Layers\Events\page_EventListHelp.xaml.cs">
       <DependentUpon>page_EventListHelp.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Layers\page_EventList_edit.xaml.cs">
+    <Compile Include="View\Layers\Events\page_EventList_edit.xaml.cs">
       <DependentUpon>page_EventList_edit.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Layers\page_EventList_save.xaml.cs">
+    <Compile Include="View\Layers\Events\page_EventList_save.xaml.cs">
       <DependentUpon>page_EventList_save.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Layers\page_EventList_seeEvent.xaml.cs">
+    <Compile Include="View\Layers\Events\page_EventList_seeEvent.xaml.cs">
       <DependentUpon>page_EventList_seeEvent.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Layers\page_NewAccount.xaml.cs">
+    <Compile Include="View\Layers\Settings\page_Settings.xaml.cs">
+      <DependentUpon>page_Settings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Layers\Users\page_NewAccount.xaml.cs">
       <DependentUpon>page_NewAccount.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Layers\Tables\table_tuple_EventGroup_save.xaml.cs">
+    <Compile Include="View\Layers\Events\Tables\table_tuple_EventGroup_save.xaml.cs">
       <DependentUpon>table_tuple_EventGroup_save.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Windows\LoginWindow.xaml.cs">
@@ -175,19 +182,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Layers\Organizers\page_OrganizerList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Layers\page_NewLocation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Layers\Tables\page_table_EventGroup_edit.xaml">
+    <Page Include="View\Layers\Events\Tables\page_table_EventGroup_edit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Layers\Tables\page_table_EventGroup_save.xaml">
+    <Page Include="View\Layers\Events\Tables\page_table_EventGroup_save.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Layers\Tables\table_tuple_EventGroup_edit.xaml">
+    <Page Include="View\Layers\Events\Tables\table_tuple_EventGroup_edit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -199,31 +210,35 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Layers\page_EventList.xaml">
+    <Page Include="View\Layers\Events\page_EventList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Layers\page_EventListHelp.xaml">
+    <Page Include="View\Layers\Events\page_EventListHelp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Layers\page_EventList_edit.xaml">
+    <Page Include="View\Layers\Events\page_EventList_edit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Layers\page_EventList_save.xaml">
+    <Page Include="View\Layers\Events\page_EventList_save.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Layers\page_EventList_seeEvent.xaml">
+    <Page Include="View\Layers\Events\page_EventList_seeEvent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Layers\page_NewAccount.xaml">
+    <Page Include="View\Layers\Settings\page_Settings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Layers\Tables\table_tuple_EventGroup_save.xaml">
+    <Page Include="View\Layers\Users\page_NewAccount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Layers\Events\Tables\table_tuple_EventGroup_save.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -280,71 +295,71 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\Resources\ico_caret_down.png" />
-    <Resource Include="View\Resources\ico_caret_up.png" />
-    <Resource Include="View\Resources\ico_pencil.png" />
-    <Resource Include="View\Resources\img_logoSmallSochiGU.png" />
+    <Resource Include="View\Resources\icons\ico_caret_down.png" />
+    <Resource Include="View\Resources\icons\ico_caret_up.png" />
+    <Resource Include="View\Resources\icons\ico_pencil.png" />
+    <Resource Include="View\Resources\images\img_logoSmallSochiGU.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\Resources\ico_search.png" />
+    <Resource Include="View\Resources\icons\ico_search.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\Resources\ico_google_docs.png" />
+    <Resource Include="View\Resources\icons\ico_google_docs.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\Resources\ico_features.png" />
+    <Resource Include="View\Resources\icons\ico_features.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\Resources\ico_chart_simple.png" />
+    <Resource Include="View\Resources\icons\ico_chart_simple.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\Resources\ico_user_add.png" />
+    <Resource Include="View\Resources\icons\ico_user_add.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\Resources\ico_eye.png" />
+    <Resource Include="View\Resources\icons\ico_eye.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\Resources\ico_check.png" />
-    <Resource Include="View\Resources\ico_x.png" />
+    <Resource Include="View\Resources\icons\ico_check.png" />
+    <Resource Include="View\Resources\icons\ico_x.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\Resources\ico_rectangle_list_solid.png" />
+    <Resource Include="View\Resources\icons\ico_rectangle_list_solid.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\Resources\img_patient.png" />
+    <Resource Include="View\Resources\images\img_patient.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\Resources\ico_rotate_reverse.png" />
+    <Resource Include="View\Resources\icons\ico_rotate_reverse.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\Resources\ico_question.png" />
+    <Resource Include="View\Resources\icons\ico_question.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\Resources\ico_calendar_star.png" />
+    <Resource Include="View\Resources\icons\ico_calendar_star.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\Resources\ico_idea.png" />
+    <Resource Include="View\Resources\icons\ico_idea.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\Resources\ico_users.png" />
+    <Resource Include="View\Resources\icons\ico_users.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\Resources\ico_glasses.png" />
+    <Resource Include="View\Resources\icons\ico_glasses.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\Resources\ico_user_gear.png" />
+    <Resource Include="View\Resources\icons\ico_user_gear.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\Resources\ico_gear.png" />
+    <Resource Include="View\Resources\icons\ico_gear.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\Resources\ico_writing.png" />
+    <Resource Include="View\Resources\icons\ico_writing.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\Resources\sutr_logo.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\Resources\img_uetk_photo.png" />
+    <Resource Include="View\Resources\images\img_uetk_photo.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
@@ -359,11 +374,22 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\Resources\ico_clone.png" />
+    <Resource Include="View\Resources\icons\ico_clone.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="View\Resources\ico_rounded_black_square.png" />
-    <Resource Include="View\Resources\ico_wrong_square.png" />
+    <Resource Include="View\Resources\icons\ico_rounded_black_square.png" />
+    <Resource Include="View\Resources\icons\ico_wrong_square.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Resources\images\img_ui_copy_feature.png" />
+    <Resource Include="View\Resources\images\img_ui_tips.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="View\Layers\Groups\" />
+    <Folder Include="View\Layers\Supervisors\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Resources\images\img_ui_tips_2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -10,6 +10,16 @@ namespace college_events_desktop
 {
     public partial class App : Application
     {
+        //кому не повезло с умением чтения легаси, пиши на denmar2281@gmail.com или @tgn0sense
+        //подскажу, о чём сам помню и что сам писал
+
+
+
+
+
+
+
+
         // регионы оставил тут для вставки в новые файлы, потому что я за****ся писать region, endregion
         #region Поля класса
         #endregion

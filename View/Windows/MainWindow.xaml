@@ -13,131 +13,150 @@
     
     <Grid x:Name="grid_main">
         <Grid.ColumnDefinitions>
-			<ColumnDefinition Width="240"/>
+			<ColumnDefinition Width="Auto"/>
 			<ColumnDefinition/>
 		</Grid.ColumnDefinitions>
 
 		<!--Боковая панель навигации-->
-        <Border BorderThickness="1" BorderBrush="#FF666666" />
-        
+        <Border x:Name="border_basement_menu" Width="240" BorderThickness="0, 0, 1, 0" BorderBrush="#FF666666">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="60"/>
+                </Grid.RowDefinitions>
+				
+                <ScrollViewer Margin="10,10,10,50" VerticalScrollBarVisibility="Hidden">
+                    <!--основные кнопки навигации-->
+                    <StackPanel Grid.Row="1">
+                        <StackPanel Orientation="Horizontal">
+							<Button x:Name="btn_nav_menu_drop" Background="#FF003D97" BorderBrush="{x:Null}" Cursor="Hand" Width="68" Height="68" Style="{DynamicResource ButtonStyle_accent}" Padding="0,1,1,1" Click="btn_nav_menu_drop_Click">
+								<Button.OpacityMask>
+									<ImageBrush ImageSource="/View/Resources/images/img_logoSmallSochiGU.png"/>
+								</Button.OpacityMask>
+							</Button>
+							<TextBlock d:Text="test" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="20"/>
+						</StackPanel>
 
-		<ScrollViewer Margin="10" Grid.Row="1" VerticalScrollBarVisibility="Hidden">
-			<StackPanel Grid.Row="1">
+						<Button x:Name="btn_menu_events" Height="50" Style="{DynamicResource ButtonStyle_accent}" BorderBrush="{x:Null}" Click="open_events_nav_menu" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Cursor="Hand" Margin="0,10,0,0">
+							<Grid>
+								<Ellipse x:Name="ellipse_new_event_status" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Top" Width="8" Height="8" Fill="Red"/>
+								<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0">
+									<Border Background="White" Width="25" Height="25" Margin="0,0,10,0">
+										<Border.OpacityMask>
+											<ImageBrush ImageSource="/View/Resources/icons/ico_calendar_star.png"/>
+										</Border.OpacityMask>
+									</Border>
+									<TextBlock x:Name="text_menu_events" Text="Мероприятия" FontSize="14" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+								</StackPanel>
+								<Border x:Name="border_events_caret" Background="White" Width="15" Height="15" HorizontalAlignment="Right" Margin="0,0,10,0">
+									<Border.OpacityMask>
+										<ImageBrush ImageSource="/View/Resources/icons/ico_caret_down.png">
+											<ImageBrush.RelativeTransform>
+												<TransformGroup>
+													<ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="1.5" ScaleY="1.5"/>
+													<SkewTransform CenterX="0.5" CenterY="0.5"/>
+													<RotateTransform CenterX="0.5" CenterY="0.5"/>
+													<TranslateTransform X="0"/>
+												</TransformGroup>
+											</ImageBrush.RelativeTransform>
+										</ImageBrush>
+									</Border.OpacityMask>
+								</Border>
+							</Grid>
+						</Button>
+				
+						<ContentControl x:Name="submenu_events"/>
+				
+						<Button x:Name="btn_otganizers" Height="50" Style="{DynamicResource ButtonStyle_accent}" BorderBrush="{x:Null}" Margin="0,10,0,0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Cursor="Hand" Click="btn_otganizers_Click">
+							<Grid>
+								<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0">
+									<Border Background="White" Width="25" Height="25" Margin="0,0,10,0">
+										<Border.OpacityMask>
+											<ImageBrush ImageSource="/View/Resources/icons/ico_idea.png"/>
+										</Border.OpacityMask>
+									</Border>
+									<TextBlock x:Name="text_menu_organizers" Text="Организаторы" FontSize="14" VerticalAlignment="Center"  TextTrimming="CharacterEllipsis" Margin="0.4,0,0,0"/>
+								</StackPanel>
+							</Grid>
+						</Button>
 
-                <StackPanel Orientation="Horizontal">
-                    <Button x:Name="btn_nav_menu_drop" Background="#FF003D97" BorderBrush="{x:Null}" Cursor="Hand" Width="60" Height="60" Style="{DynamicResource ButtonStyle_accent}" Padding="0,1,1,1" Click="btn_nav_menu_drop_Click">
-                        <Button.OpacityMask>
-                            <ImageBrush ImageSource="/View/Resources/img_logoSmallSochiGU.png"/>
-                        </Button.OpacityMask>
-                    </Button>
-                    <TextBlock d:Text="test" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="20"/>
-                </StackPanel>
+						<Button x:Name="btn_groups" Height="50" Style="{DynamicResource ButtonStyle_accent}" BorderBrush="{x:Null}" Margin="0,10,0,0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Cursor="Hand">
+							<Grid>
+								<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0">
+									<Border Background="White" Width="25" Height="25" Margin="0,0,10,0">
+										<Border.OpacityMask>
+											<ImageBrush ImageSource="/View/Resources/icons/ico_users.png"/>
+										</Border.OpacityMask>
+									</Border>
+									<TextBlock x:Name="text_menu_groups" Text="Группы" FontSize="14" VerticalAlignment="Center"  TextTrimming="CharacterEllipsis"/>
+								</StackPanel>
+							</Grid>
+						</Button>
 
-                <Button x:Name="btn_menu_events" Height="50" Style="{DynamicResource ButtonStyle_accent}" BorderBrush="{x:Null}" Click="open_events_nav_menu" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Cursor="Hand" Margin="0,10,0,0">
-					<Grid>
-						<!--Нет реализации обновления после изменений в списке: ellipse показывает статус новых мероприятий (если видим, то новое мероприятие на модерации). Так же изменить статус в подменю event_nav_buttons-->
-						<Ellipse x:Name="ellipse_new_event_status" Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Top" Width="8" Height="8" Fill="Red"/>
-						<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0">
-							<Border Background="White" Width="25" Height="25" Margin="0,0,10,0">
+						<Button Margin="0,10,0,0" Height="50" Style="{DynamicResource ButtonStyle_accent}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+							<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center">
+								<Border Width="25" Height="25" Margin="0,0,10,0" Background="White">
+									<Border.OpacityMask>
+										<ImageBrush ImageSource="/View/Resources/icons/ico_glasses.png"/>
+									</Border.OpacityMask>
+								</Border>
+								<TextBlock x:Name="text_menu_supervisors" Text="Кураторы" FontSize="14" VerticalAlignment="Center"  TextTrimming="CharacterEllipsis"/>
+							</StackPanel>
+						</Button>
+
+						<Button x:Name="btn_users" Height="50" Style="{DynamicResource ButtonStyle_accent}" BorderBrush="{x:Null}" Margin="0,10,0,0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Click="open_users_nav_menu_Click" Cursor="Hand">
+							<Grid>
+								<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0">
+									<Border Background="White" Width="25" Height="25" Margin="0,0,10,0">
+										<Border.OpacityMask>
+											<ImageBrush ImageSource="/View/Resources/icons/ico_user_gear.png"/>
+										</Border.OpacityMask>
+									</Border>
+									<TextBlock x:Name="text_menu_users" Text="Пользователи" FontSize="14" VerticalAlignment="Center"  TextTrimming="CharacterEllipsis"/>
+								</StackPanel>
+								<Border x:Name="border_supervisors_caret" Background="White" Width="15" Height="15" Margin="0,0,10,0" HorizontalAlignment="Right">
+									<Border.OpacityMask>
+										<ImageBrush ImageSource="/View/Resources/icons/ico_caret_down.png">
+											<ImageBrush.RelativeTransform>
+												<TransformGroup>
+													<ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="1.5" ScaleY="1.5"/>
+													<SkewTransform CenterX="0.5" CenterY="0.5"/>
+													<RotateTransform CenterX="0.5" CenterY="0.5"/>
+													<TranslateTransform X="0"/>
+												</TransformGroup>
+											</ImageBrush.RelativeTransform>
+										</ImageBrush>
+									</Border.OpacityMask>
+								</Border>
+							</Grid>
+						</Button>
+
+						<ContentControl x:Name="submenu_users"/>
+					</StackPanel>
+				</ScrollViewer>
+
+                <Button x:Name="btn_settings" Grid.Row="1" VerticalAlignment="Center" Height="50" Margin="10,0,10,0"  Style="{DynamicResource ButtonStyle_accent_extra}" BorderBrush="{x:Null}" Padding="0,0,0,0" Background="Transparent" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Click="btn_settings_Click">
+                    <Grid>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center">
+							<Border Width="30" Height="30" Background="#FFCACACA" HorizontalAlignment="Left" Margin="0,0,10,0">
 								<Border.OpacityMask>
-									<ImageBrush ImageSource="/View/Resources/ico_calendar_star.png"/>
+									<ImageBrush ImageSource="/View/Resources/icons/ico_gear.png"/>
 								</Border.OpacityMask>
 							</Border>
-							<TextBlock Text="Мероприятия" FontSize="14" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
-						</StackPanel>
-                        <Border x:Name="border_events_caret" Background="White" Width="15" Height="15" HorizontalAlignment="Right" Margin="0,0,10,0">
-                            <Border.OpacityMask>
-                                <ImageBrush ImageSource="/View/Resources/ico_caret_down.png">
-                                    <ImageBrush.RelativeTransform>
-                                        <TransformGroup>
-                                            <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="1.5" ScaleY="1.5"/>
-                                            <SkewTransform CenterX="0.5" CenterY="0.5"/>
-                                            <RotateTransform CenterX="0.5" CenterY="0.5"/>
-                                            <TranslateTransform X="0"/>
-                                        </TransformGroup>
-                                    </ImageBrush.RelativeTransform>
-                                </ImageBrush>
-                            </Border.OpacityMask>
-                        </Border>
+                            <TextBlock Text="Настройки" Grid.Row="1" Foreground="#FFCACACA" FontWeight="Bold" FontSize="14" VerticalAlignment="Center"/>
+                        </StackPanel>
                     </Grid>
-				</Button>
-				
-				<ContentControl x:Name="submenu_events"/>
-				
-				<Button x:Name="btn_otganizers" Height="50" Style="{DynamicResource ButtonStyle_accent}" BorderBrush="{x:Null}" Margin="0,10,0,0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Cursor="Hand">
-					<Grid>
-						<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0">
-							<Border Background="White" Width="25" Height="25" Margin="0,0,10,0">
-								<Border.OpacityMask>
-									<ImageBrush ImageSource="/View/Resources/ico_idea.png"/>
-								</Border.OpacityMask>
-							</Border>
-                            <TextBlock Text="Организаторы" FontSize="14" VerticalAlignment="Center"  TextTrimming="CharacterEllipsis" Margin="0.4,0,0,0"/>
-						</StackPanel>
-					</Grid>
-				</Button>
-
-				<Button x:Name="btn_groups" Height="50" Style="{DynamicResource ButtonStyle_accent}" BorderBrush="{x:Null}" Margin="0,10,0,0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Cursor="Hand">
-					<Grid>
-						<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0">
-							<Border Background="White" Width="25" Height="25" Margin="0,0,10,0">
-								<Border.OpacityMask>
-									<ImageBrush ImageSource="/View/Resources/ico_users.png"/>
-								</Border.OpacityMask>
-							</Border>
-                            <TextBlock Text="Группы" FontSize="14" VerticalAlignment="Center"  TextTrimming="CharacterEllipsis"/>
-						</StackPanel>
-					</Grid>
-				</Button>
-
-                <Button Margin="0,10,0,0" Height="50" Style="{DynamicResource ButtonStyle_accent}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center">
-                        <Border Width="25" Height="25" Margin="0,0,10,0" Background="White">
-                            <Border.OpacityMask>
-                                <ImageBrush ImageSource="/View/Resources/ico_glasses.png"/>
-                            </Border.OpacityMask>
-                        </Border>
-                        <TextBlock Text="Кураторы" FontSize="14" VerticalAlignment="Center"  TextTrimming="CharacterEllipsis"/>
-                    </StackPanel>
                 </Button>
-
-                <Button x:Name="btn_users" Height="50" Style="{DynamicResource ButtonStyle_accent}" BorderBrush="{x:Null}" Margin="0,10,0,0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Click="open_users_nav_menu_Click" Cursor="Hand">
-					<Grid>
-						<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0">
-							<Border Background="White" Width="25" Height="25" Margin="0,0,10,0">
-								<Border.OpacityMask>
-									<ImageBrush ImageSource="/View/Resources/ico_user_gear.png"/>
-								</Border.OpacityMask>
-							</Border>
-                            <TextBlock Text="Пользователи" FontSize="14" VerticalAlignment="Center"  TextTrimming="CharacterEllipsis"/>
-						</StackPanel>
-						<Border x:Name="border_supervisors_caret" Background="White" Width="15" Height="15" Margin="0,0,10,0" HorizontalAlignment="Right">
-							<Border.OpacityMask>
-								<ImageBrush ImageSource="/View/Resources/ico_caret_down.png">
-									<ImageBrush.RelativeTransform>
-										<TransformGroup>
-											<ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="1.5" ScaleY="1.5"/>
-											<SkewTransform CenterX="0.5" CenterY="0.5"/>
-											<RotateTransform CenterX="0.5" CenterY="0.5"/>
-											<TranslateTransform X="0"/>
-										</TransformGroup>
-									</ImageBrush.RelativeTransform>
-								</ImageBrush>
-							</Border.OpacityMask>
-						</Border>
-					</Grid>
-				</Button>
-
-                <ContentControl x:Name="submenu_users"/>
-            </StackPanel>
-		</ScrollViewer>
+            </Grid>
+        </Border>
+        
 
 
 
 		<!--Навигируемая часть страницы-->
 		<Frame x:Name="mainframe" Grid.Column="1" />
         <!--доп. фрейм для окон поверх основного-->
-        <Grid d:Visibility="Visible" x:Name="grid_overlay" Background="#66000000" Grid.Column="0" Grid.ColumnSpan="2" Visibility="Collapsed">
+        <Grid d:Visibility="Visible" x:Name="grid_overlay" Background="#66000000" Grid.Column="0" Grid.ColumnSpan="2" Visibility="Collapsed" d:IsHidden="True">
 
             <Grid x:Name="OverlayBorder" d:Background="#FF6B0771" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Grid d:Width="100" d:Height="100" d:Background="#FFCA0AB1">

@@ -6,11 +6,11 @@
              xmlns:local="clr-namespace:college_events_desktop.View.Controls"
              mc:Ignorable="d" >
     <Grid>
-        <TextBox x:Name="edit_searchbox" Grid.Column="5" VerticalAlignment="Center" FontSize="16" Height="25" GotFocus="search_gotFocus" LostFocus="search_lostFocus" TextChanged="edit_searchbox_TextChanged"/>
-        <TextBlock x:Name="edit_placeholder" IsHitTestVisible="False" Text="Поиск по содержанию" Foreground="#FF666666" VerticalAlignment="Center" Margin="5,0,3,2" FontSize="16" HorizontalAlignment="Left"/>
+        <TextBox x:Name="edit_searchbox" Grid.Column="5" VerticalAlignment="Center" FontSize="16" Height="28" GotFocus="search_gotFocus" LostFocus="search_lostFocus" TextChanged="edit_searchbox_TextChanged" VerticalContentAlignment="Center" Padding="2,0,0,0"/>
+        <TextBlock x:Name="edit_placeholder" IsHitTestVisible="False" Text="Поиск по содержанию" Foreground="#FF666666" VerticalAlignment="Center" Margin="5,0,3,0" FontSize="16" HorizontalAlignment="Left"/>
         <Border HorizontalAlignment="Right" IsHitTestVisible="False" Background="#FF0150BB" Width="20" VerticalAlignment="Center" Height="20" Margin="0,0,3,0">
             <Border.OpacityMask>
-                <ImageBrush ImageSource="../Resources/ico_search.png"/>
+                <ImageBrush ImageSource="../Resources/icons/ico_search.png"/>
             </Border.OpacityMask>
         </Border>
     </Grid>

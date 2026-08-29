@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace college_events_desktop.DataModels
 {
@@ -27,6 +29,7 @@ namespace college_events_desktop.DataModels
 
         public int statusId { get; set; }
         public string statusName { get; set; }
+        public Brush statusColor { get => GetStatusColor(statusId); }
 
         public int organizerId { get; set; }
         public string organizerName { get; set; }
@@ -71,6 +74,28 @@ namespace college_events_desktop.DataModels
         public string Error
         {
             get { return string.Empty; }
+        }
+
+        private Brush GetStatusColor(int statusId)
+        {
+            try
+            {
+                Dictionary<int, Color> markerColors = new Dictionary<int, Color>()
+                {
+                {-1, Color.FromArgb(0xFF, 0xFF, 0x49, 0x49)}, //красный
+                {1, Color.FromArgb(0xFF, 0xFF, 0xDD, 0x3C)}, //жёлтый
+                {2, Color.FromArgb(0xFF, 0x66, 0xFF, 0x3D)}, //зелёный
+                {3, Color.FromArgb(0xFF, 0x48, 0xAF, 0xFF)}, //голубой
+                {4, Color.FromArgb(0xFF, 0xA7, 0xA7, 0xA7)}, //серый
+                {5, Color.FromArgb(0xFF, 0xA6, 0xFF, 0x7D)}, //перенесено мероприятие (цвет чуть светлее зелёного)
+                {6, Color.FromArgb(0xFF, 0x8C, 0x4F, 0x1B)}, //тёмно-оранжевый
+                };
+                return new SolidColorBrush(markerColors[statusId]);
+            }
+            catch
+            {
+                return new SolidColorBrush(Color.FromArgb(0xFF, 0x67, 0x67, 0x67));
+            }
         }
     }
 }

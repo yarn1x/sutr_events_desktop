@@ -1,7 +1,7 @@
 ﻿using college_events_desktop.DataModels;
 using college_events_desktop.Model;
 using college_events_desktop.Services;
-using college_events_desktop.View.Layers;
+using college_events_desktop.View.Layers.Events;
 using college_events_desktop.View.Windows;
 using college_events_desktop.ViewModels;
 using System;
@@ -15,7 +15,6 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
-//using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace college_events_desktop.View.Controls
 {
@@ -67,8 +66,9 @@ namespace college_events_desktop.View.Controls
 
         private void Event_element_Loaded(object sender, RoutedEventArgs e)
 		{
-			//меняем цвет точки слева сверху на плашке мероприятия в зависимости от статуса (статус хранится в тэге элемента. Почему именно в тэге? Потому что я сделал фильтр по статусу именно по тэгу)
+			//меняем цвет точки слева сверху на плашке мероприятия в зависимости от статуса (статус хранится в тэге элемента. Почему именно в тэге? Потому что я сделал фильтр по статусу именно по тэгу и переделывать мне впадлу. Тебе же лучше. Потренируешься чистить чужой код)
 			event_status.Background = new SolidColorBrush(markerColors[Tag.ToString()]);
+
 			//добавляем инфу, которую просто так через привязку не добавить
 			try
 			{
@@ -169,16 +169,21 @@ namespace college_events_desktop.View.Controls
 			try
 			{
 				//копирование информации в буфер
+
 				var elem = sender as Button;
-				//когда пользователь нажимает на кнопку копирования информации в списке мероприятий,
-				//внутри кнопки находится иконка копирования и текстблок. Кнопка имеет строго определённый в разметке тэг
-				//тэг имеет название то же, что и текстблок внутри кнопки
-				//что бы найти текст, программа ищет элемент с именем как в тэге кнопки
-				var text = elem.FindName(elem.Tag.ToString()) as TextBlock; //тупее ничего придумать нельзя было ¯\_(ツ)_/¯ Сори
+				//когда пользователь нажимает на кнопку копирования информации,
+				//внутри кнопки находится иконка копирования (border) и текстблок.
+				//КНОПКА имеет строго определённый в разметке тэг
+				//тэг имеет НАЗВАНИЕ то же, что и НАИМЕНОВАНИЕ текстблока внутри кнопки
+				//что бы найти текст для копирования, программа ищет элемент с именем как в тэге кнопки
+				var text = elem.FindName(elem.Tag.ToString()) as TextBlock; //тупее ничего придумать нельзя было. За то все кнопки обращаются к одному методу
 				Clipboard.SetText(text.Text);
 
+
 				//отображение плашки "Скопировано!"
+
 				Point position = Mouse.GetPosition(grid_main); //вычисление позиции курсора на экране
+				position.Y = position.Y - 40;
 				TextPlaceholder textBlock = new TextPlaceholder(grid_main, position, "Скопировано!");
                 await textBlock.ShowAsync();
                 await Task.Delay(1300);
