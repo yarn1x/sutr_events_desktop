@@ -42,7 +42,9 @@ namespace college_events_desktop.View.Layers.Events
         public page_EventList(Window win, DataService dataService)
 		{
 			InitializeComponent();
-			mainWindow = win as MainWindow;
+            ApplySettings();
+
+            mainWindow = win as MainWindow;
             _dataService = dataService;
             viewModel = new EventListViewModel(mainWindow, this, _dataService);
         }
@@ -67,7 +69,7 @@ namespace college_events_desktop.View.Layers.Events
                 }
                 catch (Exception ex)
                 {
-                    errorMessages.Add($"произошла ошибка при получении списка мероприятий.\nMessage={ex}");
+                    errorMessages.Add($"произошла ошибка при получении списка мероприятий.\nMessage={ex.Message}");
                 }
                 try
                 {
@@ -79,17 +81,18 @@ namespace college_events_desktop.View.Layers.Events
                 }
                 catch (Exception ex)
                 {
-                    errorMessages.Add($"произошла ошибка при получении списка направлений.\nMessage={ex}");
+                    errorMessages.Add($"произошла ошибка при получении списка направлений.\nMessage={ex.Message}");
                 }
                 if (errorMessages.Count > 0)
                 {
-                    string formattedErrors = string.Join("\n  - ", errorMessages);
-                    string fullMessage = $"Список ошибок:\n\n  - {formattedErrors}\n\nCode=page_EventListAA002";
+                    string formattedErrors = string.Join("\n\n — ", errorMessages);
+                    string fullMessage = $"Список ошибок:\n\n — {formattedErrors}\n\n\nCode=page_EventListAA002";
 
                     MessageBox.Show(fullMessage, "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 UpdateBottomCounters();
-                ApplySettings();
+                //применяем фильтр по статусу (тк есть сохранение в памяти применённых фильтров)
+                await apply_filter();
             });
         }
 
@@ -141,9 +144,9 @@ namespace college_events_desktop.View.Layers.Events
             //наличие активного состояния любого фильтра
             bool isFilterActive = filterStates.Any(s => s.Value == true);
 
-            foreach (event_element child in stack_events.Children)
+            foreach (control_event_element child in stack_events.Children)
             {
-                //если мероприятие было уже скрыто с помощью кнопок фильтрации, то пропустим данный event_element
+                //если мероприятие было уже скрыто с помощью кнопок фильтрации, то пропустим данный control_event_element
                 //и если применён хотя бы один из фильтров с помощью кнопок.
                 //изначально все value из словаря filterStates равны false.
                 //русским языком, если не добавить условие isFilterActive, то он будет "скипать" все мероприятия
@@ -173,7 +176,7 @@ namespace college_events_desktop.View.Layers.Events
             //если мы отчистили поисковое поле, то выведем все мероприятия в соответствии с включенными "кнопочными" фильтрами
             if (searchText == "Не выбрано")
             {
-                foreach (event_element child in stack_events.Children)
+                foreach (control_event_element child in stack_events.Children)
                 {
                     child.Visibility = Visibility.Visible;
                 }
@@ -181,9 +184,9 @@ namespace college_events_desktop.View.Layers.Events
                 return;
             }
 
-            foreach (event_element child in stack_events.Children)
+            foreach (control_event_element child in stack_events.Children)
             {
-                //если мероприятие было уже скрыто с помощью кнопок фильтрации, то пропустим данный event_element
+                //если мероприятие было уже скрыто с помощью кнопок фильтрации, то пропустим данный control_event_element
                 //и если применён хотя бы один из фильтров с помощью кнопок.
                 //изначально все value из словаря filterStates равны false.
                 //русским языком, если не добавить условие isFilterActive, то он будет "скипать" все мероприятия
@@ -383,7 +386,7 @@ namespace college_events_desktop.View.Layers.Events
             {
                 foreach (UIElement child in stack_events.Children)
                 {
-                    if (child is event_element eventChild && eventChild.Tag != null)
+                    if (child is control_event_element eventChild && eventChild.Tag != null)
                     {
                         string tagStr = eventChild.Tag.ToString();
 
@@ -424,13 +427,13 @@ namespace college_events_desktop.View.Layers.Events
         /// </summary>
         private void UpdateBottomCounters()
         {
-            var all_event_element = stack_events.Children.OfType<event_element>().Where(e => e.Visibility == Visibility.Visible).ToList();
-            text_amount_of_events.Text = all_event_element.Count().ToString();
-            text_amount_of_gray.Text = all_event_element.Count(g => (int)g.Tag == 4).ToString();
-            text_amount_of_blue.Text = all_event_element.Count(bl => (int)bl.Tag == 3).ToString();
-            text_amount_of_green.Text = all_event_element.Count(gr => (int)gr.Tag == 2 || (int)gr.Tag == 5).ToString();
-            text_amount_of_yellow.Text = all_event_element.Count(y => (int)y.Tag == 1).ToString();
-            text_amount_of_red.Text = all_event_element.Count(r => (int)r.Tag == -1).ToString();
+            var all_control_event_element = stack_events.Children.OfType<control_event_element>().Where(e => e.Visibility == Visibility.Visible).ToList();
+            text_amount_of_events.Text = all_control_event_element.Count().ToString();
+            text_amount_of_gray.Text = all_control_event_element.Count(g => (int)g.Tag == 4).ToString();
+            text_amount_of_blue.Text = all_control_event_element.Count(bl => (int)bl.Tag == 3).ToString();
+            text_amount_of_green.Text = all_control_event_element.Count(gr => (int)gr.Tag == 2 || (int)gr.Tag == 5).ToString();
+            text_amount_of_yellow.Text = all_control_event_element.Count(y => (int)y.Tag == 1).ToString();
+            text_amount_of_red.Text = all_control_event_element.Count(r => (int)r.Tag == -1).ToString();
         }
 
 
@@ -492,9 +495,6 @@ namespace college_events_desktop.View.Layers.Events
             await AnimateButtonColorsAsync(btn_green_filter, filterStates["2"]);
             await AnimateButtonColorsAsync(btn_blue_filter, filterStates["3"]);
             await AnimateButtonColorsAsync(btn_gray_filter, filterStates["4"]);
-
-            //применяем фильтр
-            await apply_filter();
         }
         #endregion
     }

@@ -38,7 +38,7 @@ namespace college_events_desktop.View.Windows
             catch (Exception ex)
             {
                 loading_Interface.RemoveInterface(grid_main);
-                MessageBox.Show($"Система не смогла проверить ваши введённые данные. Возможны проблемы с доступом к серверу. Попробуйте позже.\n\nCode=LoginWindowAA001\n\n{ex.Message}", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show($"Система не смогла проверить ваши введённые данные. Возможны проблемы с доступом к серверу. Попробуйте позже.\n\nMessage={ex.InnerException?.Message ?? ex.Message}\n\nCode=LoginWindowAA001", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             btn_login.IsEnabled = true;
         }

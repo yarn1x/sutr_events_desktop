@@ -49,10 +49,8 @@
             
             <Border Height="2" Background="#FFDDEEFF" VerticalAlignment="Bottom"/>
 
-            
-            <TextBlock Text="ОРГАНИЗАТОРЫ!!" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            
-            
+            <ContentControl x:Name="container_content" Margin="10" Grid.Row="1"/>
+
             <Border Height="2" Background="#FFDDEEFF" VerticalAlignment="Top" Grid.Row="2"/>
 
 

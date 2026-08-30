@@ -3,7 +3,6 @@ C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Styles\ButtonStyles.baml
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Styles\TextBlockStyles.baml
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Controls\events_nav_buttons.g.cs
-C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Controls\event_element.g.cs
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Controls\loading_interface.g.cs
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Controls\SearchBar.g.cs
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Controls\users_nav_buttons.g.cs
@@ -20,7 +19,6 @@ C:\Desktop\Prog\СИстемный прогер\college_events_desktop\bin\Debug
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\bin\Debug\Newtonsoft.Json.xml
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\App.baml
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Controls\events_nav_buttons.baml
-C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Controls\event_element.baml
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Controls\SearchBar.baml
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Controls\users_nav_buttons.baml
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Windows\LoginWindow.baml
@@ -62,3 +60,9 @@ C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Layers\Settings\page_Settings.baml
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Layers\Organizers\page_OrganizerList.g.cs
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Layers\Organizers\page_OrganizerList.baml
+C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Controls\Containers\double_stack.g.cs
+C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Layers\Events\control_event_element.g.cs
+C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Layers\Organizers\control_organizer_card.g.cs
+C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Controls\Containers\double_stack.baml
+C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Layers\Events\control_event_element.baml
+C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Layers\Organizers\control_organizer_card.baml

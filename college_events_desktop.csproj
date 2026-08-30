@@ -103,17 +103,23 @@
     <Compile Include="ViewModels\EventListEditViewModel.cs" />
     <Compile Include="ViewModels\EventListViewModel.cs" />
     <Compile Include="ViewModels\UIAnimations.cs" />
+    <Compile Include="View\Controls\Containers\double_stack.xaml.cs">
+      <DependentUpon>double_stack.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Controls\TextPlaceholder.xaml.cs">
       <DependentUpon>TextPlaceholder.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Controls\events_nav_buttons.xaml.cs">
       <DependentUpon>events_nav_buttons.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Controls\event_element.xaml.cs">
-      <DependentUpon>event_element.xaml</DependentUpon>
+    <Compile Include="View\Layers\Events\control_event_element.xaml.cs">
+      <DependentUpon>control_event_element.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Controls\loading_interface.xaml.cs">
       <DependentUpon>loading_interface.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Layers\Organizers\control_organizer_card.xaml.cs">
+      <DependentUpon>control_organizer_card.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Layers\Organizers\page_OrganizerList.xaml.cs">
       <DependentUpon>page_OrganizerList.xaml</DependentUpon>
@@ -166,6 +172,10 @@
     <Compile Include="View\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\Controls\Containers\double_stack.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Controls\TextPlaceholder.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -174,11 +184,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Controls\event_element.xaml">
+    <Page Include="View\Layers\Events\control_event_element.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Controls\loading_interface.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Layers\Organizers\control_organizer_card.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -390,6 +404,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\Resources\images\img_ui_tips_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Resources\images\img_logoSmallSochiGU_256px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

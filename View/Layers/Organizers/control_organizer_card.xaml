@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="college_events_desktop.View.Layers.Organizers.control_organizer_card"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:college_events_desktop.View.Layers.Organizers"
+             mc:Ignorable="d" >
+
+    <Button Style="{DynamicResource ButtonStyle_filter}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" >
+        
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="110"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Image x:Name="img_avatar" Margin="10" Source="/View/Resources/images/img_patient.png" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+            <Grid Grid.Column="1" Margin="0, 10, 10, 10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1.5*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <TextBlock x:Name="text_fullname" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" d:Text="_Organizer.firstname _Organizer.surname _Organizer.lastname" VerticalAlignment="Center" FontSize="14" Foreground="Black">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}{0} {1} {2}">
+                            <Binding Path="surName"/>
+                            <Binding Path="firstName"/>
+                            <Binding Path="lastName"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+
+                <TextBlock Text="Проведено мероприятий:" Grid.Row="1" VerticalAlignment="Center" Foreground="#FF676767"/>
+                <TextBlock x:Name="text_event_count" Text="{Binding eventsCount}" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" d:Text="_Organizer.eventsCount" VerticalAlignment="Center" Grid.Row="1" Margin="150,0,0,0" Foreground="#FF676767"/>
+
+            </Grid>
+        </Grid>
+    </Button>
+</UserControl>

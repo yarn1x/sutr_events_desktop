@@ -36,7 +36,7 @@ namespace college_events_desktop.View.Layers.Events
                     categoryId = GetCategoryId(combobox_event_direction.Text),
                     //TODO: EDIT event_locations постоянно при сохранении удаляет старые записи
                     //и добавляет новые, даже если записи не менялись
-                    eventLocationsIds = locations.Select(id => id.locationId).ToList(),
+                    eventLocationsIds = locations.Select(l => l.locationId).ToList(),
                     additionalInfo = edit_additionalInfo.Text,
                     maxListenersCount = Convert.ToInt32(edit_maxListenersCount.Text),
                     maxParticipantsCount = Convert.ToInt32(edit_maxParticipantsCount.Text),

@@ -29,12 +29,12 @@
                     <!--основные кнопки навигации-->
                     <StackPanel Grid.Row="1">
                         <StackPanel Orientation="Horizontal">
-							<Button x:Name="btn_nav_menu_drop" Background="#FF003D97" BorderBrush="{x:Null}" Cursor="Hand" Width="68" Height="68" Style="{DynamicResource ButtonStyle_accent}" Padding="0,1,1,1" Click="btn_nav_menu_drop_Click">
-								<Button.OpacityMask>
-									<ImageBrush ImageSource="/View/Resources/images/img_logoSmallSochiGU.png"/>
-								</Button.OpacityMask>
-							</Button>
-							<TextBlock d:Text="test" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="20"/>
+							<Button x:Name="btn_nav_menu_drop" Background="#FF003D97" BorderThickness="0" BorderBrush="{x:Null}" Cursor="Hand" Width="68" Height="68" Padding="0,1,1,1" Click="btn_nav_menu_drop_Click">
+                                <Button.OpacityMask>
+                                    <ImageBrush ImageSource="/View/Resources/images/img_logoSmallSochiGU_256px.png"/>
+                                </Button.OpacityMask>
+                            </Button>
+                            <TextBlock d:Text="test" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="20"/>
 						</StackPanel>
 
 						<Button x:Name="btn_menu_events" Height="50" Style="{DynamicResource ButtonStyle_accent}" BorderBrush="{x:Null}" Click="open_events_nav_menu" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Cursor="Hand" Margin="0,10,0,0">

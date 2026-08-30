@@ -30,5 +30,6 @@
                 <Border Margin="0,10,0,0" Height="2" Background="#FFDDEEFF"/>
             </StackPanel>
         </Border>
+        <TextBlock x:Name="text_build_version" Text="ver 0.0.5 alpha. UiOAF01" VerticalAlignment="Bottom" HorizontalAlignment="Right" Foreground="#FF8A8A8A" FontSize="14" Margin="0,0,5,5"/>
     </Grid>
 </Window>

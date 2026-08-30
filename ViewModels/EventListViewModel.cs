@@ -1,16 +1,10 @@
 ﻿using college_events_desktop.DataModels;
 using college_events_desktop.Model;
-using college_events_desktop.View.Controls;
 using college_events_desktop.View.Layers.Events;
 using college_events_desktop.View.Windows;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace college_events_desktop.ViewModels
@@ -47,7 +41,7 @@ namespace college_events_desktop.ViewModels
             stack_events.Children.Clear();
             foreach (Event i in events)
             {
-                var element = new event_element(mainWindow, _page, _dataService, i)
+                var element = new control_event_element(mainWindow, _page, _dataService, i)
                 {
                     Margin = new Thickness(5, 7, 5, 0),
                     HorizontalAlignment = HorizontalAlignment.Stretch
@@ -61,11 +55,11 @@ namespace college_events_desktop.ViewModels
         private void NotifyStatusChanged()
         {
             var hasTag1 = _page.stack_events.Children
-                .OfType<event_element>()
+                .OfType<control_event_element>()
                 .Any(e => e.Tag is int tag && tag == 1);
 
             var hasTagMinus1 = _page.stack_events.Children
-                .OfType<event_element>()
+                .OfType<control_event_element>()
                 .Any(e => e.Tag is int tag && tag == -1);
 
             EventNotification.NotifyStatusChanged(1, hasTag1);

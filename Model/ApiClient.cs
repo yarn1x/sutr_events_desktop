@@ -45,8 +45,7 @@ namespace college_events_desktop.Model
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"GET Api error: {ex}");
-                return default;
+                throw new Exception(ex.InnerException.Message ?? ex.Message);
             }
         }
         private async Task<T> PutAsync<T>(string endpoint, object body = null)

@@ -53,11 +53,11 @@ namespace college_events_desktop.View.Layers.Events.Tables
             {
                 await LoadInformationAsync();
             }
-            catch //при возникновении ошибки, добавим в контейнер таблицы информацию об ошибке
+            catch (Exception ex)//при возникновении ошибки, добавим в контейнер таблицы информацию об ошибке
             {
                 TextBlock MessageText = new TextBlock()
                 {
-                    Text = $"Ошибка получения списка групп.\n\nCode=page_table_EventGroup_saveAA001",
+                    Text = $"Ошибка получения списка групп.\n\nMessage={ex.InnerException?.Message ?? ex.Message}\n\nCode=page_table_EventGroup_saveAA001",
                     TextAlignment = TextAlignment.Center,
                     Margin = new Thickness(0, 10, 0, 0)
                 };
@@ -75,20 +75,32 @@ namespace college_events_desktop.View.Layers.Events.Tables
         /// <returns>Список групп, зарегистрированных на мероприятие</returns>
         private List<EventGroupsActualAttendances> CollectGroupsFromUI()
         {
-            //TIP: OfType<table_tuple_EventGroup_save>() - будем собирать только элементы указанного класса
-            //     .Where(g => g._group != null) - условие того, что элемент должен содержать экземпляр класса зарегистрированной группы
-            //     .Select(child => ...) - выбираем в каком виде и что извлекаем из UI элемента
-            return stack_table_rows.Children
-                .OfType<table_tuple_EventGroup_save>()
-                .Where(g => g._group != null)
-                .Select(child => new EventGroupsActualAttendances
+            try
+            {
+                if (stack_table_rows.Children.Count <= 1)
                 {
-                    eventGroupId = (int)child.Tag,
-                    actualListenersCount = SafeParseInt(child.edit_actualListenersCount.Text),
-                    actualParticipantsCount = SafeParseInt(child.edit_actualParticipantsCount.Text),
-                    actualSuperParticipantsCount = SafeParseInt(child.edit_actualSuperParticipantsCount.Text)
-                })
-                .ToList();
+                    throw new Exception("Нет зарегистрированных групп. Попробуйте обновить страницу.");
+                }
+                //TIP: OfType<table_tuple_EventGroup_save>() - будем собирать только элементы указанного класса
+                //TIP: .Where(g => g._group != null) - условие того, что элемент должен содержать экземпляр класса зарегистрированной группы
+                //TIP: .Select(child => ...) - выбираем в каком виде и что извлекаем из UI элемента
+                return stack_table_rows.Children
+                    .OfType<table_tuple_EventGroup_save>()
+                    .Where(g => g._group != null)
+                    .Select(child => new EventGroupsActualAttendances
+                    {
+                        
+                        eventGroupId = (int)child.Tag,
+                        actualListenersCount = SafeParseInt(child.edit_actualListenersCount.Text),
+                        actualParticipantsCount = SafeParseInt(child.edit_actualParticipantsCount.Text),
+                        actualSuperParticipantsCount = SafeParseInt(child.edit_actualSuperParticipantsCount.Text)
+                    })
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         /// <summary>
@@ -116,11 +128,12 @@ namespace college_events_desktop.View.Layers.Events.Tables
                 //добавление в конец списка групп пустую строчку (для добавления новых групп).
                 stack_table_rows.Children.Add(new table_tuple_EventGroup_save(_page, null, this));
                 //TODO: SAVE сделать активную пустую строчку после списка /\ (по требованию заказчика)
-                //TIP: если такая надобность возникнет, помимо запроса к API college/admin/events/{EventId}/statistics
-                //     потребуется изначально изменить весь состав зарегистрированных групп
-                //     college/admin/events/update/{EventId}/groups - нет существующего метода на клиенте
-                //     ИЛИ college/admin/events/update/{EventId} - уже существует метод в ApiClient
-                //     Дата создания заметки: 15.08.26
+
+                //TIP: если такая надобность возникнет, помимо запроса к API college/admin/events/{EventId}/statistics (изменение записей в actual_attendances)
+                //     потребуется изначально изменить весь состав зарегистрированных групп (изменение в event_groups)
+                //     college/admin/events/update/{EventId}/groups - эндпоинт редактирует список зарегистрированных групп. Нет метода на клиенте
+                //     ИЛИ college/admin/events/update/{EventId} - эндпоинт редактирует как информацию о мероприятии, так и о группах. Уже существует метод в ApiClient
+                //     Дата создания заметки: 08-15-2026
             });
         }
         #endregion

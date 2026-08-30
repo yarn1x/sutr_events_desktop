@@ -1,6 +1,7 @@
 ﻿using college_events_desktop.DataModels;
 using college_events_desktop.Model;
 using college_events_desktop.Services;
+using college_events_desktop.View.Controls;
 using college_events_desktop.View.Layers.Events;
 using college_events_desktop.View.Windows;
 using college_events_desktop.ViewModels;
@@ -16,9 +17,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-namespace college_events_desktop.View.Controls
+namespace college_events_desktop.View.Layers.Events
 {
-	public partial class event_element : UserControl
+	public partial class control_event_element : UserControl
 	{
 		#region Поля класса
 		private readonly MainWindow mainWindow;
@@ -44,7 +45,7 @@ namespace college_events_desktop.View.Controls
 
 
         #region Конструктор
-        public event_element(MainWindow win, page_EventList page, DataService dataService, Event _event)
+        public control_event_element(MainWindow win, page_EventList page, DataService dataService, Event _event)
 		{
 			InitializeComponent();
             

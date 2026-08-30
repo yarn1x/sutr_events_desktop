@@ -43,16 +43,13 @@ namespace college_events_desktop.View.Layers.Events.Tables
 
 
         #region Обработчики событий
-        private async void Page_table_EventGroup_Loaded(object sender, RoutedEventArgs e)
+        private void Page_table_EventGroup_Loaded(object sender, RoutedEventArgs e)
         {
-            await Application.Current.Dispatcher.InvokeAsync(async () => 
-            { 
-                //Показываем иконку загрузки, пока не загрузим контент
-                stack_table_rows.Children.Clear();
-                var element = new loading_interface();
-                element.AddInterfaceToContainer(stack_table_rows, new Thickness(0, 10, 0, 0));
-                LoadInformationAsync();
-            });
+            //Показываем иконку загрузки, пока не загрузим контент
+            stack_table_rows.Children.Clear();
+            var element = new loading_interface();
+            element.AddInterfaceToContainer(stack_table_rows, new Thickness(0, 10, 0, 0));
+            LoadInformationAsync();
         }
         #endregion
 

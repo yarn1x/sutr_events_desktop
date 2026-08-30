@@ -70,7 +70,7 @@ namespace college_events_desktop.View.Layers.Events
                         bool updStatusResponse = await _dataService.apiClient.UpdateEventStatus(_Event.eventId, 4);
                         if (!response && !updStatusResponse)
                         {
-                            MessageBox.Show("Произошла ошибка обновления.\n\nCode=page_EventList_saveAA003", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show("Произошла непредвиденная ошибка.\n\nCode=page_EventList_saveAA003", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
                         }
                         MessageBox.Show("Отчёт успешно составлен!", "Успешно!", MessageBoxButton.OK, MessageBoxImage.Information);
                         mainWindow.mainframe.GoBack();
@@ -78,11 +78,11 @@ namespace college_events_desktop.View.Layers.Events
                 }
                 catch (HttpRequestException httpEx)
                 {
-                    MessageBox.Show($"Возникла ошибка отправки запроса на сервер.\n\nCode=page_EventList_saveAA001\nMessage={httpEx.Message}", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show($"Возникла ошибка отправки запроса на сервер.\n\nMessage={httpEx.InnerException?.Message ?? httpEx.Message}\n\nCode=page_EventList_saveAA001", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Возникла непредвиденная ошибка.\n\nCode=page_EventList_saveAA002\nMessage={ex}", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show($"Ошибка сохранения отчёта.\n\nMessage={ex.InnerException?.Message ?? ex.Message}\n\nCode=page_EventList_saveAA002", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             btn_save.IsEnabled = true;

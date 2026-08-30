@@ -15,7 +15,7 @@
             <RowDefinition Height="50"/>
             <RowDefinition Height="145"/>
             <RowDefinition/>
-            <RowDefinition Height="60"/>
+            <RowDefinition Height="55"/>
         </Grid.RowDefinitions>
 
         <!--Шапка-->
@@ -47,7 +47,7 @@
 
         <!--Тело-->
         <Border Grid.Row="1" Grid.RowSpan="3" Background="#FFF1F1F1"/>
-        <StackPanel Grid.Row="1" Margin="5">
+        <StackPanel Grid.Row="1" Margin="5,5,5,0">
 
             <!--Область фильтров-->
             <Border BorderThickness="1" CornerRadius="10" Height="70" BorderBrush="#FF666666" Margin="0,10,0,0" Background="White">
@@ -221,7 +221,6 @@
             </Grid>
         </StackPanel>
 
-
         <!--Область отображения мероприятий-->
         <ScrollViewer x:Name="MainScrollViewer" 
                       Style="{DynamicResource MinimalScrollViewerStyle}"
@@ -233,50 +232,40 @@
         </ScrollViewer>
 
         <!--Отображение количества мероприяий-->
-        <Border Grid.Row="3">
-            <Border.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="Transparent"/>
-                    <GradientStop Color="#FFF1F1F1" Offset="1" d:Color="Purple"/>
-                </LinearGradientBrush>
-            </Border.Background>
-        </Border>
-        <Border x:Name="border_moving_panel" Grid.Row="3" Background="White" CornerRadius="10" VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="25" Width="330" Margin="0,0,0,10" Opacity="1" MouseLeftButtonDown="border_moving_panel_MouseLeftButtonDown" Cursor="SizeAll">
+        <Border x:Name="border_moving_panel" Grid.Row="3" Background="White" CornerRadius="10" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,10" Opacity="1" MouseLeftButtonDown="border_moving_panel_MouseLeftButtonDown" Cursor="SizeAll" Padding="10,5,10,5" BorderThickness="0.7" BorderBrush="#FF676767">
             <Border.RenderTransform>
                 <TranslateTransform x:Name="PanelTransform" X="0" Y="0"/>
             </Border.RenderTransform>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Viewbox Width="14" Opacity="1">
-                    <Grid Background="Transparent" ToolTip="Всего показано мероприятий">
-                        <Border CornerRadius="10" Width="8" Height="8" Background="Gray" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,15,8.5,0"/>
-                        <Border CornerRadius="10" Width="8" Height="8" Background="#FF3B59FF" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="8.5,15,0,0"/>
-                        <Border CornerRadius="10" Width="8" Height="8" Background="#FF2BFF00" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,13,1"/>
-                        <Border CornerRadius="10" Width="8" Height="8" Background="#FFFFC700" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="13,0,0,1"/>
-                        <Border CornerRadius="10" Width="8" Height="8" Background="#FFFF4949" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,12"/>
-                    </Grid>
-                </Viewbox>
-                <TextBlock Text=" : "/>
-                <TextBlock x:Name="text_amount_of_events" Text="0" ToolTip="Всего показано мероприятий"/>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Grid Background="Transparent" ToolTip="Всего показано мероприятий" Height="23" Width="23" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Border CornerRadius="10" Width="9" Height="9" Background="#FFA7A7A7" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,9,0"/>
+                    <Border CornerRadius="10" Width="9" Height="9" Background="#FF48AFFF" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="9,0,0,0"/>
+                    <Border CornerRadius="10" Width="9" Height="9" Background="#FF66FF3D" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,3"/>
+                    <Border CornerRadius="10" Width="9" Height="9" Background="#FFFFC700" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,0,3"/>
+                    <Border CornerRadius="10" Width="9" Height="9" Background="#FFFF4949" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+                </Grid>
+                <TextBlock Text=" : " VerticalAlignment="Center"/>
+                <TextBlock x:Name="text_amount_of_events" Text="0" ToolTip="Всего показано мероприятий" FontSize="14" VerticalAlignment="Center"/>
 
-                <Border CornerRadius="10" Margin="40,0,0,0" Width="16" Background="#FFA7A7A7" ToolTip="Мероприятий со статусом &quot;Завершённое мероприятие, отчёт составлен&quot;"/>
-                <TextBlock Text=" : "/>
-                <TextBlock x:Name="text_amount_of_gray" Text="0" ToolTip="Мероприятий со статусом &quot;Отчёт составлен&quot;"/>
+                <Border CornerRadius="10" Margin="40,0,0,0" Width="16" Background="#FFA7A7A7" ToolTip="Мероприятий со статусом &quot;Завершённое мероприятие, отчёт составлен&quot;" Height="16"/>
+                <TextBlock Text=" : " VerticalAlignment="Center"/>
+                <TextBlock x:Name="text_amount_of_gray" Text="0" ToolTip="Мероприятий со статусом &quot;Отчёт составлен&quot;" FontSize="14" VerticalAlignment="Center"/>
 
-                <Border CornerRadius="10" Margin="20,0,0,0" Width="16" Background="#FF48AFFF" ToolTip="Мероприятий со статусом &quot;Завершённое мероприятие, требуется составление отчёта&quot;"/>
-                <TextBlock Text=" : "/>
-                <TextBlock x:Name="text_amount_of_blue" Text="0" ToolTip="Мероприятий со статусом &quot;Требуется составление отчёта&quot;"/>
+                <Border CornerRadius="10" Margin="20,0,0,0" Width="16" Background="#FF48AFFF" ToolTip="Мероприятий со статусом &quot;Завершённое мероприятие, требуется составление отчёта&quot;" Height="16"/>
+                <TextBlock Text=" : " VerticalAlignment="Center"/>
+                <TextBlock x:Name="text_amount_of_blue" Text="0" ToolTip="Мероприятий со статусом &quot;Требуется составление отчёта&quot;" FontSize="14" VerticalAlignment="Center"/>
 
-                <Border CornerRadius="10" Margin="20,0,0,0" Width="16" Background="#FF66FF3D" ToolTip="Мероприятий со статусом &quot;Запланированное мероприятие&quot;"/>
-                <TextBlock Text=" : "/>
-                <TextBlock x:Name="text_amount_of_green" Text="0" ToolTip="Мероприятий со статусом &quot;Запланированное мероприятие&quot;"/>
+                <Border CornerRadius="10" Margin="20,0,0,0" Width="16" Background="#FF66FF3D" ToolTip="Мероприятий со статусом &quot;Запланированное мероприятие&quot;" Height="16"/>
+                <TextBlock Text=" : " VerticalAlignment="Center"/>
+                <TextBlock x:Name="text_amount_of_green" Text="0" ToolTip="Мероприятий со статусом &quot;Запланированное мероприятие&quot;" FontSize="14" VerticalAlignment="Center"/>
 
-                <Border CornerRadius="10" Margin="20,0,0,0" Width="16" Background="#FFFFDD3C" ToolTip="Мероприятий со статусом &quot;Предложеное мероприятие&quot;"/>
-                <TextBlock Text=" : "/>
-                <TextBlock x:Name="text_amount_of_yellow" Text="0" ToolTip="Мероприятий со статусом &quot;Предложеное мероприятие&quot;"/>
+                <Border CornerRadius="10" Margin="20,0,0,0" Width="16" Background="#FFFFDD3C" ToolTip="Мероприятий со статусом &quot;Предложеное мероприятие&quot;" Height="16"/>
+                <TextBlock Text=" : " VerticalAlignment="Center"/>
+                <TextBlock x:Name="text_amount_of_yellow" Text="0" ToolTip="Мероприятий со статусом &quot;Предложеное мероприятие&quot;" FontSize="14" VerticalAlignment="Center"/>
 
-                <Border CornerRadius="10" Margin="20,0,0,0" Width="16" Background="#FFFF4949" ToolTip="Мероприятий со статусом &quot;Предложеное мероприятие, конфликт с другим мероприятием&quot;"/>
-                <TextBlock Text=" : "/>
-                <TextBlock x:Name="text_amount_of_red" Text="0" ToolTip="Мероприятий со статусом &quot;Предложеное мероприятие, конфликт с другим мероприятием&quot;"/>
+                <Border CornerRadius="10" Margin="20,0,0,0" Width="16" Background="#FFFF4949" ToolTip="Мероприятий со статусом &quot;Предложеное мероприятие, конфликт с другим мероприятием&quot;" Height="16"/>
+                <TextBlock Text=" : " VerticalAlignment="Center"/>
+                <TextBlock x:Name="text_amount_of_red" Text="0" ToolTip="Мероприятий со статусом &quot;Предложеное мероприятие, конфликт с другим мероприятием&quot;" FontSize="14" VerticalAlignment="Center"/>
 
             </StackPanel>
         </Border>
