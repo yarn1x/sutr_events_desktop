@@ -1,7 +1,9 @@
 ﻿using college_events_desktop.DataModels;
 using college_events_desktop.Model;
 using college_events_desktop.View.Controls;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -45,10 +47,7 @@ namespace college_events_desktop.View.Layers.Events.Tables
         #region Обработчики событий
         private void Page_table_EventGroup_Loaded(object sender, RoutedEventArgs e)
         {
-            //Показываем иконку загрузки, пока не загрузим контент
-            stack_table_rows.Children.Clear();
-            var element = new loading_interface();
-            element.AddInterfaceToContainer(stack_table_rows, new Thickness(0, 10, 0, 0));
+            ShowLoadingIndicator();
             LoadInformationAsync();
         }
         #endregion
@@ -59,35 +58,70 @@ namespace college_events_desktop.View.Layers.Events.Tables
         {
             try
             {
-                //В отдельном потоке, совершаем запрос к API на получение групп, участвовавших в мероприятии
-                var eventGroupsList = await _dataService.apiClient.GetEventGroupsByEventId(_Event.eventId);
-                // и полный список групп (для выбора из выпадающего списка)
-                var groups = _dataService.groups;
-                _groups = groups;
-                foreach (var group in groups)
-                {
-                    GroupSupervisor.Add(group.groupName, $"{group.supervisorSurname} {group.supervisorName} {group.supervisorLastname}");
-                }
+                await _dataService.LoadEventGroupsAsync(_Event.eventId);
+                _groups = _dataService.groups;
+                BuildSupervisorDictionary();
 
-                stack_table_rows.Children.Clear();
-                //По каждой найденной записанной группе в мероприятие, выводим в контейнер таблицы строчку с информацией.
-                foreach (var group in eventGroupsList)
-                {
-                    stack_table_rows.Children.Add(new table_tuple_EventGroup_edit(_page, group, this));
-                }
-                stack_table_rows.Children.Add(new table_tuple_EventGroup_edit(_page, null, this));
+                DisplayEventGroups();
             }
-            catch //При возникновении ошибки, добавим в контейнер таблицы информацию об ошибке
+            catch (Exception ex)
             {
-                TextBlock MessageText = new TextBlock()
-                {
-                    Text = $"Ошибка получения списка групп.\n\nCode=page_table_EventGroup_editAA001",
-                    TextAlignment = TextAlignment.Center,
-                    Margin = new Thickness(0, 10, 0, 0)
-                };
-                stack_table_rows.Children.Clear();
-                stack_table_rows.Children.Add(MessageText);
+                ShowErrorMessage(ex);
             }
+        }
+
+        private void BuildSupervisorDictionary()
+        {
+            GroupSupervisor.Clear();
+
+            foreach (var group in _groups)
+            {
+                var supervisorFullName = $"{group.supervisorSurname} {group.supervisorName} {group.supervisorLastname}";
+                GroupSupervisor[group.groupName] = supervisorFullName;
+            }
+        }
+
+        private void DisplayEventGroups()
+        {
+            stack_table_rows.Children.Clear();
+
+            // Отображаем группы мероприятия
+            foreach (var group in _dataService.eventGroups)
+            {
+                AddEventGroupRow(group);
+            }
+
+            // Добавляем пустую строку для новых групп
+            AddEventGroupRow(null);
+        }
+
+        private void AddEventGroupRow(EventGroups group)
+        {
+            var row = new table_tuple_EventGroup_edit(_page, group, this);
+            stack_table_rows.Children.Add(row);
+        }
+
+        private void ShowLoadingIndicator()
+        {
+            stack_table_rows.Children.Clear();
+            var loadingElement = new loading_interface();
+            loadingElement.AddInterfaceToContainer(stack_table_rows, new Thickness(0, 10, 0, 0));
+        }
+
+        private void ShowErrorMessage(Exception ex)
+        {
+            // Логируем ошибку для отладки
+            Debug.WriteLine($"Error in page_table_EventGroup_edit: {ex.Message}");
+
+            var messageText = new TextBlock()
+            {
+                Text = $"Ошибка получения списка групп.\n\nCode=page_table_EventGroup_editAA001",
+                TextAlignment = TextAlignment.Center,
+                Margin = new Thickness(0, 10, 0, 0)
+            };
+
+            stack_table_rows.Children.Clear();
+            stack_table_rows.Children.Add(messageText);
         }
 
         /// <summary>

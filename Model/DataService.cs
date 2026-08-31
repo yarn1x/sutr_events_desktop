@@ -23,24 +23,22 @@ namespace college_events_desktop.Model
         /// <summary> Возвращает "Срок годности" токена сессии в минутах </summary>
         internal int _jwtExpiresIn { get; private set; }
 
-        /// <summary> Возвращает полученный список мероприятий из БД </summary>
-        /// Для получения, вызвать метод.
+        /// <summary> Возвращает полученный список мероприятий из БД. Для получения вызвать метод </summary>
         public List<Event> events { get; private set; }
 
-        /// <summary> Возвращает полученный список направлений из БД </summary>
-        /// Для получения, вызвать метод.
+        /// <summary> Возвращает полученный список направлений из БД. Для получения вызвать метод </summary>
         public List<Category> categories { get; private set; }
 
-        /// <summary> Возвращает полученный список организаторов из БД </summary>
-        /// Для получения, вызвать метод.
+        /// <summary> Возвращает полученный список организаторов из БД. Для получения вызвать метод </summary>
         public List<Organizer> organizers {  get; private set; }
 
-        /// <summary> Возвращает полученный список групп из БД </summary>
-        /// Для получения, вызвать метод.
+        /// <summary> Возвращает полученный список всех доступных групп из БД. Для получения вызвать метод </summary>
         public List<Group> groups { get; private set; }
 
-        /// <summary> Возвращает полученный список локаций из БД </summary>
-        /// Для получения, вызвать метод.
+        /// <summary> Возвращает полученный список групп зарегистрированных на мероприятие. Для получения вызвать метод </summary>
+        public List<EventGroups> eventGroups { get; private set; }
+
+        /// <summary> Возвращает полученный список локаций из БД. Для получения вызвать метод </summary>
         public List<Location> places { get; private set; }
 
         public DataService(ApiClient apiClient)
@@ -50,6 +48,7 @@ namespace college_events_desktop.Model
             categories = new List<Category>();
             organizers = new List<Organizer>();
             groups = new List<Group>();
+            eventGroups = new List<EventGroups>();
             places = new List<Location>();
         }
 
@@ -88,6 +87,10 @@ namespace college_events_desktop.Model
         public async Task LoadGroupsListAsync()
         {
             groups = await apiClient.GetListOfGroups();
+        }
+        public async Task LoadEventGroupsAsync(int eventId)
+        {
+            eventGroups = await apiClient.GetEventGroupsByEventId(eventId);
         }
         public async Task LoadPlacesListAsync()
         {
