@@ -20,8 +20,8 @@ namespace college_events_desktop.Model
         public readonly HttpClient _client = new HttpClient()
         {
             //Базовая строка подключения - строка, которая приписывается ко всем эндпоинтам в начало
-            BaseAddress = new Uri("http://192.168.1.253:33679/college/admin/")
-            //BaseAddress = new Uri("https://localhost:7280/college/admin/")
+            //BaseAddress = new Uri("http://192.168.1.253:33679/college/admin/")
+            BaseAddress = new Uri("https://localhost:7280/college/admin/")
         };
         
 

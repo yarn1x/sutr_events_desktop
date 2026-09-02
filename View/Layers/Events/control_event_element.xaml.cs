@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -39,7 +40,6 @@ namespace college_events_desktop.View.Layers.Events
             {"6", Color.FromArgb(0xFF, 0x8C, 0x4F, 0x1B)}, //тёмно-оранжевый
         };
 
-		private readonly ILoadingService _loading;
         #endregion
 
 
@@ -55,7 +55,6 @@ namespace college_events_desktop.View.Layers.Events
 			_Event = _event;
 			DataContext = _Event;
 			Loaded += Event_element_Loaded;
-			_loading = new LoadingService(win);
 
 			SetElementTag();
 		}
@@ -193,7 +192,7 @@ namespace college_events_desktop.View.Layers.Events
             }
 			catch (Exception ex)
 			{
-				MessageBox.Show($"Ошибка копирования информации в буфер\n\nCode=event_elementAA001\nMessage={ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+				UserNotificationService.ShowError("Ошибка копирования информации в буфер", ex, "event_elementAA001");
 			}
 		}
         #endregion
@@ -235,26 +234,30 @@ namespace college_events_desktop.View.Layers.Events
 		/// <returns></returns>
 		private async Task UpdateEventStatus(int statusId, string action)
 		{
-            try
+			try
+			{
+				using (LoadingService.StartLoading()) //отображение loading_overlay
+				{
+					//запрос на обновление статуса мероприятия
+					var response = await _dataService.apiClient.UpdateEventStatus(_Event.eventId, statusId);
+					//если успешно, обновляем страницу мероприятий
+					if (response)
+					{
+						await _page.Update();
+					}
+					else
+					{
+						UserNotificationService.ShowWarning($"Не получилось {action} проведение мероприятия.\nПопробуйте позже.");
+					}
+				} //после завершения инструкций внутри using, loading_overlay скроется
+			}
+			catch (HttpRequestException ex)
+			{
+				UserNotificationService.ShowError($"Не получилось {action} проведение мероприятия.", ex, "event_elementAA002");
+			}
+			catch (Exception ex)
             {
-                using (_loading.StartLoading()) //отображение loading_overlay
-                {
-                    //запрос на обновление статуса мероприятия
-                    var response = await _dataService.apiClient.UpdateEventStatus(_Event.eventId, statusId);
-                    //если успешно, обновляем страницу мероприятий
-                    if (response)
-                    {
-                        await _page.Page_EventList_Loaded();
-                    }
-                    else
-                    {
-                        MessageBox.Show($"Не получилось {action} проведение мероприятия.\nПопробуйте позже.", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    }
-                } //после завершения инструкций внутри using, loading_overlay скроется
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Не получилось {action} проведение мероприятия.\nПопробуйте позже.\nCode=event_elementAA002\nMessage={ex.Message}", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+				UserNotificationService.ShowError($"Не получилось {action} проведение мероприятия.", ex, "event_elementAA003");
             }
         }
 		        

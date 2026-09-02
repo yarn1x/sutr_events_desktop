@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\App.xaml
-27-315547071
+29-1313159028
 
-46-1959361541
+49875297161
 16-1462540643
-View\Controls\Containers\double_stack.xaml;View\Controls\TextPlaceholder.xaml;View\Controls\events_nav_buttons.xaml;View\Layers\Events\control_event_element.xaml;View\Controls\loading_interface.xaml;View\Layers\Organizers\control_organizer_card.xaml;View\Layers\Organizers\page_OrganizerList.xaml;View\Layers\page_NewLocation.xaml;View\Layers\Events\Tables\page_table_EventGroup_edit.xaml;View\Layers\Events\Tables\page_table_EventGroup_save.xaml;View\Layers\Events\Tables\table_tuple_EventGroup_edit.xaml;View\Controls\SearchBar.xaml;View\Controls\users_nav_buttons.xaml;View\Layers\Events\page_EventList.xaml;View\Layers\Events\page_EventListHelp.xaml;View\Layers\Events\page_EventList_edit.xaml;View\Layers\Events\page_EventList_save.xaml;View\Layers\Events\page_EventList_seeEvent.xaml;View\Layers\Settings\page_Settings.xaml;View\Layers\Users\page_NewAccount.xaml;View\Layers\Events\Tables\table_tuple_EventGroup_save.xaml;View\Styles\ButtonStyles.xaml;View\Styles\DataGridStyles.xaml;View\Styles\ScrollBarStyles.xaml;View\Styles\TextBlockStyles.xaml;View\Windows\LoginWindow.xaml;View\Windows\MainWindow.xaml;
+View\Controls\Containers\double_stack.xaml;View\Controls\TextPlaceholder.xaml;View\Controls\events_nav_buttons.xaml;View\Layers\Events\control_event_element.xaml;View\Controls\loading_interface.xaml;View\Layers\Groups\control_group_card.xaml;View\Layers\Groups\page_GroupList.xaml;View\Layers\Organizers\control_organizer_card.xaml;View\Layers\Organizers\page_OrganizerList.xaml;View\Layers\page_NewLocation.xaml;View\Layers\Events\Tables\page_table_EventGroup_edit.xaml;View\Layers\Events\Tables\page_table_EventGroup_save.xaml;View\Layers\Events\Tables\table_tuple_EventGroup_edit.xaml;View\Controls\SearchBar.xaml;View\Controls\users_nav_buttons.xaml;View\Layers\Events\page_EventList.xaml;View\Layers\Events\page_EventListHelp.xaml;View\Layers\Events\page_EventList_edit.xaml;View\Layers\Events\page_EventList_save.xaml;View\Layers\Events\page_EventList_seeEvent.xaml;View\Layers\Settings\page_Settings.xaml;View\Layers\Users\page_NewAccount.xaml;View\Layers\Events\Tables\table_tuple_EventGroup_save.xaml;View\Styles\ButtonStyles.xaml;View\Styles\DataGridStyles.xaml;View\Styles\ScrollBarStyles.xaml;View\Styles\TextBlockStyles.xaml;View\Windows\LoginWindow.xaml;View\Windows\MainWindow.xaml;
 
 False
 

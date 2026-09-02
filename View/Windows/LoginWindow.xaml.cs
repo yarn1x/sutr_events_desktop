@@ -1,4 +1,5 @@
 ﻿using college_events_desktop.Model;
+using college_events_desktop.Services;
 using college_events_desktop.View.Controls;
 using System;
 using System.Windows;
@@ -7,11 +8,11 @@ namespace college_events_desktop.View.Windows
 {
     public partial class LoginWindow : Window
     {
-        DataService dataService;
+        DataService _dataService;
         public LoginWindow()
         {
             InitializeComponent();
-            dataService = new DataService(new ApiClient());
+            _dataService = new DataService(new ApiClient());
         }
 
         private async void Login_Click(object sender, RoutedEventArgs e)
@@ -22,23 +23,23 @@ namespace college_events_desktop.View.Windows
 
             try
             {
-                await dataService.GetSessionToken(edit_login.Text, edit_password.Password);
+                await _dataService.GetSessionToken(edit_login.Text, edit_password.Password);
 
-                if (dataService._jwtToken == null)
+                if (_dataService._jwtToken == null)
                 {
                     btn_login.IsEnabled = true;
                     loading_Interface.RemoveInterface(grid_main);
-                    MessageBox.Show("Логин или пароль введён неверно, либо у вас нет прав администратора.", "Аккаунт не найден!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    UserNotificationService.ShowWarning("Логин или пароль введён неверно, либо у вас нет прав администратора.");
                     return;
                 }
 
-                new MainWindow(dataService).Show();
+                new MainWindow(_dataService).Show();
                 Close();
             }
             catch (Exception ex)
             {
                 loading_Interface.RemoveInterface(grid_main);
-                MessageBox.Show($"Система не смогла проверить ваши введённые данные. Возможны проблемы с доступом к серверу. Попробуйте позже.\n\nMessage={ex.InnerException?.Message ?? ex.Message}\n\nCode=LoginWindowAA001", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Warning);
+                UserNotificationService.ShowError("Система не смогла проверить ваши введённые данные. Возможны проблемы с доступом к серверу. Попробуйте позже.", ex, "LoginWindowAA001");
             }
             btn_login.IsEnabled = true;
         }

@@ -99,6 +99,7 @@
     <Compile Include="Model\DataService.cs" />
     <Compile Include="Services\LoadingService.cs" />
     <Compile Include="Services\OverlayService.cs" />
+    <Compile Include="Services\UserNotificationService.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="ViewModels\EventListEditViewModel.cs" />
     <Compile Include="ViewModels\EventListViewModel.cs" />
@@ -117,6 +118,12 @@
     </Compile>
     <Compile Include="View\Controls\loading_interface.xaml.cs">
       <DependentUpon>loading_interface.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Layers\Groups\control_group_card.xaml.cs">
+      <DependentUpon>control_group_card.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Layers\Groups\page_GroupList.xaml.cs">
+      <DependentUpon>page_GroupList.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Layers\Organizers\control_organizer_card.xaml.cs">
       <DependentUpon>control_organizer_card.xaml</DependentUpon>
@@ -189,6 +196,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Controls\loading_interface.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Layers\Groups\control_group_card.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Layers\Groups\page_GroupList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -399,7 +414,6 @@
     <Resource Include="View\Resources\images\img_ui_tips.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="View\Layers\Groups\" />
     <Folder Include="View\Layers\Supervisors\" />
   </ItemGroup>
   <ItemGroup>

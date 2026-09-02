@@ -67,7 +67,7 @@
 				
 						<ContentControl x:Name="submenu_events"/>
 				
-						<Button x:Name="btn_otganizers" Height="50" Style="{DynamicResource ButtonStyle_accent}" BorderBrush="{x:Null}" Margin="0,10,0,0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Cursor="Hand" Click="btn_otganizers_Click">
+						<Button x:Name="btn_organizers" Height="50" Style="{DynamicResource ButtonStyle_accent}" BorderBrush="{x:Null}" Margin="0,10,0,0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Cursor="Hand" Click="btn_organizers_Click">
 							<Grid>
 								<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0">
 									<Border Background="White" Width="25" Height="25" Margin="0,0,10,0">
@@ -80,7 +80,7 @@
 							</Grid>
 						</Button>
 
-						<Button x:Name="btn_groups" Height="50" Style="{DynamicResource ButtonStyle_accent}" BorderBrush="{x:Null}" Margin="0,10,0,0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Cursor="Hand">
+						<Button x:Name="btn_groups" Height="50" Style="{DynamicResource ButtonStyle_accent}" BorderBrush="{x:Null}" Margin="0,10,0,0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Cursor="Hand" Click="btn_groups_Click">
 							<Grid>
 								<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0">
 									<Border Background="White" Width="25" Height="25" Margin="0,0,10,0">

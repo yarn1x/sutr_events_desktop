@@ -5,65 +5,53 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Windows;
 
 namespace college_events_desktop.Services
 {
-    public interface ILoadingService
+    public static class LoadingService
     {
-        void Show();
-        void Hide();
+        private static int _loadingCounter = 0;
+        private static MainWindow _mainWindow;
 
-        /// <summary>
-        /// Магия! исп. using (_.StartLoading) { } для автоматического dispose
-        /// </summary>
-        IDisposable StartLoading();
-    }
-
-    /// <summary>
-    /// Класс реализует интерфейс ILoadingService и предназначен для отображения загрузочного оверлея
-    /// </summary>
-    internal class LoadingService : ILoadingService
-    {
-        private readonly MainWindow _mainWindow;
-        private int _loadingCounter = 0;
-
-
-        public LoadingService(MainWindow mainWindow)
+        public static void Register(MainWindow mainWindow)
         {
-            _mainWindow = mainWindow;
+            _mainWindow = mainWindow ?? throw new ArgumentNullException(nameof(mainWindow));
         }
 
-
         /// <summary>
-        /// Отображение оверлея
+        /// Отображение оверлея загрузки (увеличивает счетчик задач).
         /// </summary>
-        public void Show()
+        public static void Show()
         {
+            // На всякий случай перенаправляем в UI-поток, если вызов прилетел из фона
+            Application.Current.Dispatcher.VerifyAccess();
+
             _loadingCounter++;
-            _mainWindow.ShowLoading(true);
+            _mainWindow?.ShowLoading(true);
         }
 
-
         /// <summary>
-        /// Скрытие оверлея
+        /// Скрытие оверлея загрузки (уменьшает счетчик задач).
         /// </summary>
-        public void Hide()
+        public static void Hide()
         {
+            Application.Current.Dispatcher.VerifyAccess();
+
             _loadingCounter--;
             if (_loadingCounter <= 0)
             {
                 _loadingCounter = 0;
-                _mainWindow.ShowLoading(false);
+                _mainWindow?.ShowLoading(false);
             }
         }
 
-
         /// <summary>
-        /// для автоматического dispose
+        /// Удобный запуск загрузки через конструкцию using. 
+        /// Оверлей автоматически скроется, когда выполнение выйдет за пределы блока.
         /// </summary>
-        /// <returns>Объект, выполняющий метод скрытия оверлея загрузки</returns>
-        public IDisposable StartLoading()
+        /// <returns>Объект, вызывающий метод <see cref="Hide"/> при утилизации.</returns>
+        public static IDisposable StartLoading()
         {
             //для тех, кто в танке, для использования данного метода, нужно:
             //1. создать поле ILoadingService
@@ -76,9 +64,12 @@ namespace college_events_desktop.Services
         }
     }
 
+    /// <summary>
+    /// Класс-обертка для выполнения действия при уничтожении объекта.
+    /// </summary>
     public class DisposableAction : IDisposable
     {
-        private Action _action;
+        private readonly Action _action;
         public DisposableAction(Action action) => _action = action;
         public void Dispose() => _action?.Invoke();
     }

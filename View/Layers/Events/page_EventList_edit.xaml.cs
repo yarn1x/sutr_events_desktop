@@ -61,7 +61,6 @@ namespace college_events_desktop.View.Layers.Events
         private Event _Event;
         page_table_EventGroup_edit _table;
 
-        private readonly ILoadingService _loading; //интерфейс загрузки поверх всех страниц
         private readonly IOverlayService _overlayService; //оверлей, в который всё чо угодно пихаешь, будет поверх основного окна
         #endregion
 
@@ -79,7 +78,6 @@ namespace college_events_desktop.View.Layers.Events
             DataContext = _Event;
             _table = new page_table_EventGroup_edit(this, _dataService, _Event);
 
-            _loading = new LoadingService(mainWindow);
             _overlayService = new OverlayService(mainWindow);
 
             Loaded += Page_EventList_edit_Loaded;
@@ -132,30 +130,30 @@ namespace college_events_desktop.View.Layers.Events
         private async void btn_save_Click(object sender, RoutedEventArgs e)
         {
             btn_save.IsEnabled = false;
-            using (_loading.StartLoading())
+            using (LoadingService.StartLoading())
             {
                 try
                 {
                     if (validation_errors_count > 0)
                     {
-                        MessageBox.Show($"У вас есть ошибки ввода. Пожалуйста, исправьте их ({validation_errors_count} ошибок) перед выполнением сохранения.\n\nПодсказка:\n1. Количество участников не может быть отрицательным или содержать символы кроме цифр", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+                        UserNotificationService.ShowWarning($"У вас есть ошибки ввода. Пожалуйста, исправьте их ({validation_errors_count} ошибок) перед выполнением сохранения.\n\nПодсказка:\n1. Количество участников не может быть отрицательным или содержать символы кроме цифр");
                     }
                     else
                     {
                         bool response = await _dataService.apiClient.UpdateEventGroups(EventUpdateData, _Event.eventId);
                         if (!response)
                         {
-                            MessageBox.Show("Произошла ошибка обновления.\n\nCode=page_EventList_editAA003", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                            UserNotificationService.ShowError("Произошла ошибка обновления.", "page_EventList_editAA003");
                         }
                     }
                 }
-                catch (HttpRequestException httpEx)
+                catch (HttpRequestException ex)
                 {
-                    MessageBox.Show($"Возникла ошибка отправки запроса на сервер.\n\nCode=page_EventList_editAA001\nMessage={httpEx.Message}", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    UserNotificationService.ShowError("Возникла ошибка отправки запроса на сервер.", ex, "page_EventList_editAA001");
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Возникла непредвиденная ошибка.\n\nCode=page_EventList_editAA002\nMessage={ex.Message}", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    UserNotificationService.ShowError("Возникла непредвиденная ошибка.", ex, "page_EventList_editAA002");
                 }
             }
             btn_save.IsEnabled = true;
@@ -200,14 +198,17 @@ namespace college_events_desktop.View.Layers.Events
                 await _dataService.LoadPlacesListAsync();
                 await _dataService.LoadOrganizerListAsync();
 
-                var errorMessages = new List<string>();
+                var caughtErrors = new List<(string UserMessage, Exception Ex)>();
                 try
                 {
                     ///добавление общего списка мест проведения мероприятий (все доступные в системе места для проведения - комбобокс для добавления)
                     string[] places = _dataService.places.Select(p => p.place).ToArray();
                     combobox_event_place.ItemsSource = places;
-                } 
-                catch { errorMessages.Add("полный список локаций;"); }
+                }
+                catch (Exception ex)
+                {
+                    caughtErrors.Add(($"произошла ошибка при получении полного списка локаций.", ex));
+                }
 
                 try
                 {
@@ -217,7 +218,10 @@ namespace college_events_desktop.View.Layers.Events
                         .ToArray();
                     combobox_organizer_name.ItemsSource = organizers;
                 }
-                catch { errorMessages.Add("полный список организаторов;"); }
+                catch (Exception ex)
+                {
+                    caughtErrors.Add(($"произошла ошибка при получении полного списка организаторов.", ex));
+                }
 
                 try
                 {
@@ -225,15 +229,15 @@ namespace college_events_desktop.View.Layers.Events
                     string[] categories = _dataService.categories.Select(c => c.name).ToArray();
                     combobox_event_direction.ItemsSource = categories;
                 }
-                catch { errorMessages.Add("полный список категорий;"); }
+                catch (Exception ex)
+                {
+                    caughtErrors.Add(($"произошла ошибка при получении полного списка категорий.", ex));
+                }
 
                 //показ ошибки, если что-то пошло не так
-                if (errorMessages.Count > 0)
+                if (caughtErrors.Count > 0)
                 {
-                    string formattedErrors = string.Join("\n- ", errorMessages);
-                    string fullMessage = $"Не удалось загрузить:\n- {formattedErrors}\n\nCode=page_EventList_editAA004";
-
-                    MessageBox.Show(fullMessage, "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    UserNotificationService.ShowError("Список ошибок:", caughtErrors, "page_EventList_editAA004");
                 }
             
             });

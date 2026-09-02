@@ -2,6 +2,7 @@
 using college_events_desktop.Services;
 using college_events_desktop.View.Controls;
 using college_events_desktop.View.Layers.Events;
+using college_events_desktop.View.Layers.Groups;
 using college_events_desktop.View.Layers.Organizers;
 using college_events_desktop.View.Layers.Settings;
 using college_events_desktop.ViewModels;
@@ -20,6 +21,7 @@ namespace college_events_desktop.View.Windows
         //UI элементы
         page_EventList eventList;
         page_OrganizerList organizerList;
+        page_GroupList groupList;
         events_nav_buttons events_Nav_Buttons;
         users_nav_buttons users_Nav_Buttons;
 
@@ -35,11 +37,13 @@ namespace college_events_desktop.View.Windows
         public MainWindow(DataService dataService)
 		{
 			InitializeComponent();
+            LoadingService.Register(this); //регистрация сервиса интерфейса загрузки
 
             //присвоение переменным значений
             _dataService = dataService;
             eventList = new page_EventList(this, _dataService);
             organizerList = new page_OrganizerList(this, _dataService);
+            groupList = new page_GroupList(this, _dataService);
 			events_Nav_Buttons = new events_nav_buttons(this, eventList);
             users_Nav_Buttons = new users_nav_buttons(this);
             _overlayService = new OverlayService(this);
@@ -54,10 +58,9 @@ namespace college_events_desktop.View.Windows
 
         #region Обработчики событий
 
-        private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
 		{
 			mainframe.Navigate(eventList);
-			await eventList.Page_EventList_Loaded();
         }
 
 
@@ -161,7 +164,7 @@ namespace college_events_desktop.View.Windows
         }
 
 
-        private void btn_otganizers_Click(object sender, RoutedEventArgs e)
+        private void btn_organizers_Click(object sender, RoutedEventArgs e)
         {
             mainframe.Navigate(organizerList);
         }
@@ -221,5 +224,10 @@ namespace college_events_desktop.View.Windows
             text_menu_users.Visibility = visibility;
         }
         #endregion
+
+        private void btn_groups_Click(object sender, RoutedEventArgs e)
+        {
+            mainframe.Navigate(groupList);
+        }
     }
 }

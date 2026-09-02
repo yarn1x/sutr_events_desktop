@@ -22,11 +22,9 @@ namespace college_events_desktop.View.Layers
     public partial class page_NewLocation : Page
     {
         MainWindow mainWindow; 
-        private readonly ILoadingService _loadingService;
         public page_NewLocation(MainWindow mainWindow)
         {
             this.mainWindow = mainWindow;
-            _loadingService = new LoadingService(mainWindow);
             InitializeComponent();
         }
 
@@ -37,7 +35,7 @@ namespace college_events_desktop.View.Layers
             {
                 return;
             }
-            using (_loadingService.StartLoading())
+            using (LoadingService.StartLoading())
             {
                 Location body = new Location()
                 {
@@ -49,16 +47,16 @@ namespace college_events_desktop.View.Layers
                     bool response = await mainWindow._dataService.apiClient.CreateLocation(body);
                     if (response)
                     {
-                        MessageBox.Show($"{edit_location.Text} создано!\n\nПЕРЕЗАЙДИТЕ НА СТРАНИЦУ ИЛИ ОБНОВИТЕ ИНФОРМАЦИЮ ДЛЯ ОТОБАЖЕНИЯ НОВОГО МЕСТА", "Успешно!", MessageBoxButton.OK, MessageBoxImage.Information);
+                        UserNotificationService.ShowInformation($"{edit_location.Text} создано!\n\nПЕРЕЗАЙДИТЕ НА СТРАНИЦУ ИЛИ ОБНОВИТЕ ИНФОРМАЦИЮ ДЛЯ ОТОБАЖЕНИЯ НОВОГО МЕСТА", "Успешно!");
                     }
                     else
                     {
-                        MessageBox.Show($"Ошибка создания новой локации! Попробуйте снова. Если не получилось, проверьте введённые данные.\n\nCode=page_NewLocationAA002", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                        UserNotificationService.ShowError("Ошибка создания новой локации! Попробуйте снова. Если не получилось, проверьте введённые данные.", "page_NewLocationAA002");
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Ошибка создания новой локации!\n\nCode=page_NewLocationAA001\n\n{ex.Message}", "Что-то пошло не так", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    UserNotificationService.ShowError("Ошибка создания новой локации!", ex, "page_NewLocationAA001");
                 }
             }
 

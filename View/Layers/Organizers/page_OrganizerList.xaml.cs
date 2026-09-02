@@ -7,6 +7,8 @@ using System.Windows;
 using System.Collections.Generic;
 using college_events_desktop.DataModels;
 using System.Net.Http;
+using college_events_desktop.View.Controls;
+using college_events_desktop.Services;
 
 namespace college_events_desktop.View.Layers.Organizers
 {
@@ -16,6 +18,7 @@ namespace college_events_desktop.View.Layers.Organizers
         DataService _dataService;
         double_stack _Stack;
 
+
         public page_OrganizerList(MainWindow mainWindow, DataService dataService)
         {
             InitializeComponent();
@@ -23,23 +26,28 @@ namespace college_events_desktop.View.Layers.Organizers
             _dataService = dataService;
             _Stack = new double_stack();
             container_content.Content = _Stack;
+
+
             Loaded += Page_OrganizerList_Loaded;
         }
 
         private async void Page_OrganizerList_Loaded(object sender, RoutedEventArgs e)
         {
-            try
+            using (LoadingService.StartLoading())
             {
-                await _dataService.LoadOrganizerListAsync();
-                _Stack.Children = BuildOrganizersCards(_dataService.organizers);
-            }
-            catch (HttpRequestException httpEx)
-            {
-                MessageBox.Show($"Возникла ошибка отправки запроса на сервер.\n\nMessage={httpEx.InnerException?.Message ?? httpEx.Message}\n\nCode=page_EventList_saveAA001", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Непредвиденная ошибка загрузки списка организаторов.\n\nMessage={ex.InnerException?.Message ?? ex.Message}\n\nCode=page_EventList_saveAA002", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                try
+                {
+                    await _dataService.LoadOrganizerListAsync();
+                    _Stack.Children = BuildOrganizersCards(_dataService.organizers);
+                }
+                catch (HttpRequestException ex)
+                {
+                    UserNotificationService.ShowError("Возникла ошибка отправки запроса на сервер.", ex, "page_EventList_saveAA001");
+                }
+                catch (Exception ex)
+                {
+                    UserNotificationService.ShowError("Непредвиденная ошибка загрузки списка организаторов.", ex, "page_EventList_saveAA002");
+                }
             }
         }
 

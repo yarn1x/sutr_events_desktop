@@ -22,8 +22,8 @@ namespace college_events_desktop.View.Layers.Events
         private Event _Event;
         page_table_EventGroup_save _table;
 
-        ILoadingService _loadingService;
         #endregion
+
 
         #region Конструктор
         public page_EventList_save(Window win, DataService dataService, Event _event)
@@ -35,10 +35,10 @@ namespace college_events_desktop.View.Layers.Events
             DataContext = _Event;
             _table = new page_table_EventGroup_save(this, _dataService, _Event);
             
-            _loadingService = new LoadingService(mainWindow);
             Loaded += Page_EventList_save_Loaded;
         }
         #endregion
+
 
         #region Обработчики событий
         private void Page_EventList_save_Loaded(object sender, RoutedEventArgs e)
@@ -52,17 +52,19 @@ namespace college_events_desktop.View.Layers.Events
             mainWindow.mainframe.GoBack();
         }
 
+
+
         public int validation_errors_count = 0; //используется (как минимум) в 'table_tuple_EventGroup_save.cs' в методе 'edit_actualCount_Error()' для счёта кол-ва ошибок в введённых данных пользователем
         private async void btn_save_Click(object sender, RoutedEventArgs e)
         {
             btn_save.IsEnabled = false;
-            using (_loadingService.StartLoading())
+            using (LoadingService.StartLoading())
             {
                 try
                 {
                     if (validation_errors_count > 0)
                     {
-                        MessageBox.Show($"У вас есть ошибки ввода. Пожалуйста, исправьте их ({validation_errors_count} ошибок) перед выполнением сохранения.\n\nПодсказка:\n1. Количество участников не может быть отрицательным или содержать символы кроме цифр", "Информация", MessageBoxButton.OK, MessageBoxImage.Information);
+                        UserNotificationService.ShowWarning($"У вас есть ошибки ввода. Пожалуйста, исправьте их ({validation_errors_count} ошибок) перед выполнением сохранения.\n\nПодсказка:\n1. Количество участников не может быть отрицательным или содержать символы кроме цифр");
                     }
                     else
                     {
@@ -70,35 +72,35 @@ namespace college_events_desktop.View.Layers.Events
                         bool updStatusResponse = await _dataService.apiClient.UpdateEventStatus(_Event.eventId, 4);
                         if (!response && !updStatusResponse)
                         {
-                            MessageBox.Show("Произошла непредвиденная ошибка.\n\nCode=page_EventList_saveAA003", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                            UserNotificationService.ShowError("Произошла непредвиденная ошибка.", "page_EventList_saveAA003");
                         }
-                        MessageBox.Show("Отчёт успешно составлен!", "Успешно!", MessageBoxButton.OK, MessageBoxImage.Information);
+                        UserNotificationService.ShowInformation("Отчёт успешно составлен!", "Успешно!");
                         mainWindow.mainframe.GoBack();
                     }
                 }
-                catch (HttpRequestException httpEx)
+                catch (HttpRequestException ex)
                 {
-                    MessageBox.Show($"Возникла ошибка отправки запроса на сервер.\n\nMessage={httpEx.InnerException?.Message ?? httpEx.Message}\n\nCode=page_EventList_saveAA001", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    UserNotificationService.ShowError("Возникла ошибка отправки запроса на сервер.", ex, "page_EventList_saveAA001");
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Ошибка сохранения отчёта.\n\nMessage={ex.InnerException?.Message ?? ex.Message}\n\nCode=page_EventList_saveAA002", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    UserNotificationService.ShowError("Ошибка сохранения отчёта.", ex, "page_EventList_saveAA002");
                 }
             }
             btn_save.IsEnabled = true;
         }
         #endregion
 
+
+        #region Методы класса
         private void LoadInformation()
         {
             _Event.locations.ForEach(g => stack_places.Children.Add(CreateLocationButton(g)));
-            // добавление мест проведения мероприятия
-            //foreach (Location location in _Event.locations)
-            //{
-            //    stack_places.Children.Add(CreateLocationButton(location));
-            //}
         }
-
+        #endregion
+        
+        
+        
         //TODO: CODE REVEAL: поместить в отдельный класс
         private Button CreateLocationButton(Location location)
         {

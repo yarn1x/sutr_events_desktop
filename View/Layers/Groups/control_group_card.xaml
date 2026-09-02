@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="college_events_desktop.View.Layers.Groups.control_group_card"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:college_events_desktop.View.Layers.Groups"
+             mc:Ignorable="d" Height="70" MinWidth="400">
+
+    <Button x:Name="btn_card" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Style="{DynamicResource ButtonStyle_accent_extra}">
+
+        <Grid Margin="10">
+            <Grid.ColumnDefinitions>
+                <!-- Название группы -->
+                <ColumnDefinition Width="*"/>
+                <!-- Первое число -->
+                <ColumnDefinition Width="*"/>
+                <!-- Второе число -->
+                <ColumnDefinition Width="*"/>
+                <!-- Куратор -->
+                <ColumnDefinition Width="*"/>
+                <!--Баллы-->
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock x:Name="text_GroupName" Text="{Binding groupName}" d:Text="Группа 1" FontWeight="Bold" FontSize="14" Foreground="#000000" VerticalAlignment="Center" Grid.Column="0" HorizontalAlignment="Center"/>
+            <TextBlock x:Name="text_eventCount" Text="{Binding eventsCount}" d:Text="67" FontSize="14" Foreground="#000000" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1"/>
+            <TextBlock x:Name="text_categoryCount" Text="{Binding categoriesCount}" d:Text="5" FontSize="14" Foreground="#000000" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2"/>
+            <TextBlock x:Name="text_supervisor" d:Text="Куратор 1" FontSize="14" Foreground="#000000" VerticalAlignment="Center" Grid.Column="3" HorizontalAlignment="Center">
+                <TextBlock.Text>
+                    <MultiBinding  StringFormat="{}{0} {1} {2}">
+                        <Binding Path="supervisorSurname"/>
+                        <Binding Path="supervisorName"/>
+                        <Binding Path="supervisorLastname"/>
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+            <TextBlock x:Name="text_points" Text="943" FontWeight="Bold" FontSize="14" Foreground="#000000" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="4"/>
+        </Grid>
+    </Button>
+
+</UserControl>

@@ -1,5 +1,6 @@
 ﻿using college_events_desktop.DataModels;
 using college_events_desktop.Model;
+using college_events_desktop.Services;
 using college_events_desktop.View.Controls;
 using college_events_desktop.View.Windows;
 using college_events_desktop.ViewModels;
@@ -18,12 +19,12 @@ namespace college_events_desktop.View.Layers.Events
 	public partial class page_EventList : Page
 	{
         #region Поля класса
-        private MainWindow mainWindow;
-        /// <summary>
-        /// Словарь состояний активности фильтров по статусу мероприятия
-        /// </summary>
+
         private Dictionary<string, bool> filterStates = new Dictionary<string, bool>()
         {
+            //я уже не помню чем я руководствовался, когда ключ представлял в виде строки
+            //в теории, можно поменять на int, но у этого есть скрытые зависимости в связанных страницах и элементах
+            //их тоже важно изменить
             {"1", false},
             {"2", false},
             {"3", false},
@@ -32,8 +33,12 @@ namespace college_events_desktop.View.Layers.Events
             {"6", false},
             {"-1", false},
         };
+
+        private MainWindow mainWindow;
         EventListViewModel viewModel;
         private DataService _dataService;
+
+        
         #endregion
 
 
@@ -43,6 +48,8 @@ namespace college_events_desktop.View.Layers.Events
 		{
 			InitializeComponent();
             ApplySettings();
+            Loaded += Page_EventList_Loaded;
+
 
             mainWindow = win as MainWindow;
             _dataService = dataService;
@@ -53,46 +60,46 @@ namespace college_events_desktop.View.Layers.Events
 
 
         #region Обработчики событий
-        internal async Task Page_EventList_Loaded()
+        private async void Page_EventList_Loaded(object sender, RoutedEventArgs e)
+        {
+            await Update();
+        }
+
+        internal async Task Update()
         {
             await Application.Current.Dispatcher.InvokeAsync(async () =>
             {
-                stack_events.Children.Clear();
-                loading_interface loading_Interface = new loading_interface();
-                loading_Interface.AddInterfaceToContainer(stack_events, new Thickness(0, 20, 0, 0));
+                using (LoadingService.StartLoading())
+                {
+                    var caughtErrors = new List<(string UserMessage, Exception Ex)>();
+                    try
+                    {
+                        await _dataService.LoadEventsAsync();
+                        viewModel.LoadEventsInStack(_dataService.events);
+                    }
+                    catch (Exception ex)
+                    {
+                        caughtErrors.Add(($"произошла ошибка при получении списка мероприятий.", ex));
+                    }
+                    try
+                    {
+                        combobox_categories.SelectionChanged -= combobox_categories_SelectionChanged;
+                        await _dataService.LoadCategoriesAsync();
+                        viewModel.LoadCategoryCombobox(_dataService.categories);
+                        combobox_categories.SelectionChanged += combobox_categories_SelectionChanged;
 
-                List<string> errorMessages = new List<string>();
-                try
-                {
-                    await _dataService.LoadEventsAsync();
-                    viewModel.LoadEventsInStack(_dataService.events);
+                    }
+                    catch (Exception ex)
+                    {
+                        caughtErrors.Add(($"произошла ошибка при получении списка направлений.", ex));
+                    }
+                    if (caughtErrors.Count > 0)
+                    {
+                        UserNotificationService.ShowError("Список ошибок:", caughtErrors, "page_EventListAA002");
+                    }
+                    UpdateBottomCounters();
+                    await apply_filter();
                 }
-                catch (Exception ex)
-                {
-                    errorMessages.Add($"произошла ошибка при получении списка мероприятий.\nMessage={ex.Message}");
-                }
-                try
-                {
-                    combobox_categories.SelectionChanged -= combobox_categories_SelectionChanged;
-                    await _dataService.LoadCategoriesAsync();
-                    viewModel.LoadCategoryCombobox(_dataService.categories);
-                    combobox_categories.SelectionChanged += combobox_categories_SelectionChanged;
-
-                }
-                catch (Exception ex)
-                {
-                    errorMessages.Add($"произошла ошибка при получении списка направлений.\nMessage={ex.Message}");
-                }
-                if (errorMessages.Count > 0)
-                {
-                    string formattedErrors = string.Join("\n\n — ", errorMessages);
-                    string fullMessage = $"Список ошибок:\n\n — {formattedErrors}\n\n\nCode=page_EventListAA002";
-
-                    MessageBox.Show(fullMessage, "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                UpdateBottomCounters();
-                //применяем фильтр по статусу (тк есть сохранение в памяти применённых фильтров)
-                await apply_filter();
             });
         }
 
@@ -125,8 +132,7 @@ namespace college_events_desktop.View.Layers.Events
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Произошла ошибка применения фильтра поиска.\n\nCode=page_EventListAA001\nMessage={ex.Message}\n\nТело ошибки скопировано в буфер обмена", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
-                Clipboard.SetText(ex.ToString());
+                UserNotificationService.ShowError("Произошла ошибка применения фильтра поиска.", ex, "page_EventListAA001");
             }
         }
 
@@ -204,7 +210,7 @@ namespace college_events_desktop.View.Layers.Events
 
         private async void update_page_Click(object sender, RoutedEventArgs e)
         {
-            await Page_EventList_Loaded();
+            await Update();
         }
 
         private void go_EventListHelp(object sender, RoutedEventArgs e)
