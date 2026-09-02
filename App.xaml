@@ -38,7 +38,7 @@
                 </Grid>
             </ControlTemplate>
 
-            <sys:String x:Key="TextSystemVersion">ver 0.0.6 alpha. UiOAF01</sys:String>
+            <sys:String x:Key="TextSystemVersion">ver 0.0.7 alpha. UiOAF01</sys:String>
             
         </ResourceDictionary>
     </Application.Resources>
