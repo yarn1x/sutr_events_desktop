@@ -20,15 +20,23 @@ namespace college_events_desktop.View.Controls
     public partial class users_nav_buttons : UserControl
     {
         MainWindow mainWindow;
-        public users_nav_buttons(Window win)
+        page_NewAccount page_NewAccount;
+        page_UserList page_UserList;
+        public users_nav_buttons(Window win, page_UserList page_UserList, page_NewAccount page_NewAccount)
         {
             InitializeComponent();
             mainWindow = win as MainWindow;
+            this.page_NewAccount = page_NewAccount;
+            this.page_UserList = page_UserList;
         }
-        page_NewAccount page = new page_NewAccount();
         private void create_new_user_Click(object sender, RoutedEventArgs e)
         {
-            mainWindow.mainframe.Navigate(page);
+            mainWindow.mainframe.Navigate(page_NewAccount);
+        }
+
+        private void btn_users_list_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.mainframe.Navigate(page_UserList);
         }
     }
 }

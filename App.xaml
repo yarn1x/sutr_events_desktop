@@ -14,6 +14,7 @@
                 <ResourceDictionary Source="/View/Styles/TextBlockStyles.xaml"/>
                 <ResourceDictionary Source="/View/Styles/ScrollBarStyles.xaml"/>
                 <ResourceDictionary Source="/View/Styles/DataGridStyles.xaml"/>
+                <ResourceDictionary Source="/View/Styles/theme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <!--изображения-->
@@ -23,6 +24,7 @@
             <!--конвертеры-->
             <converter:DateTimeToStringConverter x:Key="DateTimeConverter"/>
 
+            <!--элементы-->
             <ControlTemplate x:Key="DisabledStatusCircle" TargetType="Control">
                 <Grid Width="25" Height="25">
                     <!-- Сам цветной круг -->
@@ -38,8 +40,9 @@
                 </Grid>
             </ControlTemplate>
 
-            <sys:String x:Key="TextSystemVersion">ver 0.0.7 alpha. UiOAF01</sys:String>
-            
+            <!--ресурсы-->
+            <sys:String x:Key="TextSystemVersion">ver 0.0.8 alpha. UiOAF01</sys:String>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

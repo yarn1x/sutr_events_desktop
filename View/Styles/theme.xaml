@@ -1,0 +1,35 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!-- ================================================================= -->
+    <!--  2. СВЕТЛАЯ ТЕМА (ПАЛИТРА ПО УМОЛЧАНИЮ)                           -->
+    <!-- ================================================================= -->
+
+    <!-- Фоновые цвета -->
+    <SolidColorBrush x:Key="LightBackground" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="CardBackground" Color="#FDFDFD"/>
+    <SolidColorBrush x:Key="OverlayBackground" Color="#80000000"/>
+
+    <!-- Границы и контуры -->
+    <SolidColorBrush x:Key="BorderLight" Color="#E0E0E0"/>
+    <SolidColorBrush x:Key="BorderActive" Color="#B0B0B0"/>
+
+    <!-- Цвета текста и иконок -->
+    <SolidColorBrush x:Key="TextPrimary" Color="#1F1F1F"/>
+    <SolidColorBrush x:Key="TextSecondary" Color="#666666"/>
+    <SolidColorBrush x:Key="TextMuted" Color="#A7A7A7"/>
+    <!-- Для кружка в фильтре -->
+
+    <!-- Акцентные цвета приложения -->
+    <SolidColorBrush x:Key="AccentPrimary" Color="#FF008CFF"/>
+    <SolidColorBrush x:Key="AccentHover" Color="#FF0070CC"/>
+
+    <!-- ================================================================= -->
+    <!--  3. ДИНАМИЧЕСКИЕ КИСТИ ДЛЯ АНИМАЦИЙ И ФИЛЬТРОВ                    -->
+    <!-- ================================================================= -->
+    <!-- Ссылаются на базовую палитру, но их можно подменять на лету в C# -->
+    <SolidColorBrush x:Key="FilterButtonBackground" Color="{Binding Color, Source={StaticResource LightBackground}}"/>
+    <SolidColorBrush x:Key="FilterButtonForeground" Color="{Binding Color, Source={StaticResource TextSecondary}}"/>
+
+</ResourceDictionary>

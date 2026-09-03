@@ -5,6 +5,7 @@ using college_events_desktop.View.Layers.Events;
 using college_events_desktop.View.Layers.Groups;
 using college_events_desktop.View.Layers.Organizers;
 using college_events_desktop.View.Layers.Settings;
+using college_events_desktop.View.Layers.Users;
 using college_events_desktop.ViewModels;
 using System;
 using System.Windows;
@@ -22,6 +23,8 @@ namespace college_events_desktop.View.Windows
         page_EventList eventList;
         page_OrganizerList organizerList;
         page_GroupList groupList;
+        page_UserList userList;
+        page_NewAccount newAccount;
         events_nav_buttons events_Nav_Buttons;
         users_nav_buttons users_Nav_Buttons;
 
@@ -41,11 +44,14 @@ namespace college_events_desktop.View.Windows
 
             //присвоение переменным значений
             _dataService = dataService;
+
             eventList = new page_EventList(this, _dataService);
             organizerList = new page_OrganizerList(this, _dataService);
             groupList = new page_GroupList(this, _dataService);
+            userList = new page_UserList(this, _dataService);
+            newAccount = new page_NewAccount();
 			events_Nav_Buttons = new events_nav_buttons(this, eventList);
-            users_Nav_Buttons = new users_nav_buttons(this);
+            users_Nav_Buttons = new users_nav_buttons(this, userList, newAccount);
             _overlayService = new OverlayService(this);
 
             //назначение событий

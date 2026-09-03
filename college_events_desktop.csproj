@@ -85,6 +85,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Converter\DateTimeToStringConverter.cs" />
+    <Compile Include="DataModels\AuthorizedUser.cs" />
     <Compile Include="DataModels\AuthResponse.cs" />
     <Compile Include="DataModels\Category.cs" />
     <Compile Include="DataModels\Event.cs" />
@@ -106,6 +107,9 @@
     <Compile Include="ViewModels\UIAnimations.cs" />
     <Compile Include="View\Controls\Containers\double_stack.xaml.cs">
       <DependentUpon>double_stack.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\SimpleTextPlaceholder.xaml.cs">
+      <DependentUpon>SimpleTextPlaceholder.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Controls\TextPlaceholder.xaml.cs">
       <DependentUpon>TextPlaceholder.xaml</DependentUpon>
@@ -167,11 +171,17 @@
     <Compile Include="View\Layers\Settings\page_Settings.xaml.cs">
       <DependentUpon>page_Settings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Layers\Users\control_user_card.xaml.cs">
+      <DependentUpon>control_user_card.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Layers\Users\page_NewAccount.xaml.cs">
       <DependentUpon>page_NewAccount.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Layers\Events\Tables\table_tuple_EventGroup_save.xaml.cs">
       <DependentUpon>table_tuple_EventGroup_save.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Layers\Users\page_UserList.xaml.cs">
+      <DependentUpon>page_UserList.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Windows\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
@@ -180,6 +190,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="View\Controls\Containers\double_stack.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\SimpleTextPlaceholder.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -263,11 +277,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Layers\Users\control_user_card.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Layers\Users\page_NewAccount.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Layers\Events\Tables\table_tuple_EventGroup_save.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Layers\Users\page_UserList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -284,6 +306,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Styles\TextBlockStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Styles\theme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

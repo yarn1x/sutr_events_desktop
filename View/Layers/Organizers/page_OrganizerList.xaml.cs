@@ -9,6 +9,7 @@ using college_events_desktop.DataModels;
 using System.Net.Http;
 using college_events_desktop.View.Controls;
 using college_events_desktop.Services;
+using System.Linq;
 
 namespace college_events_desktop.View.Layers.Organizers
 {
@@ -42,11 +43,11 @@ namespace college_events_desktop.View.Layers.Organizers
                 }
                 catch (HttpRequestException ex)
                 {
-                    UserNotificationService.ShowError("Возникла ошибка отправки запроса на сервер.", ex, "page_EventList_saveAA001");
+                    UserNotificationService.ShowError("Возникла ошибка отправки запроса на сервер.", ex, "page_OrganizerListAA001");
                 }
                 catch (Exception ex)
                 {
-                    UserNotificationService.ShowError("Непредвиденная ошибка загрузки списка организаторов.", ex, "page_EventList_saveAA002");
+                    UserNotificationService.ShowError("Непредвиденная ошибка загрузки списка организаторов.", ex, "page_OrganizerListAA002");
                 }
             }
         }
@@ -69,6 +70,16 @@ namespace college_events_desktop.View.Layers.Organizers
             });
 
             return cards;
+        }
+
+        private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!(sender is SearchBar textBox)) return;
+
+            string text = textBox.SearchText;
+            var sortedList = _dataService.organizers.Where(o => o.firstName.Contains(text) || o.surName.Contains(text) || o.lastName.Contains(text)).ToList();
+
+            _Stack.Children = BuildOrganizersCards(sortedList);
         }
     }
 }

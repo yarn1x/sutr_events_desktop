@@ -1,26 +1,16 @@
 ﻿using college_events_desktop.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace college_events_desktop.View.Controls
 {
     public partial class TextPlaceholder : UserControl
     {
-        Panel _parentContainer;
-        Point _position;
+        private readonly Panel _parentContainer;
+        private readonly Point _position;
 
         public TextPlaceholder(Panel parentContainer, Point position, string text)
         {
@@ -28,48 +18,38 @@ namespace college_events_desktop.View.Controls
             _parentContainer = parentContainer;
             _position = position;
             text_body.Text = text;
+
             Loaded += TextPlaceholder_Loaded;
         }
 
         private void TextPlaceholder_Loaded(object sender, RoutedEventArgs e)
         {
-            //определение координат
-            Margin = new Thickness
-            (
-                //корды по Х вычисляются как позиция курсора - ширина плашки / 2.
-                //Если корды получились отрицательными, то Х = 0
-                _position.X - (ActualWidth / 2) <= 0 ? 0 : _position.X - (ActualWidth / 2),
-                // позиция курсора по вертикали
-                _position.Y, 
-                0,
-                0
-            );
+            // Вычисляем X: позиция курсора минус половина ширины плашки. Если вышли за экран (меньше 0), то 0.
+            double left = _position.X - (ActualWidth / 2);
+            if (left < 0) left = 0;
+
+            Margin = new Thickness(left, _position.Y, 0, 0);
         }
 
         public async Task ShowAsync()
         {
-            await Application.Current.Dispatcher.InvokeAsync(() => 
-            { 
-                _parentContainer.Children.Add(this);        
+            // Добавляем элемент в контейнер
+            await Application.Current.Dispatcher.InvokeAsync(() =>
+            {
+                _parentContainer.Children.Add(this);
             });
         }
 
         public async Task HideAsync()
         {
+            // Ждем завершения анимаций перемещения и прозрачности
             await Task.WhenAll(
                 UIAnimations.MoveObjectAsync(this, new Point(Margin.Left, Margin.Top), new Point(Margin.Left, Margin.Top - 70), 200, EasingMode.EaseInOut),
                 UIAnimations.ChangeObjectOpacityAsync(this, 1, 0, 200, EasingMode.EaseOut)
-            ).ContinueWith(_ =>
-            {
-                //после окончания двух объектов MoveObject, ChangeObjectOpacity удаляется плашка с контейнера
-                Application.Current.Dispatcher.Invoke(() =>
-                {
-                    if (_parentContainer.Children.Contains(this))
-                    {
-                        _parentContainer.Children.Remove(this);
-                    }
-                });
-            });
+            );
+
+            // Код после await гарантированно выполнится в UI-потоке. Спокойно удаляем элемент.
+            _parentContainer.Children.Remove(this);
         }
     }
 }

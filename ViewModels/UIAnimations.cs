@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using System.Windows.Media.Animation;
 using System.Windows;
+using System.Windows.Media;
+using System.Windows.Controls;
 
 namespace college_events_desktop.ViewModels
 {
@@ -106,5 +108,60 @@ namespace college_events_desktop.ViewModels
             });
             await tcs.Task;
         }
+
+
+
+
+        public static SolidColorBrush lightForegroundCase { get; set; }
+        public static SolidColorBrush darkForegroundCase { get; set; }
+        public static async Task ChangeColorAsync<T>(
+            T element,
+            Color color,
+            int durationMs = 1000,
+            EasingMode? easingMode = null) where T : Control
+        {
+            if (element == null) return;
+
+            if (element.Background is SolidColorBrush currentBrush)
+            {
+                if (currentBrush.IsFrozen)
+                {
+                    element.Background = currentBrush.Clone();
+                }
+            }
+            else
+            {
+                element.Background = new SolidColorBrush(Colors.Transparent);
+            }
+
+            IEasingFunction easingFunction = null;
+            if (easingMode.HasValue)
+            {
+                easingFunction = new QuadraticEase { EasingMode = easingMode.Value };
+            }
+
+            ColorAnimation animation = new ColorAnimation()
+            {
+                To = color,
+                Duration = TimeSpan.FromMilliseconds(durationMs),
+                EasingFunction = easingFunction,
+            };
+
+            var tcs = new TaskCompletionSource<bool>();
+            animation.Completed += (s, e) => tcs.SetResult(true);
+
+
+            //формула вычисляет значение яркости полученного цвета
+            //точные коэффициенты взяты из международного стандарта ITU - R BT.601
+            double luminance = (0.299 * color.R) + (0.587 * color.G) + (0.155 * color.B);
+            SolidColorBrush light = lightForegroundCase != null ? lightForegroundCase : new SolidColorBrush(Colors.White);
+            SolidColorBrush dark = darkForegroundCase != null ? darkForegroundCase : new SolidColorBrush(Colors.Black);
+            Brush targetForeground = luminance < 128 ? light : dark;
+            element.Foreground = targetForeground;
+
+            element.Background.BeginAnimation(SolidColorBrush.ColorProperty, animation);
+            await tcs.Task;
+        }
+
     }
 }

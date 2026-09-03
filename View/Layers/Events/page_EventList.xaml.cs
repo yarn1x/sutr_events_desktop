@@ -62,10 +62,10 @@ namespace college_events_desktop.View.Layers.Events
         #region Обработчики событий
         private async void Page_EventList_Loaded(object sender, RoutedEventArgs e)
         {
-            await Update();
+            await Update(); //каждый раз, когда визуально отрисовывается окно, обновляем страницу
         }
 
-        internal async Task Update()
+        internal async Task Update() //обновление страницы
         {
             await Application.Current.Dispatcher.InvokeAsync(async () =>
             {
@@ -124,10 +124,10 @@ namespace college_events_desktop.View.Layers.Events
                 //Инвертируем value в словаре фильтров (filterStates)
                 filterStates[colorKey] = !filterStates[colorKey];
 
-                //анимируем цвета кнопки
-                await AnimateButtonColorsAsync(button, filterStates[colorKey]);
                 //применяем фильтр
                 await apply_filter();
+                //анимируем цвета кнопки
+                await AnimateButtonColorsAsync(button, filterStates[colorKey]);
                 SaveSettingValueByKey(colorKey, filterStates[colorKey]);
             }
             catch (Exception ex)
@@ -313,58 +313,15 @@ namespace college_events_desktop.View.Layers.Events
         /// <returns>Асинхронное выполнение метода</returns>
         private async Task AnimateButtonColorsAsync(Button button, bool statusSwitch)
         {
-            await Application.Current.Dispatcher.InvokeAsync(() =>
+            UIAnimations.lightForegroundCase = new SolidColorBrush(Colors.White);
+            UIAnimations.darkForegroundCase = new SolidColorBrush(Color.FromArgb(0xFF, 0x66, 0x66, 0x66));
+            if (statusSwitch)
             {
-
-                ColorAnimation backgroundAnim = new ColorAnimation()
-                {
-                    Duration = TimeSpan.FromMilliseconds(200),
-                    EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
-                };
-                ColorAnimation textAnim = new ColorAnimation()
-                {
-                    Duration = TimeSpan.FromMilliseconds(200),
-                    EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
-                };
-
-                if (statusSwitch)
-                {
-                    backgroundAnim.From = Colors.White;
-                    backgroundAnim.To = Color.FromArgb(255, 0, 140, 255);
-
-                    textAnim.From = Color.FromArgb(0xFF, 0x66, 0x66, 0x66);
-                    textAnim.To = Colors.White;
-
-                    button.BorderBrush = new SolidColorBrush(Color.FromArgb(0xFF, 0x00, 0x60, 0xBC));
-                }
-                else
-                {
-                    backgroundAnim.To = Colors.White;
-                    backgroundAnim.From = Color.FromArgb(255, 0, 140, 255);
-
-                    textAnim.To = Color.FromArgb(0xFF, 0x66, 0x66, 0x66);
-                    textAnim.From = Colors.White;
-
-                    button.BorderBrush = new SolidColorBrush(Color.FromArgb(0xFF, 0x66, 0x66, 0x66));
-                }
-
-                try
-                {
-                    // перекрашивание заднего фона кнопки
-                    button.Background = new SolidColorBrush();
-                    button.Background.BeginAnimation(SolidColorBrush.ColorProperty, backgroundAnim);
-
-                    // перекрашивание текста кнопки
-                    // ТЕКСТ ДОЛЖЕН БЫТЬ ПОМЕЩЁН В СТЭК И БЫТЬ ПЕРВЫМ ЭЛЕМЕНТОМ В СТЭКЕ
-                    // это самое быстрое, что я мог придумать для кнопок фильтров по статусам мероприятий
-                    var stack = button.Content as StackPanel;
-                    var text = stack.Children[0] as TextBlock;
-                    text.Foreground.BeginAnimation(SolidColorBrush.ColorProperty, textAnim);
-                }
-                catch
-                {
-                }
-            });
+                await UIAnimations.ChangeColorAsync(button, Color.FromArgb(255, 0, 140, 255), 200, EasingMode.EaseOut);
+                return;
+            }
+            await UIAnimations.ChangeColorAsync(button, Colors.White, 200, EasingMode.EaseOut);
+            return;
         }
 
         /// <summary>

@@ -7,7 +7,7 @@
       xmlns:control="clr-namespace:college_events_desktop.View.Controls" 
       mc:Ignorable="d" 
       d:DesignHeight="900" d:DesignWidth="900"
-      Title="page_OrganizerList">
+      Title="Список организаторов">
 
     <Grid Background="White" Grid.Row="1" Grid.Column="1">
         <Grid.RowDefinitions>
@@ -28,7 +28,7 @@
                 </StackPanel>
             </Button>
 
-            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" Text="Список организаторов" FontWeight="Bold" Foreground="#FF666666"/>
+            <TextBlock x:Name="text_header" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" Text="Список организаторов" FontWeight="Bold" Foreground="#FF666666"/>
         </StackPanel>
 
         <Grid Margin="20, 0, 20, 0" Grid.Row="1">
@@ -42,7 +42,7 @@
                     <Border CornerRadius="5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Background="#FF008CFF" Margin="10,-9,0,0" Height="20">
                         <TextBlock Foreground="White" FontSize="14" Text="Фильтры" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                     </Border>
-                    <control:SearchBar Margin="10,0,20,0" VerticalAlignment="Center"/>
+                    <control:SearchBar Margin="10,0,20,0" VerticalAlignment="Center" TextChanged="SearchBar_TextChanged"/>
                 </Grid>
             </Border>
             

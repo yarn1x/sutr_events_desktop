@@ -70,3 +70,10 @@ C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Layers\Groups\page_GroupList.g.cs
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Layers\Groups\control_group_card.baml
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Layers\Groups\page_GroupList.baml
+C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Layers\Users\page_UserList.g.cs
+C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Layers\Users\page_UserList.baml
+C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Styles\theme.baml
+C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Layers\Users\control_user_card.g.cs
+C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Layers\Users\control_user_card.baml
+C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Controls\SimpleTextPlaceholder.g.cs
+C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Controls\SimpleTextPlaceholder.baml

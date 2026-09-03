@@ -8,7 +8,7 @@
     <Grid>
         <Border Padding="10" CornerRadius="10" Background="White" BorderThickness="1" BorderBrush="#FF666666" >
             <StackPanel>
-                <Button Style="{DynamicResource ButtonStyle_accent}" BorderBrush="{x:Null}" Background="#FF0070CC" Height="35" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Cursor="Hand">
+                <Button x:Name="btn_users_list" Style="{DynamicResource ButtonStyle_accent}" BorderBrush="{x:Null}" Background="#FF0070CC" Height="35" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Cursor="Hand" Click="btn_users_list_Click">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,10,0">
                         <Border Background="White" Width="23" Height="23" Margin="0,0,5,0">
                             <Border.OpacityMask>

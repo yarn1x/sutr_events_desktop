@@ -23,23 +23,26 @@ namespace college_events_desktop.Model
         /// <summary> Возвращает "Срок годности" токена сессии в минутах </summary>
         internal int _jwtExpiresIn { get; private set; }
 
-        /// <summary> Возвращает полученный список мероприятий из БД. Для получения вызвать метод </summary>
+        /// <summary> Возвращает полученный список мероприятий из БД. Для получения вызвать метод <see cref="LoadEventsAsync"/> </summary>
         public List<Event> events { get; private set; }
 
-        /// <summary> Возвращает полученный список направлений из БД. Для получения вызвать метод </summary>
+        /// <summary> Возвращает полученный список направлений из БД. Для получения вызвать метод <see cref="LoadCategoriesAsync"/> </summary>
         public List<Category> categories { get; private set; }
 
-        /// <summary> Возвращает полученный список организаторов из БД. Для получения вызвать метод </summary>
+        /// <summary> Возвращает полученный список организаторов из БД. Для получения вызвать метод <see cref="LoadOrganizerListAsync"/> </summary>
         public List<Organizer> organizers {  get; private set; }
 
-        /// <summary> Возвращает полученный список всех доступных групп из БД. Для получения вызвать метод </summary>
+        /// <summary> Возвращает полученный список всех доступных групп из БД. Для получения вызвать метод <see cref="LoadGroupsListAsync"/> </summary>
         public List<Group> groups { get; private set; }
 
-        /// <summary> Возвращает полученный список групп зарегистрированных на мероприятие. Для получения вызвать метод </summary>
+        /// <summary> Возвращает полученный список групп зарегистрированных на мероприятие. Для получения вызвать метод <see cref="LoadEventGroupsAsync(int)"/> </summary>
         public List<EventGroups> eventGroups { get; private set; }
 
-        /// <summary> Возвращает полученный список локаций из БД. Для получения вызвать метод </summary>
+        /// <summary> Возвращает полученный список локаций из БД. Для получения вызвать метод <see cref="LoadPlacesListAsync"/> </summary>
         public List<Location> places { get; private set; }
+
+        /// <summary> Возвращает полученный список пользователей из БД. Для получения вызвать метод <see cref="LoadUsersListAsync"/> </summary>
+        public List<AuthorizedUser> authorizedUsers { get; private set; }
 
         public DataService(ApiClient apiClient)
         {
@@ -50,6 +53,7 @@ namespace college_events_desktop.Model
             groups = new List<Group>();
             eventGroups = new List<EventGroups>();
             places = new List<Location>();
+            authorizedUsers = new List<AuthorizedUser>();
         }
 
         #region Методы получения данных
@@ -95,6 +99,10 @@ namespace college_events_desktop.Model
         public async Task LoadPlacesListAsync()
         {
             places = await apiClient.GetListOfPlaces();
+        }
+        public async Task LoadUsersListAsync()
+        {
+            authorizedUsers = await apiClient.GetListOfAuthorizedUsers();
         }
 
         #endregion

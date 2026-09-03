@@ -16,6 +16,7 @@
     <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF4C93C8"/>
     <SolidColorBrush x:Key="Button.Disabled.Background" Color="#AA008CFF"/>
     <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FFFFFFFF"/>
+    
     <Style x:Key="ButtonStyle_accent" TargetType="{x:Type Button}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
         <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
@@ -31,9 +32,6 @@
                     
                     <Border x:Name="border" CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
                         <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                        <!--<Border.Effect>
-                            <DropShadowEffect ShadowDepth=".5" Direction="180" Opacity=".3"/>
-                        </Border.Effect>-->
                     </Border>
                     
                     <ControlTemplate.Triggers>
@@ -96,7 +94,7 @@
     <Style x:Key="ButtonStyle_filter" TargetType="{x:Type Button}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
         <Setter Property="Background" Value="White"/>
-        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+        <Setter Property="Foreground" Value="#FF666666"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>

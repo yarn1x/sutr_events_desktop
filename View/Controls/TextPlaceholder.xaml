@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="college_events_desktop.View.Controls.TextPlaceholder"
+﻿ <UserControl x:Class="college_events_desktop.View.Controls.TextPlaceholder"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -11,3 +11,4 @@
         <TextBlock x:Name="text_body" Text="Текст!" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" Foreground="White" Margin="7,5,7,5"/>
     </Border>
 </UserControl>
+    

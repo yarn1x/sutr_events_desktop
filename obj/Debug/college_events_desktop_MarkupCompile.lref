@@ -1,7 +1,6 @@
 ﻿
 FC:\Desktop\Prog\СИстемный прогер\college_events_desktop\App.xaml;;
 FC:\Desktop\Prog\СИстемный прогер\college_events_desktop\View\Controls\Containers\double_stack.xaml;;
-FC:\Desktop\Prog\СИстемный прогер\college_events_desktop\View\Controls\TextPlaceholder.xaml;;
 FC:\Desktop\Prog\СИстемный прогер\college_events_desktop\View\Controls\events_nav_buttons.xaml;;
 FC:\Desktop\Prog\СИстемный прогер\college_events_desktop\View\Layers\Events\control_event_element.xaml;;
 FC:\Desktop\Prog\СИстемный прогер\college_events_desktop\View\Layers\Groups\control_group_card.xaml;;
@@ -22,6 +21,10 @@ FC:\Desktop\Prog\СИстемный прогер\college_events_desktop\View\Lay
 FC:\Desktop\Prog\СИстемный прогер\college_events_desktop\View\Layers\Settings\page_Settings.xaml;;
 FC:\Desktop\Prog\СИстемный прогер\college_events_desktop\View\Layers\Users\page_NewAccount.xaml;;
 FC:\Desktop\Prog\СИстемный прогер\college_events_desktop\View\Layers\Events\Tables\table_tuple_EventGroup_save.xaml;;
+FC:\Desktop\Prog\СИстемный прогер\college_events_desktop\View\Layers\Users\page_UserList.xaml;;
 FC:\Desktop\Prog\СИстемный прогер\college_events_desktop\View\Windows\LoginWindow.xaml;;
 FC:\Desktop\Prog\СИстемный прогер\college_events_desktop\View\Windows\MainWindow.xaml;;
+FC:\Desktop\Prog\СИстемный прогер\college_events_desktop\View\Layers\Users\control_user_card.xaml;;
+FC:\Desktop\Prog\СИстемный прогер\college_events_desktop\View\Controls\TextPlaceholder.xaml;;
+FC:\Desktop\Prog\СИстемный прогер\college_events_desktop\View\Controls\SimpleTextPlaceholder.xaml;;
 
