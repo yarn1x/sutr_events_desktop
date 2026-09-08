@@ -60,5 +60,10 @@ namespace college_events_desktop.View.Layers.Users
             }
             
         }
+
+        private void btn_user_card_Click(object sender, RoutedEventArgs e)
+        {
+            _mainWindow.mainframe.Navigate(new page_user_navigation_layer(_mainWindow, _dataService, _User));
+        }
     }
 }

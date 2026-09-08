@@ -49,13 +49,11 @@ C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Layers\Events\page_EventList_edit.g.cs
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Layers\Events\page_EventList_save.g.cs
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Layers\Events\page_EventList_seeEvent.g.cs
-C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Layers\Users\page_NewAccount.g.cs
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Layers\Events\page_EventList.baml
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Layers\Events\page_EventListHelp.baml
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Layers\Events\page_EventList_edit.baml
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Layers\Events\page_EventList_save.baml
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Layers\Events\page_EventList_seeEvent.baml
-C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Layers\Users\page_NewAccount.baml
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Layers\Settings\page_Settings.g.cs
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Layers\Settings\page_Settings.baml
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Layers\Organizers\page_OrganizerList.g.cs
@@ -77,3 +75,11 @@ C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Layers\Users\control_user_card.baml
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Controls\SimpleTextPlaceholder.g.cs
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Controls\SimpleTextPlaceholder.baml
+C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Controls\Containers\auto_stack.g.cs
+C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Controls\Containers\auto_stack.baml
+C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Controls\Containers\MultiComboBox.g.cs
+C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Layers\Users\page_UserAccount.g.cs
+C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Controls\Containers\MultiComboBox.baml
+C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Layers\Users\page_UserAccount.baml
+C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Layers\Users\page_user_navigation_layer.g.cs
+C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Layers\Users\page_user_navigation_layer.baml

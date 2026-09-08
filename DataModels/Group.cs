@@ -15,6 +15,7 @@ namespace college_events_desktop.DataModels
         public string supervisorLastname { get; set; }
         public string supervisorEmail { get; set; }
         public string supervisorPhone { get; set; }
+        public DateTime creationDate { get; set; }
         public int eventsCount { get; set; }
         public int categoriesCount { get; set; }
     }

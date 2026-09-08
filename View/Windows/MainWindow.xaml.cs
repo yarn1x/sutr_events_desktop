@@ -24,7 +24,7 @@ namespace college_events_desktop.View.Windows
         page_OrganizerList organizerList;
         page_GroupList groupList;
         page_UserList userList;
-        page_NewAccount newAccount;
+        page_UserAccount userAccount;
         events_nav_buttons events_Nav_Buttons;
         users_nav_buttons users_Nav_Buttons;
 
@@ -32,7 +32,6 @@ namespace college_events_desktop.View.Windows
         internal DataService _dataService { get; private set; }
         internal readonly IOverlayService _overlayService;
 
-        //остальные переменные
         #endregion
 
 
@@ -49,9 +48,9 @@ namespace college_events_desktop.View.Windows
             organizerList = new page_OrganizerList(this, _dataService);
             groupList = new page_GroupList(this, _dataService);
             userList = new page_UserList(this, _dataService);
-            newAccount = new page_NewAccount();
+            userAccount = new page_UserAccount(this, _dataService);
 			events_Nav_Buttons = new events_nav_buttons(this, eventList);
-            users_Nav_Buttons = new users_nav_buttons(this, userList, newAccount);
+            users_Nav_Buttons = new users_nav_buttons(this, userList, userAccount);
             _overlayService = new OverlayService(this);
 
             //назначение событий

@@ -34,8 +34,6 @@ namespace college_events_desktop.View.Layers.Events
                     shortDescription = edit_shortDescription.Text,
                     organizerId = GetOrganizerId(combobox_organizer_name.Text),
                     categoryId = GetCategoryId(combobox_event_direction.Text),
-                    //TODO: EDIT event_locations постоянно при сохранении удаляет старые записи
-                    //и добавляет новые, даже если записи не менялись
                     eventLocationsIds = locations.Select(l => l.locationId).ToList(),
                     additionalInfo = edit_additionalInfo.Text,
                     maxListenersCount = Convert.ToInt32(edit_maxListenersCount.Text),
@@ -254,7 +252,15 @@ namespace college_events_desktop.View.Layers.Events
             string organizerName = content.Split(' ')[1];
             string organizerSurName = content.Split(' ')[0];
             string organizerLastName = content.Split(' ')[2];
-            return _dataService.organizers.Find(o => o.firstName == organizerName && o.surName == organizerSurName && o.lastName == organizerLastName).userId;
+            try
+            {
+                var response = _dataService.organizers.Find(o => o.firstName == organizerName && o.surName == organizerSurName && o.lastName == organizerLastName).userId;
+                return response;
+            }
+            catch
+            {
+                throw new Exception("У пользователя нет роли организатора. Пожалуйста, добавьте роль пользователю для продолжения.");
+            }
         }
 
         //TODO: CODE REVEAL: поместить в отдельный класс

@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:college_events_desktop.View.Layers.Users"
              mc:Ignorable="d">
-    <Button Style="{DynamicResource ButtonStyle_filter}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" >
+    <Button x:Name="btn_user_card" Style="{DynamicResource ButtonStyle_filter}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Click="btn_user_card_Click" >
 
         <Grid>
             <Grid.ColumnDefinitions>

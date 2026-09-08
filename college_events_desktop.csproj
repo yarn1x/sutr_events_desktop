@@ -95,6 +95,7 @@
     <Compile Include="DataModels\Group.cs" />
     <Compile Include="DataModels\Organizer.cs" />
     <Compile Include="DataModels\Location.cs" />
+    <Compile Include="DataModels\UserType.cs" />
     <Compile Include="DataModels\Supervisor.cs" />
     <Compile Include="Model\ApiClient.cs" />
     <Compile Include="Model\DataService.cs" />
@@ -105,8 +106,14 @@
     <Compile Include="ViewModels\EventListEditViewModel.cs" />
     <Compile Include="ViewModels\EventListViewModel.cs" />
     <Compile Include="ViewModels\UIAnimations.cs" />
+    <Compile Include="View\Controls\Containers\auto_stack.xaml.cs">
+      <DependentUpon>auto_stack.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Controls\Containers\double_stack.xaml.cs">
       <DependentUpon>double_stack.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\Containers\MultiComboBox.xaml.cs">
+      <DependentUpon>MultiComboBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Controls\SimpleTextPlaceholder.xaml.cs">
       <DependentUpon>SimpleTextPlaceholder.xaml</DependentUpon>
@@ -174,8 +181,8 @@
     <Compile Include="View\Layers\Users\control_user_card.xaml.cs">
       <DependentUpon>control_user_card.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Layers\Users\page_NewAccount.xaml.cs">
-      <DependentUpon>page_NewAccount.xaml</DependentUpon>
+    <Compile Include="View\Layers\Users\page_UserAccount.xaml.cs">
+      <DependentUpon>page_UserAccount.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Layers\Events\Tables\table_tuple_EventGroup_save.xaml.cs">
       <DependentUpon>table_tuple_EventGroup_save.xaml</DependentUpon>
@@ -183,13 +190,24 @@
     <Compile Include="View\Layers\Users\page_UserList.xaml.cs">
       <DependentUpon>page_UserList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Layers\Users\page_user_navigation_layer.xaml.cs">
+      <DependentUpon>page_user_navigation_layer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Windows\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\Controls\Containers\auto_stack.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Controls\Containers\double_stack.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Containers\MultiComboBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -281,7 +299,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Layers\Users\page_NewAccount.xaml">
+    <Page Include="View\Layers\Users\page_UserAccount.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -290,6 +308,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Layers\Users\page_UserList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Layers\Users\page_user_navigation_layer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

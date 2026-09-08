@@ -15,11 +15,15 @@ namespace college_events_desktop.View.Layers.Organizers
 {
     public partial class page_OrganizerList : Page
     {
+        #region Поля класса
         private readonly MainWindow _mainWindow;
         DataService _dataService;
         double_stack _Stack;
+        #endregion
 
 
+
+        #region Конструктор
         public page_OrganizerList(MainWindow mainWindow, DataService dataService)
         {
             InitializeComponent();
@@ -31,7 +35,11 @@ namespace college_events_desktop.View.Layers.Organizers
 
             Loaded += Page_OrganizerList_Loaded;
         }
+        #endregion
 
+
+
+        #region Обработчики событий
         private async void Page_OrganizerList_Loaded(object sender, RoutedEventArgs e)
         {
             using (LoadingService.StartLoading())
@@ -57,20 +65,6 @@ namespace college_events_desktop.View.Layers.Organizers
             _mainWindow.mainframe.GoBack();
         }
 
-        private List<UIElement> BuildOrganizersCards(List<Organizer> organizers)
-        {
-            List<UIElement> cards = new List<UIElement>();
-            organizers.ForEach(organizer => 
-            {
-                var card = new control_organizer_card(_mainWindow, _dataService, organizer)
-                {
-                    Margin = new Thickness(0, 0, 0, 10)
-                };
-                cards.Add(card);
-            });
-
-            return cards;
-        }
 
         private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -81,5 +75,28 @@ namespace college_events_desktop.View.Layers.Organizers
 
             _Stack.Children = BuildOrganizersCards(sortedList);
         }
+
+        #endregion
+
+
+
+        #region Методы класса
+
+        private List<UIElement> BuildOrganizersCards(List<Organizer> organizers)
+        {
+            List<UIElement> cards = new List<UIElement>();
+            organizers.ForEach(organizer =>
+            {
+                var card = new control_organizer_card(_mainWindow, _dataService, organizer)
+                {
+                    Margin = new Thickness(0, 0, 0, 10)
+                };
+                cards.Add(card);
+            });
+
+            return cards;
+        }
+        #endregion
+
     }
 }

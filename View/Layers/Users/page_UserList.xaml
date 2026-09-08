@@ -59,7 +59,16 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="Курс:" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Margin="10,0,5,0"/>
-                        <ComboBox x:Name="combobox_course_filter" Grid.Column="1" Margin="5,0,10,0" VerticalAlignment="Center"/>
+                        <ComboBox x:Name="combobox_course_filter" Grid.Column="1" Margin="5,0,10,0" SelectedIndex="0" VerticalAlignment="Center">
+
+                            <MenuItem Header="   "/>
+
+                            <CheckBox Content="1"/>
+                            <CheckBox Content="2"/>
+                            <CheckBox Content="3"/>
+                            <CheckBox Content="4"/>
+
+                        </ComboBox>
                     </Grid>
 
                     <Button x:Name="btn_filter_admin" Style="{DynamicResource ButtonStyle_filter}" FontSize="14" Content="Администраторы" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5,3,5,4" Grid.Column="2" Margin="10,0,5,0" Click="btn_filter_Click">
