@@ -139,6 +139,9 @@
     <Compile Include="View\Layers\Organizers\control_organizer_card.xaml.cs">
       <DependentUpon>control_organizer_card.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Layers\Organizers\page_Organizer.xaml.cs">
+      <DependentUpon>page_Organizer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Layers\Organizers\page_OrganizerList.xaml.cs">
       <DependentUpon>page_OrganizerList.xaml</DependentUpon>
     </Compile>
@@ -240,6 +243,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Layers\Organizers\control_organizer_card.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Layers\Organizers\page_Organizer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

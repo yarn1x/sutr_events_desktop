@@ -83,3 +83,5 @@ C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Layers\Users\page_UserAccount.baml
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Layers\Users\page_user_navigation_layer.g.cs
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Layers\Users\page_user_navigation_layer.baml
+C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Layers\Organizers\page_Organizer.g.cs
+C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Layers\Organizers\page_Organizer.baml

@@ -2,32 +2,26 @@
 using college_events_desktop.Model;
 using college_events_desktop.View.Windows;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Forms;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace college_events_desktop.View.Layers.Users
 {
     public partial class page_user_navigation_layer : Page
     {
+
+        #region Поля класса
         MainWindow _mainWindow;
         DataService _dataService;
         page_UserAccount _userAccount;
 
         AuthorizedUser _authorizedUser;
+        #endregion
 
+        #region Конструктор
         public page_user_navigation_layer(MainWindow mainWindow, DataService dataService, AuthorizedUser authorizedUser)
         {
             InitializeComponent();
@@ -40,9 +34,20 @@ namespace college_events_desktop.View.Layers.Users
             mainframe.Navigate(_userAccount);
             Loaded += Page_user_navigation_layer_Loaded;
         }
+        #endregion
 
+        #region Обработчики событий
         private async void Page_user_navigation_layer_Loaded(object sender, RoutedEventArgs e)
         {
+            if (_authorizedUser.roles.Any(r => r.userTypeId == 2))
+            {
+                btn_goto_supervisorProfile.Visibility = Visibility.Visible;
+            }
+            if (_authorizedUser.roles.Any(r => r.userTypeId == 3))
+            {
+                btn_goto_organizerProfile.Visibility = Visibility.Visible;
+            }
+
             await Task.Delay(500);
             DoubleAnimation widthAnimation = new DoubleAnimation
             {
@@ -73,5 +78,12 @@ namespace college_events_desktop.View.Layers.Users
         {
 
         }
+        #endregion
+
+        #region Методы класса
+        #endregion
+
+
+
     }
 }

@@ -13,8 +13,8 @@
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        
-        
+
+
         <Grid x:Name="grid_user_nav_layer_basement" Width="0" d:Width="60">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -23,7 +23,7 @@
             <Border VerticalAlignment="Top" Height="50" Background="#FFDDEEFF" BorderBrush="#FF666666" BorderThickness="0, 0, 1, 0" />
             <Border Background="White" BorderBrush="#FF666666" BorderThickness="0, 0, 1, 0" Grid.Row="1">
                 <StackPanel>
-                    <Button x:Name="btn_goback" Padding="10" Margin="5" Style="{DynamicResource ButtonStyle_accent_extra}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Height="49" Click="btn_goback_Click">
+                    <Button x:Name="btn_goback" Padding="10" Margin="5" Style="{DynamicResource ButtonStyle_accent_extra}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Click="btn_goback_Click" Height="49">
                         <Border Background="#FF9A9A9A" RenderTransformOrigin="0.5,0.5">
                             <Border.RenderTransform>
                                 <TransformGroup>
@@ -38,21 +38,21 @@
                             </Border.OpacityMask>
                         </Border>
                     </Button>
-                    <Button x:Name="btn_goto_userAccount" d:Visibility="Visible" Visibility="Visible" Padding="10" Margin="5" Style="{DynamicResource ButtonStyle_accent}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Height="49" Click="btn_goto_userAccount_Click">
+                    <Button x:Name="btn_goto_userAccount" d:Visibility="Visible" Visibility="Visible" Padding="10" Margin="5" Style="{DynamicResource ButtonStyle_accent}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Height="49" Click="btn_goto_userAccount_Click" Background="#FF0070CC">
                         <Border Background="White">
                             <Border.OpacityMask>
                                 <ImageBrush ImageSource="/View/Resources/icons/ico_user_gear.png"/>
                             </Border.OpacityMask>
                         </Border>
                     </Button>
-                    <Button x:Name="btn_goto_supervisorProfile" d:Visibility="Visible" Visibility="Collapsed" Padding="10" Margin="5" Style="{DynamicResource ButtonStyle_accent}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Height="49" Click="btn_goto_supervisorProfile_Click">
+                    <Button x:Name="btn_goto_supervisorProfile" d:Visibility="Visible" Visibility="Collapsed" Padding="10" Margin="5" Style="{DynamicResource ButtonStyle_accent}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Height="49" Click="btn_goto_supervisorProfile_Click" Background="#FF0070CC">
                         <Border Background="White">
                             <Border.OpacityMask>
                                 <ImageBrush ImageSource="/View/Resources/icons/ico_glasses.png"/>
                             </Border.OpacityMask>
                         </Border>
                     </Button>
-                    <Button x:Name="btn_goto_organizerProfile" d:Visibility="Visible" Visibility="Collapsed" Padding="10" Margin="5" Style="{DynamicResource ButtonStyle_accent}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Height="49" Click="btn_goto_organizerProfile_Click">
+                    <Button x:Name="btn_goto_organizerProfile" d:Visibility="Visible" Visibility="Collapsed" Padding="10" Margin="5" Style="{DynamicResource ButtonStyle_accent}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Height="49" Click="btn_goto_organizerProfile_Click" Background="#FF0070CC">
                         <Border Background="White">
                             <Border.OpacityMask>
                                 <ImageBrush ImageSource="/View/Resources/icons/ico_idea.png"/>
@@ -62,7 +62,7 @@
                 </StackPanel>
             </Border>
         </Grid>
-        
+
 
         <Frame x:Name="mainframe" Grid.Column="1"/>
     </Grid>

@@ -183,11 +183,13 @@
                                 </MultiBinding>
                             </DataGridTextColumn.Binding>
                         </DataGridTextColumn>
-
-                        <!-- остальные поля -->
+                        <!--кол-во слушателей-->
                         <DataGridTextColumn Width="*" Header="Слушатели" Binding="{Binding actualListenersCount}"/>
+                        <!--кол-во участников-->
                         <DataGridTextColumn Width="*" Header="Участники" Binding="{Binding actualParticipantsCount}"/>
+                        <!--кол-во суперучастников-->
                         <DataGridTextColumn Width="*" Header="Супер-участники" Binding="{Binding actualSuperParticipantsCount}"/>
+                        <!--балл группе за мероприятие-->
                         <DataGridTextColumn Width="*" Header="Общий балл" Binding="{Binding totalScore}"/>
                     </DataGrid.Columns>
                 </DataGrid>
