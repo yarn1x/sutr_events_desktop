@@ -14,9 +14,7 @@ namespace college_events_desktop
         //пиши на @tgn0sense или открывай обсуждение в репозитории
         //https://github.com/yarn1x/sutr_events_desktop
 
-
-
-
+        
 
 
 

@@ -47,6 +47,10 @@ namespace college_events_desktop.Model
         /// <summary> Возвращает полученный список ролей из БД. Для получения вызвать метод <see cref="LoadRolesListAsync"/> </summary>
         public List<UserType> roles { get; private set; }
 
+
+        /// <summary> Возвращает полученную статистическую информацию об организаторской деятельности пользователя из БД. Для получения вызвать метод <see cref="LoadRolesListAsync"/> </summary>
+        public OrganizerStatistic organizerStatistic { get; private set; }
+
         public DataService(ApiClient apiClient)
         {
             this.apiClient = apiClient;
@@ -58,6 +62,7 @@ namespace college_events_desktop.Model
             places = new List<Location>();
             authorizedUsers = new List<AuthorizedUser>();
             roles = new List<UserType>();
+            organizerStatistic = new OrganizerStatistic();
         }
 
         #region Методы получения данных
@@ -112,6 +117,11 @@ namespace college_events_desktop.Model
         {
             roles = await apiClient.GetListOfRolesAsync();
         }
+        public async Task LoadOrganizerStatistic(int organizerId)
+        {
+            organizerStatistic = await apiClient.GetOrganizerStatisticAsync(organizerId);
+        }
+
 
         #endregion
     }

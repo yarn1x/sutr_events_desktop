@@ -25,6 +25,8 @@ namespace college_events_desktop.DataModels
         public string Email { get; set; }
 
         public List<UserUserType> roles { get; set; }
+
+        public List<Group> supervisorGroups { get; set; } = null;
     }
 
     public class UserUserType

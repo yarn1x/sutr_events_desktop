@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:college_events_desktop.View.Layers.Users"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="page_user_navigation_layer">
+      Title="Просмотр аккаунта пользователя">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -64,6 +64,9 @@
         </Grid>
 
 
-        <Frame x:Name="mainframe" Grid.Column="1"/>
+        <Frame x:Name="subframe"
+               Grid.Column="1" 
+               JournalOwnership="OwnsJournal" 
+               NavigationUIVisibility="Hidden"/>
     </Grid>
 </Page>

@@ -1,5 +1,6 @@
 ﻿using college_events_desktop.DataModels;
 using college_events_desktop.Model;
+using college_events_desktop.View.Layers.Organizers;
 using college_events_desktop.View.Windows;
 using System;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace college_events_desktop.View.Layers.Users
         MainWindow _mainWindow;
         DataService _dataService;
         page_UserAccount _userAccount;
+        page_Organizer _pageOrganizer;
 
         AuthorizedUser _authorizedUser;
         #endregion
@@ -30,8 +32,9 @@ namespace college_events_desktop.View.Layers.Users
             _authorizedUser = authorizedUser;
 
             _userAccount = new page_UserAccount(_mainWindow, _dataService, _authorizedUser);
+            _pageOrganizer = new page_Organizer(_mainWindow, _dataService, _authorizedUser);
 
-            mainframe.Navigate(_userAccount);
+            subframe.Navigate(_userAccount);
             Loaded += Page_user_navigation_layer_Loaded;
         }
         #endregion
@@ -66,7 +69,7 @@ namespace college_events_desktop.View.Layers.Users
 
         private void btn_goto_userAccount_Click(object sender, RoutedEventArgs e)
         {
-            mainframe.Navigate(_userAccount);
+            subframe.Navigate(_userAccount);
         }
 
         private void btn_goto_supervisorProfile_Click(object sender, RoutedEventArgs e)
@@ -76,7 +79,7 @@ namespace college_events_desktop.View.Layers.Users
 
         private void btn_goto_organizerProfile_Click(object sender, RoutedEventArgs e)
         {
-
+            subframe.Navigate(_pageOrganizer);
         }
         #endregion
 

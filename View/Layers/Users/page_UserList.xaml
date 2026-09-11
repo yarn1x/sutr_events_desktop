@@ -51,7 +51,7 @@
                         <TextBlock Foreground="White" FontSize="14" Text="Фильтры" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                     </Border>
                     
-                    <control:SearchBar Margin="10,0,10,0" VerticalAlignment="Center"/>
+                    <control:SearchBar Margin="10,0,10,0" VerticalAlignment="Center" TextChanged="SearchBar_TextChanged"/>
                     
                     <Grid Grid.Column="1">
                         <Grid.ColumnDefinitions>
@@ -60,14 +60,15 @@
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="Курс:" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Margin="10,0,5,0"/>
                         <ComboBox x:Name="combobox_course_filter" Grid.Column="1" Margin="5,0,10,0" SelectedIndex="0" VerticalAlignment="Center">
-
-                            <MenuItem Header="   "/>
-
-                            <CheckBox Content="1"/>
-                            <CheckBox Content="2"/>
-                            <CheckBox Content="3"/>
-                            <CheckBox Content="4"/>
-
+                            <ComboBox.ItemsSource>
+                                <x:Array Type="{x:Type sys:Object}">
+                                    <sys:String>Не выбрано</sys:String>
+                                    <sys:Int32>1</sys:Int32>
+                                    <sys:Int32>2</sys:Int32>
+                                    <sys:Int32>3</sys:Int32>
+                                    <sys:Int32>4</sys:Int32>
+                                </x:Array>
+                            </ComboBox.ItemsSource>
                         </ComboBox>
                     </Grid>
 

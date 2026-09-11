@@ -23,8 +23,17 @@
         <!--Тело-->
         <Border Grid.Row="1" Grid.RowSpan="2" Background="#FFF1F1F1"/>
         <ScrollViewer Margin="10" Grid.Row="1" Background="White">
+            
             <StackPanel Margin="10">
-                <TextBlock Text="Цветовые обозначения статусов мероприятия" FontWeight="Bold" HorizontalAlignment="Center" FontSize="14"/>
+                
+                <TextBlock Text="Отображение списка мероприятий и взаимодействие с ним" FontWeight="Bold" HorizontalAlignment="Center" FontSize="18"/>
+                <Border BorderBrush="Black" BorderThickness="1" Margin="20,10,20,0">
+                    <Image Source="/View/Resources/images/img_EventList_help_map.png"/>
+                </Border>
+
+                <Border Margin="-10,20,-10,20" Height="10" Background="#FFF1F1F1"/>
+
+                <TextBlock Text="Цветовые обозначения статусов мероприятия" FontWeight="Bold" HorizontalAlignment="Center" FontSize="18"/>
                 <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
                     <Border CornerRadius="20" Background="#FFA7A7A7" Width="20" Height="20"/>
                     <TextBlock Text="Мероприятие прошло, отчёт составлен" Margin="10,0,0,0" FontSize="14"/>
@@ -46,9 +55,9 @@
                     <TextBlock Text="Мероприятие принято для проведения " Margin="10,0,0,0" FontSize="14"/>
                 </StackPanel>
 
-                <Border Margin="-10,10,-10,10" Height="6" Background="#FFF1F1F1"/>
+                <Border Margin="-10,20,-10,20" Height="10" Background="#FFF1F1F1"/>
 
-                <TextBlock Text="Подсказки" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center" />
+                <TextBlock Text="Подсказки" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" />
                 <TextBlock Text="Большинство элементов приложения имеют всплывающие подсказки, если задержать на них курсор мышки." TextWrapping="Wrap" Margin="0,10,0,0" FontSize="14"/>
                 <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" Margin="0,20,0,0">
                     <StackPanel Orientation="Horizontal">
@@ -61,9 +70,9 @@
                     </StackPanel>
                 </ScrollViewer>
 
-                <Border Margin="-10,20,-10,10" Height="6" Background="#FFF1F1F1"/>
+                <Border Margin="-10,20,-10,20" Height="10" Background="#FFF1F1F1"/>
 
-                <TextBlock Text="Копирование" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center" />
+                <TextBlock Text="Копирование" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" />
                 <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                     <TextBlock Text="Если вы видите значок" TextWrapping="Wrap" FontSize="14"/>
                     <Border Background="#FFD0D0D0" Height="20" Width="20" HorizontalAlignment="Left" Margin="10,0,0,0" >
@@ -71,7 +80,7 @@
                             <ImageBrush ImageSource="/View/Resources/icons/ico_clone.png"/>
                         </Border.OpacityMask>
                     </Border>
-                    <TextBlock Text=", значит вы можете скопировать информацию в буфер обмена." Margin="2,0,0,0" FontSize="14"/>
+                    <TextBlock Text=", значит вы можете скопировать информацию в буфер обмена. Для этого необходимо щёлкнуть курсором мыши на области рядом со значком." Margin="2,0,0,0" FontSize="14"/>
                 </StackPanel>
                 <Border BorderBrush="Black" BorderThickness="1" Width="400" HorizontalAlignment="Left" Margin="0,20,0,0">
                     <Image Source="/View/Resources/images/img_ui_copy_feature.png"/>

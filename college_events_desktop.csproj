@@ -95,9 +95,11 @@
     <Compile Include="DataModels\Group.cs" />
     <Compile Include="DataModels\Organizer.cs" />
     <Compile Include="DataModels\Location.cs" />
+    <Compile Include="DataModels\OrganizerStatistic.cs" />
     <Compile Include="DataModels\UserType.cs" />
     <Compile Include="DataModels\Supervisor.cs" />
     <Compile Include="Model\ApiClient.cs" />
+    <Compile Include="Model\Constants.cs" />
     <Compile Include="Model\DataService.cs" />
     <Compile Include="Services\LoadingService.cs" />
     <Compile Include="Services\OverlayService.cs" />
@@ -476,6 +478,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\Resources\images\img_logoSmallSochiGU_256px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Resources\images\img_EventList_help_map.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

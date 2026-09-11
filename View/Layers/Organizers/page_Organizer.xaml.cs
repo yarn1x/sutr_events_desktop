@@ -1,4 +1,8 @@
-﻿using System;
+﻿using college_events_desktop.DataModels;
+using college_events_desktop.Model;
+using college_events_desktop.Services;
+using college_events_desktop.View.Windows;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,14 +19,32 @@ using System.Windows.Shapes;
 
 namespace college_events_desktop.View.Layers.Organizers
 {
-    /// <summary>
-    /// Логика взаимодействия для page_Organizer.xaml
-    /// </summary>
     public partial class page_Organizer : Page
     {
-        public page_Organizer()
+        MainWindow _mainWindow;
+        DataService _dataService;
+        AuthorizedUser _authorizedUser;
+        OrganizerStatistic _organizerStatistic;
+
+        public page_Organizer(MainWindow mainWindow, DataService dataService, AuthorizedUser authorizedUser)
         {
             InitializeComponent();
+            _mainWindow = mainWindow;
+            _dataService = dataService;
+            _authorizedUser = authorizedUser;
+            DataContext = _authorizedUser;
+
+            Loaded += Page_Organizer_Loaded;
+        }
+
+        private async void Page_Organizer_Loaded(object sender, RoutedEventArgs e)
+        {
+            using (LoadingService.StartLoading())
+            {
+                await _dataService.LoadOrganizerStatistic(_authorizedUser.AuthorizedUserId);
+                DataContext = _dataService.organizerStatistic;
+                datagrid_events.ItemsSource = _dataService.organizerStatistic.events;
+            }
         }
     }
 }

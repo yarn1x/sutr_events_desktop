@@ -313,8 +313,6 @@ namespace college_events_desktop.View.Layers.Events
         /// <returns>Асинхронное выполнение метода</returns>
         private async Task AnimateButtonColorsAsync(Button button, bool statusSwitch)
         {
-            UIAnimations.lightForegroundCase = new SolidColorBrush(Colors.White);
-            UIAnimations.darkForegroundCase = new SolidColorBrush(Color.FromArgb(0xFF, 0x66, 0x66, 0x66));
             if (statusSwitch)
             {
                 await UIAnimations.ChangeColorAsync(button, Color.FromArgb(255, 0, 140, 255), 200, EasingMode.EaseOut);

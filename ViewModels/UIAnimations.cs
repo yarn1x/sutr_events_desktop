@@ -111,9 +111,31 @@ namespace college_events_desktop.ViewModels
 
 
 
-
+        /// <summary>
+        /// Параметр для пользовательского цвета шрифта у UI элемента. Используется в <see cref="ChangeColorAsync{T}(T, Color, int, EasingMode?)"/>
+        /// </summary>
+        /// <remarks>
+        /// Применяется когда задний фон элемента становится слишком тёмный
+        /// </remarks>
         public static SolidColorBrush lightForegroundCase { get; set; }
+
+        /// <summary>
+        /// Параметр для пользовательского цвета шрифта у UI элемента. Используется в <see cref="ChangeColorAsync{T}(T, Color, int, EasingMode?)"/>
+        /// </summary>
+        /// <remarks>
+        /// Применяется когда задний фон элемента становится слишком светлый
+        /// </remarks>
         public static SolidColorBrush darkForegroundCase { get; set; }
+
+        /// <summary>
+        /// Метод изменяющий цвет UI элемента на заданный через анимацию
+        /// </summary>
+        /// <typeparam name="T">Класс UI элемента</typeparam>
+        /// <param name="element">Экземпляр класса UI элемента</param>
+        /// <param name="color">Цвет для перекрашивания</param>
+        /// <param name="durationMs">Длительность анимации в миллисекундах</param>
+        /// <param name="easingMode">Модификатор плавности анимации</param>
+        /// <returns></returns>
         public static async Task ChangeColorAsync<T>(
             T element,
             Color color,
