@@ -4,7 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:college_events_desktop.View.Layers.Users"
-             mc:Ignorable="d">
+             xmlns:control="clr-namespace:college_events_desktop.View.Controls"
+             mc:Ignorable="d" 
+             d:Width="600">
     <Button x:Name="btn_user_card" Style="{DynamicResource ButtonStyle_filter}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Click="btn_user_card_Click" >
 
         <Grid>
@@ -13,7 +15,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Image x:Name="img_avatar" Margin="10" Source="/View/Resources/images/img_patient.png" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <control:AvatarImage Margin="10" Source="/View/Resources/images/img_uetk_photo.png" Height="90"/>
 
             <Grid Grid.Column="1" Margin="0, 10, 10, 10">
                 <Grid.RowDefinitions>
@@ -34,7 +36,7 @@
                 <StackPanel x:Name="stack_user_roles" Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Center">
                     <TextBlock Text="Нет ролей"/>
                 </StackPanel>
-                
+
             </Grid>
         </Grid>
     </Button>

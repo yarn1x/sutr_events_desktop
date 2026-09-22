@@ -58,7 +58,7 @@
                     <control:SearchBar VerticalAlignment="Center" Margin="10,0,0,0" TextChanged="SearchBar_TextChanged"/>
 
                     <TextBlock Text="Курс:" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1"/>
-                    <ComboBox x:Name="combobox_course" Grid.Column="2" VerticalAlignment="Center" Margin="0,0,10,0" FontSize="14" Padding="6,4,5,4" VerticalContentAlignment="Center" SelectedIndex="0">
+                    <ComboBox x:Name="combobox_course" Grid.Column="2" VerticalAlignment="Center" Margin="0,0,10,0" FontSize="14" Padding="6,4,5,4" VerticalContentAlignment="Center" SelectedIndex="0" Style="{DynamicResource ModernComboBoxStyle}">
                         <ComboBox.ItemsSource>
                             <x:Array Type="{x:Type sys:Object}">
                                 <sys:String>Не выбрано</sys:String>

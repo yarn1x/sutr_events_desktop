@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:college_events_desktop.View.Layers.Users"
+      xmlns:control="clr-namespace:college_events_desktop.View.Controls"
       xmlns:container="clr-namespace:college_events_desktop.View.Controls.Containers"
       xmlns:dt="clr-namespace:college_events_desktop.DataModels"
       mc:Ignorable="d" 
@@ -29,7 +30,10 @@
             <StackPanel Orientation="Vertical">
                 
                 <StackPanel Orientation="Horizontal">
-                    <Image x:Name="img_avatar" Source="/View/Resources/images/img_patient.png" Width="100"/>
+
+                    <control:AvatarImage Width="90" Height="90"/>
+                    <!--<Image x:Name="img_avatar" Source="/View/Resources/images/img_patient.png" Width="100"/>-->
+                    
                     <StackPanel VerticalAlignment="Bottom" Margin="10,0,0,0" Width="370">
                         <TextBlock Text="Фото профиля" Margin="0,0,0,20"/>
                         <TextBox x:Name="edit_image_path"/>
@@ -118,8 +122,7 @@
 
         <!--Навигация-->
         <StackPanel x:Name="stack_bottom" Margin="10,5,5,5" Orientation="Horizontal" Grid.Row="6">
-            <Button x:Name="btn_goback" Style="{DynamicResource ButtonStyle_accent_extra}" Width="140" FontSize="14" Content="Назад" Click="goback_Click"/>
-            <Button x:Name="btn_save" Style="{DynamicResource ButtonStyle_accent}" Width="140" FontSize="14" Content="Сохранить" Margin="10,0,0,0" Click="btn_save_Click"/>
+            <Button x:Name="btn_save" Style="{DynamicResource ButtonStyle_accent}" Width="140" FontSize="14" Content="Сохранить" Margin="10,0,0,0"/>
         </StackPanel>
 
     </Grid>

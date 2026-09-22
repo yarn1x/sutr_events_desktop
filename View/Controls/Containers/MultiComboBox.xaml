@@ -8,7 +8,7 @@
     <WrapPanel Orientation="Horizontal" VerticalAlignment="Center">
 
         <!-- Контейнер для отображения выбранных элементов в виде кнопок -->
-        <ItemsControl x:Name="SelectedItemsControl">
+        <ItemsControl x:Name="SelectedItemsControl" VerticalAlignment="Center">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal"/>
@@ -39,6 +39,6 @@
                   Foreground="#FF666666" 
                   MinWidth="80" 
                   SelectionChanged="MainComboBox_SelectionChanged" 
-                  Cursor="Hand"/>
+                  Cursor="Hand" Style="{DynamicResource ModernComboBoxStyle}"/>
     </WrapPanel>
 </UserControl>

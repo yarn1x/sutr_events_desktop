@@ -57,11 +57,11 @@
                     </Border>
                     <Grid Margin="10">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="75"/>
-                            <ColumnDefinition Width="75"/>
-                            <ColumnDefinition Width="75"/>
-                            <ColumnDefinition Width="75"/>
-                            <ColumnDefinition Width="75"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="1*"/>
                             <ColumnDefinition Width="1*"/>
                         </Grid.ColumnDefinitions>
@@ -81,12 +81,12 @@
                                 </StackPanel>
                             </Button.ToolTip>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock x:Name="text_filter_gray" Text="Только" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" FontSize="14"/>
+                                <TextBlock x:Name="text_filter_gray" Text="Пройдены" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" FontSize="14"/>
                                 <Ellipse Width="10" Height="10" Margin="5,0,0,0" Fill="#FFA7A7A7"/>
                             </StackPanel>
                         </Button>
 
-                        <Button x:Name="btn_blue_filter" Tag="3" Style="{DynamicResource ButtonStyle_filter}" Background="White" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5" Grid.Column="1" Cursor="Hand" Click="btn_any_filter_click">
+                        <Button x:Name="btn_blue_filter" Tag="3" Style="{DynamicResource ButtonStyle_filter}" Background="White" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5" Grid.Column="1" Cursor="Hand" Click="btn_any_filter_click" Margin="5,0,0,0">
                             <Button.ToolTip>
                                 <StackPanel>
                                     <TextBlock Text="Фильтр мероприятий по статусу 'Требуется составление отчёта'" FontWeight="Bold" HorizontalAlignment="Center" FontSize="14"/>
@@ -101,12 +101,12 @@
                                 </StackPanel>
                             </Button.ToolTip>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock x:Name="text_filter_blue" Text="Только" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" FontSize="14"/>
+                                <TextBlock x:Name="text_filter_blue" Text="Составить отчёт" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" FontSize="14"/>
                                 <Ellipse Width="10" Height="10" Margin="5,0,0,0" Fill="#FF48AFFF"/>
                             </StackPanel>
                         </Button>
 
-                        <Button x:Name="btn_yellow_filter" Tag="1" Style="{DynamicResource ButtonStyle_filter}" Background="White" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5" Grid.Column="2" Cursor="Hand" Click="btn_any_filter_click">
+                        <Button x:Name="btn_yellow_filter" Tag="1" Style="{DynamicResource ButtonStyle_filter}" Background="White" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5" Grid.Column="2" Cursor="Hand" Click="btn_any_filter_click" Margin="5,0,0,0">
                             <Button.ToolTip>
                                 <StackPanel>
                                     <TextBlock Text="Фильтр мероприятий по статусу 'Предложено'" FontWeight="Bold" HorizontalAlignment="Center" FontSize="14"/>
@@ -121,12 +121,12 @@
                                 </StackPanel>
                             </Button.ToolTip>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock x:Name="text_filter_yellow" Text="Только" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" FontSize="14"/>
+                                <TextBlock x:Name="text_filter_yellow" Text="Новые" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" FontSize="14"/>
                                 <Ellipse Width="10" Height="10" Margin="5,0,0,0" Fill="#FFFFDD3C"/>
                             </StackPanel>
                         </Button>
 
-                        <Button x:Name="btn_red_filter" Tag="-1" Style="{DynamicResource ButtonStyle_filter}" Background="White" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5" Grid.Column="3" Cursor="Hand" Click="btn_any_filter_click">
+                        <Button x:Name="btn_red_filter" Tag="-1" Style="{DynamicResource ButtonStyle_filter}" Background="White" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5" Grid.Column="3" Cursor="Hand" Click="btn_any_filter_click" Margin="5,0,0,0">
                             <Button.ToolTip>
                                 <StackPanel>
                                     <TextBlock Text="Фильтр мероприятий по статусу 'Конфликтующее'" FontWeight="Bold" HorizontalAlignment="Center" FontSize="14"/>
@@ -141,12 +141,12 @@
                                 </StackPanel>
                             </Button.ToolTip>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock x:Name="text_filter_red" Text="Только" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" FontSize="14"/>
+                                <TextBlock x:Name="text_filter_red" Text="Новые конфликтующие" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" FontSize="14"/>
                                 <Ellipse Width="10" Height="10" Margin="5,0,0,0" Fill="#FFFF4949"/>
                             </StackPanel>
                         </Button>
 
-                        <Button x:Name="btn_green_filter" Tag="2" Style="{DynamicResource ButtonStyle_filter}" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5" Grid.Column="4" Background="White" Cursor="Hand" Click="btn_any_filter_click">
+                        <Button x:Name="btn_green_filter" Tag="2" Style="{DynamicResource ButtonStyle_filter}" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5" Grid.Column="4" Background="White" Cursor="Hand" Click="btn_any_filter_click" Margin="5,0,0,0">
                             <Button.ToolTip>
                                 <StackPanel>
                                     <TextBlock Text="Фильтр мероприятий по статусу 'Принято для проведения'." FontWeight="Bold" HorizontalAlignment="Center" FontSize="14"/>
@@ -162,7 +162,7 @@
                                 </StackPanel>
                             </Button.ToolTip>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock x:Name="text_filter_green" Text="Только" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" FontSize="14"/>
+                                <TextBlock x:Name="text_filter_green" Text="Согласованные" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" FontSize="14"/>
                                 <Ellipse Width="10" Height="10" Margin="5,0,0,0" Fill="#FF66FF3D"/>
                             </StackPanel>
                         </Button>
@@ -170,17 +170,20 @@
 
                         <control:SearchBar TextChanged="search_textChanged" 
                                               Grid.Column="5" 
-                                              Margin="5,0,5,0" VerticalAlignment="Center"/>
+                                              Margin="5,0,5,0" VerticalAlignment="Center">
+                        </control:SearchBar>
 
-
-                        <ComboBox x:Name="combobox_categories" Grid.Column="6" 
+                        <ComboBox x:Name="combobox_categories" 
+                                  Grid.Column="6"
 								  VerticalAlignment="Center" 
-                                  Margin="5,0,5,0" 
-                                  BorderBrush="{x:Null}" 
+                                  Margin="5,0,5,0"
                                   Cursor="Hand" 
                                   FontSize="16" 
                                   SelectionChanged="combobox_categories_SelectionChanged" 
-                                  ToolTip="Поиск по направлению" Height="28"/>
+                                  ToolTip="Поиск по направлению"
+                                  Style="{DynamicResource ModernComboBoxStyle}" 
+                                  MaxDropDownHeight="360">
+                        </ComboBox>
 
                     </Grid>
                 </Grid>
@@ -237,7 +240,7 @@
                 <TranslateTransform x:Name="PanelTransform" X="0" Y="0"/>
             </Border.RenderTransform>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Grid Background="Transparent" ToolTip="Всего показано мероприятий" Height="23" Width="23" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid Background="Transparent" ToolTip="Всего показано мероприятий" Height="23" Width="23" HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="Help">
                     <Border CornerRadius="10" Width="9" Height="9" Background="#FFA7A7A7" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,9,0"/>
                     <Border CornerRadius="10" Width="9" Height="9" Background="#FF48AFFF" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="9,0,0,0"/>
                     <Border CornerRadius="10" Width="9" Height="9" Background="#FF66FF3D" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,3"/>
@@ -245,27 +248,27 @@
                     <Border CornerRadius="10" Width="9" Height="9" Background="#FFFF4949" VerticalAlignment="Top" HorizontalAlignment="Center"/>
                 </Grid>
                 <TextBlock Text=" : " VerticalAlignment="Center"/>
-                <TextBlock x:Name="text_amount_of_events" Text="0" ToolTip="Всего показано мероприятий" FontSize="14" VerticalAlignment="Center"/>
+                <TextBlock x:Name="text_amount_of_events" Text="0" ToolTip="Всего показано мероприятий" FontSize="14" VerticalAlignment="Center" Cursor="Help"/>
 
-                <Border CornerRadius="10" Margin="40,0,0,0" Width="16" Background="#FFA7A7A7" ToolTip="Мероприятий со статусом &quot;Завершённое мероприятие, отчёт составлен&quot;" Height="16"/>
+                <Border CornerRadius="10" Margin="40,0,0,0" Width="16" Background="#FFA7A7A7" ToolTip="Мероприятий со статусом &quot;Завершённое мероприятие, отчёт составлен&quot;" Height="16" Cursor="Help"/>
                 <TextBlock Text=" : " VerticalAlignment="Center"/>
-                <TextBlock x:Name="text_amount_of_gray" Text="0" ToolTip="Мероприятий со статусом &quot;Отчёт составлен&quot;" FontSize="14" VerticalAlignment="Center"/>
+                <TextBlock x:Name="text_amount_of_gray" Text="0" ToolTip="Мероприятий со статусом &quot;Отчёт составлен&quot;" FontSize="14" VerticalAlignment="Center" Cursor="Help"/>
 
-                <Border CornerRadius="10" Margin="20,0,0,0" Width="16" Background="#FF48AFFF" ToolTip="Мероприятий со статусом &quot;Завершённое мероприятие, требуется составление отчёта&quot;" Height="16"/>
+                <Border CornerRadius="10" Margin="20,0,0,0" Width="16" Background="#FF48AFFF" ToolTip="Мероприятий со статусом &quot;Завершённое мероприятие, требуется составление отчёта&quot;" Height="16" Cursor="Help"/>
                 <TextBlock Text=" : " VerticalAlignment="Center"/>
-                <TextBlock x:Name="text_amount_of_blue" Text="0" ToolTip="Мероприятий со статусом &quot;Требуется составление отчёта&quot;" FontSize="14" VerticalAlignment="Center"/>
+                <TextBlock x:Name="text_amount_of_blue" Text="0" ToolTip="Мероприятий со статусом &quot;Требуется составление отчёта&quot;" FontSize="14" VerticalAlignment="Center" Cursor="Help"/>
 
-                <Border CornerRadius="10" Margin="20,0,0,0" Width="16" Background="#FF66FF3D" ToolTip="Мероприятий со статусом &quot;Запланированное мероприятие&quot;" Height="16"/>
+                <Border CornerRadius="10" Margin="20,0,0,0" Width="16" Background="#FF66FF3D" ToolTip="Мероприятий со статусом &quot;Запланированное мероприятие&quot;" Height="16" Cursor="Help"/>
                 <TextBlock Text=" : " VerticalAlignment="Center"/>
-                <TextBlock x:Name="text_amount_of_green" Text="0" ToolTip="Мероприятий со статусом &quot;Запланированное мероприятие&quot;" FontSize="14" VerticalAlignment="Center"/>
+                <TextBlock x:Name="text_amount_of_green" Text="0" ToolTip="Мероприятий со статусом &quot;Запланированное мероприятие&quot;" FontSize="14" VerticalAlignment="Center" Cursor="Help"/>
 
-                <Border CornerRadius="10" Margin="20,0,0,0" Width="16" Background="#FFFFDD3C" ToolTip="Мероприятий со статусом &quot;Предложеное мероприятие&quot;" Height="16"/>
+                <Border CornerRadius="10" Margin="20,0,0,0" Width="16" Background="#FFFFDD3C" ToolTip="Мероприятий со статусом &quot;Предложеное мероприятие&quot;" Height="16" Cursor="Help"/>
                 <TextBlock Text=" : " VerticalAlignment="Center"/>
-                <TextBlock x:Name="text_amount_of_yellow" Text="0" ToolTip="Мероприятий со статусом &quot;Предложеное мероприятие&quot;" FontSize="14" VerticalAlignment="Center"/>
+                <TextBlock x:Name="text_amount_of_yellow" Text="0" ToolTip="Мероприятий со статусом &quot;Предложеное мероприятие&quot;" FontSize="14" VerticalAlignment="Center" Cursor="Help"/>
 
-                <Border CornerRadius="10" Margin="20,0,0,0" Width="16" Background="#FFFF4949" ToolTip="Мероприятий со статусом &quot;Предложеное мероприятие, конфликт с другим мероприятием&quot;" Height="16"/>
+                <Border CornerRadius="10" Margin="20,0,0,0" Width="16" Background="#FFFF4949" ToolTip="Мероприятий со статусом &quot;Предложеное мероприятие, конфликт с другим мероприятием&quot;" Height="16" Cursor="Help"/>
                 <TextBlock Text=" : " VerticalAlignment="Center"/>
-                <TextBlock x:Name="text_amount_of_red" Text="0" ToolTip="Мероприятий со статусом &quot;Предложеное мероприятие, конфликт с другим мероприятием&quot;" FontSize="14" VerticalAlignment="Center"/>
+                <TextBlock x:Name="text_amount_of_red" Text="0" ToolTip="Мероприятий со статусом &quot;Предложеное мероприятие, конфликт с другим мероприятием&quot;" FontSize="14" VerticalAlignment="Center" Cursor="Help"/>
 
             </StackPanel>
         </Border>

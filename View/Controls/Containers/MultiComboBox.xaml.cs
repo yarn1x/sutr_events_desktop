@@ -225,7 +225,7 @@ namespace college_events_desktop.View.Controls.Containers
         {
             if (sender is Button button && button.Tag != null)
             {
-
+                
                 var itemToRemove = button.Tag;
                 var currentSelected = SelectedItems?.Cast<object>().ToList() ?? new List<object>();
 

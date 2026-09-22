@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace college_events_desktop.Model
 {
     /// <summary>
-    /// DataService - класс для представления информации, взятой из БД. Класс хранит, но не получает информацию. Для получения исп. ApiClient
+    /// DataService - класс для представления информации, взятой из БД.
     /// </summary>
     public class DataService
     {
@@ -47,9 +47,10 @@ namespace college_events_desktop.Model
         /// <summary> Возвращает полученный список ролей из БД. Для получения вызвать метод <see cref="LoadRolesListAsync"/> </summary>
         public List<UserType> roles { get; private set; }
 
-
-        /// <summary> Возвращает полученную статистическую информацию об организаторской деятельности пользователя из БД. Для получения вызвать метод <see cref="LoadRolesListAsync"/> </summary>
+        /// <summary> Возвращает полученную статистическую информацию об организаторской деятельности пользователя из БД. Для получения вызвать метод <see cref="LoadOrganizerStatistic"/> </summary>
         public OrganizerStatistic organizerStatistic { get; private set; }
+
+
 
         public DataService(ApiClient apiClient)
         {

@@ -60,7 +60,6 @@ namespace college_events_desktop.View.Layers.Users
         private void btn_filter_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
-
             
             switch (button.Tag)
             {
@@ -72,9 +71,16 @@ namespace college_events_desktop.View.Layers.Users
                 break;
 
                 case AuthorizedUserConstants.supervisorTypeId:
-                    _ = filterStates[AuthorizedUserConstants.supervisorTypeId]
-                        ? UIAnimations.ChangeColorAsync(button, Color.FromArgb(255, 255, 255, 255), 200, System.Windows.Media.Animation.EasingMode.EaseOut)
-                        : UIAnimations.ChangeColorAsync(button, Color.FromArgb(255, 225, 213, 231), 200, System.Windows.Media.Animation.EasingMode.EaseOut);
+                    if (filterStates[AuthorizedUserConstants.supervisorTypeId])
+                    {
+                        grid_course_filter.Visibility = Visibility.Collapsed;
+                        _ = UIAnimations.ChangeColorAsync(button, Color.FromArgb(255, 255, 255, 255), 200, System.Windows.Media.Animation.EasingMode.EaseOut);
+                    }
+                    else
+                    {
+                        grid_course_filter.Visibility = Visibility.Visible;
+                        _ = UIAnimations.ChangeColorAsync(button, Color.FromArgb(255, 225, 213, 231), 200, System.Windows.Media.Animation.EasingMode.EaseOut);
+                    }
                     filterStates[AuthorizedUserConstants.supervisorTypeId] = !filterStates[AuthorizedUserConstants.supervisorTypeId];
                 break;
 

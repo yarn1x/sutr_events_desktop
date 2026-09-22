@@ -105,9 +105,11 @@
     <Compile Include="Services\OverlayService.cs" />
     <Compile Include="Services\UserNotificationService.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="ViewModels\EventListEditViewModel.cs" />
     <Compile Include="ViewModels\EventListViewModel.cs" />
     <Compile Include="ViewModels\UIAnimations.cs" />
+    <Compile Include="View\Controls\AvatarImage.xaml.cs">
+      <DependentUpon>AvatarImage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Controls\Containers\auto_stack.xaml.cs">
       <DependentUpon>auto_stack.xaml</DependentUpon>
     </Compile>
@@ -204,6 +206,10 @@
     <Compile Include="View\Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\Controls\AvatarImage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Controls\Containers\auto_stack.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -328,7 +334,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\Styles\ComboBoxStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Styles\DataGridStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Styles\DatePickerStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

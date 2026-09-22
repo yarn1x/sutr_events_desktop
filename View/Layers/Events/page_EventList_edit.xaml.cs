@@ -28,8 +28,8 @@ namespace college_events_desktop.View.Layers.Events
                 {
                     eventId = _Event.eventId,
                     title = edit_event_name.Text,
-                    startDateTime = datePicker_date.DisplayDate.Add(Convert.ToDateTime(edit_startTime.Text).TimeOfDay),
-                    endDateTime = datePicker_date.DisplayDate.Add(Convert.ToDateTime(edit_endTime.Text).TimeOfDay),
+                    startDateTime = datePicker_date.SelectedDate.GetValueOrDefault().Add(Convert.ToDateTime(edit_startTime.Text).TimeOfDay),
+                    endDateTime = datePicker_date.SelectedDate.GetValueOrDefault().Add(Convert.ToDateTime(edit_endTime.Text).TimeOfDay),
                     fullDescription = edit_fullDescription.Text,
                     shortDescription = edit_shortDescription.Text,
                     organizerId = GetOrganizerId(combobox_organizer_name.Text),
@@ -160,17 +160,6 @@ namespace college_events_desktop.View.Layers.Events
         private void btn_add_new_place_Click(object sender, RoutedEventArgs e)
         {
             _overlayService.Open(new page_NewLocation(mainWindow));
-        }
-
-
-        /// <summary>
-        /// TODO: EDIT УДАЛИТЬ ПРИ ВНЕДРЕНИИ!! Показывает выбранную дату при скрытии календаря
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void datePicker_date_CalendarClosed(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show($"displayDate={datePicker_date.DisplayDate}\nstart={datePicker_date.DisplayDateStart}\nend={datePicker_date.DisplayDateEnd}");
         }
 
         #endregion

@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:college_events_desktop.View.Layers.Organizers"
+      xmlns:control="clr-namespace:college_events_desktop.View.Controls"
       mc:Ignorable="d" 
       d:DesignHeight="900" d:DesignWidth="800"
       Title="Просмотр статистики организатора"
@@ -21,7 +22,7 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock x:Name="text_header" d:Text="_authorizedUser.surName _authorizedUser.firstName _authorizedUser.lastName" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" FontWeight="Bold" Foreground="#FF666666">
                     <TextBlock.Text>
-                        <MultiBinding StringFormat="{} {0} {1} {2}">
+                        <MultiBinding Mode="OneTime" StringFormat="{} {0} {1} {2}">
                             <Binding Path="surName"/>
                             <Binding Path="firstName"/>
                             <Binding Path="lastName"/>
@@ -36,6 +37,8 @@
             <StackPanel>
 
                 <!--Формы заполнения-->
+                <Border Margin="0,20,0,15" Height="2" Background="#FFDDEEFF"/>
+                
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
@@ -54,23 +57,73 @@
                     <Border CornerRadius="0, 0, 5, 0" BorderThickness="0,0,0,1" BorderBrush="#FFABADB3">
                         <TextBlock Text="Количество мероприятий" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="14" ToolTip="Количество прошедших мероприятий, которые были предложены данным организатором"/>
                     </Border>
-                    <TextBox x:Name="edit_event_name" Text="{Binding eventsCount}" Margin="5" Grid.Row="0" d:Text="_organizerStatistic.eventsCount" VerticalContentAlignment="Center" Foreground="#FF666666" FontSize="14" VerticalAlignment="Center" Padding="2,1,0,2" Grid.Column="1"/>
+                    <TextBox x:Name="edit_events_count" IsReadOnly="True" Text="{Binding eventsCount}" Margin="5" Grid.Row="0" d:Text="_organizerStatistic.eventsCount" VerticalContentAlignment="Center" Foreground="#FF666666" FontSize="14" VerticalAlignment="Center" Padding="2,1,0,2" Grid.Column="1"/>
 
                     <Border CornerRadius="0, 0, 5, 0" BorderThickness="0,0,0,1" BorderBrush="#FFABADB3" Grid.Row="1">
                         <TextBlock Text="Количество студентов" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="14" Grid.Row="1"/>
                     </Border>
-                    <TextBox x:Name="edit_organizer_name" Text="{Binding studentsCount}" d:Text="_organizerStatistic.studentsCount" FontSize="14" Margin="5" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Foreground="#FF666666" Height="24" VerticalContentAlignment="Center">
+                    <TextBox x:Name="edit_students_count" IsReadOnly="True" Text="{Binding studentsCount}" d:Text="_organizerStatistic.studentsCount" FontSize="14" Margin="5" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Foreground="#FF666666" Height="24" VerticalContentAlignment="Center">
                         
                     </TextBox>
 
                     <Border CornerRadius="0, 0, 5, 0" BorderThickness="0,0,0,1" BorderBrush="#FFABADB3" Grid.Row="2">
                         <TextBlock Text="Количество кураторов" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="14" Grid.Row="2"/>
                     </Border>
-                    <TextBox x:Name="edit_event_direction" Text="{Binding supervisorsCount}" d:Text="_organizerStatistic.supervisorsCount" Margin="5" Grid.Column="1" FontSize="14" Grid.Row="2" VerticalAlignment="Center" Foreground="#FF666666" VerticalContentAlignment="Center" Height="24"/>
+                    <TextBox x:Name="edit_supervisors_count" IsReadOnly="True" Text="{Binding supervisorsCount}" d:Text="_organizerStatistic.supervisorsCount" Margin="5" Grid.Column="1" FontSize="14" Grid.Row="2" VerticalAlignment="Center" Foreground="#FF666666" VerticalContentAlignment="Center" Height="24"/>
 
                 </Grid>
 
                 <Border Margin="0,20,0,15" Height="2" Background="#FFDDEEFF"/>
+
+                <!--область фильтров-->
+                <Border BorderThickness="1" CornerRadius="10" Height="70" BorderBrush="#FF666666" Margin="0,10,0,0" Background="White">
+                    <Grid>
+                        <Border CornerRadius="5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Background="#FF008CFF" Margin="10,-9,0,0" Height="20">
+                            <TextBlock Foreground="White" FontSize="14" Text="Фильтры" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                        </Border>
+                        <Grid Margin="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="0.7*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <control:SearchBar TextChanged="search_textChanged" 
+                                               Grid.Column="0" 
+                                               Margin="5,0,5,0" VerticalAlignment="Center">
+                            </control:SearchBar>
+
+
+                            <ComboBox x:Name="combobox_categories" Grid.Column="1" 
+								      VerticalAlignment="Center" 
+                                      Margin="5,0,5,0" 
+                                      Cursor="Hand" 
+                                      FontSize="16" 
+                                      SelectionChanged="combobox_categories_SelectionChanged" 
+                                      ToolTip="Поиск по направлению" Style="{DynamicResource ModernComboBoxStyle}"/>
+
+                            <Grid Grid.Column="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Text="Дата:" VerticalAlignment="Center" FontSize="14" Margin="5,0,5,0"/>
+                                <DatePicker x:Name="datepicker_from" Grid.Column="1" SelectedDateChanged="datepicker_date_changed" BorderBrush="#FFABADB3" FontSize="14" ToolTip="Начало периода" VerticalAlignment="Center" Style="{DynamicResource ModernDatePickerStyle}"/>
+
+                                <TextBlock Grid.Column="2" Text="—" VerticalAlignment="Center" FontSize="14" Margin="5,0,5,0"/>
+                                <DatePicker x:Name="datepicker_to" Grid.Column="3" SelectedDateChanged="datepicker_date_changed" VerticalAlignment="Center" BorderBrush="#FFABADB3" FontSize="14" ToolTip="Конец периода" Style="{DynamicResource ModernDatePickerStyle}"/>
+                            </Grid>
+
+                        </Grid>
+                    </Grid>
+                </Border>
+
+
+                <Border Margin="0,20,0,15" Height="2" Background="#FFDDEEFF"/>
+                
                 <TextBlock Text="Прошедшие мероприятия" FontSize="16" FontWeight="Bold" Foreground="#FF666666"/>
                 <DataGrid x:Name="datagrid_events" AutoGenerateColumns="False"  Margin="0,10,0,0" Style="{DynamicResource CustomDataGridStyle}">
                     <DataGrid.Columns>
@@ -90,7 +143,6 @@
 
         <!--Навигация-->
         <StackPanel x:Name="stack_nav" Margin="5" Orientation="Horizontal" Grid.Row="2">
-            <Button x:Name="btn_goback" Style="{DynamicResource ButtonStyle_accent_extra}" Width="140" FontSize="14" Content="Назад"/>
             <Button x:Name="btn_export" Style="{DynamicResource ButtonStyle_accent}" Width="140" FontSize="14" Content="Экспорт" Margin="10,0,0,0"/>
             <Button x:Name="btn_open_diagram" Style="{DynamicResource ButtonStyle_accent}" Width="170" FontSize="14" Content="Показать диаграмму" Margin="10,0,0,0" Background="#FF0070CC"/>
         </StackPanel>

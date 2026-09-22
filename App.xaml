@@ -14,12 +14,15 @@
                 <ResourceDictionary Source="/View/Styles/TextBlockStyles.xaml"/>
                 <ResourceDictionary Source="/View/Styles/ScrollBarStyles.xaml"/>
                 <ResourceDictionary Source="/View/Styles/DataGridStyles.xaml"/>
+                <ResourceDictionary Source="/View/Styles/DatePickerStyles.xaml"/>
+                <ResourceDictionary Source="/View/Styles/ComboBoxStyles.xaml"/>
                 <ResourceDictionary Source="/View/Styles/theme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <!--изображения-->
             <BitmapImage x:Key="caret_down" UriSource="/View/Resources/icons/ico_caret_down.png"/>
             <BitmapImage x:Key="caret_up" UriSource="/View/Resources/icons/ico_caret_up.png"/>
+            <BitmapImage x:Key="img_avatar_placeholder" UriSource="/View/Resources/images/img_patient.png"/>
 
             <!--конвертеры-->
             <converter:DateTimeToStringConverter x:Key="DateTimeConverter"/>

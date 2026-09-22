@@ -8,7 +8,7 @@
 			 Height="110">
     <Grid x:Name="grid_main">
         <Border Background="White" BorderBrush="#FF666666" BorderThickness="1,1,1,1" CornerRadius="15,15,15,15" Grid.ColumnSpan="7" Grid.RowSpan="2"/>
-        <Border x:Name="event_status" CornerRadius="15" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FF676767" Width="25" Height="25" Margin="-5,-5,0,0">
+        <Border x:Name="event_status" CornerRadius="15" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#FF676767" Width="25" Height="25" Margin="-5,-5,0,0" Cursor="Help">
             <Border.ToolTip>
                 <TextBlock FontWeight="Bold" Text="{Binding statusName}"/>
             </Border.ToolTip>

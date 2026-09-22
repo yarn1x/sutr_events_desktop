@@ -81,7 +81,7 @@
                     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Grid.Row="3" Grid.Column="1">
                         <StackPanel x:Name="stack_places" Orientation="Horizontal" >
                             <StackPanel Orientation="Horizontal">
-                                <ComboBox x:Name="combobox_event_place" ToolTip="Добавить существующее место" Margin="5" Grid.Column="2" FontSize="14" Grid.Row="3" VerticalAlignment="Center" Foreground="#FF666666" MinWidth="80" SelectionChanged="combobox_event_place_SelectionChanged" Cursor="Hand"/>
+                                <ComboBox x:Name="combobox_event_place" ToolTip="Добавить существующее место" Margin="5" Grid.Column="2" FontSize="14" Grid.Row="3" VerticalAlignment="Center" Foreground="#FF666666" MinWidth="80" SelectionChanged="combobox_event_place_SelectionChanged" Cursor="Hand" Style="{DynamicResource ModernComboBoxStyle}"/>
                                 <Button x:Name="btn_add_new_place" ToolTip="Создать новое место" Margin="5" VerticalAlignment="Center" Style="{DynamicResource ButtonStyle_accent}" Width="25" Height="25" Content="+" FontSize="24" Padding="1,-7,1,1" Click="btn_add_new_place_Click"/>
                             </StackPanel>
                         </StackPanel>
@@ -90,7 +90,7 @@
                     <Border CornerRadius="0, 0, 5, 0" BorderThickness="0,0,0,1" BorderBrush="#FFABADB3" Grid.Row="4">
                         <TextBlock Text="Дата проведения" FontSize="14" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Center"/>
                     </Border>
-                    <DatePicker x:Name="datePicker_date" Text="{Binding startDateTime, Mode=OneWay, Converter={StaticResource DateTimeConverter}, ConverterParameter=dd.MM.yyyy, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" d:Text="_Event.startDate" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" Margin="5" Width="150" FontSize="14" Foreground="#FF666666" BorderBrush="#FFABADB3" Cursor="Hand" SelectedDateFormat="Short" CalendarClosed="datePicker_date_CalendarClosed"/>
+                    <DatePicker x:Name="datePicker_date" Text="{Binding startDateTime, Mode=OneWay, Converter={StaticResource DateTimeConverter}, ConverterParameter=dd.MM.yyyy, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" d:Text="_Event.startDate" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" Margin="5" Width="150" FontSize="14" Foreground="#FF666666" BorderBrush="#FFABADB3" Cursor="Hand" SelectedDateFormat="Short" Style="{DynamicResource ModernDatePickerStyle}"/>
 
                     <Border CornerRadius="0, 0, 5, 0" BorderThickness="0,0,0,1" BorderBrush="#FFABADB3" Grid.Row="5">
                         <TextBlock Text="Время начала" FontSize="14" HorizontalAlignment="Left" Grid.Row="5" VerticalAlignment="Center"/>

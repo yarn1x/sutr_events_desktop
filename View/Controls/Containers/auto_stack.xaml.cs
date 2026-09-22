@@ -19,6 +19,8 @@ namespace college_events_desktop.View.Controls.Containers
 {
     public partial class auto_stack : UserControl
     {
+        public Orientation Orientation { get; set; } = Orientation.Vertical;
+
         private ObservableCollection<UIElement> _children;
 
         public IList<UIElement> Children
@@ -45,8 +47,10 @@ namespace college_events_desktop.View.Controls.Containers
         {
             InitializeComponent();
 
-            // Инициализируем пустую коллекцию по умолчанию
+            //инициализируем пустую коллекцию по умолчанию
             Children = new ObservableCollection<UIElement>();
+
+            stack.Orientation = Orientation;
         }
 
         // Срабатывает при добавлении, удалении или очистке элементов пользователем
