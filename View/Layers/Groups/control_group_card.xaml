@@ -39,7 +39,7 @@
                     <TextBlock.Text>
                         <MultiBinding  StringFormat="{}{0} {1} {2}">
                             <Binding Path="supervisorSurname"/>
-                            <Binding Path="supervisorName"/>
+                            <Binding Path="supervisorFirstName"/>
                             <Binding Path="supervisorLastname"/>
                         </MultiBinding>
                     </TextBlock.Text>

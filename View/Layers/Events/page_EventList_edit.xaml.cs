@@ -32,8 +32,8 @@ namespace college_events_desktop.View.Layers.Events
                     endDateTime = datePicker_date.SelectedDate.GetValueOrDefault().Add(Convert.ToDateTime(edit_endTime.Text).TimeOfDay),
                     fullDescription = edit_fullDescription.Text,
                     shortDescription = edit_shortDescription.Text,
-                    organizerId = GetOrganizerId(combobox_organizer_name.Text),
-                    categoryId = GetCategoryId(combobox_event_direction.Text),
+                    organizerId = GetOrganizerId(combobox_organizer_name.SelectedItem.ToString()),
+                    categoryId = GetCategoryId(combobox_event_direction.SelectedItem.ToString()),
                     eventLocationsIds = locations.Select(l => l.locationId).ToList(),
                     additionalInfo = edit_additionalInfo.Text,
                     maxListenersCount = Convert.ToInt32(edit_maxListenersCount.Text),
@@ -174,8 +174,9 @@ namespace college_events_desktop.View.Layers.Events
             await Application.Current.Dispatcher.InvokeAsync(async () => 
             { 
                 //данные о мероприятии
-                combobox_organizer_name.Text = $"{_Event.organizerSurname} {_Event.organizerFirstName} {_Event.organizerLastname}";
-                combobox_event_direction.Text = _Event.categoryName;
+                //combobox_organizer_name.Sele
+                combobox_organizer_name.SelectedItem = $"{_Event.organizerSurname} {_Event.organizerFirstName} {_Event.organizerLastname}";
+                combobox_event_direction.SelectedItem = _Event.categoryName;
 
                 // добавление мест проведения мероприятия (именно что кнопок - конкретно зафиксированных мест для мероприятия)
                 _Event.locations.ForEach(location => stack_places.Children.Insert(stack_places.Children.Count - 1, CreateLocationButton(location)));
@@ -200,9 +201,10 @@ namespace college_events_desktop.View.Layers.Events
                 try
                 {
                     ///аналогично. добавление фулл списка огранизаторов в комбобокс
-                    string[] organizers = _dataService.organizers
-                        .Select(o => $"{o.surName} {o.firstName} {o.lastName}".Trim())
-                        .ToArray();
+                    
+                    var organizers = _dataService.organizers
+                        .OrderBy(order => order.surName)
+                        .Select(o => $"{o.surName} {o.firstName} {o.lastName}");
                     combobox_organizer_name.ItemsSource = organizers;
                 }
                 catch (Exception ex)
@@ -213,7 +215,7 @@ namespace college_events_desktop.View.Layers.Events
                 try
                 {
                     ///аналогично. добавление фулл списка категорий в комбобокс
-                    string[] categories = _dataService.categories.Select(c => c.name).ToArray();
+                    var categories = _dataService.categories.Select(c => c.name);
                     combobox_event_direction.ItemsSource = categories;
                 }
                 catch (Exception ex)

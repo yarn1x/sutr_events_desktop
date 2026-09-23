@@ -104,7 +104,7 @@
             </Grid>
 
 
-            <container:auto_stack x:Name="stack_groups" Grid.Row="2" Margin="10,0,0,0"/>
+            <container:auto_stack x:Name="stack_groups" Grid.Row="2" Margin="10,10,0,0"/>
 
 
 

@@ -80,7 +80,7 @@
                         <TextBox.Text>
                             <MultiBinding StringFormat="{}{0} {1} {2}">
                                 <Binding Path="organizerSurname"/>
-                                <Binding Path="organizerName"/>
+                                <Binding Path="organizerFirstName"/>
                                 <Binding Path="organizerLastname"/>
                             </MultiBinding>
                         </TextBox.Text>
