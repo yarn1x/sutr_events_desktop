@@ -32,7 +32,7 @@ namespace college_events_desktop.DataModels
         public Brush statusColor { get => GetStatusColor(statusId); }
 
         public int organizerId { get; set; }
-        public string organizerName { get; set; }
+        public string organizerFirstName { get; set; }
         public string organizerSurname { get; set; }
         public string organizerLastname { get; set; }
         public string organizerPosition { get; set; }

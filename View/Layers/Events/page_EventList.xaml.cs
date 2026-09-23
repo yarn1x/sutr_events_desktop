@@ -65,7 +65,8 @@ namespace college_events_desktop.View.Layers.Events
             await Update(); //каждый раз, когда визуально отрисовывается окно, обновляем страницу
         }
 
-        internal async Task Update() //обновление страницы
+        //обновление страницы
+        internal async Task Update()
         {
             await Application.Current.Dispatcher.InvokeAsync(async () =>
             {
@@ -121,7 +122,7 @@ namespace college_events_desktop.View.Layers.Events
                 //определяем, какой был активирован статус фильтрации
                 //в тэге хранится PK статуса (от -1 до 4)
                 string colorKey = button.Tag.ToString();
-                //Инвертируем value в словаре фильтров (filterStates)
+                //инвертируем value в словаре фильтров (filterStates)
                 filterStates[colorKey] = !filterStates[colorKey];
 
                 //применяем фильтр

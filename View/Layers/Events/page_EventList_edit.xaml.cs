@@ -174,7 +174,7 @@ namespace college_events_desktop.View.Layers.Events
             await Application.Current.Dispatcher.InvokeAsync(async () => 
             { 
                 //данные о мероприятии
-                combobox_organizer_name.Text = $"{_Event.organizerSurname} {_Event.organizerName} {_Event.organizerLastname}";
+                combobox_organizer_name.Text = $"{_Event.organizerSurname} {_Event.organizerFirstName} {_Event.organizerLastname}";
                 combobox_event_direction.Text = _Event.categoryName;
 
                 // добавление мест проведения мероприятия (именно что кнопок - конкретно зафиксированных мест для мероприятия)

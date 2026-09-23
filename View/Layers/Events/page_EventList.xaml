@@ -52,8 +52,8 @@
             <!--Область фильтров-->
             <Border BorderThickness="1" CornerRadius="10" Height="70" BorderBrush="#FF666666" Margin="0,10,0,0" Background="White">
                 <Grid>
-                    <Border CornerRadius="5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Background="#FF008CFF" Margin="10,-9,0,0" Height="20">
-                        <TextBlock Foreground="White" FontSize="14" Text="Фильтры" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <Border CornerRadius="5" BorderThickness="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Background="White" Margin="10,-9,0,0" Height="20" BorderBrush="#FF666666">
+                        <TextBlock Foreground="#FF666666" FontSize="14" Text="Фильтры" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                     <Grid Margin="10">
                         <Grid.ColumnDefinitions>
@@ -182,7 +182,7 @@
                                   SelectionChanged="combobox_categories_SelectionChanged" 
                                   ToolTip="Поиск по направлению"
                                   Style="{DynamicResource ModernComboBoxStyle}" 
-                                  MaxDropDownHeight="360">
+                                  MaxDropDownHeight="360" Height="31">
                         </ComboBox>
 
                     </Grid>

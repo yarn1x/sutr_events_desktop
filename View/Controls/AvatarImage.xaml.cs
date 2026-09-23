@@ -17,9 +17,6 @@ namespace college_events_desktop.View.Controls
             image_brush.ImageSource = Source ?? DefaultPlaceholder;
         }
 
-        // ============================================================
-        // Source
-        // ============================================================
         public static readonly DependencyProperty SourceProperty =
             DependencyProperty.Register(
                 nameof(Source),
@@ -41,9 +38,7 @@ namespace college_events_desktop.View.Controls
             control.image_brush.ImageSource = newSource ?? DefaultPlaceholder;
         }
 
-        // ============================================================
-        // CornerRadius
-        // ============================================================
+
         public static readonly DependencyProperty CornerRadiusProperty =
             DependencyProperty.Register(
                 nameof(CornerRadius),
@@ -63,9 +58,6 @@ namespace college_events_desktop.View.Controls
             control.border_image_mask.CornerRadius = (CornerRadius)e.NewValue;
         }
 
-        // ============================================================
-        // Placeholder
-        // ============================================================
         private static ImageSource LoadDefaultPlaceholder()
         {
             try

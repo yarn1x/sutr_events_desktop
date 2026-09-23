@@ -23,6 +23,7 @@ namespace college_events_desktop.DataModels
         public DateTime startDatetime { get; set; }
         public DateTime endDatetime { get; set; }
         public string fullDescription { get; set; }
+        public string CategoryName { get; set; }
 
         public int actualListenersCount { get; set; }
         public int actualParticipantsCount { get; set; }

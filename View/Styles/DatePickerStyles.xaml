@@ -2,8 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <!-- ============ ПАЛИТРА ============ -->
-    <Color x:Key="AccentColor">#3B82F6</Color>
-    <Color x:Key="AccentHoverColor">#2563EB</Color>
+    <Color x:Key="AccentColor">#FF008CFF</Color>
+    <Color x:Key="AccentHoverColor">#FF3FA8FF</Color>
     <Color x:Key="SurfaceColor">#FFFFFF</Color>
     <Color x:Key="SurfaceAltColor">#F3F4F6</Color>
     <Color x:Key="BorderColor">#D1D5DB</Color>
@@ -170,7 +170,6 @@
                                       Direction="270"/>
                         </Border.Effect>
 
-                        <!-- Только CalendarItem, без своей шапки -->
                         <CalendarItem x:Name="PART_CalendarItem"
                               BorderThickness="0"
                               Background="Transparent"/>
@@ -218,8 +217,8 @@
 
                                 <ToggleButton x:Name="PART_Button"
                                               Grid.Column="1"
-                                              Width="32" Height="32"
-                                              Margin="0,0,6,0"
+                                              Width="28" Height="28"
+                                              Margin="4"
                                               Focusable="False"
                                               Background="Transparent"
                                               BorderThickness="0"
@@ -229,10 +228,10 @@
                                     <ToggleButton.Template>
                                         <ControlTemplate TargetType="ToggleButton">
                                             <Border x:Name="IconBd"
-                                                    Background="Transparent"
+                                                    Background="{StaticResource AccentBrush}"
                                                     CornerRadius="6">
                                                 <Path Data="M2,4 L14,4 M2,4 L2,14 L14,14 L14,4 Z M5,2 L5,6 M11,2 L11,6 M2,8 L14,8"
-                                                      Stroke="{StaticResource TextMutedBrush}"
+                                                      Stroke="{StaticResource SurfaceBrush}"
                                                       StrokeThickness="1.6"
                                                       StrokeStartLineCap="Round"
                                                       StrokeEndLineCap="Round"
@@ -243,7 +242,7 @@
                                             <ControlTemplate.Triggers>
                                                 <Trigger Property="IsMouseOver" Value="True">
                                                     <Setter TargetName="IconBd" Property="Background"
-                                                            Value="{StaticResource SurfaceAltBrush}"/>
+                                                            Value="{StaticResource ResourceKey=AccentBrush}"/>
                                                 </Trigger>
                                             </ControlTemplate.Triggers>
                                         </ControlTemplate>

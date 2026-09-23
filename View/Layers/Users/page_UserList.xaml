@@ -46,8 +46,8 @@
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Border CornerRadius="5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Background="#FF008CFF" Margin="10,-9,0,0" Height="20">
-                        <TextBlock Foreground="White" FontSize="14" Text="Фильтры" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <Border CornerRadius="5" BorderThickness="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Background="White" Margin="10,-9,0,0" Height="20" BorderBrush="#FF666666">
+                        <TextBlock Foreground="#FF666666" FontSize="14" Text="Фильтры" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                     </Border>
 
                     <StackPanel Orientation="Horizontal">

@@ -35,10 +35,9 @@
                   ToolTip="Добавить элемент" 
                   Margin="5" 
                   FontSize="14" 
-                  VerticalAlignment="Center" 
                   Foreground="#FF666666" 
                   MinWidth="80" 
                   SelectionChanged="MainComboBox_SelectionChanged" 
-                  Cursor="Hand" Style="{DynamicResource ModernComboBoxStyle}"/>
+                  Cursor="Hand" Style="{DynamicResource ModernComboBoxStyle}" VerticalAlignment="Center" Height="30"/>
     </WrapPanel>
 </UserControl>

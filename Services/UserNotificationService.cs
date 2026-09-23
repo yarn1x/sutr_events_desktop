@@ -95,7 +95,7 @@ namespace college_events_desktop.Services
         /// </summary>
         /// <remarks>Построение шаблона происходит в методе <see cref="BuildTemplate"/></remarks>
         /// <param name="title">Общий заголовок списка (пример "Список ошибок:")</param>
-        /// <param name="errors">Коллекция пар (Пользовательское описание, Системное исключение)</param>
+        /// <param name="errors">Коллекция исключений (Пользовательское описание, Системное исключение)</param>
         /// <param name="codeword">Код места возникновения ошибки</param>
         public static void ShowError(string title, IEnumerable<(string UserMessage, Exception Ex)> errors, string codeword)
         {

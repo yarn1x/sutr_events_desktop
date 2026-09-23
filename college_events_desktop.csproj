@@ -113,6 +113,9 @@
     <Compile Include="View\Controls\Containers\auto_stack.xaml.cs">
       <DependentUpon>auto_stack.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Controls\Containers\ContentBox.xaml.cs">
+      <DependentUpon>ContentBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Controls\Containers\double_stack.xaml.cs">
       <DependentUpon>double_stack.xaml</DependentUpon>
     </Compile>
@@ -211,6 +214,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Controls\Containers\auto_stack.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\Containers\ContentBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

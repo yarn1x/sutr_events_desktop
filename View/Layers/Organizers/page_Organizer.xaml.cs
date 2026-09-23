@@ -4,6 +4,7 @@ using college_events_desktop.Services;
 using college_events_desktop.View.Controls;
 using college_events_desktop.View.Windows;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -45,7 +46,11 @@ namespace college_events_desktop.View.Layers.Organizers
                     datagrid_events.ItemsSource = _dataService.organizerStatistic.events;
 
                     await _dataService.LoadCategoriesAsync();
-                    combobox_categories.ItemsSource = _dataService.categories.Select(c => c.name);
+                    var categories = new List<string> { "Не выбрано" };
+                    categories.AddRange(_dataService.categories.Select(c => c.name));
+
+                    combobox_categories.ItemsSource = categories;
+                    combobox_categories.SelectedIndex = 0;
                 }
                 catch (Exception ex)
                 {
@@ -57,10 +62,10 @@ namespace college_events_desktop.View.Layers.Organizers
         private void search_textChanged(object sender, TextChangedEventArgs e)
         {
             if (!(sender is SearchBar textBox)) return;
-            string searchText = textBox.SearchText;
+            string searchText = textBox.SearchText.ToLower().Trim();
             try
             {
-                datagrid_events.ItemsSource = _dataService.organizerStatistic.events.Where(ev => ev.title.Contains(searchText));
+                datagrid_events.ItemsSource = _dataService.organizerStatistic.events.Where(ev => ev.title.ToLower().Trim().Contains(searchText));
             }
             catch (Exception ex)
             {
@@ -70,7 +75,24 @@ namespace college_events_desktop.View.Layers.Organizers
 
         private void combobox_categories_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (!(sender is ComboBox comboBox)) return;
+            if (comboBox.SelectedIndex == 0)
+            {
+                datagrid_events.ItemsSource = _dataService.organizerStatistic.events;
+                return;
+            }
 
+            string searchText = comboBox.SelectedItem.ToString() ?? string.Empty;
+            string lowerSearchText = searchText.ToLower().Trim();
+
+            try
+            {
+                datagrid_events.ItemsSource = _dataService.organizerStatistic.events.Where(ev => ev.CategoryName.ToLower().Trim().Contains(lowerSearchText));
+            }
+            catch (Exception ex)
+            {
+                UserNotificationService.ShowError("Ошибка применения фильтра по направлению (категории).", ex, "page_OrganizerAA003");
+            }
         }
 
         private void datepicker_date_changed(object sender, SelectionChangedEventArgs e)
