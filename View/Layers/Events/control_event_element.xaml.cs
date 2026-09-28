@@ -29,15 +29,15 @@ namespace college_events_desktop.View.Layers.Events
 		private Event _Event;
 
 		//Сопоставление id статуса с его цветом
-		private Dictionary<string, Color> markerColors = new Dictionary<string, Color>()
+		private Dictionary<int, Color> markerColors = new Dictionary<int, Color>()
 		{
-            {"-1", Color.FromArgb(0xFF, 0xFF, 0x49, 0x49)}, //красный
-            {"1", Color.FromArgb(0xFF, 0xFF, 0xDD, 0x3C)}, //жёлтый
-            {"2", Color.FromArgb(0xFF, 0x66, 0xFF, 0x3D)}, //зелёный
-            {"3", Color.FromArgb(0xFF, 0x48, 0xAF, 0xFF)}, //голубой
-            {"4", Color.FromArgb(0xFF, 0xA7, 0xA7, 0xA7)}, //серый
-            {"5", Color.FromArgb(0xFF, 0xA6, 0xFF, 0x7D)}, //перенесено мероприятие (цвет чуть светлее зелёного)
-            {"6", Color.FromArgb(0xFF, 0x8C, 0x4F, 0x1B)}, //тёмно-оранжевый
+            {EventConstants.status_suggested_conflict,  Color.FromArgb(0xFF, 0xFF, 0x49, 0x49)}, //красный
+            {EventConstants.status_suggested,			Color.FromArgb(0xFF, 0xFF, 0xDD, 0x3C)}, //жёлтый
+            {EventConstants.status_applied,				Color.FromArgb(0xFF, 0x66, 0xFF, 0x3D)}, //зелёный
+            {EventConstants.status_done_report_needed,	Color.FromArgb(0xFF, 0x48, 0xAF, 0xFF)}, //голубой
+            {EventConstants.status_done,				Color.FromArgb(0xFF, 0xA7, 0xA7, 0xA7)}, //серый
+            {EventConstants.status_rescheduled,			Color.FromArgb(0xFF, 0xA6, 0xFF, 0x7D)}, //перенесено мероприятие (цвет чуть светлее зелёного)
+            {EventConstants.status_rejected,			Color.FromArgb(0xFF, 0x8C, 0x4F, 0x1B)}, //тёмно-оранжевый
         };
 
         #endregion
@@ -67,7 +67,7 @@ namespace college_events_desktop.View.Layers.Events
         private void Event_element_Loaded(object sender, RoutedEventArgs e)
 		{
 			//меняем цвет точки слева сверху на плашке мероприятия в зависимости от статуса (статус хранится в тэге элемента. Почему именно в тэге? Потому что я сделал фильтр по статусу именно по тэгу и переделывать мне впадлу. Тебе же лучше. Потренируешься чистить чужой код)
-			event_status.Background = new SolidColorBrush(markerColors[Tag.ToString()]);
+			event_status.Background = new SolidColorBrush(markerColors[(int)Tag]);
 
 			//добавляем инфу, которую просто так через привязку не добавить
 			try
@@ -86,33 +86,34 @@ namespace college_events_desktop.View.Layers.Events
 			//изменение видимости кнопок действий над мероприятиями в зависимости от статуса
 			//действия ограничиваются чисто этим условием.
 			//АККУРАТНО с добавлением кнопки просмотра отчёта. Если отчёт не будет составлен, ему неоткуда будет брать инфу
-			switch (Tag.ToString())
+			switch ((int)Tag)
 			{
-				case "1"://статус жёлтый
+				case EventConstants.status_suggested: //статус жёлтый
 					btn_edit.Visibility = Visibility.Visible;
 					stack_electoral_buttons.Visibility = Visibility.Visible;
 					return;
 
-				case "2"://статус зелёный
+				case EventConstants.status_applied: //статус зелёный
 					btn_edit.Visibility = Visibility.Visible;
 					return;
 
-				case "3"://статус синий
+				case EventConstants.status_done_report_needed: //статус синий
 					btn_create_event_report.Visibility = Visibility.Visible;
 					return;
 
-				case "4"://статус серый
+				case EventConstants.status_done: //статус серый
 					btn_see_event_report.Visibility = Visibility.Visible;
 					return;
 
-				case "5"://статус зелёный (перенесённое мероприятие)
+				case EventConstants.status_rescheduled: //статус зелёный (перенесённое мероприятие)
 					btn_edit.Visibility = Visibility.Visible;
 					return;
 
-				case "-1"://статус красный
+				case EventConstants.status_suggested_conflict: //статус красный
                     btn_edit.Visibility = Visibility.Visible;
                     stack_electoral_buttons.Visibility = Visibility.Visible;
 					return;
+				
 			}
 		}
 

@@ -100,7 +100,8 @@
     <Compile Include="DataModels\Supervisor.cs" />
     <Compile Include="Model\ApiClient.cs" />
     <Compile Include="Model\Constants.cs" />
-    <Compile Include="Model\DataService.cs" />
+    <Compile Include="Services\AcademicYearCalculator.cs" />
+    <Compile Include="Services\DataService.cs" />
     <Compile Include="Services\LoadingService.cs" />
     <Compile Include="Services\OverlayService.cs" />
     <Compile Include="Services\UserNotificationService.cs" />
@@ -131,6 +132,7 @@
     <Compile Include="View\Controls\events_nav_buttons.xaml.cs">
       <DependentUpon>events_nav_buttons.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Helpers\LocationButtonFactory.cs" />
     <Compile Include="View\Layers\Events\control_event_element.xaml.cs">
       <DependentUpon>control_event_element.xaml</DependentUpon>
     </Compile>
@@ -187,6 +189,9 @@
     </Compile>
     <Compile Include="View\Layers\Settings\page_Settings.xaml.cs">
       <DependentUpon>page_Settings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Layers\Users\control_supervisor_group_tuple.xaml.cs">
+      <DependentUpon>control_supervisor_group_tuple.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Layers\Users\control_user_card.xaml.cs">
       <DependentUpon>control_user_card.xaml</DependentUpon>
@@ -314,6 +319,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Layers\Settings\page_Settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Layers\Users\control_supervisor_group_tuple.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -502,6 +511,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="View\Resources\images\img_EventList_help_map.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="View\Resources\icons\ico_trash.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

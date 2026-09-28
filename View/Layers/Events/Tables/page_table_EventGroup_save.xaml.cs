@@ -1,5 +1,6 @@
 ﻿using college_events_desktop.DataModels;
 using college_events_desktop.Model;
+using college_events_desktop.Services;
 using college_events_desktop.View.Controls;
 using System;
 using System.Collections.Generic;
@@ -133,7 +134,7 @@ namespace college_events_desktop.View.Layers.Events.Tables
                 //     потребуется изначально изменить весь состав зарегистрированных групп (изменение в event_groups)
                 //     college/admin/events/update/{EventId}/groups - эндпоинт редактирует список зарегистрированных групп. Нет метода на клиенте
                 //     ИЛИ college/admin/events/update/{EventId} - эндпоинт редактирует как информацию о мероприятии, так и о группах. Уже существует метод в ApiClient
-                //     Дата создания заметки: 08-15-2026
+                //     актуально на: 28-09-2026
             });
         }
         #endregion

@@ -166,13 +166,13 @@ namespace college_events_desktop.View.Layers.Events.Tables
             //.Any(...) — проверяет, занято ли уже имя группы в созданных комбобоксах
             //.Where(...) — фильтрует и оставляет только свободные группы
             //.ForEach(...) — добавляет каждую оставшуюся группу в ваш новый комбобокс.
-            _table._groups
-                .Where(g => 
+            var groups = _table._groups
+                .Where(g =>
                     !_table.stack_table_rows.Children.OfType<table_tuple_EventGroup_edit>()
                     .Any(t => t.combobox_group.Text == g.groupName)
                 )
-                .ToList()
-                .ForEach(g => combobox_group.Items.Add(g.groupName));
+                .Select(g => g.groupName);
+            combobox_group.ItemsSource = groups;
         }
 
         /// <summary>

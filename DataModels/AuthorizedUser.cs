@@ -16,7 +16,7 @@ namespace college_events_desktop.DataModels
         
         public string lastName { get; set; }
         
-        public string Login { get; set; }
+        public string login { get; set; }
 
         public string PasswordHash { get; set; }
 

@@ -20,18 +20,18 @@ namespace college_events_desktop.View.Layers.Events
 	{
         #region Поля класса
 
-        private Dictionary<string, bool> filterStates = new Dictionary<string, bool>()
+        private Dictionary<int, bool> filterStates = new Dictionary<int, bool>()
         {
             //я уже не помню чем я руководствовался, когда ключ представлял в виде строки
             //в теории, можно поменять на int, но у этого есть скрытые зависимости в связанных страницах и элементах
             //их тоже важно изменить
-            {"1", false},
-            {"2", false},
-            {"3", false},
-            {"4", false},
-            {"5", false},
-            {"6", false},
-            {"-1", false},
+            {EventConstants.status_suggested,           false},
+            {EventConstants.status_applied,             false},
+            {EventConstants.status_done_report_needed,  false},
+            {EventConstants.status_done,                false},
+            {EventConstants.status_rescheduled,         false},
+            {EventConstants.status_rejected,            false},
+            {EventConstants.status_suggested_conflict,  false},
         };
 
         private MainWindow mainWindow;
@@ -121,7 +121,7 @@ namespace college_events_desktop.View.Layers.Events
                 var button = sender as Button;
                 //определяем, какой был активирован статус фильтрации
                 //в тэге хранится PK статуса (от -1 до 4)
-                string colorKey = button.Tag.ToString();
+                int colorKey = (int)button.Tag;
                 //инвертируем value в словаре фильтров (filterStates)
                 filterStates[colorKey] = !filterStates[colorKey];
 
@@ -158,7 +158,7 @@ namespace college_events_desktop.View.Layers.Events
                 //изначально все value из словаря filterStates равны false.
                 //русским языком, если не добавить условие isFilterActive, то он будет "скипать" все мероприятия
                 //при ВЫКЛЮЧЕННЫХ "кнопочных" фильтрах, этот обработчик не будет ничего фильтровать
-                if (filterStates[child.Tag.ToString()] == false && isFilterActive) continue;
+                if (filterStates[(int)child.Tag] == false && isFilterActive) continue;
 
                 //определяем, есть ли в плашке мероприятия инфа, которую мы ввели в TextBox
                 bool containsSearchingText = child.text_name.Text.ToLower().Contains(lowerSearchText) || child.text_organizer_name.Text.ToLower().Contains(lowerSearchText) || $"{child.text_start_time.Text.ToLower()} - {child.text_end_time.Text.ToLower()}".Contains(lowerSearchText) || child.text_date.Text.ToLower().Contains(lowerSearchText) || child.text_direction.Text.ToLower().Contains(lowerSearchText) || child.text_place.Text.ToLower().Contains(lowerSearchText);
@@ -198,7 +198,7 @@ namespace college_events_desktop.View.Layers.Events
                 //изначально все value из словаря filterStates равны false.
                 //русским языком, если не добавить условие isFilterActive, то он будет "скипать" все мероприятия
                 //при ВЫКЛЮЧЕННЫХ "кнопочных" фильтрах, этот обработчик не будет ничего фильтровать
-                if (filterStates[child.Tag.ToString()] == false && isFilterActive) continue;
+                if (filterStates[(int)child.Tag] == false && isFilterActive) continue;
 
                 //определяем, есть ли в плашке мероприятия инфа, которую мы ввели в combobox
                 bool containsSearchingText = child.text_direction.Text.ToLower().Contains(lowerSearchText);
@@ -350,7 +350,7 @@ namespace college_events_desktop.View.Layers.Events
                 {
                     if (child is control_event_element eventChild && eventChild.Tag != null)
                     {
-                        string tagStr = eventChild.Tag.ToString();
+                        int tagStr = (int)eventChild.Tag;
 
                         // Проверяем, есть ли такой ключ в словаре, чтобы избежать Crash
                         if (filterStates.TryGetValue(tagStr, out bool isVisible))
@@ -385,17 +385,35 @@ namespace college_events_desktop.View.Layers.Events
         }
 
         /// <summary>
-        /// По умолчанию, внизу страницы есть счётчики, показывающие отражающиеся карточки мероприятия. Метод обновляет эти счётчики
+        /// Обновление показателей отображённых мероприятий в списке по статусам
         /// </summary>
         private void UpdateBottomCounters()
         {
+            //находим все отобажённые элементы
             var all_control_event_element = stack_events.Children.OfType<control_event_element>().Where(e => e.Visibility == Visibility.Visible).ToList();
+            
+            //выводим количество всех отображённых элементов
             text_amount_of_events.Text = all_control_event_element.Count().ToString();
-            text_amount_of_gray.Text = all_control_event_element.Count(g => (int)g.Tag == 4).ToString();
-            text_amount_of_blue.Text = all_control_event_element.Count(bl => (int)bl.Tag == 3).ToString();
-            text_amount_of_green.Text = all_control_event_element.Count(gr => (int)gr.Tag == 2 || (int)gr.Tag == 5).ToString();
-            text_amount_of_yellow.Text = all_control_event_element.Count(y => (int)y.Tag == 1).ToString();
-            text_amount_of_red.Text = all_control_event_element.Count(r => (int)r.Tag == -1).ToString();
+
+            //выводим количество элементов с тэгом = EventConstants.status_done
+            text_amount_of_gray.Text = all_control_event_element.Count(g => 
+                (int)g.Tag == EventConstants.status_done).ToString();
+
+            //выводим количество элементов с тэгом = EventConstants.status_done_report_needed
+            text_amount_of_blue.Text = all_control_event_element.Count(bl => 
+                (int)bl.Tag == EventConstants.status_done_report_needed).ToString();
+
+            //выводим количество элементов с тэгом = EventConstants.status_applied или EventConstants.status_rescheduled
+            text_amount_of_green.Text = all_control_event_element.Count(gr => 
+                (int)gr.Tag == EventConstants.status_applied || (int)gr.Tag == EventConstants.status_rescheduled).ToString();
+
+            //выводим количество элементов с тэгом = EventConstants.status_suggested
+            text_amount_of_yellow.Text = all_control_event_element.Count(y => 
+                (int)y.Tag == EventConstants.status_suggested).ToString();
+
+            //выводим количество элементов с тэгом = EventConstants.status_suggested_conflict
+            text_amount_of_red.Text = all_control_event_element.Count(r => 
+                (int)r.Tag == EventConstants.status_suggested_conflict).ToString();
         }
 
 
@@ -403,34 +421,58 @@ namespace college_events_desktop.View.Layers.Events
         /// Возвращает состояние фильтра по статусу из памяти
         /// </summary>
         /// <param name="key">Идентификатор статуса</param>
-        private bool GetSettingValueByKey(string key)
+        private bool GetSettingValueByKey(int key)
         {
             switch (key)
             {
-                case "-1": return Properties.Settings.Default.status_filter_red;
-                case "1": return Properties.Settings.Default.status_filter_yellow;
-                case "2": return Properties.Settings.Default.status_filter_green;
-                case "3": return Properties.Settings.Default.status_filter_blue;
-                case "4": return Properties.Settings.Default.status_filter_grey;
+                case EventConstants.status_suggested_conflict: 
+                    return Properties.Settings.Default.status_filter_red;
+
+                case EventConstants.status_suggested: 
+                    return Properties.Settings.Default.status_filter_yellow;
+
+                case EventConstants.status_applied: 
+                    return Properties.Settings.Default.status_filter_green;
+
+                case EventConstants.status_done_report_needed: 
+                    return Properties.Settings.Default.status_filter_blue;
+
+                case EventConstants.status_done: 
+                    return Properties.Settings.Default.status_filter_grey;
+
                 default: return false;
             }
         }
 
 
         /// <summary>
-        /// Задаёт состояние фильтра по статусу в память
+        /// Сохраняет состояние фильтра по статусу в память
         /// </summary>
         /// <param name="key">Идентификатор статуса</param>
         /// <param name="value">Сохраняемое значение</param>
-        private void SaveSettingValueByKey(string key, bool value)
+        private void SaveSettingValueByKey(int key, bool value)
         {
             switch (key)
             {
-                case "-1": Properties.Settings.Default.status_filter_red = value; break;
-                case "1": Properties.Settings.Default.status_filter_yellow = value; break;
-                case "2": Properties.Settings.Default.status_filter_green = value; break;
-                case "3": Properties.Settings.Default.status_filter_blue = value; break;
-                case "4": Properties.Settings.Default.status_filter_grey = value; break;
+                case EventConstants.status_suggested_conflict: 
+                    Properties.Settings.Default.status_filter_red = value; 
+                    break;
+
+                case EventConstants.status_suggested: 
+                    Properties.Settings.Default.status_filter_yellow = value; 
+                    break;
+
+                case EventConstants.status_applied: 
+                    Properties.Settings.Default.status_filter_green = value; 
+                    break;
+
+                case EventConstants.status_done_report_needed: 
+                    Properties.Settings.Default.status_filter_blue = value; 
+                    break;
+
+                case EventConstants.status_done: 
+                    Properties.Settings.Default.status_filter_grey = value; 
+                    break;
             }
             Properties.Settings.Default.Save();
         }
@@ -446,17 +488,17 @@ namespace college_events_desktop.View.Layers.Events
             PanelTransform.Y = Properties.Settings.Default.eventList_moving_panel_Y;
             
             //включение последних включенных фильтров
-            filterStates["-1"] = GetSettingValueByKey("-1");
-            filterStates["1"] = GetSettingValueByKey("1");
-            filterStates["2"] = GetSettingValueByKey("2");
-            filterStates["3"] = GetSettingValueByKey("3");
-            filterStates["4"] = GetSettingValueByKey("4");
+            filterStates[EventConstants.status_suggested_conflict] = GetSettingValueByKey(EventConstants.status_suggested_conflict);
+            filterStates[EventConstants.status_suggested] = GetSettingValueByKey(EventConstants.status_suggested);
+            filterStates[EventConstants.status_applied] = GetSettingValueByKey(EventConstants.status_applied);
+            filterStates[EventConstants.status_done_report_needed] = GetSettingValueByKey(EventConstants.status_done_report_needed);
+            filterStates[EventConstants.status_done] = GetSettingValueByKey(EventConstants.status_done);
             //визуально включаем фильтры (перекрашиваем те кнопки, что включены)
-            await AnimateButtonColorsAsync(btn_red_filter, filterStates["-1"]);
-            await AnimateButtonColorsAsync(btn_yellow_filter, filterStates["1"]);
-            await AnimateButtonColorsAsync(btn_green_filter, filterStates["2"]);
-            await AnimateButtonColorsAsync(btn_blue_filter, filterStates["3"]);
-            await AnimateButtonColorsAsync(btn_gray_filter, filterStates["4"]);
+            await AnimateButtonColorsAsync(btn_red_filter, filterStates[EventConstants.status_suggested_conflict]);
+            await AnimateButtonColorsAsync(btn_yellow_filter, filterStates[EventConstants.status_suggested]);
+            await AnimateButtonColorsAsync(btn_green_filter, filterStates[EventConstants.status_applied]);
+            await AnimateButtonColorsAsync(btn_blue_filter, filterStates[EventConstants.status_done_report_needed]);
+            await AnimateButtonColorsAsync(btn_gray_filter, filterStates[EventConstants.status_done]);
         }
         #endregion
     }

@@ -6,6 +6,15 @@ namespace college_events_desktop.Model
     public static class EventConstants
     {
         /// <summary>
+        /// Уникальный идентификатор для статуса предложенного, есть конфликт времени.
+        /// </summary>
+        /// <remarks>
+        /// СТАТУС ИДЕНТИФИЦИРУЕТСЯ ТОЛЬКО НА КЛИЕНТЕ (в базе данных нет такого статуса).
+        /// </remarks>
+        public const int status_suggested_conflict = -1;
+        
+        
+        /// <summary>
         /// Уникальный идентификатор для статуса предложенного
         /// </summary>
         public const int status_suggested = 1;

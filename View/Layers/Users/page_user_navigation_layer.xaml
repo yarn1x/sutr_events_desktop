@@ -27,10 +27,7 @@
                         <Border Background="#FF9A9A9A" RenderTransformOrigin="0.5,0.5">
                             <Border.RenderTransform>
                                 <TransformGroup>
-                                    <ScaleTransform/>
-                                    <SkewTransform/>
                                     <RotateTransform Angle="-90"/>
-                                    <TranslateTransform/>
                                 </TransformGroup>
                             </Border.RenderTransform>
                             <Border.OpacityMask>

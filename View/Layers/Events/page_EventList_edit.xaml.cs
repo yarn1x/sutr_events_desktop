@@ -2,6 +2,7 @@
 using college_events_desktop.Model;
 using college_events_desktop.Services;
 using college_events_desktop.View.Controls;
+using college_events_desktop.View.Helpers;
 using college_events_desktop.View.Layers.Events.Tables;
 using college_events_desktop.View.Windows;
 using System;
@@ -113,7 +114,11 @@ namespace college_events_desktop.View.Layers.Events
                     return;
                 }
             }
-            stack_places.Children.Insert(stack_places.Children.Count - 1, CreateLocationButton(_dataService.places.FirstOrDefault(p => p.place == text)));
+            stack_places.Children.Insert
+            (
+                stack_places.Children.Count - 1, 
+                LocationButtonFactory.CreateLocationButton(stack_places, _dataService.places.FirstOrDefault(p => p.place == text), (Style)TryFindResource("ButtonStyle_X"))
+            );
             comboBox.SelectedItem = null;
         }
 
@@ -179,7 +184,7 @@ namespace college_events_desktop.View.Layers.Events
                 combobox_event_direction.SelectedItem = _Event.categoryName;
 
                 // добавление мест проведения мероприятия (именно что кнопок - конкретно зафиксированных мест для мероприятия)
-                _Event.locations.ForEach(location => stack_places.Children.Insert(stack_places.Children.Count - 1, CreateLocationButton(location)));
+                _Event.locations.ForEach(location => stack_places.Children.Insert(stack_places.Children.Count - 1, LocationButtonFactory.CreateLocationButton(stack_places, location, (Style)TryFindResource("ButtonStyle_X"), true)));
 
                 //подгрузка информации из БД
                 await _dataService.LoadGroupsListAsync();
@@ -232,7 +237,6 @@ namespace college_events_desktop.View.Layers.Events
             });
         }
 
-        //TODO: CODE REVEAL: поместить в отдельный класс
         /// <summary>
         /// Метод, позволяющий из строки ФИО (ПОРЯДОК ПОЛНОГО ИМЕНИ ОБЯЗАТЕЛЕН ЧЕРЕЗ ПРОБЕЛ) определить ID организатора в БД
         /// </summary>
@@ -254,7 +258,6 @@ namespace college_events_desktop.View.Layers.Events
             }
         }
 
-        //TODO: CODE REVEAL: поместить в отдельный класс
         /// <summary>
         /// Метод, позволяющий из строки с наименованием категории (направления) определить ID в БД
         /// </summary>
@@ -263,33 +266,6 @@ namespace college_events_desktop.View.Layers.Events
         private int GetCategoryId(string content)
         {
             return _dataService.categories.Find(c => c.name == content).categoryId;
-        }
-
-
-        //TODO: CODE REVEAL: поместить в отдельный класс
-        /// <summary>
-        /// метод для создания кнопки с локацией. НЕ УНИВЕРСАЛЬНЫЙ! НЕ ПОДХОДИТ ДЛЯ ЛЮБОГО КОНТЕЙНЕРА!
-        /// </summary>
-        /// <param name="location">Класс локации</param>
-        /// <returns>кнопка</returns>
-        private Button CreateLocationButton(Location location)
-        {
-            var btn = new Button()
-            {
-                Tag = location.locationId,
-                Content = location.place,
-                Style = (Style)TryFindResource("ButtonStyle_X"),
-                VerticalAlignment = System.Windows.VerticalAlignment.Center,
-                Padding = new Thickness(5, 1, 5, 1),
-                Margin = new Thickness(5),
-                MinWidth = 80,
-                FontSize = 14,
-                Cursor = System.Windows.Input.Cursors.Hand
-            };
-
-            //не универсальный, потому что событие нажатия строго определено для удаления из stack_places
-            btn.Click += (s, e) => stack_places.Children.Remove(btn);
-            return btn;
         }
         #endregion
 

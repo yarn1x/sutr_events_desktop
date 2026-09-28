@@ -1,4 +1,5 @@
 ﻿using college_events_desktop.DataModels;
+using college_events_desktop.Model;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace college_events_desktop.Model
+namespace college_events_desktop.Services
 {
     /// <summary>
     /// DataService - класс для представления информации, взятой из БД.
@@ -21,7 +22,7 @@ namespace college_events_desktop.Model
         internal string _jwtToken { get; private set; }
 
         /// <summary> Возвращает "Срок годности" токена сессии в минутах </summary>
-        internal int _jwtExpiresIn { get; private set; }
+        internal DateTime _jwtExpiresIn { get; private set; }
 
         /// <summary> Возвращает полученный список мероприятий из БД. Для получения вызвать метод <see cref="LoadEventsAsync"/> </summary>
         public List<Event> events { get; private set; }
@@ -80,7 +81,7 @@ namespace college_events_desktop.Model
             if (response != null)
             {
                 _jwtToken = response.token;
-                _jwtExpiresIn = response.expiresIn;
+                _jwtExpiresIn = response.expiresInUTC;
             }
             apiClient._client.DefaultRequestHeaders.Clear();
             apiClient._client.DefaultRequestHeaders.Add("Authorization", $"Bearer {_jwtToken}");

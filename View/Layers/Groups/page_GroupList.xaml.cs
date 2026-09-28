@@ -83,7 +83,7 @@ namespace college_events_desktop.View.Layers.Groups
             {
                 if (combobox_course.SelectedItem is int course)
                 {
-                    DateTime filterDate = GetFilterDate(course);
+                    DateTime filterDate = AcademicYearCalculatorService.GetGroupStartYearByCourse(course);
                     var filteredList = _dataService.groups.Where(g => g.creationDate.Year == filterDate.Year).ToList();
                     stack_groups.Children = BuildGroupsCards(filteredList);
                 }
@@ -102,18 +102,6 @@ namespace college_events_desktop.View.Layers.Groups
 
 
         #region Методы класса
-        private DateTime GetFilterDate(int course)
-        {
-            //берём настоящее время и вычитаем значение курса = год начала существования группы
-            //+ 4 месяца, что бы фильтр срабатывал не когда приходит новый год,
-            //а когда приходит новый УЧЕБНЫЙ год.
-            //пример: в сентябре 2026, когда 23-КИС-1 уходят уже на 4 курс, программа считывает
-            //год создания группы = 2023-01-01
-            //если не добавлять 4 месяца, фильтр будет думать, что 23-КИС-1 всё ещё на 3 курсе
-            //тк 2026 - 3 = 2023
-            var year = DateTime.Now.AddMonths(4).Year - course;
-            return new DateTime(year, 1, 1);
-        }
 
         private List<UIElement> BuildGroupsCards(List<Group> groups)
         {

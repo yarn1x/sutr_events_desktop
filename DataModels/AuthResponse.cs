@@ -9,6 +9,6 @@ namespace college_events_desktop.DataModels
     public class AuthResponse
     {
         public string token {  get; set; }
-        public int expiresIn { get; set; }
+        public DateTime expiresInUTC { get; set; }
     }
 }

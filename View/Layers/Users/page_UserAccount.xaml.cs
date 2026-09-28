@@ -1,23 +1,12 @@
 ﻿using college_events_desktop.DataModels;
 using college_events_desktop.Model;
 using college_events_desktop.Services;
-using college_events_desktop.View.Controls.Containers;
 using college_events_desktop.View.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Forms;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace college_events_desktop.View.Layers.Users
 {
@@ -36,7 +25,16 @@ namespace college_events_desktop.View.Layers.Users
         private readonly MainWindow _mainWindow;
         private readonly DataService _dataService;
         private AuthorizedUser _authorizedUser;
+        internal List<Group> _groups;
         #endregion
+
+
+        private void AddGroupTuple()
+        {
+            //var tuple = new control_supervisor_group_tuple(_dataService, this)
+            var tuple = new control_supervisor_group_tuple(this);
+            stack_groups.Children.Add(tuple);
+        }
 
 
         /*
@@ -70,6 +68,18 @@ namespace college_events_desktop.View.Layers.Users
         {
             using (LoadingService.StartLoading())
             {
+                var caughtErrors = new List<(string UserMessage, Exception Ex)>();
+                try
+                {
+                    await _dataService.LoadGroupsListAsync();
+                    _groups = _dataService.groups;
+
+                    //AddGroupTuple();
+                }
+                catch (Exception ex)
+                {
+                    caughtErrors.Add(("ошибка получения списка групп.", ex));
+                }
                 try
                 {
                     await _dataService.LoadRolesListAsync();
@@ -89,7 +99,11 @@ namespace college_events_desktop.View.Layers.Users
                 }
                 catch (Exception ex)
                 {
-                    UserNotificationService.ShowError("Ошибка получения или отображения информации.", ex, "page_UserAccountAA001");
+                    caughtErrors.Add(("ошибка получения/отображения списка ролей.", ex));
+                }
+                if (caughtErrors.Count > 0)
+                {
+                    UserNotificationService.ShowError("Список ошибок:", caughtErrors, "page_UserAccountAA001");
                 }
             }
         }
@@ -97,7 +111,24 @@ namespace college_events_desktop.View.Layers.Users
 
         private void btn_save_Click(object sender, RoutedEventArgs e)
         {
-            UserNotificationService.ShowInformation("Сохранено!", "btn_save_Click()");
+            try
+            {
+                var roles = multicombobox_roles.SelectedItems;
+                if (
+                    stack_groups.Children.Count >= 1
+                    && !roles.OfType<UserType>().Any(role => role.userTypeId == AuthorizedUserConstants.supervisorTypeId))
+                {
+                    UserNotificationService.ShowWarning("Вы прикрепили группу или несколько групп, но не присвоили роль куратора.\nПрисвойте роль куратора для продолжения.");
+                }
+                else
+                {
+                    UserNotificationService.ShowInformation("Сохранено!", "btn_save_Click()");
+                }
+            }
+            catch (Exception ex)
+            {
+                UserNotificationService.ShowError("Ошибка сохранения", ex, "page_UserAccountAA002");
+            }
         }
         #endregion
 
@@ -136,6 +167,18 @@ namespace college_events_desktop.View.Layers.Users
         {
             using (LoadingService.StartLoading())
             {
+                var caughtErrors = new List<(string UserMessage, Exception Ex)>();
+                try
+                {
+                    await _dataService.LoadGroupsListAsync();
+                    _groups = _dataService.groups;
+
+                    AddGroupTuple();
+                }
+                catch (Exception ex)
+                {
+                    caughtErrors.Add(($"произошла ошибка при получении списка групп.", ex));
+                }
                 try
                 {
                     await _dataService.LoadRolesListAsync();
@@ -143,13 +186,35 @@ namespace college_events_desktop.View.Layers.Users
                 }
                 catch (Exception ex)
                 {
-                    UserNotificationService.ShowError("Ошибка получения или отображения информации.", ex, "page_UserAccountAA001");
+                    caughtErrors.Add(("ошибка получения списка ролей.", ex));
                 }
+                if (caughtErrors.Count > 0)
+                {
+                    UserNotificationService.ShowError("Список ошибок:", caughtErrors, "page_UserAccountAA001");
+                }
+                
             }
         }
         private void btn_create_account_Click(object sender, RoutedEventArgs e)
         {
-            UserNotificationService.ShowInformation("Создан новый аккаунт!", "btn_create_account_Click");
+            try
+            {
+                var roles = multicombobox_roles.SelectedItems;
+                if (
+                    stack_groups.Children.Count >= 1 
+                    && !roles.OfType<UserType>().Any(role => role.userTypeId == AuthorizedUserConstants.supervisorTypeId))
+                {
+                    UserNotificationService.ShowWarning("Вы прикрепили группу или несколько групп, но не присвоили роль куратора.\nПрисвойте роль куратора для продолжения.");
+                }
+                else
+                {
+                    UserNotificationService.ShowInformation("Создан новый аккаунт!", "btn_create_account_Click");
+                }
+            }
+            catch (Exception ex)
+            {
+                UserNotificationService.ShowError("Ошибка сохранения", ex, "page_UserAccountAA002");
+            }
         }
         #endregion
 

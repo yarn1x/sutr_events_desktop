@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="college_events_desktop.View.Layers.Users.control_supervisor_group_tuple"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:college_events_desktop.View.Layers.Users"
+             mc:Ignorable="d" 
+             Background="Transparent" Margin="0,0,0,10">
+    <StackPanel Orientation="Horizontal" Height="30">
+        <Button x:Name="btn_delete" 
+                Width="23"
+                Height="23" 
+                Style="{DynamicResource ButtonStyle_X}" 
+                FontSize="20" 
+                VerticalContentAlignment="Center" 
+                HorizontalContentAlignment="Center" 
+                VerticalAlignment="Center" 
+                HorizontalAlignment="Center" 
+                Click="btn_delete_Click" 
+                Content="×" 
+                Padding="1,-5,1,1"/>
+
+        <TextBlock Text="Группа:" 
+                   VerticalAlignment="Center" 
+                   Foreground="Gray" 
+                   Margin="20,0,0,0">
+        </TextBlock>
+        <ComboBox x:Name="combobox_groups"
+                  SelectedIndex="0" 
+                  VerticalContentAlignment="Center" 
+                  Margin="10,0,0,0" 
+                  Style="{DynamicResource ModernComboBoxStyle}" 
+                  MinWidth="80" 
+                  SelectionChanged="combobox_groups_SelectionChanged" Padding="6,3,45,3"/>
+
+        <TextBlock Text="Кол-во учащихся:" 
+                   VerticalAlignment="Center" 
+                   Margin="20,0,0,0" 
+                   Foreground="Gray">
+        </TextBlock>
+        <TextBox x:Name="edit_dosage" 
+                 Margin="10,0,0,0"
+                 FontSize="14" 
+                 VerticalContentAlignment="Center" 
+                 Padding="2,0,0,0" 
+                 MinWidth="40">
+        </TextBox>
+
+    </StackPanel>
+</UserControl>

@@ -10,12 +10,7 @@ namespace college_events_desktop
 {
     public partial class App : Application
     {
-        //кому не повезло с умением чтения легаси,
-        //пиши на @tgn0sense или открывай обсуждение в репозитории
-        //https://github.com/yarn1x/sutr_events_desktop
-
         
-
 
 
 

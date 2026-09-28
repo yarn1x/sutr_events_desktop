@@ -1,5 +1,6 @@
 ﻿using college_events_desktop.DataModels;
 using college_events_desktop.Model;
+using college_events_desktop.Services;
 using college_events_desktop.View.Controls;
 using System;
 using System.Collections.Generic;
@@ -66,7 +67,7 @@ namespace college_events_desktop.View.Layers.Events.Tables
             }
             catch (Exception ex)
             {
-                ShowErrorMessage(ex);
+                UserNotificationService.ShowError("Ошибка загрузки зарегистрированных групп на мероприятие.", ex, "page_table_EventGroup_editAA001");
             }
         }
 
@@ -106,22 +107,6 @@ namespace college_events_desktop.View.Layers.Events.Tables
             stack_table_rows.Children.Clear();
             var loadingElement = new loading_interface();
             loadingElement.AddInterfaceToContainer(stack_table_rows, new Thickness(0, 10, 0, 0));
-        }
-
-        private void ShowErrorMessage(Exception ex)
-        {
-            // Логируем ошибку для отладки
-            Debug.WriteLine($"Error in page_table_EventGroup_edit: {ex.Message}");
-
-            var messageText = new TextBlock()
-            {
-                Text = $"Ошибка получения списка групп.\n\nCode=page_table_EventGroup_editAA001",
-                TextAlignment = TextAlignment.Center,
-                Margin = new Thickness(0, 10, 0, 0)
-            };
-
-            stack_table_rows.Children.Clear();
-            stack_table_rows.Children.Add(messageText);
         }
 
         /// <summary>

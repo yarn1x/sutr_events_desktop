@@ -44,7 +44,7 @@
             </ControlTemplate>
 
             <!--ресурсы-->
-            <sys:String x:Key="TextSystemVersion">ver 0.0.8 alpha. UiOAF01</sys:String>
+            <sys:String x:Key="TextSystemVersion">ver 0.0.8 alpha. UiOAF02 fix</sys:String>
 
         </ResourceDictionary>
     </Application.Resources>

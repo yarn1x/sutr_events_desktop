@@ -1,6 +1,7 @@
 ﻿using college_events_desktop.DataModels;
 using college_events_desktop.Model;
 using college_events_desktop.Services;
+using college_events_desktop.View.Helpers;
 using college_events_desktop.View.Layers.Events.Tables;
 using college_events_desktop.View.Windows;
 using System;
@@ -95,32 +96,8 @@ namespace college_events_desktop.View.Layers.Events
         #region Методы класса
         private void LoadInformation()
         {
-            _Event.locations.ForEach(g => stack_places.Children.Add(CreateLocationButton(g)));
+            _Event.locations.ForEach(g => stack_places.Children.Add(LocationButtonFactory.CreateLocationButton(stack_places, g, (Style)TryFindResource("ButtonStyle_X"), false)));
         }
         #endregion
-        
-        
-        
-        //TODO: CODE REVEAL: поместить в отдельный класс
-        private Button CreateLocationButton(Location location)
-        {
-            var btn = new Button()
-            {
-                Tag = location.locationId,
-                Content = location.place,
-                Style = (Style)TryFindResource("ButtonStyle_X"),
-                VerticalAlignment = System.Windows.VerticalAlignment.Center,
-                Padding = new Thickness(5, 1, 5, 1),
-                Margin = new Thickness(5),
-                MinWidth = 80,
-                FontSize = 14,
-                Cursor = System.Windows.Input.Cursors.Hand,
-                IsEnabled = false
-            };
-
-            btn.Click += (s, e) => stack_places.Children.Remove(btn);
-            return btn;
-        }
-
     }
 }

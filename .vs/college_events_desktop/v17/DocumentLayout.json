@@ -1,19 +1,136 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Desktop\\Prog\\\u0421\u0418\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u043F\u0440\u043E\u0433\u0435\u0440\\college_events_desktop\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{86A46AA7-A125-4729-AA8D-B2BA7C293653}|college_events_desktop.csproj|c:\\desktop\\prog\\\u0441\u0438\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u043F\u0440\u043E\u0433\u0435\u0440\\college_events_desktop\\view\\layers\\users\\page_useraccount.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86A46AA7-A125-4729-AA8D-B2BA7C293653}|college_events_desktop.csproj|solutionrelative:view\\layers\\users\\page_useraccount.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86A46AA7-A125-4729-AA8D-B2BA7C293653}|college_events_desktop.csproj|c:\\desktop\\prog\\\u0441\u0438\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u043F\u0440\u043E\u0433\u0435\u0440\\college_events_desktop\\view\\layers\\users\\control_supervisor_group_tuple.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86A46AA7-A125-4729-AA8D-B2BA7C293653}|college_events_desktop.csproj|solutionrelative:view\\layers\\users\\control_supervisor_group_tuple.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86A46AA7-A125-4729-AA8D-B2BA7C293653}|college_events_desktop.csproj|c:\\desktop\\prog\\\u0441\u0438\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u043F\u0440\u043E\u0433\u0435\u0440\\college_events_desktop\\view\\layers\\users\\control_supervisor_group_tuple.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{86A46AA7-A125-4729-AA8D-B2BA7C293653}|college_events_desktop.csproj|solutionrelative:view\\layers\\users\\control_supervisor_group_tuple.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86A46AA7-A125-4729-AA8D-B2BA7C293653}|college_events_desktop.csproj|c:\\desktop\\prog\\\u0441\u0438\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u043F\u0440\u043E\u0433\u0435\u0440\\college_events_desktop\\view\\layers\\events\\tables\\table_tuple_eventgroup_edit.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86A46AA7-A125-4729-AA8D-B2BA7C293653}|college_events_desktop.csproj|solutionrelative:view\\layers\\events\\tables\\table_tuple_eventgroup_edit.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86A46AA7-A125-4729-AA8D-B2BA7C293653}|college_events_desktop.csproj|c:\\desktop\\prog\\\u0441\u0438\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u043F\u0440\u043E\u0433\u0435\u0440\\college_events_desktop\\view\\layers\\events\\tables\\page_table_eventgroup_edit.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86A46AA7-A125-4729-AA8D-B2BA7C293653}|college_events_desktop.csproj|solutionrelative:view\\layers\\events\\tables\\page_table_eventgroup_edit.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86A46AA7-A125-4729-AA8D-B2BA7C293653}|college_events_desktop.csproj|c:\\desktop\\prog\\\u0441\u0438\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u043F\u0440\u043E\u0433\u0435\u0440\\college_events_desktop\\view\\layers\\users\\page_useraccount.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{86A46AA7-A125-4729-AA8D-B2BA7C293653}|college_events_desktop.csproj|solutionrelative:view\\layers\\users\\page_useraccount.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{86A46AA7-A125-4729-AA8D-B2BA7C293653}|college_events_desktop.csproj|c:\\desktop\\prog\\\u0441\u0438\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u043F\u0440\u043E\u0433\u0435\u0440\\college_events_desktop\\view\\styles\\buttonstyles.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{86A46AA7-A125-4729-AA8D-B2BA7C293653}|college_events_desktop.csproj|solutionrelative:view\\styles\\buttonstyles.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 377,
-          "SelectedChildIndex": -1,
+          "DockedWidth": 458,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "table_tuple_EventGroup_edit.xaml.cs",
+              "DocumentMoniker": "C:\\Desktop\\Prog\\\u0421\u0418\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u043F\u0440\u043E\u0433\u0435\u0440\\college_events_desktop\\View\\Layers\\Events\\Tables\\table_tuple_EventGroup_edit.xaml.cs",
+              "RelativeDocumentMoniker": "View\\Layers\\Events\\Tables\\table_tuple_EventGroup_edit.xaml.cs",
+              "ToolTip": "C:\\Desktop\\Prog\\\u0421\u0418\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u043F\u0440\u043E\u0433\u0435\u0440\\college_events_desktop\\View\\Layers\\Events\\Tables\\table_tuple_EventGroup_edit.xaml.cs",
+              "RelativeToolTip": "View\\Layers\\Events\\Tables\\table_tuple_EventGroup_edit.xaml.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-28T15:27:58.98Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ButtonStyles.xaml",
+              "DocumentMoniker": "C:\\Desktop\\Prog\\\u0421\u0418\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u043F\u0440\u043E\u0433\u0435\u0440\\college_events_desktop\\View\\Styles\\ButtonStyles.xaml",
+              "RelativeDocumentMoniker": "View\\Styles\\ButtonStyles.xaml",
+              "ToolTip": "C:\\Desktop\\Prog\\\u0421\u0418\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u043F\u0440\u043E\u0433\u0435\u0440\\college_events_desktop\\View\\Styles\\ButtonStyles.xaml",
+              "RelativeToolTip": "View\\Styles\\ButtonStyles.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-09-28T15:18:37.358Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "page_table_EventGroup_edit.xaml.cs",
+              "DocumentMoniker": "C:\\Desktop\\Prog\\\u0421\u0418\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u043F\u0440\u043E\u0433\u0435\u0440\\college_events_desktop\\View\\Layers\\Events\\Tables\\page_table_EventGroup_edit.xaml.cs",
+              "RelativeDocumentMoniker": "View\\Layers\\Events\\Tables\\page_table_EventGroup_edit.xaml.cs",
+              "ToolTip": "C:\\Desktop\\Prog\\\u0421\u0418\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u043F\u0440\u043E\u0433\u0435\u0440\\college_events_desktop\\View\\Layers\\Events\\Tables\\page_table_EventGroup_edit.xaml.cs",
+              "RelativeToolTip": "View\\Layers\\Events\\Tables\\page_table_EventGroup_edit.xaml.cs",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAmwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-28T15:04:52.086Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "control_supervisor_group_tuple.xaml.cs",
+              "DocumentMoniker": "C:\\Desktop\\Prog\\\u0421\u0418\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u043F\u0440\u043E\u0433\u0435\u0440\\college_events_desktop\\View\\Layers\\Users\\control_supervisor_group_tuple.xaml.cs",
+              "RelativeDocumentMoniker": "View\\Layers\\Users\\control_supervisor_group_tuple.xaml.cs",
+              "ToolTip": "C:\\Desktop\\Prog\\\u0421\u0418\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u043F\u0440\u043E\u0433\u0435\u0440\\college_events_desktop\\View\\Layers\\Users\\control_supervisor_group_tuple.xaml.cs",
+              "RelativeToolTip": "View\\Layers\\Users\\control_supervisor_group_tuple.xaml.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAASwCQAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-28T13:55:42.814Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "control_supervisor_group_tuple.xaml",
+              "DocumentMoniker": "C:\\Desktop\\Prog\\\u0421\u0418\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u043F\u0440\u043E\u0433\u0435\u0440\\college_events_desktop\\View\\Layers\\Users\\control_supervisor_group_tuple.xaml",
+              "RelativeDocumentMoniker": "View\\Layers\\Users\\control_supervisor_group_tuple.xaml",
+              "ToolTip": "C:\\Desktop\\Prog\\\u0421\u0418\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u043F\u0440\u043E\u0433\u0435\u0440\\college_events_desktop\\View\\Layers\\Users\\control_supervisor_group_tuple.xaml",
+              "RelativeToolTip": "View\\Layers\\Users\\control_supervisor_group_tuple.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-09-28T13:45:36.402Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "page_UserAccount.xaml.cs",
+              "DocumentMoniker": "C:\\Desktop\\Prog\\\u0421\u0418\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u043F\u0440\u043E\u0433\u0435\u0440\\college_events_desktop\\View\\Layers\\Users\\page_UserAccount.xaml.cs",
+              "RelativeDocumentMoniker": "View\\Layers\\Users\\page_UserAccount.xaml.cs",
+              "ToolTip": "C:\\Desktop\\Prog\\\u0421\u0418\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u043F\u0440\u043E\u0433\u0435\u0440\\college_events_desktop\\View\\Layers\\Users\\page_UserAccount.xaml.cs",
+              "RelativeToolTip": "View\\Layers\\Users\\page_UserAccount.xaml.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAAgwMwAAAB5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-28T14:16:10.764Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "page_UserAccount.xaml",
+              "DocumentMoniker": "C:\\Desktop\\Prog\\\u0421\u0418\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u043F\u0440\u043E\u0433\u0435\u0440\\college_events_desktop\\View\\Layers\\Users\\page_UserAccount.xaml",
+              "RelativeDocumentMoniker": "View\\Layers\\Users\\page_UserAccount.xaml",
+              "ToolTip": "C:\\Desktop\\Prog\\\u0421\u0418\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u043F\u0440\u043E\u0433\u0435\u0440\\college_events_desktop\\View\\Layers\\Users\\page_UserAccount.xaml",
+              "RelativeToolTip": "View\\Layers\\Users\\page_UserAccount.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-09-28T13:09:29.999Z",
+              "EditorCaption": ""
             }
           ]
         },

@@ -118,6 +118,32 @@ namespace college_events_desktop.View.Layers.Users
 
             _Stack.Children = BuildUsersCards(sortedList);
         }
+
+
+
+        private void combobox_course_filter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                if (combobox_course_filter.SelectedItem is int course)
+                {
+                    DateTime filterDate = AcademicYearCalculatorService.GetGroupStartYearByCourse(course);
+                    var filteredList = _dataService.authorizedUsers
+                        .Where(user => user.supervisorGroups != null)
+                        .Where(g => g.supervisorGroups.Any(cd => cd.creationDate.Year == filterDate.Year))
+                        .ToList();
+                    _Stack.Children = BuildUsersCards(filteredList);
+                }
+                else if (combobox_course_filter.SelectedItem is string)
+                {
+                    _Stack.Children = BuildUsersCards(_dataService.authorizedUsers);
+                }
+            }
+            catch (Exception ex)
+            {
+                UserNotificationService.ShowError("Ошибка применения фильтра по курсу группы", ex, "page_GroupListAA002");
+            }
+        }
         #endregion
 
 
@@ -185,5 +211,6 @@ namespace college_events_desktop.View.Layers.Users
             _Stack.Children = BuildUsersCards(sortedList);
         }
         #endregion
+
     }
 }

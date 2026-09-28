@@ -76,7 +76,7 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <TextBlock FontSize="14">Логин <Run Text="*" Foreground="Red" FontWeight="Bold"/></TextBlock>
-                    <TextBox x:Name="edit_login" Text="{Binding Login}" Grid.Column="1"/>
+                    <TextBox x:Name="edit_login" Text="{Binding login}" Grid.Column="1"/>
                 </Grid>
                 <Grid Margin="0,30,0,0">
                     <Grid.ColumnDefinitions>
@@ -108,7 +108,7 @@
 
                 <Border Margin="0,20,0,20" Height="2" Background="#FFCECECE"/>
 
-                <Grid Margin="0,30,0,0">
+                <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.3*"/>
                         <ColumnDefinition/>
@@ -116,6 +116,13 @@
                     <TextBlock FontSize="14" VerticalAlignment="Center">Роли <Run Text="*" Foreground="Red" FontWeight="Bold"/></TextBlock>
                     <container:MultiComboBox x:Name="multicombobox_roles" DisplayMemberPath="typeName" Grid.Column="1"/>
                 </Grid>
+
+                <Border Margin="0,20,0,20" Height="2" Background="#FFCECECE"/>
+                
+                <StackPanel x:Name="stack_groups">
+                    <TextBlock Text="Закреплённые группы за куратором" Margin="0,0,0,15"/>
+                    
+                </StackPanel>
                 
             </StackPanel>
         </ScrollViewer>
