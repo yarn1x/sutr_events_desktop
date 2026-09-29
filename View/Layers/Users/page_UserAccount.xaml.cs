@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace college_events_desktop.View.Layers.Users
 {
@@ -31,7 +32,6 @@ namespace college_events_desktop.View.Layers.Users
 
         private void AddGroupTuple()
         {
-            //var tuple = new control_supervisor_group_tuple(_dataService, this)
             var tuple = new control_supervisor_group_tuple(this);
             stack_groups.Children.Add(tuple);
         }
@@ -74,7 +74,7 @@ namespace college_events_desktop.View.Layers.Users
                     await _dataService.LoadGroupsListAsync();
                     _groups = _dataService.groups;
 
-                    //AddGroupTuple();
+                    AddGroupTuple();
                 }
                 catch (Exception ex)
                 {
@@ -218,8 +218,20 @@ namespace college_events_desktop.View.Layers.Users
         }
         #endregion
 
-
         #region Методы класса
         #endregion
+
+        private void btn_select_image_path_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                avatarImage.Source = ImageService.SelectImage().ImageSource;
+                edit_image_path.Text = avatarImage.Source.ToString();
+            }
+            catch (Exception ex)
+            {
+                UserNotificationService.ShowError("Ошибка выбора изображения.", ex, "page_UserAccountAA003");
+            }
+        }
     }
 }

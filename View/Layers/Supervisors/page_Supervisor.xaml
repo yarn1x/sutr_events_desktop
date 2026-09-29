@@ -1,0 +1,207 @@
+﻿<Page x:Class="college_events_desktop.View.Layers.Supervisors.page_Supervisor"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:college_events_desktop.View.Layers.Supervisors"
+      xmlns:control="clr-namespace:college_events_desktop.View.Controls"
+      mc:Ignorable="d" 
+      d:DesignHeight="900" d:DesignWidth="800"
+      Title="Просмотр статистики куратора"
+      Background="White">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <!--Заголовок-->
+        <Border Background="#FFDDEEFF">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock x:Name="text_header" d:Text="_authorizedUser.surName _authorizedUser.firstName _authorizedUser.lastName" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" FontWeight="Bold" Foreground="#FF666666">
+                    <TextBlock.Text>
+                        <MultiBinding Mode="OneTime" StringFormat="{} {0} {1} {2}">
+                            <Binding Path="surName"/>
+                            <Binding Path="firstName"/>
+                            <Binding Path="lastName"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+                <TextBlock Text=". Просмотр статистики куратора" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" FontWeight="Bold" Foreground="#FF666666"/>
+            </StackPanel>
+        </Border>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Style="{DynamicResource MinimalScrollViewerStyle}" Margin="10,5,10,0">
+            <StackPanel>
+
+                <!--Формы заполнения-->
+                <Border Margin="0,20,0,15" Height="2" Background="#FFDDEEFF"/>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <!--кол-в0 мероприятий-->
+                        <RowDefinition/>
+                        <!--кол-во студентов-->
+                        <RowDefinition/>
+                        <!--кол-во кураторов-->
+                        <RowDefinition/>
+                        <!--группы-->
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.6*"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Border CornerRadius="0, 0, 5, 0" 
+                            BorderThickness="0,0,0,1" 
+                            BorderBrush="#FFABADB3">
+                        <TextBlock Text="Количество мероприятий" 
+                                   VerticalAlignment="Center" 
+                                   HorizontalAlignment="Left" 
+                                   FontSize="18" 
+                                   ToolTip="Количество прошедших мероприятий, которые были предложены данным организатором">
+                        </TextBlock>
+                    </Border>
+                    <TextBox x:Name="edit_events_count" 
+                             IsReadOnly="True" 
+                             Text="{Binding eventsCount}" 
+                             Margin="5" 
+                             Grid.Row="0" 
+                             d:Text="_organizerStatistic.eventsCount" 
+                             VerticalContentAlignment="Center" 
+                             Foreground="#FF666666" 
+                             FontSize="18" 
+                             VerticalAlignment="Center" 
+                             Grid.Column="1">
+                    </TextBox>
+
+                    <Border CornerRadius="0, 0, 5, 0" BorderThickness="0,0,0,1" BorderBrush="#FFABADB3" Grid.Row="1">
+                        <TextBlock Text="Количество направлений мероприятий" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="18" Grid.Row="1"/>
+                    </Border>
+                    <TextBox x:Name="edit_students_count" 
+                             IsReadOnly="True" 
+                             Text="{Binding studentsCount}" 
+                             d:Text="_organizerStatistic.studentsCount" 
+                             FontSize="18" 
+                             Margin="5" 
+                             Grid.Row="1" 
+                             Grid.Column="1" 
+                             VerticalAlignment="Center" 
+                             Foreground="#FF666666" 
+                             VerticalContentAlignment="Center">
+                    </TextBox>
+
+                    <Border CornerRadius="0, 0, 5, 0" 
+                            BorderThickness="0,0,0,1" 
+                            BorderBrush="#FFABADB3" 
+                            Grid.Row="2">
+                        <TextBlock Text="Баллов" 
+                                   VerticalAlignment="Center" 
+                                   HorizontalAlignment="Left" 
+                                   FontSize="18"
+                                   Grid.Row="2">
+                        </TextBlock>
+                    </Border>
+                    <TextBox x:Name="edit_supervisors_count" 
+                             IsReadOnly="True" 
+                             Text="{Binding supervisorsCount}" 
+                             d:Text="_organizerStatistic.supervisorsCount" 
+                             Margin="5" 
+                             Grid.Column="1" 
+                             Grid.Row="2" 
+                             FontSize="18" 
+                             VerticalAlignment="Center" 
+                             Foreground="#FF666666" 
+                             VerticalContentAlignment="Center">
+                    </TextBox>
+
+                    <Border CornerRadius="0, 0, 5, 0" 
+                            BorderThickness="0,0,0,1" 
+                            BorderBrush="#FFABADB3" 
+                            Grid.Row="3">
+                        <TextBlock Text="Группы" 
+                                   VerticalAlignment="Center" 
+                                   HorizontalAlignment="Left" 
+                                   FontSize="18" 
+                                   Grid.Row="2">
+                        </TextBlock>
+                    </Border>
+                    <StackPanel x:Name="stack_groups" 
+                                Grid.Row="3" 
+                                Grid.Column="1">
+                    </StackPanel>
+
+                </Grid>
+
+                <Border Margin="0,20,0,15" 
+                        Height="2" 
+                        Background="#FFDDEEFF">
+                </Border>
+
+
+                <!--область фильтров-->
+                <Border BorderThickness="1" CornerRadius="10" Height="70" BorderBrush="#FF666666" Margin="0,10,0,0" Background="White">
+                    <Grid>
+                        <Border CornerRadius="5" BorderThickness="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Background="White" Margin="10,-9,0,0" Height="20" BorderBrush="#FF666666">
+                            <TextBlock Foreground="#FF666666" FontSize="14" Text="Фильтры" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                        </Border>
+                        <Grid Margin="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <control:SearchBar TextChanged="search_textChanged" 
+                                               Grid.Column="0" 
+                                               Margin="5,0,5,0" 
+                                               VerticalAlignment="Center">
+                            </control:SearchBar>
+
+
+                            <ComboBox x:Name="combobox_categories" 
+                                      Grid.Column="1" 
+							          VerticalAlignment="Center" 
+                                      Margin="5,0,5,0" 
+                                      Cursor="Hand" 
+                                      FontSize="16" 
+                                      SelectionChanged="combobox_categories_SelectionChanged" 
+                                      ToolTip="Поиск по направлению" 
+                                      Style="{DynamicResource ModernComboBoxStyle}" 
+                                      Height="30">
+                            </ComboBox>
+
+                        </Grid>
+                    </Grid>
+                </Border>
+
+
+                <Border Margin="0,20,0,15" Height="2" Background="#FFDDEEFF"/>
+
+                <TextBlock Text="Прошедшие мероприятия" FontSize="16" FontWeight="Bold" Foreground="#FF666666"/>
+                <DataGrid x:Name="datagrid_events" AutoGenerateColumns="False"  Margin="0,10,0,0" Style="{DynamicResource CustomDataGridStyle}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="*" Header="Группа" Binding="{Binding groupName}" CanUserSort="False" CanUserResize="True"/>
+                        <DataGridTextColumn Width="*" Header="Мероприятие" Binding="{Binding title}" CanUserResize="True" CanUserSort="True"/>
+                        <DataGridTextColumn Width="0.3*" Header="Слушатели" Binding="{Binding actualListenersCount}" CanUserSort="True" CanUserResize="True"/>
+                        <DataGridTextColumn Width="0.3*" Header="Участники" Binding="{Binding actualParticipantsCount}" CanUserResize="True" CanUserSort="True"/>
+                        <DataGridTextColumn Width="0.3*" Header="Супер-участники" Binding="{Binding actualSuperParticipantsCount}" CanUserResize="True" CanUserSort="True"/>
+                        <DataGridTextColumn Width="0.3*" Header="Общий балл" Binding="{Binding totalScore}" CanUserResize="True" CanUserSort="True"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </ScrollViewer>
+
+
+
+        <!--Навигация-->
+        <StackPanel x:Name="stack_nav" Margin="5" Orientation="Horizontal" Grid.Row="2">
+            <Button x:Name="btn_export" Style="{DynamicResource ButtonStyle_accent}" Width="140" FontSize="14" Content="Экспорт" Margin="10,0,0,0"/>
+            <Button x:Name="btn_open_diagram" Style="{DynamicResource ButtonStyle_accent}" Width="170" FontSize="14" Content="Показать диаграмму" Margin="10,0,0,0" Background="#FF0070CC"/>
+        </StackPanel>
+    </Grid>
+</Page>

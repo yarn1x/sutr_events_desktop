@@ -102,6 +102,7 @@
     <Compile Include="Model\Constants.cs" />
     <Compile Include="Services\AcademicYearCalculator.cs" />
     <Compile Include="Services\DataService.cs" />
+    <Compile Include="Services\ImageService.cs" />
     <Compile Include="Services\LoadingService.cs" />
     <Compile Include="Services\OverlayService.cs" />
     <Compile Include="Services\UserNotificationService.cs" />
@@ -189,6 +190,9 @@
     </Compile>
     <Compile Include="View\Layers\Settings\page_Settings.xaml.cs">
       <DependentUpon>page_Settings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Layers\Supervisors\page_Supervisor.xaml.cs">
+      <DependentUpon>page_Supervisor.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Layers\Users\control_supervisor_group_tuple.xaml.cs">
       <DependentUpon>control_supervisor_group_tuple.xaml</DependentUpon>
@@ -319,6 +323,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Layers\Settings\page_Settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Layers\Supervisors\page_Supervisor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -500,9 +508,7 @@
     <Resource Include="View\Resources\images\img_ui_copy_feature.png" />
     <Resource Include="View\Resources\images\img_ui_tips.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="View\Layers\Supervisors\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="View\Resources\images\img_ui_tips_2.png" />
   </ItemGroup>

@@ -31,14 +31,14 @@
                 
                 <StackPanel Orientation="Horizontal">
 
-                    <control:AvatarImage Width="90" Height="90"/>
+                    <control:AvatarImage x:Name="avatarImage" Width="90" Height="90"/>
                     <!--<Image x:Name="img_avatar" Source="/View/Resources/images/img_patient.png" Width="100"/>-->
                     
                     <StackPanel VerticalAlignment="Bottom" Margin="10,0,0,0" Width="370">
                         <TextBlock Text="Фото профиля" Margin="0,0,0,20"/>
                         <TextBox x:Name="edit_image_path"/>
                     </StackPanel>
-                    <Button x:Name="btn_select_image_path" VerticalAlignment="Bottom" FontSize="14" Content="Выберете фото" Margin="10,0,0,0" Style="{DynamicResource ButtonStyle_accent}" Padding="6,1,6,2"/>
+                    <Button x:Name="btn_select_image_path" VerticalAlignment="Bottom" FontSize="14" Content="Выберете фото" Margin="10,0,0,0" Style="{DynamicResource ButtonStyle_accent}" Padding="6,1,6,2" Click="btn_select_image_path_Click"/>
                 </StackPanel>
                 
                 <Border Margin="0,20,0,20" Height="2" Background="#FFCECECE"/>

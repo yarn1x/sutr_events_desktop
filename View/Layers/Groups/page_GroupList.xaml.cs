@@ -47,7 +47,6 @@ namespace college_events_desktop.View.Layers.Groups
                 {
                     await _dataService.LoadGroupsListAsync();
                     stack_groups.Children = BuildGroupsCards(_dataService.groups);
-                    combobox_course.SelectionChanged += combobox_course_SelectionChanged;
                 }
                 catch (Exception ex)
                 {
@@ -57,7 +56,6 @@ namespace college_events_desktop.View.Layers.Groups
         }
         private void Page_GroupList_Unloaded(object sender, RoutedEventArgs e)
         {
-            combobox_course.SelectionChanged -= combobox_course_SelectionChanged;
         }
 
 
