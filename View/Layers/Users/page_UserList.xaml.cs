@@ -53,6 +53,7 @@ namespace college_events_desktop.View.Layers.Users
         private async void Page_UserList_Loaded(object sender, RoutedEventArgs e)
         {
             await Update();
+            _mainWindow.Title = StringConstants.mainWindow_Title_UserList;
         }
 
 

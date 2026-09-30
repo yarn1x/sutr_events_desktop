@@ -33,6 +33,8 @@ namespace college_events_desktop.View.Layers.Events
 
         private async void Page_EventList_seeEvent_Loaded(object sender, RoutedEventArgs e)
         {
+            mainWindow.Title = StringConstants.mainWindow_Title_EventSeeStatistic;
+
             try
             {
                 //добавление локаций

@@ -63,6 +63,7 @@ namespace college_events_desktop.View.Layers.Events
         private async void Page_EventList_Loaded(object sender, RoutedEventArgs e)
         {
             await Update(); //каждый раз, когда визуально отрисовывается окно, обновляем страницу
+            mainWindow.Title = StringConstants.mainWindow_Title_EventsList;
         }
 
         //обновление страницы

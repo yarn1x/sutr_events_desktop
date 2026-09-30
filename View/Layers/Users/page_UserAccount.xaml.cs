@@ -66,6 +66,8 @@ namespace college_events_desktop.View.Layers.Users
         #region Обработчики событий
         private async void Page_UserAccount_Loaded(object sender, RoutedEventArgs e)
         {
+            _mainWindow.Title = StringConstants.mainWindow_Title_UserEditAccount;
+
             using (LoadingService.StartLoading())
             {
                 var caughtErrors = new List<(string UserMessage, Exception Ex)>();
@@ -165,6 +167,8 @@ namespace college_events_desktop.View.Layers.Users
         #region Обработчики событий
         private async void Page_NewAccount_Loaded(object sender, RoutedEventArgs e)
         {
+            _mainWindow.Title = StringConstants.mainWindow_Title_UserNewAccount;
+
             using (LoadingService.StartLoading())
             {
                 var caughtErrors = new List<(string UserMessage, Exception Ex)>();
@@ -217,6 +221,7 @@ namespace college_events_desktop.View.Layers.Users
             }
         }
         #endregion
+
 
         #region Методы класса
         #endregion

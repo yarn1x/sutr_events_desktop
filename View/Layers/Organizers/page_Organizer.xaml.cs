@@ -37,6 +37,8 @@ namespace college_events_desktop.View.Layers.Organizers
         #region Обработчики событий
         private async void Page_Organizer_Loaded(object sender, RoutedEventArgs e)
         {
+            _mainWindow.Title = StringConstants.mainWindow_Title_OrganizerSeeStatistic;
+
             using (LoadingService.StartLoading())
             {
                 try

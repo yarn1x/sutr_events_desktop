@@ -162,6 +162,11 @@ namespace college_events_desktop.View.Windows
         }
 
 
+        private void btn_groups_Click(object sender, RoutedEventArgs e)
+        {
+            mainframe.Navigate(groupList);
+        }
+
 
         private void btn_close_overlay_Click(object sender, RoutedEventArgs e)
         {
@@ -230,9 +235,6 @@ namespace college_events_desktop.View.Windows
         }
         #endregion
 
-        private void btn_groups_Click(object sender, RoutedEventArgs e)
-        {
-            mainframe.Navigate(groupList);
-        }
+        
     }
 }

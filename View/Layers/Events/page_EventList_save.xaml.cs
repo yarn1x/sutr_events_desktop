@@ -46,6 +46,7 @@ namespace college_events_desktop.View.Layers.Events
         {
             LoadInformation();
             frame_table.Navigate(_table);
+            mainWindow.Title = StringConstants.mainWindow_Title_EventEditStatistic;
         }
 
         private void goback_Click(object sender, RoutedEventArgs e)

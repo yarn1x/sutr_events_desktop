@@ -94,6 +94,7 @@ namespace college_events_desktop.View.Layers.Events
             frame_table.Navigate(_table);
             event_status.Background = _Event.statusColor;
             
+            mainWindow.Title = StringConstants.mainWindow_Title_EventEdit;
         }
 
 

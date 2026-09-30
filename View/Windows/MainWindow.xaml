@@ -5,8 +5,7 @@
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:local="clr-namespace:college_events_desktop"
         xmlns:controls="clr-namespace:college_events_desktop.View.Controls"
-		mc:Ignorable="d"
-		Title="Главная - список мероприятий" 
+		mc:Ignorable="d" 
 		Height="768" Width="1366"
 		MinHeight="738" MinWidth="1366"
 		WindowState="Maximized">

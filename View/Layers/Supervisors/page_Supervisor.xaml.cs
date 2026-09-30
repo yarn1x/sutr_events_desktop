@@ -1,4 +1,5 @@
 ﻿using college_events_desktop.DataModels;
+using college_events_desktop.Model;
 using college_events_desktop.Services;
 using college_events_desktop.View.Windows;
 using System;
@@ -43,7 +44,7 @@ namespace college_events_desktop.View.Layers.Supervisors
 
         private void Page_Supervisor_Loaded(object sender, RoutedEventArgs e)
         {
-            
+            _mainWindow.Title = StringConstants.mainWindow_Title_SupervisorSeeStatistic;
         }
 
         private void search_textChanged(object sender, TextChangedEventArgs e)

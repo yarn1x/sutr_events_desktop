@@ -70,4 +70,27 @@ namespace college_events_desktop.Model
         /// </summary>
         public const int organizerTypeId = 3;
     }
+
+    public static class StringConstants
+    {
+        public const string mainWindow_Title_EventsList = "Главное окно - список мероприятий";
+        public const string mainWindow_Title_EventEdit = "Главное окно - редактирование информации о мероприятии";
+        public const string mainWindow_Title_EventEditStatistic = "Главное окно - редактирование статистики посещения мероприятия";
+        public const string mainWindow_Title_EventSeeStatistic = "Главное окно - просмотр статистики посещения мероприятия";
+
+        public const string mainWindow_Title_OrganizerList = "Главное окно - список организаторов";
+        public const string mainWindow_Title_OrganizerSeeStatistic = "Главное окно - просмотр статистики организатора";
+
+
+        public const string mainWindow_Title_GroupList = "Главное окно - список групп";
+        public const string mainWindow_Title_GroupSeeStatistic = "Главное окно - просмотр статистики группы";
+
+        public const string mainWindow_Title_SupervisorList = "Главное окно - список кураторов";
+        public const string mainWindow_Title_SupervisorSeeStatistic = "Главное окно - просмотр статистики куратора";
+
+        public const string mainWindow_Title_UserList = "Главное окно - список пользователей";
+        public const string mainWindow_Title_UserEditAccount = "Главное окно - редактирование информации о пользователе";
+
+        public const string mainWindow_Title_UserNewAccount = "Главное окно - создание нового аккаунта";
+    }
 }
