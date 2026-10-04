@@ -18,53 +18,63 @@ namespace college_events_desktop.Services
         /// <summary> Экземпляр класса для совершения http запросов к серверу </summary>
         internal readonly ApiClient apiClient;
 
+
         /// <summary> Возвращает jwt токен сессии</summary>
         internal string _jwtToken { get; private set; }
+
 
         /// <summary> Возвращает "Срок годности" токена сессии в минутах </summary>
         internal DateTime _jwtExpiresIn { get; private set; }
 
+
         /// <summary> Возвращает полученный список мероприятий из БД. Для получения вызвать метод <see cref="LoadEventsAsync"/> </summary>
         public List<Event> events { get; private set; }
+
 
         /// <summary> Возвращает полученный список направлений из БД. Для получения вызвать метод <see cref="LoadCategoriesAsync"/> </summary>
         public List<Category> categories { get; private set; }
 
+
         /// <summary> Возвращает полученный список организаторов из БД. Для получения вызвать метод <see cref="LoadOrganizerListAsync"/> </summary>
         public List<Organizer> organizers {  get; private set; }
+
 
         /// <summary> Возвращает полученный список всех доступных групп из БД. Для получения вызвать метод <see cref="LoadGroupsListAsync"/> </summary>
         public List<Group> groups { get; private set; }
 
+
         /// <summary> Возвращает полученный список групп зарегистрированных на мероприятие. Для получения вызвать метод <see cref="LoadEventGroupsAsync(int)"/> </summary>
         public List<EventGroups> eventGroups { get; private set; }
+
 
         /// <summary> Возвращает полученный список локаций из БД. Для получения вызвать метод <see cref="LoadPlacesListAsync"/> </summary>
         public List<Location> places { get; private set; }
 
+
         /// <summary> Возвращает полученный список пользователей из БД. Для получения вызвать метод <see cref="LoadUsersListAsync"/> </summary>
         public List<AuthorizedUser> authorizedUsers { get; private set; }
+
 
         /// <summary> Возвращает полученный список ролей из БД. Для получения вызвать метод <see cref="LoadRolesListAsync"/> </summary>
         public List<UserType> roles { get; private set; }
 
-        /// <summary> Возвращает полученную статистическую информацию об организаторской деятельности пользователя из БД. Для получения вызвать метод <see cref="LoadOrganizerStatistic"/> </summary>
+
+        /// <summary> Возвращает полученную статистическую информацию об организаторской деятельности пользователя из БД. Для получения вызвать метод <see cref="LoadOrganizerStatistic(int)"/> </summary>
         public OrganizerStatistic organizerStatistic { get; private set; }
+
+
+        /// <summary> Возвращает полученную статистическую информацию о группе из БД. Для получения вызвать метод <see cref="LoadGroupStatistic(int)"/> </summary>
+        public GroupStatistic groupStatistic { get; private set; }
+
+
+        /// <summary> Возвращает полученную статистическую информацию о группе из БД. Для получения вызвать метод <see cref="LoadGroupStatistic(int)"/> </summary>
+        public SupervisorStatistic supervisorStatistic { get; private set; }
 
 
 
         public DataService(ApiClient apiClient)
         {
             this.apiClient = apiClient;
-            events = new List<Event>();
-            categories = new List<Category>();
-            organizers = new List<Organizer>();
-            groups = new List<Group>();
-            eventGroups = new List<EventGroups>();
-            places = new List<Location>();
-            authorizedUsers = new List<AuthorizedUser>();
-            roles = new List<UserType>();
-            organizerStatistic = new OrganizerStatistic();
         }
 
         #region Методы получения данных
@@ -123,7 +133,14 @@ namespace college_events_desktop.Services
         {
             organizerStatistic = await apiClient.GetOrganizerStatisticAsync(organizerId);
         }
-
+        public async Task LoadGroupStatistic(int groupId)
+        {
+            groupStatistic = await apiClient.GetGroupStatisticAsync(groupId);
+        }
+        public async Task LoadSupervisorStatistic(int supervisorId)
+        {
+            supervisorStatistic = await apiClient.GetSupervisorStatistic(supervisorId);
+        }
 
         #endregion
     }

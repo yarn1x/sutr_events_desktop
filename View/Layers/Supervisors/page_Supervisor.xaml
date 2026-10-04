@@ -83,9 +83,9 @@
                     <Border CornerRadius="0, 0, 5, 0" BorderThickness="0,0,0,1" BorderBrush="#FFABADB3" Grid.Row="1">
                         <TextBlock Text="Количество направлений мероприятий" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="18" Grid.Row="1"/>
                     </Border>
-                    <TextBox x:Name="edit_students_count" 
+                    <TextBox x:Name="edit_categories_count" 
                              IsReadOnly="True" 
-                             Text="{Binding studentsCount}" 
+                             Text="{Binding categoriesCount}" 
                              d:Text="_organizerStatistic.studentsCount" 
                              FontSize="18" 
                              Margin="5" 
@@ -107,9 +107,9 @@
                                    Grid.Row="2">
                         </TextBlock>
                     </Border>
-                    <TextBox x:Name="edit_supervisors_count" 
+                    <TextBox x:Name="edit_totalScore" 
                              IsReadOnly="True" 
-                             Text="{Binding supervisorsCount}" 
+                             Text="{Binding totalScore}" 
                              d:Text="_organizerStatistic.supervisorsCount" 
                              Margin="5" 
                              Grid.Column="1" 
@@ -128,12 +128,13 @@
                                    VerticalAlignment="Center" 
                                    HorizontalAlignment="Left" 
                                    FontSize="18" 
-                                   Grid.Row="2">
+                                   Grid.Row="2" Margin="0,5,0,5">
                         </TextBlock>
                     </Border>
                     <StackPanel x:Name="stack_groups" 
+                                Orientation="Horizontal"
                                 Grid.Row="3" 
-                                Grid.Column="1">
+                                Grid.Column="1" Margin="5,5,0,5">
                     </StackPanel>
 
                 </Grid>

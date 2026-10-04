@@ -236,5 +236,9 @@ namespace college_events_desktop.Model
         internal async Task<List<UserType>> GetListOfRolesAsync() => await GetAsync<List<UserType>>("users/roles");
 
         internal async Task<OrganizerStatistic> GetOrganizerStatisticAsync(int organizerId) => await GetAsync<OrganizerStatistic>($"organizers/{organizerId}/statistic");
+
+        internal async Task<GroupStatistic> GetGroupStatisticAsync(int groupId) => await GetAsync<GroupStatistic>($"groups/{groupId}/statistic");
+
+        internal async Task<SupervisorStatistic> GetSupervisorStatistic(int supervisorId) => await GetAsync<SupervisorStatistic>($"supervisors/{supervisorId}/statistic");
     }
 }

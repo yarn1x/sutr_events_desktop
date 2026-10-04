@@ -93,9 +93,11 @@
     <Compile Include="DataModels\EventGroupsActualAttendances.cs" />
     <Compile Include="DataModels\EvenUpdateDto.cs" />
     <Compile Include="DataModels\Group.cs" />
+    <Compile Include="DataModels\GroupStatistic.cs" />
     <Compile Include="DataModels\Organizer.cs" />
     <Compile Include="DataModels\Location.cs" />
     <Compile Include="DataModels\OrganizerStatistic.cs" />
+    <Compile Include="DataModels\SupervisorStatistic.cs" />
     <Compile Include="DataModels\UserType.cs" />
     <Compile Include="DataModels\Supervisor.cs" />
     <Compile Include="Model\ApiClient.cs" />
