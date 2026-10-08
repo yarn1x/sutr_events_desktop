@@ -9,6 +9,7 @@ namespace college_events_desktop.DataModels
         public int eventId { get; set; }
         public int groupId { get; set; }
         public string name { get; set; }
+        public int studentsCount { get; set; }
         public string supervisorName { get; set; }
         public string supervisorSurname { get; set; }
         public string supervisorLastname { get; set; }

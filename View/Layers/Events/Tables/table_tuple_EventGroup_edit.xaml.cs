@@ -1,5 +1,8 @@
 ﻿using college_events_desktop.DataModels;
+using college_events_desktop.Model;
+using college_events_desktop.Services;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,11 +14,12 @@ namespace college_events_desktop.View.Layers.Events.Tables
     public partial class table_tuple_EventGroup_edit : UserControl
     {
         #region Поля класса
-        page_EventList_edit _page;
-        public EventGroups _group {  get; private set; }
-        page_table_EventGroup_edit _table;
-        #endregion
+        private readonly page_EventList_edit _page;
+        private readonly page_table_EventGroup_edit _table;
+        private bool _isInitialized;
 
+        public EventGroups _group { get; private set; }
+        #endregion
 
         #region Конструктор
         public table_tuple_EventGroup_edit(page_EventList_edit page, EventGroups group, object table)
@@ -24,101 +28,105 @@ namespace college_events_desktop.View.Layers.Events.Tables
             _page = page;
             _group = group;
             _table = table as page_table_EventGroup_edit;
-            Loaded += Table_tuple_EventGroup_edit_Loaded;
+
+            Loaded += OnLoaded;
+            Unloaded += OnUnloaded;
         }
-
         #endregion
-
 
         #region Обработчики событий
 
-        private void combobox_group_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            //Если группы ещё не было выбрано на этом элементе, создаём новый элемент с пустой группой
-            if (text_supervisor_name.Text == "-")
-            {
-                edit_expectedListenersCount.Text = "0";
-                edit_expectedParticipantsCount.Text = "0";
-                edit_expectedSuperParticipantsCount.Text = "0";
-                MouseEnter += UserControl_MouseEnter;
-                MouseLeave += UserControl_MouseLeave;
+            MouseEnter += OnMouseEnter;
+            MouseLeave += OnMouseLeave;
 
-                _table.stack_table_rows.Children.Add(new table_tuple_EventGroup_edit(_page, null, _table));
-            }
+            edit_expectedListenersCount.TextChanged += OnExpectedCountTextChanged;
+            edit_expectedParticipantsCount.TextChanged += OnExpectedCountTextChanged;
+            edit_expectedSuperParticipantsCount.TextChanged += OnExpectedCountTextChanged;
 
-            if (combobox_group.SelectedItem == null) return;
-            
-            //определяем выбранную группу и находим под эту группу куратора
-            string selectedGroup = combobox_group.SelectedItem.ToString();
-            text_supervisor_name.Text = GetSupervisor(selectedGroup);
-            
-            //изменяем тэг, внутри которого находится Id группы (это нужно для отправки запроса на сохранение)
-            //тэг этого элемента используется для чтения в обработчике события клика кнопки "Сохранить"
-            _group = new EventGroups()
-            {
-                groupId = _table._groups.Where(n => n.groupName == selectedGroup).FirstOrDefault().groupId,
-            };
-            Tag = _group;
-            text_score.Text = Tag.ToString();
-        }
-
-
-        private void Table_tuple_EventGroup_edit_Loaded(object sender, RoutedEventArgs e)
-        {
             if (_group != null)
             {
                 Tag = _group;
                 combobox_group.Text = _group.name;
-                text_supervisor_name.Text = $"{_group.supervisorSurname} {_group.supervisorName} {_group.supervisorLastname}";
+                text_supervisor_name.Text =
+                    $"{_group.supervisorSurname} {_group.supervisorName} {_group.supervisorLastname}";
                 edit_expectedListenersCount.Text = _group.expectedListenersCount.ToString();
                 edit_expectedParticipantsCount.Text = _group.expectedParticipantsCount.ToString();
                 edit_expectedSuperParticipantsCount.Text = _group.expectedSuperParticipantsCount.ToString();
-                text_score.Text = Tag.ToString();
-                MouseEnter += UserControl_MouseEnter;
-                MouseLeave += UserControl_MouseLeave;
             }
+
             LoadGroups();
+            _isInitialized = true;
+
+            RecalculateScore();
         }
 
-
-        private void UserControl_MouseEnter(object sender, MouseEventArgs e)
+        private void OnUnloaded(object sender, RoutedEventArgs e)
         {
-            DoubleAnimation anim = new DoubleAnimation()
+            // Отписываемся, чтобы не держать ссылки
+            MouseEnter -= OnMouseEnter;
+            MouseLeave -= OnMouseLeave;
+            edit_expectedListenersCount.TextChanged -= OnExpectedCountTextChanged;
+            edit_expectedParticipantsCount.TextChanged -= OnExpectedCountTextChanged;
+            edit_expectedSuperParticipantsCount.TextChanged -= OnExpectedCountTextChanged;
+        }
+
+        private void combobox_group_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (combobox_group.SelectedItem == null) return;
+
+            string selectedGroup = combobox_group.SelectedItem.ToString();
+
+            //если это новая (пустая) строка, добавляем ещё одну пустую для следующего выбора
+            if (IsEmptyRow())
+            {
+                AddNewEmptyRow();
+            }
+
+            text_supervisor_name.Text = GetSupervisor(selectedGroup);
+
+            //находим группу и обновляем _group, СОХРАНЯЯ studentsCount
+            var matchedGroup = _table._groups.FirstOrDefault(n => n.groupName == selectedGroup);
+            if (matchedGroup == null) return;
+
+            _group = new EventGroups
+            {
+                groupId = matchedGroup.groupId,
+                name = matchedGroup.groupName,
+                studentsCount = matchedGroup.studentsCount,
+            };
+
+            Tag = _group;
+            RecalculateScore();
+        }
+
+        private void OnMouseEnter(object sender, MouseEventArgs e)
+            => AnimateDeleteButton(20, EasingMode.EaseOut);
+
+        private void OnMouseLeave(object sender, MouseEventArgs e)
+            => AnimateDeleteButton(0, EasingMode.EaseIn);
+
+        private void AnimateDeleteButton(double to, EasingMode easing)
+        {
+            var anim = new DoubleAnimation
             {
                 From = btn_delete_group.Width,
-                To = 20,
+                To = to,
                 Duration = TimeSpan.FromMilliseconds(200),
-                EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseOut }
+                EasingFunction = new QuadraticEase { EasingMode = easing }
             };
             btn_delete_group.BeginAnimation(WidthProperty, anim);
         }
 
-
-
-        private void UserControl_MouseLeave(object sender, MouseEventArgs e)
-        {
-            DoubleAnimation anim = new DoubleAnimation()
-            {
-                From = btn_delete_group.Width,
-                To = 0,
-                Duration = TimeSpan.FromMilliseconds(200),
-                EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseIn }
-            };
-            btn_delete_group.BeginAnimation(WidthProperty, anim);
-        }
-
-
-
-        /// <summary>
-        /// метод удаляет строку из таблицы
-        /// </summary>
         private void btn_delete_group_Click(object sender, RoutedEventArgs e)
         {
-            if (text_supervisor_name.Text == "-")
+            if (IsEmptyRow())
             {
-                MessageBox.Show("Это строка для добавления новой группы. Её нельзя удалить.");
+                UserNotificationService.ShowWarning("Это строка для добавления новой группы. Её нельзя удалить.");
                 return;
             }
+
             var callback = MessageBox.Show(
                 $"Хотите удалить группу {combobox_group.Text} из списка?",
                 "Удаление",
@@ -132,62 +140,126 @@ namespace college_events_desktop.View.Layers.Events.Tables
             }
         }
 
-
-
-        /// <summary>
-        /// метод определяет валидны ли данные в ячейке
-        /// </summary>
         private void edit_expectedCount_Error(object sender, ValidationErrorEventArgs e)
         {
-            //если ошибка валидации данных (допустим отрицательное число или символы недопустимые), то добавляем к счётчику ошибок +1
             if (e.Action == ValidationErrorEventAction.Added)
-            {
                 _page.validation_errors_count++;
-            }
-            //если ошибку исправили, убираем со счётчика -1
             else if (e.Action == ValidationErrorEventAction.Removed)
-            {
                 _page.validation_errors_count--;
-            }
-            //проверка валидности происходит в классе EventGroups (там все условия валидности)
         }
-        
-        #endregion
 
+        /// <summary>
+        /// Один общий обработчик для всех трёх полей количества.
+        /// Пересчитывает балл, не падая на невалидных данных.
+        /// </summary>
+        private void OnExpectedCountTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!_isInitialized) return; // не считаем во время первичной инициализации
+            RecalculateScore();
+        }
+
+        #endregion
 
         #region Методы класса
 
         /// <summary>
-        /// метод служит для того, что бы в новый комбобокс с добавить группы, но только те, которые не были добавлены ранее в другие комбобоксы
+        /// Строка считается "пустой", если куратор не назначен.
         /// </summary>
-        private void LoadGroups()
+        private bool IsEmptyRow()
+            => text_supervisor_name.Text == "-" || string.IsNullOrWhiteSpace(text_supervisor_name.Text);
+
+        private void AddNewEmptyRow()
         {
-            //.OfType<...>() — выбирает из списка элементов только нужные строки таблицы
-            //.Any(...) — проверяет, занято ли уже имя группы в созданных комбобоксах
-            //.Where(...) — фильтрует и оставляет только свободные группы
-            //.ForEach(...) — добавляет каждую оставшуюся группу в ваш новый комбобокс.
-            var groups = _table._groups
-                .Where(g =>
-                    !_table.stack_table_rows.Children.OfType<table_tuple_EventGroup_edit>()
-                    .Any(t => t.combobox_group.Text == g.groupName)
-                )
-                .Select(g => g.groupName);
-            combobox_group.ItemsSource = groups;
+            edit_expectedListenersCount.Text = "0";
+            edit_expectedParticipantsCount.Text = "0";
+            edit_expectedSuperParticipantsCount.Text = "0";
+
+            _table.stack_table_rows.Children.Add(
+                new table_tuple_EventGroup_edit(_page, null, _table));
         }
 
         /// <summary>
-        /// поиск куратора по названию группы
+        /// Безопасно пересчитывает балл мероприятия.
+        /// Не бросает исключений при невалидных значениях — просто пропускает пересчёт.
         /// </summary>
-        /// <param name="groupName">название группы</param>
-        /// <returns>ФИО куратора</returns>
+        private void RecalculateScore()
+        {
+            if (_group == null) return;
+
+            // Парсим значения; при неудаче — не пересчитываем (пользователь ещё вводит)
+            if (!int.TryParse(edit_expectedListenersCount.Text, out int listeners) ||
+                !int.TryParse(edit_expectedParticipantsCount.Text, out int participants) ||
+                !int.TryParse(edit_expectedSuperParticipantsCount.Text, out int superParticipants))
+            {
+                return;
+            }
+
+            // Защита от null в словаре критериев
+            if (!_table._dataService.criteriaDict.TryGetValue(
+                    CriteriaConstants.listener_score_id, out var listenerCriterion) ||
+                !_table._dataService.criteriaDict.TryGetValue(
+                    CriteriaConstants.participant_score_id, out var participantCriterion) ||
+                !_table._dataService.criteriaDict.TryGetValue(
+                    CriteriaConstants.superparticipant_score_id, out var superParticipantCriterion))
+            {
+                UserNotificationService.ShowError(
+                    "Ошибка подсчёта баллов",
+                    new KeyNotFoundException("Не найдены критерии для подсчёта баллов"),
+                    "table_tuple_EventGroup_editAA002");
+                return;
+            }
+
+            try
+            {
+                int studentsCount = _group.studentsCount;
+
+                text_score.Text = GroupScoreService.GetGroupScore(
+                    listeners,
+                    participants,
+                    superParticipants,
+                    listenerCriterion,
+                    participantCriterion,
+                    superParticipantCriterion,
+                    studentsCount
+                ).ToString();
+            }
+            catch (Exception ex)
+            {
+                UserNotificationService.ShowError(
+                    "Ошибка подсчёта баллов", ex, "table_tuple_EventGroup_editAA001");
+            }
+        }
+
+        /// <summary>
+        /// Загружает в комбобокс только те группы, которые ещё не выбраны в других строках.
+        /// </summary>
+        private void LoadGroups()
+        {
+            var usedGroups = _table.stack_table_rows.Children
+                .OfType<table_tuple_EventGroup_edit>()
+                .Where(t => !ReferenceEquals(t, this))
+                .Select(t => t.combobox_group.Text)
+                .ToHashSet();
+
+            combobox_group.ItemsSource = _table._groups
+                .Select(g => g.groupName)
+                .Where(name => !usedGroups.Contains(name))
+                .ToList();
+        }
+
+        /// <summary>
+        /// Поиск куратора по названию группы.
+        /// </summary>
         public string GetSupervisor(string groupName)
         {
-            if (string.IsNullOrEmpty(groupName)) return "Куратор не указан";
+            if (string.IsNullOrEmpty(groupName))
+                return "Куратор не указан";
 
             return _table.GroupSupervisor.TryGetValue(groupName, out string supervisor)
                 ? supervisor
                 : "Куратор не назначен";
         }
+
         #endregion
     }
 }

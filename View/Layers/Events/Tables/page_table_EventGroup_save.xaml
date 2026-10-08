@@ -98,12 +98,8 @@
             </Border>
             
         </Grid>
-
-        
-        
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden">
-            <StackPanel x:Name="stack_table_rows"/>
-        </ScrollViewer>
+    
+        <StackPanel x:Name="stack_table_rows" Grid.Row="1"/>
 
     </Grid>
 </Page>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.Design;
 
 namespace college_events_desktop.Model
 {
@@ -92,5 +93,12 @@ namespace college_events_desktop.Model
         public const string mainWindow_Title_UserEditAccount = "Главное окно - редактирование информации о пользователе";
 
         public const string mainWindow_Title_UserNewAccount = "Главное окно - создание нового аккаунта";
+    }
+
+    public static class CriteriaConstants
+    {
+        public const int listener_score_id = 1;
+        public const int participant_score_id = 2;
+        public const int superparticipant_score_id = 3;
     }
 }

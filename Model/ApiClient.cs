@@ -240,5 +240,7 @@ namespace college_events_desktop.Model
         internal async Task<GroupStatistic> GetGroupStatisticAsync(int groupId) => await GetAsync<GroupStatistic>($"groups/{groupId}/statistic");
 
         internal async Task<SupervisorStatistic> GetSupervisorStatistic(int supervisorId) => await GetAsync<SupervisorStatistic>($"supervisors/{supervisorId}/statistic");
+
+        internal async Task<List<Criterion>> GetCriteriaAsync() => await GetAsync<List<Criterion>>("events/criteria");
     }
 }

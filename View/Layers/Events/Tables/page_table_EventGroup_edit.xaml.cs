@@ -25,11 +25,12 @@ namespace college_events_desktop.View.Layers.Events.Tables
         public List<EventGroups> EventGroups { get => CollectGroupsFromUI(); }
 
         private page_EventList_edit _page;
-        private readonly DataService _dataService;
+        internal readonly DataService _dataService;
         private readonly Event _Event;
         internal List<Group> _groups;
         internal Dictionary<string, string> GroupSupervisor = new Dictionary<string, string>();
 
+        
         #endregion
 
 

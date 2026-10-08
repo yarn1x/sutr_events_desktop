@@ -28,7 +28,7 @@ namespace college_events_desktop.View.Layers.Events.Tables
         public List<EventGroupsActualAttendances> EventGroupsActualAttendances { get => CollectGroupsFromUI(); }
 
         private page_EventList_save _page;
-        private readonly DataService _dataService;
+        internal readonly DataService _dataService;
         private readonly Event _Event;
         #endregion
 
@@ -47,23 +47,16 @@ namespace college_events_desktop.View.Layers.Events.Tables
         private async void Page_table_EventGroup_save_Loaded(object sender, RoutedEventArgs e)
         {
             //показываем иконку загрузки, пока не загрузим контент
-            stack_table_rows.Children.Clear();
-            var element = new loading_interface();
-            element.AddInterfaceToContainer(stack_table_rows, new Thickness(0, 10, 0, 0));
-            try //совершаем попытку загрузки информуции
+            using (LoadingService.StartLoading())
             {
-                await LoadInformationAsync();
-            }
-            catch (Exception ex)//при возникновении ошибки, добавим в контейнер таблицы информацию об ошибке
-            {
-                TextBlock MessageText = new TextBlock()
+                try //совершаем попытку загрузки информуции
                 {
-                    Text = $"Ошибка получения списка групп.\n\nMessage={ex.InnerException?.Message ?? ex.Message}\n\nCode=page_table_EventGroup_saveAA001",
-                    TextAlignment = TextAlignment.Center,
-                    Margin = new Thickness(0, 10, 0, 0)
-                };
-                stack_table_rows.Children.Clear();
-                stack_table_rows.Children.Add(MessageText);
+                    await LoadInformationAsync();
+                }
+                catch (Exception ex)//при возникновении ошибки, добавим в контейнер таблицы информацию об ошибке
+                {
+                    UserNotificationService.ShowError("Ошибка получения списка групп.", ex, "page_table_EventGroup_saveAA001");
+                }
             }
         }
         #endregion
@@ -94,7 +87,8 @@ namespace college_events_desktop.View.Layers.Events.Tables
                         eventGroupId = (int)child.Tag,
                         actualListenersCount = SafeParseInt(child.edit_actualListenersCount.Text),
                         actualParticipantsCount = SafeParseInt(child.edit_actualParticipantsCount.Text),
-                        actualSuperParticipantsCount = SafeParseInt(child.edit_actualSuperParticipantsCount.Text)
+                        actualSuperParticipantsCount = SafeParseInt(child.edit_actualSuperParticipantsCount.Text),
+                        totalScore = SafeParseInt(child.text_score.Text),
                     })
                     .ToList();
             }
@@ -124,10 +118,10 @@ namespace college_events_desktop.View.Layers.Events.Tables
                 //добавление зарегистрированных групп в контейнер
                 foreach (var group in groupsList)
                 {
-                    stack_table_rows.Children.Add(new table_tuple_EventGroup_save(_page, group, this));
+                    stack_table_rows.Children.Add(new table_tuple_EventGroup_save(_page, group, this, false));
                 }
                 //добавление в конец списка групп пустую строчку (для добавления новых групп).
-                stack_table_rows.Children.Add(new table_tuple_EventGroup_save(_page, null, this));
+                stack_table_rows.Children.Add(new table_tuple_EventGroup_save(_page, null, this, false));
                 //TODO: SAVE сделать активную пустую строчку после списка /\ (по требованию заказчика)
 
                 //TIP: если такая надобность возникнет, помимо запроса к API college/admin/events/{EventId}/statistics (изменение записей в actual_attendances)

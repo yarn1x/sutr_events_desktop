@@ -63,9 +63,17 @@ namespace college_events_desktop.View.Windows
 
         #region Обработчики событий
 
-        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
 		{
 			mainframe.Navigate(eventList);
+            try
+            {
+                await _dataService.LoadCriteriaAsync();
+            }
+            catch (Exception ex)
+            {
+                UserNotificationService.ShowError("Ошибка получения данных.", ex, "MainWindowAA001");
+            }
         }
 
 

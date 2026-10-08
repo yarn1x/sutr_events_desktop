@@ -31,6 +31,13 @@ namespace college_events_desktop.Services
         public List<Event> events { get; private set; }
 
 
+        /// <summary> Возвращает полученный список критериев оценивания групп на мероприятии. Для получения вызвать метод <see cref="LoadCriteriaAsync"/> </summary>
+        public List<Criterion> criteria { get; private set; }
+
+
+        public Dictionary<int, int> criteriaDict { get; private set; } = new Dictionary<int, int>();
+
+
         /// <summary> Возвращает полученный список направлений из БД. Для получения вызвать метод <see cref="LoadCategoriesAsync"/> </summary>
         public List<Category> categories { get; private set; }
 
@@ -100,6 +107,14 @@ namespace college_events_desktop.Services
         public async Task LoadEventsAsync()
         {    
             events = await apiClient.GetAllEventsAsync();
+        }
+        public async Task LoadCriteriaAsync()
+        {
+            criteria = await apiClient.GetCriteriaAsync();
+            foreach (var e in criteria)
+            {
+                criteriaDict.Add(e.criterionId, e.score);
+            }
         }
         public async Task LoadCategoriesAsync()
         {

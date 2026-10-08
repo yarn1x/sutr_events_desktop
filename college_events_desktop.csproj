@@ -88,6 +88,7 @@
     <Compile Include="DataModels\AuthorizedUser.cs" />
     <Compile Include="DataModels\AuthResponse.cs" />
     <Compile Include="DataModels\Category.cs" />
+    <Compile Include="DataModels\Criteria.cs" />
     <Compile Include="DataModels\Event.cs" />
     <Compile Include="DataModels\EventGroups.cs" />
     <Compile Include="DataModels\EventGroupsActualAttendances.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="Model\Constants.cs" />
     <Compile Include="Services\AcademicYearCalculator.cs" />
     <Compile Include="Services\DataService.cs" />
+    <Compile Include="Services\GroupScoreService.cs" />
     <Compile Include="Services\ImageService.cs" />
     <Compile Include="Services\LoadingService.cs" />
     <Compile Include="Services\OverlayService.cs" />

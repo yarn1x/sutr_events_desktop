@@ -118,7 +118,7 @@ namespace college_events_desktop.View.Layers.Events
             stack_places.Children.Insert
             (
                 stack_places.Children.Count - 1, 
-                LocationButtonFactory.CreateLocationButton(stack_places, _dataService.places.FirstOrDefault(p => p.place == text), (Style)TryFindResource("ButtonStyle_X"))
+                LocationButtonFactory.CreateLocationButton(stack_places, _dataService.places.FirstOrDefault(p => p.place == text), (Style)TryFindResource("ButtonStyle_X"), true)
             );
             comboBox.SelectedItem = null;
         }
