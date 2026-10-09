@@ -108,7 +108,7 @@ namespace college_events_desktop.View.Layers.Groups
             List<UIElement> cards = new List<UIElement>();
             groups.ForEach(group =>
             {
-                var card = new control_group_card(group)
+                var card = new control_group_card(_mainWindow, _dataService, group)
                 {
                     Margin = new Thickness(0, 0, 0, 10)
                 };

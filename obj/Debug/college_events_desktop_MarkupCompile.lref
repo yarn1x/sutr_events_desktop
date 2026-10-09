@@ -9,6 +9,7 @@ FC:\Desktop\Prog\СИстемный прогер\college_events_desktop\View\Con
 FC:\Desktop\Prog\СИстемный прогер\college_events_desktop\View\Controls\events_nav_buttons.xaml;;
 FC:\Desktop\Prog\СИстемный прогер\college_events_desktop\View\Layers\Events\control_event_element.xaml;;
 FC:\Desktop\Prog\СИстемный прогер\college_events_desktop\View\Layers\Groups\control_group_card.xaml;;
+FC:\Desktop\Prog\СИстемный прогер\college_events_desktop\View\Layers\Groups\page_Group.xaml;;
 FC:\Desktop\Prog\СИстемный прогер\college_events_desktop\View\Layers\Groups\page_GroupList.xaml;;
 FC:\Desktop\Prog\СИстемный прогер\college_events_desktop\View\Layers\Organizers\control_organizer_card.xaml;;
 FC:\Desktop\Prog\СИстемный прогер\college_events_desktop\View\Layers\Organizers\page_Organizer.xaml;;
@@ -25,6 +26,8 @@ FC:\Desktop\Prog\СИстемный прогер\college_events_desktop\View\Lay
 FC:\Desktop\Prog\СИстемный прогер\college_events_desktop\View\Layers\Events\page_EventList_save.xaml;;
 FC:\Desktop\Prog\СИстемный прогер\college_events_desktop\View\Layers\Events\page_EventList_seeEvent.xaml;;
 FC:\Desktop\Prog\СИстемный прогер\college_events_desktop\View\Layers\Settings\page_Settings.xaml;;
+FC:\Desktop\Prog\СИстемный прогер\college_events_desktop\View\Layers\Supervisors\page_Supervisor.xaml;;
+FC:\Desktop\Prog\СИстемный прогер\college_events_desktop\View\Layers\Users\control_supervisor_group_tuple.xaml;;
 FC:\Desktop\Prog\СИстемный прогер\college_events_desktop\View\Layers\Users\control_user_card.xaml;;
 FC:\Desktop\Prog\СИстемный прогер\college_events_desktop\View\Layers\Users\page_UserAccount.xaml;;
 FC:\Desktop\Prog\СИстемный прогер\college_events_desktop\View\Layers\Events\Tables\table_tuple_EventGroup_save.xaml;;
@@ -32,6 +35,4 @@ FC:\Desktop\Prog\СИстемный прогер\college_events_desktop\View\Lay
 FC:\Desktop\Prog\СИстемный прогер\college_events_desktop\View\Layers\Users\page_user_navigation_layer.xaml;;
 FC:\Desktop\Prog\СИстемный прогер\college_events_desktop\View\Windows\LoginWindow.xaml;;
 FC:\Desktop\Prog\СИстемный прогер\college_events_desktop\View\Windows\MainWindow.xaml;;
-FC:\Desktop\Prog\СИстемный прогер\college_events_desktop\View\Layers\Users\control_supervisor_group_tuple.xaml;;
-FC:\Desktop\Prog\СИстемный прогер\college_events_desktop\View\Layers\Supervisors\page_Supervisor.xaml;;
 

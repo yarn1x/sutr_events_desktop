@@ -51,7 +51,7 @@ namespace college_events_desktop.View.Layers.Supervisors
             {
                 try
                 {
-                    await _dataService.LoadSupervisorStatistic(_authorizedUser.AuthorizedUserId);
+                    await _dataService.LoadSupervisorStatisticAsync(_authorizedUser.AuthorizedUserId);
                     DataContext = _dataService.supervisorStatistic;
 
                     foreach (var group in _dataService.supervisorStatistic.supervisorGroups)

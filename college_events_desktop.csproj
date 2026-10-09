@@ -147,6 +147,9 @@
     <Compile Include="View\Layers\Groups\control_group_card.xaml.cs">
       <DependentUpon>control_group_card.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Layers\Groups\page_Group.xaml.cs">
+      <DependentUpon>page_Group.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Layers\Groups\page_GroupList.xaml.cs">
       <DependentUpon>page_GroupList.xaml</DependentUpon>
     </Compile>
@@ -263,6 +266,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Layers\Groups\control_group_card.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Layers\Groups\page_Group.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

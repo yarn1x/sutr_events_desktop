@@ -43,7 +43,7 @@ namespace college_events_desktop.View.Layers.Organizers
             {
                 try
                 {
-                    await _dataService.LoadOrganizerStatistic(_authorizedUser.AuthorizedUserId);
+                    await _dataService.LoadOrganizerStatisticAsync(_authorizedUser.AuthorizedUserId);
                     DataContext = _dataService.organizerStatistic;
                     datagrid_events.ItemsSource = _dataService.organizerStatistic.events;
 

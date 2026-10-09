@@ -66,15 +66,15 @@ namespace college_events_desktop.Services
         public List<UserType> roles { get; private set; }
 
 
-        /// <summary> Возвращает полученную статистическую информацию об организаторской деятельности пользователя из БД. Для получения вызвать метод <see cref="LoadOrganizerStatistic(int)"/> </summary>
+        /// <summary> Возвращает полученную статистическую информацию об организаторской деятельности пользователя из БД. Для получения вызвать метод <see cref="LoadOrganizerStatisticAsync(int)"/> </summary>
         public OrganizerStatistic organizerStatistic { get; private set; }
 
 
-        /// <summary> Возвращает полученную статистическую информацию о группе из БД. Для получения вызвать метод <see cref="LoadGroupStatistic(int)"/> </summary>
+        /// <summary> Возвращает полученную статистическую информацию о группе из БД. Для получения вызвать метод <see cref="LoadGroupStatisticAsync(int)"/> </summary>
         public GroupStatistic groupStatistic { get; private set; }
 
 
-        /// <summary> Возвращает полученную статистическую информацию о группе из БД. Для получения вызвать метод <see cref="LoadGroupStatistic(int)"/> </summary>
+        /// <summary> Возвращает полученную статистическую информацию о группе из БД. Для получения вызвать метод <see cref="LoadGroupStatisticAsync(int)"/> </summary>
         public SupervisorStatistic supervisorStatistic { get; private set; }
 
 
@@ -144,15 +144,15 @@ namespace college_events_desktop.Services
         {
             roles = await apiClient.GetListOfRolesAsync();
         }
-        public async Task LoadOrganizerStatistic(int organizerId)
+        public async Task LoadOrganizerStatisticAsync(int organizerId)
         {
             organizerStatistic = await apiClient.GetOrganizerStatisticAsync(organizerId);
         }
-        public async Task LoadGroupStatistic(int groupId)
+        public async Task LoadGroupStatisticAsync(int groupId)
         {
             groupStatistic = await apiClient.GetGroupStatisticAsync(groupId);
         }
-        public async Task LoadSupervisorStatistic(int supervisorId)
+        public async Task LoadSupervisorStatisticAsync(int supervisorId)
         {
             supervisorStatistic = await apiClient.GetSupervisorStatistic(supervisorId);
         }

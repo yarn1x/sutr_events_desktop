@@ -78,7 +78,7 @@ namespace college_events_desktop.View.Layers.Events.Tables
 
             foreach (var group in _groups)
             {
-                var supervisorFullName = $"{group.supervisorSurname} {group.supervisorFirstName} {group.supervisorLastname}";
+                var supervisorFullName = $"{group.supervisorSurname} {group.supervisorFirstname} {group.supervisorLastname}";
                 GroupSupervisor[group.groupName] = supervisorFullName;
             }
         }

@@ -10,7 +10,7 @@ namespace college_events_desktop.DataModels
     {
         public int groupId { get; set; }
         public string groupName { get; set; }
-        public string supervisorFirstName { get; set; }
+        public string supervisorFirstname { get; set; }
         public string supervisorSurname { get; set; }
         public string supervisorLastname { get; set; }
         public string supervisorEmail { get; set; }
@@ -19,5 +19,6 @@ namespace college_events_desktop.DataModels
         public int studentsCount { get; set; }
         public int eventsCount { get; set; }
         public int categoriesCount { get; set; }
+        public int totalScore { get; set; }
     }
 }

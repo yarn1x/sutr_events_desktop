@@ -38,7 +38,7 @@ namespace college_events_desktop.View.Layers.Events
         EventListViewModel viewModel;
         private DataService _dataService;
 
-        
+
         #endregion
 
 

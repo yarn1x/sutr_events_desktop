@@ -48,7 +48,7 @@ namespace college_events_desktop.View.Windows
             organizerList = new page_OrganizerList(this, _dataService);
             groupList = new page_GroupList(this, _dataService);
             userList = new page_UserList(this, _dataService);
-            userAccount = new page_UserAccount(this, _dataService);
+            userAccount = new page_UserAccount(this, _dataService); //конструктор под создание новой учётки
 			events_Nav_Buttons = new events_nav_buttons(this, eventList);
             users_Nav_Buttons = new users_nav_buttons(this, userList, userAccount);
             _overlayService = new OverlayService(this);
