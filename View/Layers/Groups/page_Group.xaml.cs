@@ -89,7 +89,7 @@ namespace college_events_desktop.View.Layers.Groups
             }
             catch (Exception ex)
             {
-                UserNotificationService.ShowError("Ошибка применения поиска по тексту.", ex, "page_OrganizerAA002");
+                UserNotificationService.ShowError("Ошибка применения поиска по тексту.", ex, "page_GroupAA002");
             }
         }
 
@@ -111,7 +111,7 @@ namespace college_events_desktop.View.Layers.Groups
             }
             catch (Exception ex)
             {
-                UserNotificationService.ShowError("Ошибка применения фильтра по направлению (категории).", ex, "page_OrganizerAA003");
+                UserNotificationService.ShowError("Ошибка применения фильтра по направлению (категории).", ex, "page_GroupAA003");
             }
         }
 

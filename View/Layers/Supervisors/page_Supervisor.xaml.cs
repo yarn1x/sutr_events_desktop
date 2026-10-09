@@ -54,6 +54,13 @@ namespace college_events_desktop.View.Layers.Supervisors
                     await _dataService.LoadSupervisorStatisticAsync(_authorizedUser.AuthorizedUserId);
                     DataContext = _dataService.supervisorStatistic;
 
+                    await _dataService.LoadCategoriesAsync();
+                    var categories = new List<string> { "Не выбрано" };
+                    categories.AddRange(_dataService.categories.Select(c => c.name));
+
+                    combobox_categories.ItemsSource = categories;
+                    combobox_categories.SelectedIndex = 0;
+
                     foreach (var group in _dataService.supervisorStatistic.supervisorGroups)
                     {
                         SimpleTextPlaceholder text = new SimpleTextPlaceholder(group.groupName, Colors.White, Color.FromArgb(255, 102, 102, 102), Color.FromRgb(102, 102, 102))
@@ -74,12 +81,41 @@ namespace college_events_desktop.View.Layers.Supervisors
 
         private void search_textChanged(object sender, TextChangedEventArgs e)
         {
-
+            if (!(sender is SearchBar textBox)) return;
+            string searchText = textBox.SearchText.ToLower().Trim();
+            try
+            {
+                datagrid_events.ItemsSource = _dataService.supervisorStatistic.events.Where(ev => 
+                    ev.title.ToLower().Trim().Contains(searchText) 
+                    || ev.groupName.ToLower().Trim().Contains(searchText) 
+                );
+            }
+            catch (Exception ex)
+            {
+                UserNotificationService.ShowError("Ошибка применения поиска по тексту.", ex, "page_SupervisorAA002");
+            }
         }
 
         private void combobox_categories_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (!(sender is ComboBox comboBox)) return;
+            if (comboBox.SelectedIndex == 0)
+            {
+                datagrid_events.ItemsSource = _dataService.supervisorStatistic.events;
+                return;
+            }
 
+            string searchText = comboBox.SelectedItem.ToString() ?? string.Empty;
+            string lowerSearchText = searchText.ToLower().Trim();
+
+            try
+            {
+                datagrid_events.ItemsSource = _dataService.supervisorStatistic.events.Where(ev => ev.categoryName.ToLower().Trim().Contains(lowerSearchText));
+            }
+            catch (Exception ex)
+            {
+                UserNotificationService.ShowError("Ошибка применения фильтра по направлению (категории).", ex, "page_SupervisorAA003");
+            }
         }
     }
 }
