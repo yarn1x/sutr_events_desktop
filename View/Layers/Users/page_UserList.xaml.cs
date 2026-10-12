@@ -7,6 +7,7 @@ using college_events_desktop.View.Windows;
 using college_events_desktop.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -19,9 +20,9 @@ namespace college_events_desktop.View.Layers.Users
     public partial class page_UserList : Page
     {
         #region Поля класса
-        MainWindow _mainWindow;
-        DataService _dataService;
-        double_stack _Stack;
+        private readonly MainWindow _mainWindow;
+        private DataService _dataService;
+        private double_stack _Stack;
 
         private Dictionary<int, bool> filterStates = new Dictionary<int, bool>()
         {
@@ -61,36 +62,75 @@ namespace college_events_desktop.View.Layers.Users
         private void btn_filter_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
-            
+            if (button == null) return;
+
+            // Использование нового сервиса для получения базового белого цвета
+            Color whiteColor = ApplicationResourceService.GetResourceOrDefault("DefaultWhiteColor", Colors.White);
+
             switch (button.Tag)
             {
+                // Происходит при нажатии на кнопку фильтра администратора
                 case AuthorizedUserConstants.administratorTypeId:
-                    _ = filterStates[AuthorizedUserConstants.administratorTypeId]
-                        ? UIAnimations.ChangeColorAsync(button, Color.FromArgb(255, 255, 255, 255), 200, System.Windows.Media.Animation.EasingMode.EaseOut)
-                        : UIAnimations.ChangeColorAsync(button, Color.FromArgb(255, 250, 215, 172), 200, System.Windows.Media.Animation.EasingMode.EaseOut); 
-                    filterStates[AuthorizedUserConstants.administratorTypeId] = !filterStates[AuthorizedUserConstants.administratorTypeId];
-                break;
 
+                    // Находим из ресурсов приложения цвет окрашивания для админа с помощью нового сервиса
+                    Color adminColor = ApplicationResourceService.GetResourceOrDefault("AdministratorColor", Colors.White);
+
+                    // Окрашиваем кнопку в зависимости от статуса фильтра
+                    _ = filterStates[AuthorizedUserConstants.administratorTypeId]
+                        // Если статус активен, и мы на него нажали только что, тогда перекрашиваем в белый (делаем неактивным)
+                        ? UIAnimations.ChangeColorAsync(button, whiteColor, 200, System.Windows.Media.Animation.EasingMode.EaseOut)
+                        // Если статус неактивен, и мы на него только что нажали, тогда делаем активным
+                        : UIAnimations.ChangeColorAsync(button, adminColor, 200, System.Windows.Media.Animation.EasingMode.EaseOut);
+
+                    // Изменяем значение фильтра
+                    filterStates[AuthorizedUserConstants.administratorTypeId] = !filterStates[AuthorizedUserConstants.administratorTypeId];
+                    break;
+
+                // Происходит при нажатии на кнопку фильтра куратора
                 case AuthorizedUserConstants.supervisorTypeId:
+
+                    // Тут всё по аналогии с предыдущим вариантом, только разбил по условиям, т.к. больше действий
                     if (filterStates[AuthorizedUserConstants.supervisorTypeId])
                     {
                         grid_course_filter.Visibility = Visibility.Collapsed;
-                        _ = UIAnimations.ChangeColorAsync(button, Color.FromArgb(255, 255, 255, 255), 200, System.Windows.Media.Animation.EasingMode.EaseOut);
+                        _ = UIAnimations.ChangeColorAsync(button, whiteColor, 200, System.Windows.Media.Animation.EasingMode.EaseOut);
                     }
                     else
                     {
                         grid_course_filter.Visibility = Visibility.Visible;
-                        _ = UIAnimations.ChangeColorAsync(button, Color.FromArgb(255, 225, 213, 231), 200, System.Windows.Media.Animation.EasingMode.EaseOut);
+                        // Получаем цвет куратора через сервис
+                        Color supervisorColor = ApplicationResourceService.GetResourceOrDefault("SupervisorColor", Colors.White);
+                        _ = UIAnimations.ChangeColorAsync(button, supervisorColor, 200, System.Windows.Media.Animation.EasingMode.EaseOut);
                     }
-                    filterStates[AuthorizedUserConstants.supervisorTypeId] = !filterStates[AuthorizedUserConstants.supervisorTypeId];
-                break;
 
+                    filterStates[AuthorizedUserConstants.supervisorTypeId] = !filterStates[AuthorizedUserConstants.supervisorTypeId];
+                    break;
+
+                // Происходит при нажатии на кнопку фильтра организатора
                 case AuthorizedUserConstants.organizerTypeId:
+                    // Получаем цвет организатора через сервис
+                    Color organizerColor = ApplicationResourceService.GetResourceOrDefault("OrganizerColor", Colors.White);
+
+                    // Тут всё по аналогии с предыдущими вариантами
                     _ = filterStates[AuthorizedUserConstants.organizerTypeId]
-                        ? UIAnimations.ChangeColorAsync(button, Color.FromArgb(255, 255, 255, 255), 200, System.Windows.Media.Animation.EasingMode.EaseOut)
-                        : UIAnimations.ChangeColorAsync(button, Color.FromArgb(255, 176, 227, 230), 200, System.Windows.Media.Animation.EasingMode.EaseOut);
+                        ? UIAnimations.ChangeColorAsync(button, whiteColor, 200, System.Windows.Media.Animation.EasingMode.EaseOut)
+                        : UIAnimations.ChangeColorAsync(button, organizerColor, 200, System.Windows.Media.Animation.EasingMode.EaseOut);
+
                     filterStates[AuthorizedUserConstants.organizerTypeId] = !filterStates[AuthorizedUserConstants.organizerTypeId];
-                break;
+                    break;
+
+                // Происходит при нажатии на кнопку фильтра модератора
+                case AuthorizedUserConstants.moderatorTypeId:
+                    // Получаем цвет модератора через сервис
+                    Color moderatorColor = ApplicationResourceService.GetResourceOrDefault("ModeratorColor", Colors.White);
+
+                    // Тут всё по аналогии с предыдущими вариантами
+                    _ = filterStates[AuthorizedUserConstants.moderatorTypeId]
+                        ? UIAnimations.ChangeColorAsync(button, whiteColor, 200, System.Windows.Media.Animation.EasingMode.EaseOut)
+                        : UIAnimations.ChangeColorAsync(button, moderatorColor, 200, System.Windows.Media.Animation.EasingMode.EaseOut);
+
+                    filterStates[AuthorizedUserConstants.moderatorTypeId] = !filterStates[AuthorizedUserConstants.moderatorTypeId];
+                    break;
             }
 
             apply_filters();

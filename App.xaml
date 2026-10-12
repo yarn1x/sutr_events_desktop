@@ -43,8 +43,22 @@
                 </Grid>
             </ControlTemplate>
 
+            
+            
             <!--ресурсы-->
             <sys:String x:Key="TextSystemVersion">ver 0.0.9 alpha. UiOAF03</sys:String>
+
+            <Color x:Key="AdministratorColor">#FFFAD7AC</Color>
+            <Color x:Key="SupervisorColor">#FFE1D5E7</Color>
+            <Color x:Key="OrganizerColor">#FFB0E3E6</Color>
+            <Color x:Key="ModeratorColor">#FFFA9798</Color>
+            <Color x:Key="DefaultWhiteColor">#FFFFFFFF</Color>
+
+            <!-- Кисти для использования на элементах управления -->
+            <SolidColorBrush x:Key="AdministratorBrush" Color="{StaticResource AdministratorColor}"/>
+            <SolidColorBrush x:Key="SupervisorBrush" Color="{StaticResource SupervisorColor}"/>
+            <SolidColorBrush x:Key="OrganizerBrush" Color="{StaticResource OrganizerColor}"/>
+            <SolidColorBrush x:Key="ModeratorBrush" Color="{StaticResource ModeratorColor}"/>
 
         </ResourceDictionary>
     </Application.Resources>

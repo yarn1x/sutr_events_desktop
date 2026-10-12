@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.Design;
+using System.Windows.Media;
 
 namespace college_events_desktop.Model
 {
@@ -70,6 +71,12 @@ namespace college_events_desktop.Model
         /// Уникальный идентификатор для роли организатора
         /// </summary>
         public const int organizerTypeId = 3;
+
+
+        /// <summary>
+        /// Уникальный идентификатор для роли модератора
+        /// </summary>
+        public const int moderatorTypeId = 4;
     }
 
     public static class StringConstants
@@ -81,7 +88,6 @@ namespace college_events_desktop.Model
 
         public const string mainWindow_Title_OrganizerList = "Главное окно - список организаторов";
         public const string mainWindow_Title_OrganizerSeeStatistic = "Главное окно - просмотр статистики организатора";
-
 
         public const string mainWindow_Title_GroupList = "Главное окно - список групп";
         public const string mainWindow_Title_GroupSeeStatistic = "Главное окно - просмотр статистики группы";

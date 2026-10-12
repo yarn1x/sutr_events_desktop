@@ -104,6 +104,7 @@
     <Compile Include="Model\ApiClient.cs" />
     <Compile Include="Model\Constants.cs" />
     <Compile Include="Services\AcademicYearCalculator.cs" />
+    <Compile Include="Services\ApplicationResourceService.cs" />
     <Compile Include="Services\DataService.cs" />
     <Compile Include="Services\GroupScoreService.cs" />
     <Compile Include="Services\ImageService.cs" />

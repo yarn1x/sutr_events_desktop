@@ -27,12 +27,6 @@ namespace college_events_desktop.View.Layers.Users
         DataService _dataService;
         AuthorizedUser _User;
 
-        private Dictionary<int, Color> rolesColors = new Dictionary<int, Color>()
-        {
-            { 1, Color.FromArgb(255, 250, 215, 172)},
-            { 2, Color.FromArgb(255, 225, 213, 231)},
-            { 3, Color.FromArgb(255, 176, 227, 230)},
-        };
 
         public control_user_card(MainWindow mainWindow, DataService dataService, AuthorizedUser user)
         {
@@ -53,13 +47,41 @@ namespace college_events_desktop.View.Layers.Users
             stack_user_roles.Children.Clear();
             foreach (UserUserType role in _User.roles)
             {
-                SimpleTextPlaceholder text = new SimpleTextPlaceholder(role.typeName, rolesColors[role.userTypeId], Colors.Transparent, Color.FromRgb(102, 102, 102))
+                //маппим ID роли на строковый ключ из App.xaml
+                string resourceKey;
+                switch (role.userTypeId)
+                {
+                    case AuthorizedUserConstants.administratorTypeId:
+                        resourceKey = "AdministratorColor";
+                    break;
+                    
+                    case AuthorizedUserConstants.supervisorTypeId:
+                        resourceKey = "SupervisorColor";
+                    break;
+                
+                    case AuthorizedUserConstants.organizerTypeId:
+                        resourceKey = "OrganizerColor";
+                    break;
+                
+                    case AuthorizedUserConstants.moderatorTypeId:
+                        resourceKey = "ModeratorColor";
+                    break;
+                
+                    default:
+                        resourceKey = "DefaultWhiteColor";
+                    break;
+                }
+
+                //достаем цвет через статический метод
+                Color roleColor = ApplicationResourceService.GetResourceOrDefault(resourceKey, Colors.White);
+
+                //создаем элемент
+                SimpleTextPlaceholder text = new SimpleTextPlaceholder(role.typeName, roleColor, Colors.Transparent, Color.FromRgb(102, 102, 102))
                 {
                     Margin = new Thickness(0, 0, 10, 0)
                 };
                 stack_user_roles.Children.Add(text);
             }
-            
         }
 
         private void btn_user_card_Click(object sender, RoutedEventArgs e)
