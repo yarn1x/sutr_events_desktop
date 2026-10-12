@@ -35,23 +35,23 @@
 
                 <TextBlock Text="Цветовые обозначения статусов мероприятия" FontWeight="Bold" HorizontalAlignment="Center" FontSize="18"/>
                 <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
-                    <Border CornerRadius="20" Background="#FFA7A7A7" Width="20" Height="20"/>
+                    <Border CornerRadius="20" Background="{StaticResource EventDoneBrush}" Width="20" Height="20"/>
                     <TextBlock Text="Мероприятие прошло, отчёт составлен" Margin="10,0,0,0" FontSize="14"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                    <Border CornerRadius="20" Background="#FF48AFFF" Width="20" Height="20"/>
+                    <Border CornerRadius="20" Background="{StaticResource EventDoneReportNeededBrush}" Width="20" Height="20"/>
                     <TextBlock Text="Мероприятие прошло, требуется составить отчёт" Margin="10,0,0,0" FontSize="14"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                    <Border CornerRadius="20" Background="#FFFFDD3C" Width="20" Height="20"/>
+                    <Border CornerRadius="20" Background="{StaticResource EventSuggestedBrush}" Width="20" Height="20"/>
                     <TextBlock Text="Предложено новое мероприятие, требуется подтверждение" Margin="10,0,0,0" FontSize="14"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                    <Border CornerRadius="20" Background="#FFFF4949" Width="20" Height="20"/>
+                    <Border CornerRadius="20" Background="{StaticResource EventSuggestedConflictBrush}" Width="20" Height="20"/>
                     <TextBlock Text="Предложено новое мероприятие, в назначенное время уже существует мероприятие" Margin="10,0,0,0" FontSize="14"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                    <Border CornerRadius="20" Background="#FF66FF3D" Width="20" Height="20"/>
+                    <Border CornerRadius="20" Background="{StaticResource EventAppliedBrush}" Width="20" Height="20"/>
                     <TextBlock Margin="10,0,0,0" FontSize="14" Text="Мероприятие согласованно для проведения"></TextBlock>
                 </StackPanel>
 

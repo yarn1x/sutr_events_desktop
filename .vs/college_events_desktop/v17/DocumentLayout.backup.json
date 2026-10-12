@@ -3,24 +3,12 @@
   "WorkspaceRootPath": "C:\\Desktop\\Prog\\\u0421\u0418\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u043F\u0440\u043E\u0433\u0435\u0440\\college_events_desktop\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{86A46AA7-A125-4729-AA8D-B2BA7C293653}|college_events_desktop.csproj|c:\\desktop\\prog\\\u0441\u0438\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u043F\u0440\u043E\u0433\u0435\u0440\\college_events_desktop\\view\\layers\\users\\control_user_card.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86A46AA7-A125-4729-AA8D-B2BA7C293653}|college_events_desktop.csproj|solutionrelative:view\\layers\\users\\control_user_card.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{86A46AA7-A125-4729-AA8D-B2BA7C293653}|college_events_desktop.csproj|c:\\desktop\\prog\\\u0441\u0438\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u043F\u0440\u043E\u0433\u0435\u0440\\college_events_desktop\\view\\layers\\events\\control_event_element.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{86A46AA7-A125-4729-AA8D-B2BA7C293653}|college_events_desktop.csproj|solutionrelative:view\\layers\\events\\control_event_element.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{86A46AA7-A125-4729-AA8D-B2BA7C293653}|college_events_desktop.csproj|c:\\desktop\\prog\\\u0441\u0438\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u043F\u0440\u043E\u0433\u0435\u0440\\college_events_desktop\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{86A46AA7-A125-4729-AA8D-B2BA7C293653}|college_events_desktop.csproj|solutionrelative:app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{86A46AA7-A125-4729-AA8D-B2BA7C293653}|college_events_desktop.csproj|c:\\desktop\\prog\\\u0441\u0438\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u043F\u0440\u043E\u0433\u0435\u0440\\college_events_desktop\\view\\layers\\users\\page_userlist.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86A46AA7-A125-4729-AA8D-B2BA7C293653}|college_events_desktop.csproj|solutionrelative:view\\layers\\users\\page_userlist.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{86A46AA7-A125-4729-AA8D-B2BA7C293653}|college_events_desktop.csproj|c:\\desktop\\prog\\\u0441\u0438\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u043F\u0440\u043E\u0433\u0435\u0440\\college_events_desktop\\services\\applicationresourceservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86A46AA7-A125-4729-AA8D-B2BA7C293653}|college_events_desktop.csproj|solutionrelative:services\\applicationresourceservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{86A46AA7-A125-4729-AA8D-B2BA7C293653}|college_events_desktop.csproj|c:\\desktop\\prog\\\u0441\u0438\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u043F\u0440\u043E\u0433\u0435\u0440\\college_events_desktop\\model\\constants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{86A46AA7-A125-4729-AA8D-B2BA7C293653}|college_events_desktop.csproj|solutionrelative:model\\constants.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 458,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,15 +26,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ApplicationResourceService.cs",
-              "DocumentMoniker": "C:\\Desktop\\Prog\\\u0421\u0418\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u043F\u0440\u043E\u0433\u0435\u0440\\college_events_desktop\\Services\\ApplicationResourceService.cs",
-              "RelativeDocumentMoniker": "Services\\ApplicationResourceService.cs",
-              "ToolTip": "C:\\Desktop\\Prog\\\u0421\u0418\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u043F\u0440\u043E\u0433\u0435\u0440\\college_events_desktop\\Services\\ApplicationResourceService.cs",
-              "RelativeToolTip": "Services\\ApplicationResourceService.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAmwCEAAAAVAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "control_event_element.xaml.cs",
+              "DocumentMoniker": "C:\\Desktop\\Prog\\\u0421\u0418\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u043F\u0440\u043E\u0433\u0435\u0440\\college_events_desktop\\View\\Layers\\Events\\control_event_element.xaml.cs",
+              "RelativeDocumentMoniker": "View\\Layers\\Events\\control_event_element.xaml.cs",
+              "ToolTip": "C:\\Desktop\\Prog\\\u0421\u0418\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u043F\u0440\u043E\u0433\u0435\u0440\\college_events_desktop\\View\\Layers\\Events\\control_event_element.xaml.cs",
+              "RelativeToolTip": "View\\Layers\\Events\\control_event_element.xaml.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAA0wCcAAACAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-12T10:00:16.804Z",
+              "WhenOpened": "2026-10-12T16:04:49.233Z",
               "EditorCaption": ""
             },
             {
@@ -58,46 +46,7 @@
               "ToolTip": "C:\\Desktop\\Prog\\\u0421\u0418\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u043F\u0440\u043E\u0433\u0435\u0440\\college_events_desktop\\App.xaml",
               "RelativeToolTip": "App.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-10-12T09:34:04.226Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "page_UserList.xaml.cs",
-              "DocumentMoniker": "C:\\Desktop\\Prog\\\u0421\u0418\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u043F\u0440\u043E\u0433\u0435\u0440\\college_events_desktop\\View\\Layers\\Users\\page_UserList.xaml.cs",
-              "RelativeDocumentMoniker": "View\\Layers\\Users\\page_UserList.xaml.cs",
-              "ToolTip": "C:\\Desktop\\Prog\\\u0421\u0418\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u043F\u0440\u043E\u0433\u0435\u0440\\college_events_desktop\\View\\Layers\\Users\\page_UserList.xaml.cs",
-              "RelativeToolTip": "View\\Layers\\Users\\page_UserList.xaml.cs",
-              "ViewState": "AgIAACkAAAAAAAAAAAAmwHwAAABFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-12T09:25:09.529Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Constants.cs",
-              "DocumentMoniker": "C:\\Desktop\\Prog\\\u0421\u0418\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u043F\u0440\u043E\u0433\u0435\u0440\\college_events_desktop\\Model\\Constants.cs",
-              "RelativeDocumentMoniker": "Model\\Constants.cs",
-              "ToolTip": "C:\\Desktop\\Prog\\\u0421\u0418\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u043F\u0440\u043E\u0433\u0435\u0440\\college_events_desktop\\Model\\Constants.cs",
-              "RelativeToolTip": "Model\\Constants.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGwAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-12T09:13:05.279Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "control_user_card.xaml.cs",
-              "DocumentMoniker": "C:\\Desktop\\Prog\\\u0421\u0418\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u043F\u0440\u043E\u0433\u0435\u0440\\college_events_desktop\\View\\Layers\\Users\\control_user_card.xaml.cs",
-              "RelativeDocumentMoniker": "View\\Layers\\Users\\control_user_card.xaml.cs",
-              "ToolTip": "C:\\Desktop\\Prog\\\u0421\u0418\u0441\u0442\u0435\u043C\u043D\u044B\u0439 \u043F\u0440\u043E\u0433\u0435\u0440\\college_events_desktop\\View\\Layers\\Users\\control_user_card.xaml.cs",
-              "RelativeToolTip": "View\\Layers\\Users\\control_user_card.xaml.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAcwBwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-12T09:12:34.318Z",
+              "WhenOpened": "2026-10-12T15:51:12.799Z",
               "EditorCaption": ""
             }
           ]

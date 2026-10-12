@@ -31,13 +31,13 @@ namespace college_events_desktop.View.Layers.Events
 		//Сопоставление id статуса с его цветом
 		private Dictionary<int, Color> markerColors = new Dictionary<int, Color>()
 		{
-            {EventConstants.status_suggested_conflict,  Color.FromArgb(0xFF, 0xFF, 0x49, 0x49)}, //красный
-            {EventConstants.status_suggested,			Color.FromArgb(0xFF, 0xFF, 0xDD, 0x3C)}, //жёлтый
-            {EventConstants.status_applied,				Color.FromArgb(0xFF, 0x66, 0xFF, 0x3D)}, //зелёный
-            {EventConstants.status_done_report_needed,	Color.FromArgb(0xFF, 0x48, 0xAF, 0xFF)}, //голубой
-            {EventConstants.status_done,				Color.FromArgb(0xFF, 0xA7, 0xA7, 0xA7)}, //серый
-            {EventConstants.status_rescheduled,			Color.FromArgb(0xFF, 0xA6, 0xFF, 0x7D)}, //перенесено мероприятие (цвет чуть светлее зелёного)
-            {EventConstants.status_rejected,			Color.FromArgb(0xFF, 0x8C, 0x4F, 0x1B)}, //тёмно-оранжевый
+			{EventConstants.status_suggested_conflict,  ApplicationResourceService.GetResource<Color>("EventSuggestedConflictColor")},	//красный
+            {EventConstants.status_suggested,           ApplicationResourceService.GetResource<Color>("EventSuggestedColor")},			//жёлтый
+            {EventConstants.status_applied,             ApplicationResourceService.GetResource<Color>("EventAppliedColor")},			//зелёный
+            {EventConstants.status_done_report_needed,  ApplicationResourceService.GetResource<Color>("EventDoneReportNeededColor")},	//голубой
+            {EventConstants.status_done,                ApplicationResourceService.GetResource<Color>("EventDoneColor")},				//серый
+            {EventConstants.status_rescheduled,         ApplicationResourceService.GetResource<Color>("EventRescheduledColor")},		//перенесено мероприятие (цвет чуть светлее зелёного)
+            {EventConstants.status_rejected,            ApplicationResourceService.GetResource<Color>("EventRejectedColor")},			//тёмно-оранжевый
         };
 
         #endregion

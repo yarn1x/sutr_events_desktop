@@ -86,7 +86,7 @@
                             </Button.ToolTip>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock x:Name="text_filter_gray" Text="Пройдены" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" FontSize="14"/>
-                                <Ellipse Width="10" Height="10" Margin="5,0,0,0" Fill="#FFA7A7A7"/>
+                                <Ellipse Width="10" Height="10" Margin="5,0,0,0" Fill="{StaticResource EventDoneBrush}"/>
                             </StackPanel>
                         </Button>
 
@@ -109,7 +109,7 @@
                             </Button.ToolTip>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock x:Name="text_filter_blue" Text="Составить отчёт" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" FontSize="14"/>
-                                <Ellipse Width="10" Height="10" Margin="5,0,0,0" Fill="#FF48AFFF"/>
+                                <Ellipse Width="10" Height="10" Margin="5,0,0,0" Fill="{StaticResource EventDoneReportNeededBrush}"/>
                             </StackPanel>
                         </Button>
 
@@ -132,7 +132,7 @@
                             </Button.ToolTip>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock x:Name="text_filter_yellow" Text="Новые" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" FontSize="14"/>
-                                <Ellipse Width="10" Height="10" Margin="5,0,0,0" Fill="#FFFFDD3C"/>
+                                <Ellipse Width="10" Height="10" Margin="5,0,0,0" Fill="{StaticResource EventSuggestedBrush}"/>
                             </StackPanel>
                         </Button>
 
@@ -155,7 +155,7 @@
                             </Button.ToolTip>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock x:Name="text_filter_red" Text="Новые конфликтующие" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" FontSize="14"/>
-                                <Ellipse Width="10" Height="10" Margin="5,0,0,0" Fill="#FFFF4949"/>
+                                <Ellipse Width="10" Height="10" Margin="5,0,0,0" Fill="{StaticResource EventSuggestedConflictBrush}"/>
                             </StackPanel>
                         </Button>
 
@@ -179,7 +179,7 @@
                             </Button.ToolTip>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock x:Name="text_filter_green" Text="Согласованные" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" FontSize="14"/>
-                                <Ellipse Width="10" Height="10" Margin="5,0,0,0" Fill="#FF66FF3D"/>
+                                <Ellipse Width="10" Height="10" Margin="5,0,0,0" Fill="{StaticResource EventAppliedBrush}"/>
                             </StackPanel>
                         </Button>
 
@@ -257,32 +257,32 @@
             </Border.RenderTransform>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Grid Background="Transparent" ToolTip="Всего показано мероприятий" Height="23" Width="23" HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="Help">
-                    <Border CornerRadius="10" Width="9" Height="9" Background="#FFA7A7A7" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,9,0"/>
-                    <Border CornerRadius="10" Width="9" Height="9" Background="#FF48AFFF" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="9,0,0,0"/>
-                    <Border CornerRadius="10" Width="9" Height="9" Background="#FF66FF3D" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,3"/>
-                    <Border CornerRadius="10" Width="9" Height="9" Background="#FFFFC700" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,0,3"/>
-                    <Border CornerRadius="10" Width="9" Height="9" Background="#FFFF4949" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+                    <Border CornerRadius="10" Width="9" Height="9" Background="{StaticResource EventDoneBrush}" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,9,0"/>
+                    <Border CornerRadius="10" Width="9" Height="9" Background="{StaticResource EventDoneReportNeededBrush}" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="9,0,0,0"/>
+                    <Border CornerRadius="10" Width="9" Height="9" Background="{StaticResource EventAppliedBrush}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,3"/>
+                    <Border CornerRadius="10" Width="9" Height="9" Background="{StaticResource EventSuggestedBrush}" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,0,3"/>
+                    <Border CornerRadius="10" Width="9" Height="9" Background="{StaticResource EventSuggestedConflictBrush}" VerticalAlignment="Top" HorizontalAlignment="Center"/>
                 </Grid>
                 <TextBlock Text=" : " VerticalAlignment="Center"/>
                 <TextBlock x:Name="text_amount_of_events" Text="0" ToolTip="Всего показано мероприятий" FontSize="14" VerticalAlignment="Center" Cursor="Help"/>
 
-                <Border CornerRadius="10" Margin="40,0,0,0" Width="16" Background="#FFA7A7A7" ToolTip="Мероприятий со статусом &quot;Завершённое мероприятие, отчёт составлен&quot;" Height="16" Cursor="Help"/>
+                <Border CornerRadius="10" Margin="40,0,0,0" Width="16" Background="{StaticResource EventDoneBrush}" ToolTip="Мероприятий со статусом &quot;Завершённое мероприятие, отчёт составлен&quot;" Height="16" Cursor="Help"/>
                 <TextBlock Text=" : " VerticalAlignment="Center"/>
                 <TextBlock x:Name="text_amount_of_gray" Text="0" ToolTip="Мероприятий со статусом &quot;Отчёт составлен&quot;" FontSize="14" VerticalAlignment="Center" Cursor="Help"/>
 
-                <Border CornerRadius="10" Margin="20,0,0,0" Width="16" Background="#FF48AFFF" ToolTip="Мероприятий со статусом &quot;Завершённое мероприятие, требуется составление отчёта&quot;" Height="16" Cursor="Help"/>
+                <Border CornerRadius="10" Margin="20,0,0,0" Width="16" Background="{StaticResource EventDoneReportNeededBrush}" ToolTip="Мероприятий со статусом &quot;Завершённое мероприятие, требуется составление отчёта&quot;" Height="16" Cursor="Help"/>
                 <TextBlock Text=" : " VerticalAlignment="Center"/>
                 <TextBlock x:Name="text_amount_of_blue" Text="0" ToolTip="Мероприятий со статусом &quot;Требуется составление отчёта&quot;" FontSize="14" VerticalAlignment="Center" Cursor="Help"/>
 
-                <Border CornerRadius="10" Margin="20,0,0,0" Width="16" Background="#FF66FF3D" ToolTip="Мероприятий со статусом &quot;Запланированное мероприятие&quot;" Height="16" Cursor="Help"/>
+                <Border CornerRadius="10" Margin="20,0,0,0" Width="16" Background="{StaticResource EventAppliedBrush}" ToolTip="Мероприятий со статусом &quot;Запланированное мероприятие&quot;" Height="16" Cursor="Help"/>
                 <TextBlock Text=" : " VerticalAlignment="Center"/>
                 <TextBlock x:Name="text_amount_of_green" Text="0" ToolTip="Мероприятий со статусом &quot;Запланированное мероприятие&quot;" FontSize="14" VerticalAlignment="Center" Cursor="Help"/>
 
-                <Border CornerRadius="10" Margin="20,0,0,0" Width="16" Background="#FFFFDD3C" ToolTip="Мероприятий со статусом &quot;Предложеное мероприятие&quot;" Height="16" Cursor="Help"/>
+                <Border CornerRadius="10" Margin="20,0,0,0" Width="16" Background="{StaticResource EventSuggestedBrush}" ToolTip="Мероприятий со статусом &quot;Предложеное мероприятие&quot;" Height="16" Cursor="Help"/>
                 <TextBlock Text=" : " VerticalAlignment="Center"/>
                 <TextBlock x:Name="text_amount_of_yellow" Text="0" ToolTip="Мероприятий со статусом &quot;Предложеное мероприятие&quot;" FontSize="14" VerticalAlignment="Center" Cursor="Help"/>
 
-                <Border CornerRadius="10" Margin="20,0,0,0" Width="16" Background="#FFFF4949" ToolTip="Мероприятий со статусом &quot;Предложеное мероприятие, конфликт с другим мероприятием&quot;" Height="16" Cursor="Help"/>
+                <Border CornerRadius="10" Margin="20,0,0,0" Width="16" Background="{StaticResource EventSuggestedConflictBrush}" ToolTip="Мероприятий со статусом &quot;Предложеное мероприятие, конфликт с другим мероприятием&quot;" Height="16" Cursor="Help"/>
                 <TextBlock Text=" : " VerticalAlignment="Center"/>
                 <TextBlock x:Name="text_amount_of_red" Text="0" ToolTip="Мероприятий со статусом &quot;Предложеное мероприятие, конфликт с другим мероприятием&quot;" FontSize="14" VerticalAlignment="Center" Cursor="Help"/>
 

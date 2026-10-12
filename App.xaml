@@ -54,12 +54,26 @@
             <Color x:Key="ModeratorColor">#FFFA9798</Color>
             <Color x:Key="DefaultWhiteColor">#FFFFFFFF</Color>
 
+            <Color x:Key="EventDoneColor">#FFA7A7A7</Color>
+            <Color x:Key="EventDoneReportNeededColor">#FF48AFFF</Color>
+            <Color x:Key="EventAppliedColor">#FF66FF3D</Color>
+            <Color x:Key="EventSuggestedColor">#FFFFDD3C</Color>
+            <Color x:Key="EventSuggestedConflictColor">#FFFF4949</Color>
+            <Color x:Key="EventRescheduledColor">#FF86FF5D</Color>
+            <Color x:Key="EventRejectedColor">#FF8C4F1B</Color>
+
             <!-- Кисти для использования на элементах управления -->
             <SolidColorBrush x:Key="AdministratorBrush" Color="{StaticResource AdministratorColor}"/>
             <SolidColorBrush x:Key="SupervisorBrush" Color="{StaticResource SupervisorColor}"/>
             <SolidColorBrush x:Key="OrganizerBrush" Color="{StaticResource OrganizerColor}"/>
             <SolidColorBrush x:Key="ModeratorBrush" Color="{StaticResource ModeratorColor}"/>
 
+            <SolidColorBrush x:Key="EventDoneBrush" Color="{StaticResource EventDoneColor}"/>
+            <SolidColorBrush x:Key="EventDoneReportNeededBrush" Color="{StaticResource EventDoneReportNeededColor}"/>
+            <SolidColorBrush x:Key="EventAppliedBrush" Color="{StaticResource EventAppliedColor}"/>
+            <SolidColorBrush x:Key="EventSuggestedBrush" Color="{StaticResource EventSuggestedColor}"/>
+            <SolidColorBrush x:Key="EventSuggestedConflictBrush" Color="{StaticResource EventSuggestedConflictColor}"/>
+            
         </ResourceDictionary>
     </Application.Resources>
 </Application>
