@@ -2,6 +2,7 @@
 using college_events_desktop.Services;
 using college_events_desktop.View.Controls;
 using college_events_desktop.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Windows;
 using System.Windows.Controls.Primitives;
@@ -20,10 +21,10 @@ namespace college_events_desktop.View.Windows
 
 
         #region Конструктор
-        public LoginWindow()
+        public LoginWindow(DataService dataService)
         {
             InitializeComponent();
-            _dataService = new DataService(new ApiClient());
+            _dataService = dataService;
         }
         #endregion
 
@@ -47,8 +48,9 @@ namespace college_events_desktop.View.Windows
                     return;
                 }
 
-                new MainWindow(_dataService).Show();
-                Close();
+                var mainWindow = App.Services.GetRequiredService<MainWindow>();
+                mainWindow.Show();
+                this.Close();
             }
             catch (Exception ex)
             {

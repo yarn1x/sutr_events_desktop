@@ -97,8 +97,8 @@ namespace college_events_desktop.Services
             AuthResponse response = await apiClient.LoginAsync(login, password);
             if (response != null)
             {
-                _jwtToken = response.token;
-                _jwtExpiresIn = response.expiresInUTC;
+                _jwtToken = response.accessToken;
+                _jwtExpiresIn = response.accessTokenExpiresInUTC;
             }
             apiClient._client.DefaultRequestHeaders.Clear();
             apiClient._client.DefaultRequestHeaders.Add("Authorization", $"Bearer {_jwtToken}");

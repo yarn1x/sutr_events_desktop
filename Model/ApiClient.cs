@@ -14,18 +14,13 @@ namespace college_events_desktop.Model
     /// </summary>
     public class ApiClient
     {
-        /// <summary>
-        /// Экземпляр класса установки подключения к серверу
-        /// </summary>
-        public readonly HttpClient _client = new HttpClient()
+        public readonly HttpClient _client;
+
+        public ApiClient(HttpClient httpClient)
         {
-            //Базовая строка подключения - строка, которая приписывается ко всем эндпоинтам в начало
-            //BaseAddress = new Uri("http://192.168.1.253:33679/college/admin/")
-            BaseAddress = new Uri("https://localhost:7280/college/admin/")
-        };
+            _client = httpClient;
+        }
         
-
-
 
 
         //УНИВЕРСАЛЬНЫЕ МЕТОДЫ ОТПРАВКИ RESTAPI ЗАПРОСА
@@ -142,6 +137,32 @@ namespace college_events_desktop.Model
             }
             return null;
         }
+
+        public async Task<AuthResponse> RefreshTokenAsync(string refreshToken)
+        {
+            var content = new StringContent(
+                JsonConvert.SerializeObject(new RefreshRequest { refreshToken = refreshToken }),
+                Encoding.UTF8, "application/json");
+
+            var response = await _client.PostAsync("auth/refresh", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var json = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<AuthResponse>(json);
+            }
+            return null;
+        }
+        public void SetAuthorizationHeader(string token)
+        {
+            _client.DefaultRequestHeaders.Authorization =
+                new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+        }
+        public void ClearAuthorizationHeader()
+        {
+            _client.DefaultRequestHeaders.Authorization = null;
+        }
+
 
         /// <summary>
         /// PUT запрос для обновления списка групп, записанных на мероприятие. Метод определяет на стороне сервера какие мероприятия были добавлены, какие изменены, а какие удалены

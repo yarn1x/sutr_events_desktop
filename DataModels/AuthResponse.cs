@@ -8,7 +8,14 @@ namespace college_events_desktop.DataModels
 {
     public class AuthResponse
     {
-        public string token {  get; set; }
-        public DateTime expiresInUTC { get; set; }
+        public string accessToken { get; set; }
+        public string refreshToken { get; set; }
+        public DateTime accessTokenExpiresInUTC { get; set; }
+        public DateTime refreshTokenExpiresInUTC { get; set; }
+    }
+
+    public class RefreshRequest
+    {
+        public string refreshToken { get; set; }
     }
 }

@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:local="clr-namespace:college_events_desktop"
-             xmlns:converter="clr-namespace:college_events_desktop.Converter" 
-             StartupUri="/View/Windows/LoginWindow.xaml">
+             xmlns:converter="clr-namespace:college_events_desktop.Converter">
+    
+    
     <Application.Resources>
         <ResourceDictionary>
             
