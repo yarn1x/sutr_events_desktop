@@ -17,7 +17,6 @@ namespace college_events_desktop
             _provider = provider;
         }
 
-        // Удобный метод для получения сервиса: ServiceLocator.Get<DataService>()
         public static T Get<T>() => _provider.GetRequiredService<T>();
     }
 }

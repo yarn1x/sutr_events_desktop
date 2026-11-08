@@ -13,18 +13,19 @@ namespace college_events_desktop.View.Windows
     public partial class LoginWindow : Window
     {
         #region Поля класса
-        /// <summary>
-        /// Экземпляр класса, предоставляющий доступ к хранимым данным в оперативной памяти
-        /// </summary>
-        DataService _dataService;
+        
+        private readonly ApiClient _apiClient;
+        private readonly SessionService _session;
+
         #endregion
 
 
         #region Конструктор
-        public LoginWindow(DataService dataService)
+        public LoginWindow(ApiClient apiClient, SessionService session)
         {
             InitializeComponent();
-            _dataService = dataService;
+            _apiClient = apiClient;
+            _session = session;
         }
         #endregion
 
@@ -33,31 +34,32 @@ namespace college_events_desktop.View.Windows
         private async void Login_Click(object sender, RoutedEventArgs e)
         {
             btn_login.IsEnabled = false;
-            loading_interface loading_Interface = new loading_interface();
-            loading_Interface.AddInterfaceToContainer(grid_main, new Thickness(0, 90, 0, 0));
-
             try
             {
-                await _dataService.GetSessionToken(edit_login.Text, edit_password.Password);
+                // На шаге 3 мы добавим сюда BCrypt
+                var response = await _apiClient.LoginAsync(edit_login.Text, edit_password.Password);
 
-                if (_dataService._jwtToken == null)
+                if (response == null || string.IsNullOrEmpty(response.accessToken))
                 {
-                    btn_login.IsEnabled = true;
-                    loading_Interface.RemoveInterface(grid_main);
-                    UserNotificationService.ShowWarning("Логин или пароль введён неверно, либо у вас нет прав администратора.");
+                    UserNotificationService.ShowWarning("Неверный логин или пароль.");
                     return;
                 }
 
+                _session.SetSession(response); // Сохраняем токены и данные пользователя
+
+                // Открываем MainWindow через DI
                 var mainWindow = App.Services.GetRequiredService<MainWindow>();
                 mainWindow.Show();
                 this.Close();
             }
             catch (Exception ex)
             {
-                loading_Interface.RemoveInterface(grid_main);
-                UserNotificationService.ShowError("Система не смогла проверить ваши введённые данные. Возможны проблемы с доступом к серверу. Попробуйте позже.", ex, "LoginWindowAA001");
+                UserNotificationService.ShowError("Ошибка авторизации.", ex, "LoginWindowAA001");
             }
-            btn_login.IsEnabled = true;
+            finally
+            {
+                btn_login.IsEnabled = true;
+            }
         }
 
 

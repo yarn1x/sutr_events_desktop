@@ -26,29 +26,33 @@ namespace college_events_desktop
             Services = serviceCollection.BuildServiceProvider();
             ServiceLocator.Initialize(Services);
 
-            // Запуск главного окна входа
             var loginWindow = Services.GetRequiredService<LoginWindow>();
             loginWindow.Show();
         }
 
         private void ConfigureServices(IServiceCollection services)
         {
-            // 1. HttpClient без автоматических хендлеров (пока)
+            //регистрируем Http-клиент, но пока без перехватчика, т.к. он зависит от токен-сервиса
+            services.AddTransient<AuthHeaderHandler>();
+
             services.AddHttpClient<ApiClient>(client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:7280/college/admin/");
+            })
+            .AddHttpMessageHandler<AuthHeaderHandler>(); // Подключаем перехватчик!
+
+            // Отдельный "голый" HttpClient для AuthTokenService, чтобы избежать рекурсии 
+            // (мы же не хотим, чтобы запрос на refresh токен тоже пытался обновить токен)
+            services.AddHttpClient<AuthTokenService>("auth", client =>
             {
                 client.BaseAddress = new Uri("https://localhost:7280/college/admin/");
             });
 
-            // 2. Сервисы
+            services.AddSingleton<SessionService>();
             services.AddSingleton<DataService>();
-            services.AddSingleton<OverlayService>();
 
-            // 3. Окна
             services.AddTransient<LoginWindow>();
             services.AddTransient<MainWindow>();
-
-            // 4. ViewModels (если начнете переводить)
-            // services.AddTransient<EventListViewModel>();
         }
 
 

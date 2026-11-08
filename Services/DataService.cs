@@ -19,14 +19,6 @@ namespace college_events_desktop.Services
         internal readonly ApiClient apiClient;
 
 
-        /// <summary> Возвращает jwt токен сессии</summary>
-        internal string _jwtToken { get; private set; }
-
-
-        /// <summary> Возвращает "Срок годности" токена сессии в минутах </summary>
-        internal DateTime _jwtExpiresIn { get; private set; }
-
-
         /// <summary> Возвращает полученный список мероприятий из БД. Для получения вызвать метод <see cref="LoadEventsAsync"/> </summary>
         public List<Event> events { get; private set; }
 
@@ -86,23 +78,6 @@ namespace college_events_desktop.Services
 
         #region Методы получения данных
 
-        /// <summary>
-        /// Метод, получающий от сервера jwt токен
-        /// </summary>
-        /// <param name="login">логин пользователя</param>
-        /// <param name="password">пароль пользователя</param>
-        /// <returns></returns>
-        public async Task GetSessionToken(string login, string password)
-        {
-            AuthResponse response = await apiClient.LoginAsync(login, password);
-            if (response != null)
-            {
-                _jwtToken = response.accessToken;
-                _jwtExpiresIn = response.accessTokenExpiresInUTC;
-            }
-            apiClient._client.DefaultRequestHeaders.Clear();
-            apiClient._client.DefaultRequestHeaders.Add("Authorization", $"Bearer {_jwtToken}");
-        }
 
         public async Task LoadEventsAsync()
         {    

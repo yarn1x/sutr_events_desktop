@@ -159,12 +159,14 @@
     <Compile Include="ServiceLocator.cs" />
     <Compile Include="Services\AcademicYearCalculator.cs" />
     <Compile Include="Services\ApplicationResourceService.cs" />
+    <Compile Include="Services\AuthHeaderHandler.cs" />
     <Compile Include="Services\AuthTokenService.cs" />
     <Compile Include="Services\DataService.cs" />
     <Compile Include="Services\GroupScoreService.cs" />
     <Compile Include="Services\ImageService.cs" />
     <Compile Include="Services\LoadingService.cs" />
     <Compile Include="Services\OverlayService.cs" />
+    <Compile Include="Services\SessionService.cs" />
     <Compile Include="Services\UserNotificationService.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="ViewModels\EventListViewModel.cs" />
