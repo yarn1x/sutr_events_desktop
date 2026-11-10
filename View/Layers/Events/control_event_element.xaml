@@ -24,7 +24,7 @@
                 <ColumnDefinition Width="0.6*"/>
                 <ColumnDefinition Width="0.8*"/>
                 <ColumnDefinition Width="0.7*"/>
-                <ColumnDefinition Width="190" d:Width="250"/>
+                <ColumnDefinition Width="150" d:Width="200"/>
             </Grid.ColumnDefinitions>
 
 
@@ -36,7 +36,7 @@
                                 <ImageBrush ImageSource="/View/Resources/icons/ico_clone.png"/>
                             </Border.OpacityMask>
                         </Border>
-                        <TextBlock x:Name="text_name" d:Text="title" Text="{Binding title}" TextAlignment="Center" TextTrimming="CharacterEllipsis" TextWrapping="WrapWithOverflow" FontWeight="Bold" FontSize="14" Foreground="Black" HorizontalAlignment="Center" Margin="15,0,0,0"/>
+                        <TextBlock x:Name="text_name" d:Text="title" Text="{Binding title}" TextAlignment="Center" TextTrimming="CharacterEllipsis" FontWeight="Bold" FontSize="14" Foreground="Black" HorizontalAlignment="Center" Margin="15,0,0,0"/>
                     </Grid>
                 </Button>
             </Border>
@@ -49,7 +49,7 @@
                                 <ImageBrush ImageSource="/View/Resources/icons/ico_clone.png"/>
                             </Border.OpacityMask>
                         </Border>
-                        <TextBlock x:Name="text_organizer_name" TextTrimming="CharacterEllipsis" d:Text="organizerSurname organizerName organizerLastname" TextAlignment="Center" VerticalAlignment="Center" TextWrapping="WrapWithOverflow" FontSize="14" HorizontalAlignment="Center" Margin="15,0,0,0" Foreground="Black">
+                        <TextBlock x:Name="text_organizer_name" TextTrimming="CharacterEllipsis" d:Text="organizerSurname organizerName organizerLastname" TextAlignment="Center" VerticalAlignment="Center" FontSize="14" HorizontalAlignment="Center" Margin="15,0,0,0" Foreground="Black">
                             <TextBlock.Text>
                                 <MultiBinding StringFormat="{}{0} {1} {2}">
                                     <Binding Path="organizerSurname"/>
@@ -65,9 +65,9 @@
             <Border BorderBrush="#FFA2A2A2" BorderThickness="0,0,1,0" Grid.Column="2" Padding="5,0,5,0">
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <TextBlock x:Name="text_start_time" d:Text="startDate {ConverterParameter=HH:mm}" Text="{Binding startDateTime, Converter={StaticResource DateTimeConverter}, ConverterParameter=HH:mm}" VerticalAlignment="Center" TextWrapping="WrapWithOverflow" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="text_start_time" d:Text="startDate {ConverterParameter=HH:mm}" Text="{Binding startDateTime, Converter={StaticResource DateTimeConverter}, ConverterParameter=HH:mm}" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center"/>
                     <TextBlock Text=" - " VerticalAlignment="Center" TextWrapping="WrapWithOverflow" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center"/>
-                    <TextBlock x:Name="text_end_time" d:Text="endDate {ConverterParameter=HH:mm}" Text="{Binding endDateTime, Converter={StaticResource DateTimeConverter}, ConverterParameter=HH:mm}" VerticalAlignment="Center" TextWrapping="WrapWithOverflow" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="text_end_time" d:Text="endDate {ConverterParameter=HH:mm}" Text="{Binding endDateTime, Converter={StaticResource DateTimeConverter}, ConverterParameter=HH:mm}" VerticalAlignment="Center" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center"/>
                 </StackPanel>
 
             </Border>
@@ -93,7 +93,7 @@
                                 <ImageBrush ImageSource="/View/Resources/icons/ico_clone.png"/>
                             </Border.OpacityMask>
                         </Border>
-                        <TextBlock x:Name="text_direction" TextTrimming="CharacterEllipsis" d:Text="categoryName" Text="{Binding categoryName}" TextAlignment="Center" VerticalAlignment="Center" TextWrapping="WrapWithOverflow" FontSize="14" HorizontalAlignment="Center" Margin="15,0,0,0" Foreground="Black"/>
+                        <TextBlock x:Name="text_direction" TextTrimming="CharacterEllipsis" d:Text="categoryName" Text="{Binding categoryName}" TextAlignment="Center" VerticalAlignment="Center" FontSize="14" HorizontalAlignment="Center" Margin="15,0,0,0" Foreground="Black"/>
                     </Grid>
                 </Button>
             </Border>
@@ -116,8 +116,8 @@
             <StackPanel Grid.Column="6" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
 
                 <StackPanel x:Name="stack_electoral_buttons" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5,0,5,0" Visibility="Collapsed" d:Visibility="Visible">
-                    <Button x:Name="btn_claim_event" Style="{DynamicResource ButtonStyle_accent}" BorderBrush="{x:Null}" Width="40" Height="40" Margin="0,0,5,0" Cursor="Hand" Click="btn_claim_event_Click">
-                        <Border Background="White" Width="25" Height="25">
+                    <Button x:Name="btn_claim_event" Style="{DynamicResource ButtonStyle_accent}" BorderBrush="{x:Null}" Width="30" Height="30" Margin="0,0,5,0" Cursor="Hand" Click="btn_claim_event_Click">
+                        <Border Background="White" Width="18" Height="18">
                             <Border.OpacityMask>
                                 <ImageBrush ImageSource="/View/Resources/icons/ico_check.png"/>
                             </Border.OpacityMask>
@@ -129,7 +129,12 @@
                             </StackPanel>
                         </Button.ToolTip>
                     </Button>
-                    <Button x:Name="btn_reject_event" Style="{DynamicResource ButtonStyle_X}" Width="40" Height="40" Cursor="Hand" Content="×" FontSize="48" Padding="1,-17,1,1" Click="btn_reject_event_Click" Margin="5,0,0,0">
+                    <Button x:Name="btn_reject_event" Style="{DynamicResource ButtonStyle_X}" Width="30" Height="30" Cursor="Hand" FontSize="48" Click="btn_reject_event_Click" Margin="5,0,0,0">
+                        <Border Background="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" Width="18" Height="18" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Border.OpacityMask>
+                                <ImageBrush ImageSource="/View/Resources/icons/ico_trash_unfilled.png"/>
+                            </Border.OpacityMask>
+                        </Border>
                         <Button.ToolTip>
                             <StackPanel>
                                 <TextBlock Text="Отказать в проведении" FontWeight="Bold" HorizontalAlignment="Center"/>
@@ -139,7 +144,7 @@
                     </Button>
                 </StackPanel>
 
-                <Button x:Name="btn_edit" Style="{DynamicResource ButtonStyle_accent}" BorderBrush="{x:Null}" VerticalAlignment="Center" Cursor="Hand" Background="#FF1DBCFF" HorizontalAlignment="Center" Click="btn_edit_Click" Margin="5,0,5,0" MinWidth="40" MinHeight="40" Visibility="Collapsed" d:Visibility="Visible">
+                <Button x:Name="btn_edit" Style="{DynamicResource ButtonStyle_accent}" BorderBrush="{x:Null}" VerticalAlignment="Center" Cursor="Hand" Background="#FF1DBCFF" HorizontalAlignment="Center" Click="btn_edit_Click" Margin="5,0,5,0" Visibility="Collapsed" d:Visibility="Visible" Width="30" Height="30">
                     <StackPanel Orientation="Horizontal">
                         <Border Background="White" Width="18" Height="18" >
                             <Border.OpacityMask>
@@ -155,7 +160,7 @@
                     </Button.ToolTip>
                 </Button>
 
-                <Button x:Name="btn_create_event_report" Style="{DynamicResource ButtonStyle_accent}" BorderBrush="{x:Null}" VerticalAlignment="Center" Cursor="Hand" Click="btn_create_event_report_Click" Margin="5,0,5,0" MinWidth="40" MinHeight="40" Visibility="Collapsed" d:Visibility="Visible" Background="#FF2B72FF">
+                <Button x:Name="btn_create_event_report" Style="{DynamicResource ButtonStyle_accent}" BorderBrush="{x:Null}" VerticalAlignment="Center" Cursor="Hand" Click="btn_create_event_report_Click" Margin="5,0,5,0" Visibility="Collapsed" d:Visibility="Visible" Background="#FF2B72FF" Width="30" Height="30">
                     <StackPanel Orientation="Horizontal">
                         <Border Background="White" Width="17" Height="17" Margin="2,0,0,0" >
                             <Border.OpacityMask>
@@ -171,7 +176,7 @@
                     </Button.ToolTip>
                 </Button>
 
-                <Button x:Name="btn_see_event_report" Style="{DynamicResource ButtonStyle_accent}" BorderBrush="{x:Null}" VerticalAlignment="Center" Cursor="Hand" Click="btn_see_event_report_Click" Background="#FF71A4CE" Margin="5,0,5,0" MinWidth="40" MinHeight="40" VerticalContentAlignment="Center" Visibility="Collapsed" d:Visibility="Visible">
+                <Button x:Name="btn_see_event_report" Style="{DynamicResource ButtonStyle_accent}" BorderBrush="{x:Null}" VerticalAlignment="Center" Cursor="Hand" Click="btn_see_event_report_Click" Background="#FF71A4CE" Margin="5,0,5,0" VerticalContentAlignment="Center" Visibility="Collapsed" d:Visibility="Visible" Height="30" Width="30">
                     <StackPanel Orientation="Horizontal">
                         <Border Background="White" Width="18" Height="18" >
                             <Border.OpacityMask>

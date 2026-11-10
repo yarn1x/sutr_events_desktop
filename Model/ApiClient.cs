@@ -120,7 +120,7 @@ namespace college_events_desktop.Model
         public async Task<AuthResponse> LoginAsync(string login, string password)
         {
             //данные для входа
-            var loginData = new { login, passwordHash = password };
+            var loginData = new { login, password };
             //преобразование данных в json
             StringContent content = new StringContent(JsonConvert.SerializeObject(loginData), Encoding.UTF8, "application/json");
             

@@ -99,7 +99,6 @@ C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\View\Layers\Groups\page_Group.baml
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\college_events_desktop.csproj.SuggestedBindingRedirects.cache
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\obj\Debug\college_events_desktop.exe.config
-C:\Desktop\Prog\СИстемный прогер\college_events_desktop\bin\Debug\BCrypt-Net-Next.dll
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.dll
 C:\Desktop\Prog\СИстемный прогер\college_events_desktop\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll

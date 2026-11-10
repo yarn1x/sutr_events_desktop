@@ -25,6 +25,10 @@ namespace college_events_desktop.Services
             {
                 throw new ArgumentOutOfRangeException("Количество участников не может быть отрицательным.");
             }
+            if (listenersCount + participantsCount + superParticipantsCount > studentsCount)
+            {
+                throw new ArgumentOutOfRangeException("Количество студентов на мероприятии не может быть больше количества учащихся в группе");
+            }
 
             double coverageRatio = (double)(listenersCount + participantsCount + superParticipantsCount) / studentsCount;
 

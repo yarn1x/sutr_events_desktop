@@ -98,6 +98,7 @@ namespace college_events_desktop.View.Layers.Events
 					return;
 
 				case EventConstants.status_done_report_needed: //статус синий
+					btn_edit.Visibility = Visibility.Visible;
 					btn_create_event_report.Visibility = Visibility.Visible;
 					return;
 

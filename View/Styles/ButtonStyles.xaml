@@ -194,6 +194,7 @@
                             <Setter Property="Cursor" Value="Hand"/>
                             <Setter Property="Background" TargetName="border" Value="#FFFF5555"/>
                             <Setter Property="TextElement.Foreground" TargetName="border" Value="#FFFFFFFF"/>
+                            <Setter Property="Foreground" Value="#FFFFFFFF"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="true">
                             <Setter Property="Background" TargetName="border" Value="#FFFF9A9A"/>

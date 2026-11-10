@@ -36,7 +36,6 @@ namespace college_events_desktop.View.Windows
             btn_login.IsEnabled = false;
             try
             {
-                // На шаге 3 мы добавим сюда BCrypt
                 var response = await _apiClient.LoginAsync(edit_login.Text, edit_password.Password);
 
                 if (response == null || string.IsNullOrEmpty(response.accessToken))

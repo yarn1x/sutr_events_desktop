@@ -50,7 +50,6 @@ namespace college_events_desktop
 
             services.AddSingleton<SessionService>();
             services.AddSingleton<DataService>();
-
             services.AddTransient<LoginWindow>();
             services.AddTransient<MainWindow>();
         }
