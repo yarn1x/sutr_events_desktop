@@ -47,7 +47,7 @@
             
             
             <!--ресурсы-->
-            <sys:String x:Key="TextSystemVersion">ver 0.0.9 alpha. UiOAF03</sys:String>
+            <sys:String x:Key="TextSystemVersion">ver 0.1.1 alpha. UiOAF03</sys:String>
 
             <Color x:Key="AdministratorColor">#FFFAD7AC</Color>
             <Color x:Key="SupervisorColor">#FFE1D5E7</Color>
