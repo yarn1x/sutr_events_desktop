@@ -38,9 +38,13 @@ namespace college_events_desktop.Model
                 }
                 return default;
             }
-            catch (Exception ex)
+            catch (HttpRequestException ex)
             {
-                throw new Exception(ex.InnerException.Message ?? ex.Message);
+                throw;
+            }
+            catch (JsonException ex)
+            {
+                throw new Exception($"Не удалось десериализовать ответ от {endpoint}.", ex);
             }
         }
         private async Task<T> PutAsync<T>(string endpoint, object body = null)

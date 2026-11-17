@@ -52,7 +52,7 @@
             <Color x:Key="AdministratorColor">#FFFAD7AC</Color>
             <Color x:Key="SupervisorColor">#FFE1D5E7</Color>
             <Color x:Key="OrganizerColor">#FFB0E3E6</Color>
-            <Color x:Key="ModeratorColor">#FFFA9798</Color>
+            <Color x:Key="ModeratorColor">#FFFFB9B1</Color>
             <Color x:Key="DefaultWhiteColor">#FFFFFFFF</Color>
 
             <Color x:Key="EventDoneColor">#FFA7A7A7</Color>

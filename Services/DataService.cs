@@ -86,6 +86,7 @@ namespace college_events_desktop.Services
         public async Task LoadCriteriaAsync()
         {
             criteria = await apiClient.GetCriteriaAsync();
+            criteriaDict.Clear();
             foreach (var e in criteria)
             {
                 criteriaDict.Add(e.criterionId, e.score);

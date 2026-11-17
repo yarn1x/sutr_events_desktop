@@ -9,30 +9,20 @@ namespace college_events_desktop.DataModels
     public class AuthorizedUser
     {
         public int AuthorizedUserId { get; set; }
-
         public string firstName { get; set; }
-        
         public string surName { get; set; }
-        
         public string lastName { get; set; }
-        
         public string login { get; set; }
-
         public string PasswordHash { get; set; }
-
         public string Phone { get; set; }
-
         public string Email { get; set; }
-
         public List<UserUserType> roles { get; set; }
-
         public List<Group> supervisorGroups { get; set; } = null;
     }
 
     public class UserUserType
     {
         public int userUsertypeId { get; set; }
-
         public int userTypeId { get; set; }
         public string typeName { get; set; }
     }

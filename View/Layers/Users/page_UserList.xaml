@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      xmlns:model="clr-namespace:college_events_desktop.Model"
       xmlns:control="clr-namespace:college_events_desktop.View.Controls" 
       xmlns:container="clr-namespace:college_events_desktop.View.Controls.Containers"
       xmlns:local="clr-namespace:college_events_desktop.View.Layers.Users"
@@ -39,6 +40,8 @@
                 <RowDefinition/>
                 <RowDefinition Height="52"/>
             </Grid.RowDefinitions>
+            
+            <!--фильтры-->
             <Border BorderThickness="1" CornerRadius="10" Height="70" BorderBrush="#FF666666" Margin="0,10,0,0" Background="White">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -53,19 +56,26 @@
                     <StackPanel Orientation="Horizontal">
                         <Button x:Name="btn_filter_admin" Style="{DynamicResource ButtonStyle_filter}" FontSize="14" Content="Администраторы" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5,3,5,4" Grid.Column="2" Margin="10,0,5,0" Click="btn_filter_Click">
                             <Button.Tag>
-                                <sys:Int32>1</sys:Int32>
+                                <x:Static Member="model:AuthorizedUserConstants.administratorTypeId"/>
                             </Button.Tag>
                         </Button>
                         <Button x:Name="btn_filter_supervisors" Style="{DynamicResource ButtonStyle_filter}" FontSize="14" Content="Кураторы" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5,3,5,4" Grid.Column="3" Margin="5,0,5,0" Click="btn_filter_Click">
                             <Button.Tag>
-                                <sys:Int32>2</sys:Int32>
+                                <x:Static Member="model:AuthorizedUserConstants.supervisorTypeId"/>
                             </Button.Tag>
                         </Button>
                         <Button x:Name="btn_filter_organizers" Style="{DynamicResource ButtonStyle_filter}" FontSize="14" Content="Организаторы" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5,3,5,4" Grid.Column="4" Margin="5,0,10,0" Click="btn_filter_Click">
                             <Button.Tag>
-                                <sys:Int32>3</sys:Int32>
+                                <x:Static Member="model:AuthorizedUserConstants.organizerTypeId"/>
                             </Button.Tag>
                         </Button>
+                        <Button x:Name="btn_filter_moderators" Style="{DynamicResource ButtonStyle_filter}" FontSize="14" Content="Модераторы" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="5,3,5,4" Grid.Column="4" Margin="5,0,10,0" Click="btn_filter_Click">
+                            <Button.Tag>
+                                <x:Static Member="model:AuthorizedUserConstants.moderatorTypeId"/>
+                            </Button.Tag>
+                        </Button>
+                        
+                        
                     </StackPanel>
 
                     <Grid x:Name="grid_course_filter" Grid.Column="1" d:Visibility="Visible" Visibility="Collapsed">

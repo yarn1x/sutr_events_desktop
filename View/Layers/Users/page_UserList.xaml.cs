@@ -29,6 +29,8 @@ namespace college_events_desktop.View.Layers.Users
             {AuthorizedUserConstants.administratorTypeId, false},
             {AuthorizedUserConstants.supervisorTypeId, false},
             {AuthorizedUserConstants.organizerTypeId, false},
+            {AuthorizedUserConstants.moderatorTypeId, false},
+
         };
         #endregion
 

@@ -23,22 +23,29 @@ namespace college_events_desktop.View.Layers.Organizers
     {
         MainWindow _mainWindow;
         DataService _dataService;
-        public Organizer _Organizer { get; private set; }
+        public AuthorizedUser _User { get; private set; }
 
         public control_organizer_card(MainWindow mainWindow, DataService dataService, Organizer organizer)
         {
             InitializeComponent();
             _mainWindow = mainWindow;
             _dataService = dataService;
-            _Organizer = organizer;
-            DataContext = _Organizer;
+            _User = new AuthorizedUser
+            {
+                AuthorizedUserId = organizer.userId,
+                firstName = organizer.firstName,
+                lastName = organizer.lastName,
+                surName = organizer.surName,
+                Email = organizer.email,
+                Phone = organizer.mobilePhone,
+            };
+            DataContext = organizer;
 
-            Loaded += Control_organizer_card_Loaded;
         }
 
-        private void Control_organizer_card_Loaded(object sender, RoutedEventArgs e)
+        private void btn_open_Click(object sender, RoutedEventArgs e)
         {
-            
+            _mainWindow.mainframe.Navigate(new page_Organizer(_mainWindow, _dataService, _User));
         }
     }
 }

@@ -20,30 +20,41 @@ namespace college_events_desktop.View.Controls
 {
     public partial class events_nav_buttons : UserControl
     {
-        MainWindow mainWindow;
-        page_EventList eventList;
-        public events_nav_buttons(Window win, page_EventList _eventList)
+        private MainWindow _mainWindow;
+        private page_EventList _eventList;
+        private bool _isSubscribed;
+
+        public events_nav_buttons(Window win, page_EventList eventList)
         {
             InitializeComponent();
+            _mainWindow = win as MainWindow;
+            _eventList = eventList;
+        }
 
-            mainWindow = win as MainWindow;
-            eventList = _eventList;
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (_isSubscribed) return;
+                EventNotification.StatusChanged += EventNotification_StatusChanged;
+            _isSubscribed = true;
+        }
 
-            EventNotification.StatusChanged += EventNotification_StatusChanged;
+        private void UserControl_Unloaded(object sender, RoutedEventArgs e)
+        {
+            if (!_isSubscribed) return;
+                EventNotification.StatusChanged -= EventNotification_StatusChanged;
+            _isSubscribed = false;
         }
 
         private void EventNotification_StatusChanged(object sender, EventStatusChangedEventArgs e)
         {
-            //показываем, если есть элементы с tag 1 или -1
             ellipse_new_event_status.Visibility = e.HasElements
                 ? Visibility.Visible
-                : Visibility.Collapsed;   
+                : Visibility.Collapsed;
         }
 
         private void open_event_list_Click(object sender, RoutedEventArgs e)
         {
-            var frame = mainWindow.mainframe;
-            frame.Navigate(eventList);
+            _mainWindow.mainframe.Navigate(_eventList);
         }
     }
 }

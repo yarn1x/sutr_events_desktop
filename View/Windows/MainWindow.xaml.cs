@@ -31,18 +31,19 @@ namespace college_events_desktop.View.Windows
         //сервисы
         internal DataService _dataService { get; private set; }
         internal readonly IOverlayService _overlayService;
+        internal readonly SessionService _sessionService;
 
         #endregion
 
 
         #region Конструктор
-        public MainWindow(DataService dataService)
+        public MainWindow(DataService dataService, SessionService session)
 		{
 			InitializeComponent();
             LoadingService.Register(this); //регистрация сервиса интерфейса загрузки
-
-            //присвоение переменным значений
             _dataService = dataService;
+            _overlayService = new OverlayService(this);
+            _sessionService = session;
 
             eventList = new page_EventList(this, _dataService);
             organizerList = new page_OrganizerList(this, _dataService);
@@ -51,11 +52,17 @@ namespace college_events_desktop.View.Windows
             userAccount = new page_UserAccount(this, _dataService); //конструктор под создание новой учётки
 			events_Nav_Buttons = new events_nav_buttons(this, eventList);
             users_Nav_Buttons = new users_nav_buttons(this, userList, userAccount);
-            _overlayService = new OverlayService(this);
+            
 
             //назначение событий
             Loaded += MainWindow_Loaded;
             EventNotification.StatusChanged += EventNotification_StatusChanged;
+
+
+            if (_sessionService.IsModerator) 
+            { 
+                btn_users.Visibility = Visibility.Collapsed; 
+            }
 		}
 
         #endregion

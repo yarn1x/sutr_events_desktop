@@ -61,6 +61,8 @@ namespace college_events_desktop.View.Layers.Supervisors
                     combobox_categories.ItemsSource = categories;
                     combobox_categories.SelectedIndex = 0;
 
+                    stack_groups.Children.Clear();
+
                     foreach (var group in _dataService.supervisorStatistic.supervisorGroups)
                     {
                         SimpleTextPlaceholder text = new SimpleTextPlaceholder(group.groupName, Colors.White, Color.FromArgb(255, 102, 102, 102), Color.FromRgb(102, 102, 102))
