@@ -22,6 +22,12 @@
                 <ColumnDefinition Width="0.5*"/>
             </Grid.ColumnDefinitions>
 
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,0,0,0">
+                <TextBlock Text="id:" Foreground="#FFA2A2A2"/>
+                <TextBlock x:Name="text_debug_group_id" d:Text="_Group.groupId" Text="{Binding groupId}" Foreground="#FFA2A2A2"/>
+                <TextBlock Text="студентов в группе:" Foreground="#FFA2A2A2" Margin="5,0,0,0"/>
+                <TextBlock x:Name="text_debug_student_count" d:Text="_Group.studentsCount" Text="{Binding studentsCount}" Foreground="#FFA2A2A2"/>
+            </StackPanel>
             <Border Padding="5" BorderBrush="#FFA2A2A2" BorderThickness="0,0,1,0">
                 <TextBlock x:Name="text_GroupName" Text="{Binding groupName}" d:Text="_Group.groupName" FontWeight="Bold" FontSize="14" Foreground="#000000" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </Border>

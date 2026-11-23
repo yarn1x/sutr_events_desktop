@@ -19,8 +19,18 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
-        
+        <!--шапка-->
         <StackPanel Orientation="Horizontal" Background="#FFDDEEFF">
+            <Button Padding="5" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10,0,5,0" Style="{DynamicResource ButtonStyle_accent}" BorderBrush="{x:Null}" Click="go_UserHelp">
+                <StackPanel Orientation="Horizontal">
+                    <Border Background="White" Height="20" Width="20">
+                        <Border.OpacityMask>
+                            <ImageBrush ImageSource="/View/Resources/icons/ico_question.png"/>
+                        </Border.OpacityMask>
+                    </Border>
+                    <TextBlock Text="Помощь" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                </StackPanel>
+            </Button>
             <TextBlock Text="Редактирование информации о пользователе" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" FontWeight="Bold" Foreground="#FF666666"/>
         </StackPanel>
         
@@ -48,24 +58,24 @@
                         <ColumnDefinition Width="0.3*"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock FontSize="14">Фамилия <Run Text="*" Foreground="Red" FontWeight="Bold"/></TextBlock>
-                    <TextBox x:Name="edit_surname" Text="{Binding surName}" Grid.Column="1"/>
+                    <TextBlock FontSize="14" ToolTip="Поле ввода обязательно для заполнения" Cursor="Help">Фамилия <Run Text="*" Foreground="Red" FontWeight="Bold"/></TextBlock>
+                    <TextBox x:Name="edit_surname" Text="{Binding user.surName}" Grid.Column="1"/>
                 </Grid>
                 <Grid Margin="0,30,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.3*"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock FontSize="14">Имя <Run Text="*" Foreground="Red" FontWeight="Bold"/></TextBlock>
-                    <TextBox x:Name="edit_firstname" Text="{Binding firstName}" Grid.Column="1"/>
+                    <TextBlock FontSize="14" Cursor="Help" ToolTip="Поле ввода обязательно для заполнения">Имя <Run Text="*" Foreground="Red" FontWeight="Bold"/></TextBlock>
+                    <TextBox x:Name="edit_firstname" Text="{Binding user.firstName}" Grid.Column="1"/>
                 </Grid>
                 <Grid Margin="0,30,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.3*"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock FontSize="14">Отчество <Run Text="*" Foreground="Red" FontWeight="Bold"/></TextBlock>
-                    <TextBox x:Name="edit_lastname" Text="{Binding lastName}" Grid.Column="1"/>
+                    <TextBlock FontSize="14">Отчество</TextBlock>
+                    <TextBox x:Name="edit_lastname" Text="{Binding user.lastName}" Grid.Column="1"/>
                 </Grid>
                 
                 <Border Margin="0,20,0,20" Height="2" Background="#FFCECECE"/>
@@ -75,7 +85,7 @@
                         <ColumnDefinition Width="0.3*"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock FontSize="14">Логин <Run Text="*" Foreground="Red" FontWeight="Bold"/></TextBlock>
+                    <TextBlock FontSize="14" Cursor="Help" ToolTip="Поле ввода обязательно для заполнения">Логин <Run Text="*" Foreground="Red" FontWeight="Bold"/></TextBlock>
                     <TextBox x:Name="edit_login" Text="{Binding login}" Grid.Column="1"/>
                 </Grid>
                 <Grid Margin="0,30,0,0">
@@ -83,7 +93,7 @@
                         <ColumnDefinition Width="0.3*"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock FontSize="14">Пароль <Run Text="*" Foreground="Red" FontWeight="Bold"/></TextBlock>
+                    <TextBlock FontSize="14" ToolTip="Поле ввода обязательно для заполнения" Cursor="Help">Пароль <Run Text="*" Foreground="Red" FontWeight="Bold"/></TextBlock>
                     <PasswordBox x:Name="edit_password" Grid.Column="1"/>
                 </Grid>
 
@@ -113,14 +123,14 @@
                         <ColumnDefinition Width="0.3*"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock FontSize="14" VerticalAlignment="Center">Роли <Run Text="*" Foreground="Red" FontWeight="Bold"/></TextBlock>
+                    <TextBlock FontSize="14" VerticalAlignment="Center" ToolTip="Поле ввода обязательно для заполнения" Cursor="Help">Роли <Run Text="*" Foreground="Red" FontWeight="Bold"/></TextBlock>
                     <container:MultiComboBox x:Name="multicombobox_roles" DisplayMemberPath="typeName" Grid.Column="1"/>
                 </Grid>
 
                 <Border Margin="0,20,0,20" Height="2" Background="#FFCECECE"/>
                 
+                <TextBlock Text="Закреплённые группы за куратором" Margin="0,0,0,15"/>
                 <StackPanel x:Name="stack_groups">
-                    <TextBlock Text="Закреплённые группы за куратором" Margin="0,0,0,15"/>
                     
                 </StackPanel>
                 

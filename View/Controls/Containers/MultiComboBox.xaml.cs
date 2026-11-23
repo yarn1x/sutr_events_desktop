@@ -186,7 +186,6 @@ namespace college_events_desktop.View.Controls.Containers
             return item.ToString();
         }
 
-
         //логика выбора элемента в ComboBox
         private void MainComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -245,6 +244,12 @@ namespace college_events_desktop.View.Controls.Containers
                 }
             }
         }
+
+
+
+
+
+
 
         /// <summary>
         /// Вспомогательный класс-обертка для кнопок.

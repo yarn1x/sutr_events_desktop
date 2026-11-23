@@ -35,7 +35,7 @@ namespace college_events_desktop.View.Layers.Users
             _mainWindow = mainWindow;
             _dataService = dataService;
             _User = user;
-            DataContext = _User;
+            DataContext = _User.user;
 
             Loaded += Control_user_card_Loaded;
         }

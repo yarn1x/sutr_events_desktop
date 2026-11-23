@@ -103,7 +103,7 @@
 							</StackPanel>
 						</Button>
 
-						<Button x:Name="btn_users" Height="50" Style="{DynamicResource ButtonStyle_accent}" BorderBrush="{x:Null}" Margin="0,10,0,0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Click="open_users_nav_menu_Click" Cursor="Hand">
+						<Button x:Name="btn_users" d:Visibility="Visible" Height="50" Style="{DynamicResource ButtonStyle_accent}" BorderBrush="{x:Null}" Margin="0,10,0,0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Click="open_users_nav_menu_Click" Cursor="Hand" Visibility="Collapsed">
 							<Grid>
 								<StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0">
 									<Border Background="White" Width="25" Height="25" Margin="0,0,10,0">

@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
@@ -40,7 +41,7 @@ namespace college_events_desktop.Model
             }
             catch (HttpRequestException ex)
             {
-                throw;
+                throw ex;
             }
             catch (JsonException ex)
             {
@@ -174,7 +175,8 @@ namespace college_events_desktop.Model
         /// <param name="body">Список групп, записанных на мероприятие</param>
         /// <param name="eventId">id мероприятия, на которое записан список групп</param>
         /// <returns></returns>
-        public async Task<bool> UpdateEventGroups(EventUpdateDto body, int eventId) => await PutAsync<bool>($"events/update/{eventId}", body);
+        public async Task<bool> UpdateEventGroups(EventUpdateDto body, int eventId) 
+            => await PutAsync<bool>($"events/update/{eventId}", body);
 
         /// <summary>
         /// Обновляет статус мероприятия
@@ -182,7 +184,8 @@ namespace college_events_desktop.Model
         /// <param name="EventId">идентификатор мероприятия</param>
         /// <param name="StatusId">новый статус</param>
         /// <returns>true или false в зависимости от успешности выполнения</returns>
-        public async Task<bool> UpdateEventStatus(int EventId, int StatusId) => await PutActionAsync($"events/{EventId}/status/{StatusId}");
+        public async Task<bool> UpdateEventStatus(int EventId, int StatusId) 
+            => await PutActionAsync($"events/{EventId}/status/{StatusId}");
 
         /// <summary>
         /// Создаёт новое место проведения мероприятия
@@ -208,8 +211,22 @@ namespace college_events_desktop.Model
         /// <param name="EventId">уникальный идентификатор мероприятия</param>
         /// <param name="body">тело запроса</param>
         /// <returns></returns>
-        public async Task<bool> UpdateEventGroupsStatistics(int EventId, List<EventGroupsActualAttendances> body) => await PutActionAsync($"events/{EventId}/statistics", body);
+        public async Task<bool> UpdateEventGroupsStatistics(int EventId, List<EventGroupsActualAttendances> body) 
+            => await PutActionAsync($"events/{EventId}/statistics", body);
 
+        public async Task<HttpResponseMessage> CreateUserAccountAsync(UserCreateUpdateDto body)
+        {
+            var content = new StringContent(JsonConvert.SerializeObject(body), Encoding.UTF8, "application/json");
+            var response = await _client.PostAsync("users", content);
+            return response;
+        }
+
+        public async Task<HttpResponseMessage> UpdateUserAccountAsync(int userId, UserCreateUpdateDto body)
+        {
+            var content = new StringContent(JsonConvert.SerializeObject(body), Encoding.UTF8, "application/json");
+            var response = await _client.PutAsync($"users/{userId}", content);
+            return response;
+        }
 
         /// <summary>
         /// GET Запрос к API
@@ -267,5 +284,6 @@ namespace college_events_desktop.Model
         internal async Task<SupervisorStatistic> GetSupervisorStatistic(int supervisorId) => await GetAsync<SupervisorStatistic>($"supervisors/{supervisorId}/statistic");
 
         internal async Task<List<Criterion>> GetCriteriaAsync() => await GetAsync<List<Criterion>>("events/criteria");
+
     }
 }

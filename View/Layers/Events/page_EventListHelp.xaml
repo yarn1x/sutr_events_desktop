@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:college_events_desktop.View.Layers.Events"
       mc:Ignorable="d" 
       d:DesignHeight="900" d:DesignWidth="800"
-      Title="Справочный материал по списку мероприятий">
+      Title="Справочный материал">
 
     <Grid Background="White">
         <Grid.RowDefinitions>
@@ -17,7 +17,7 @@
         
         <!--Шапка-->
         <Border Background="#FFDDEEFF" Height="50">
-            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" Text="Список мероприятий. Справочный материал" FontWeight="Bold" Foreground="#FF666666"/>
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="18" Text="Справочный материал" FontWeight="Bold" Foreground="#FF666666"/>
         </Border>
 
         <!--Тело-->

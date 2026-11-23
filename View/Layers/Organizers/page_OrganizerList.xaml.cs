@@ -73,7 +73,11 @@ namespace college_events_desktop.View.Layers.Organizers
             if (!(sender is SearchBar textBox)) return;
 
             string text = textBox.SearchText;
-            var sortedList = _dataService.organizers.Where(o => o.firstName.Contains(text) || o.surName.Contains(text) || o.lastName.Contains(text)).ToList();
+            var sortedList = _dataService.organizers.Where(
+                o => o.firstName.Contains(text) 
+                || o.surName.Contains(text) 
+                || (o.lastName != null && o.lastName.Contains(text)))
+                .ToList();
 
             _Stack.Children = BuildOrganizersCards(sortedList);
         }

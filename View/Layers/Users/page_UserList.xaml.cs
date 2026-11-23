@@ -150,16 +150,23 @@ namespace college_events_desktop.View.Layers.Users
         private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (!(sender is SearchBar textBox)) return;
+            try
+            {
+                string text = textBox.SearchText.ToLower();
+                var sortedList = _dataService.authorizedUsers.Where(o =>
+                       o.user.firstName.ToLower().Contains(text)
+                    || o.user.surName.ToLower().Contains(text)
+                    || (o.user.lastName != null && o.user.lastName.ToLower().Contains(text))
+                    || o.roles.Any(role => role.typeName.ToLower().Contains(text))
+                )
+                .ToList();
 
-            string text = textBox.SearchText.ToLower();
-            var sortedList = _dataService.authorizedUsers.Where(o => 
-            o.firstName.ToLower().Contains(text) 
-            || o.surName.ToLower().Contains(text) 
-            || o.lastName.ToLower().Contains(text)
-            || o.roles.Any(role => role.typeName.ToLower().Contains(text))
-            ).ToList();
-
-            _Stack.Children = BuildUsersCards(sortedList);
+                _Stack.Children = BuildUsersCards(sortedList);
+            }
+            catch (Exception ex)
+            {
+                UserNotificationService.ShowError("Ошибка применения фильтра", ex, "page_UserListAA004");
+            }
         }
 
 
@@ -184,7 +191,7 @@ namespace college_events_desktop.View.Layers.Users
             }
             catch (Exception ex)
             {
-                UserNotificationService.ShowError("Ошибка применения фильтра по курсу группы", ex, "page_GroupListAA002");
+                UserNotificationService.ShowError("Ошибка применения фильтра по курсу группы", ex, "page_UserListAA003");
             }
         }
         #endregion

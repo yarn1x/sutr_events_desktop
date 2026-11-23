@@ -72,7 +72,7 @@ namespace college_events_desktop.View.Layers.Groups
             if (!(sender is SearchBar textBox)) return;
 
             string filterText = textBox.SearchText?.Trim();
-            var sortedList = _dataService.groups.Where(g => g.groupName.Contains(filterText)).ToList();
+            var sortedList = _dataService.groups.Where(g => g.groupName.Contains(filterText) || (g.supervisorSurname + g.supervisorFirstname + g.supervisorLastname).Contains(filterText)).ToList();
             stack_groups.Children = BuildGroupsCards(sortedList);
 
         }

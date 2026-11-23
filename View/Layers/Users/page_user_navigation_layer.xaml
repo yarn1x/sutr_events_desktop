@@ -23,7 +23,7 @@
             <Border VerticalAlignment="Top" Height="50" Background="#FFDDEEFF" BorderBrush="#FF666666" BorderThickness="0, 0, 1, 0" />
             <Border Background="White" BorderBrush="#FF666666" BorderThickness="0, 0, 1, 0" Grid.Row="1">
                 <StackPanel>
-                    <Button x:Name="btn_goback" Padding="10" Margin="5" Style="{DynamicResource ButtonStyle_accent_extra}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Click="btn_goback_Click" Height="49">
+                    <Button x:Name="btn_goback" Padding="10" Margin="5" Style="{DynamicResource ButtonStyle_accent_extra}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Click="btn_goback_Click" Height="49" ToolTip="Назад">
                         <Border Background="#FF9A9A9A" RenderTransformOrigin="0.5,0.5">
                             <Border.RenderTransform>
                                 <TransformGroup>
@@ -35,21 +35,21 @@
                             </Border.OpacityMask>
                         </Border>
                     </Button>
-                    <Button x:Name="btn_goto_userAccount" d:Visibility="Visible" Visibility="Visible" Padding="10" Margin="5" Style="{DynamicResource ButtonStyle_accent}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Height="49" Click="btn_goto_userAccount_Click" Background="#FF0070CC">
+                    <Button x:Name="btn_goto_userAccount" d:Visibility="Visible" Visibility="Visible" Padding="10" Margin="5" Style="{DynamicResource ButtonStyle_accent}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Height="49" Click="btn_goto_userAccount_Click" Background="#FF0070CC" ToolTip="Перейти к информации об аккаунте">
                         <Border Background="White">
                             <Border.OpacityMask>
                                 <ImageBrush ImageSource="/View/Resources/icons/ico_user_gear.png"/>
                             </Border.OpacityMask>
                         </Border>
                     </Button>
-                    <Button x:Name="btn_goto_supervisorProfile" d:Visibility="Visible" Visibility="Collapsed" Padding="10" Margin="5" Style="{DynamicResource ButtonStyle_accent}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Height="49" Click="btn_goto_supervisorProfile_Click" Background="#FF0070CC">
+                    <Button x:Name="btn_goto_supervisorProfile" d:Visibility="Visible" Visibility="Collapsed" Padding="10" Margin="5" Style="{DynamicResource ButtonStyle_accent}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Height="49" Click="btn_goto_supervisorProfile_Click" Background="#FF0070CC" ToolTip="Перейти к статистике как куратора">
                         <Border Background="White">
                             <Border.OpacityMask>
                                 <ImageBrush ImageSource="/View/Resources/icons/ico_glasses.png"/>
                             </Border.OpacityMask>
                         </Border>
                     </Button>
-                    <Button x:Name="btn_goto_organizerProfile" d:Visibility="Visible" Visibility="Collapsed" Padding="10" Margin="5" Style="{DynamicResource ButtonStyle_accent}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Height="49" Click="btn_goto_organizerProfile_Click" Background="#FF0070CC">
+                    <Button x:Name="btn_goto_organizerProfile" d:Visibility="Visible" Visibility="Collapsed" Padding="10" Margin="5" Style="{DynamicResource ButtonStyle_accent}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Height="49" Click="btn_goto_organizerProfile_Click" Background="#FF0070CC" ToolTip="Перейти к статистике как организатора">
                         <Border Background="White">
                             <Border.OpacityMask>
                                 <ImageBrush ImageSource="/View/Resources/icons/ico_idea.png"/>

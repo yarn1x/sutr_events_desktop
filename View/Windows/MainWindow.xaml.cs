@@ -59,9 +59,9 @@ namespace college_events_desktop.View.Windows
             EventNotification.StatusChanged += EventNotification_StatusChanged;
 
 
-            if (_sessionService.IsModerator) 
+            if (_sessionService.IsAdministrator) 
             { 
-                btn_users.Visibility = Visibility.Collapsed; 
+                btn_users.Visibility = Visibility.Visible; 
             }
 		}
 

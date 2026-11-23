@@ -33,9 +33,12 @@ namespace college_events_desktop.View.Layers.Organizers
             _User = new AuthorizedUser
             {
                 AuthorizedUserId = organizer.userId,
-                firstName = organizer.firstName,
-                lastName = organizer.lastName,
-                surName = organizer.surName,
+                user = new User
+                {
+                    firstName = organizer.firstName,
+                    lastName = organizer.lastName,
+                    surName = organizer.surName,
+                },
                 Email = organizer.email,
                 Phone = organizer.mobilePhone,
             };

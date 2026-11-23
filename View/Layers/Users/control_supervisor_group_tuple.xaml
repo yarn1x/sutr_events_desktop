@@ -5,8 +5,17 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:college_events_desktop.View.Layers.Users"
              mc:Ignorable="d" 
-             Background="Transparent" Margin="0,0,0,10">
-    <StackPanel Orientation="Horizontal" Height="30">
+             Background="Transparent" Height="31">
+    <Grid HorizontalAlignment="Left">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition MinWidth="170"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition MinWidth="50"/>
+        </Grid.ColumnDefinitions>
+        
+        
         <Button x:Name="btn_delete" 
                 Width="23"
                 Height="23" 
@@ -15,36 +24,28 @@
                 VerticalContentAlignment="Center" 
                 HorizontalContentAlignment="Center" 
                 VerticalAlignment="Center" 
-                HorizontalAlignment="Center" 
+                HorizontalAlignment="Left" 
                 Click="btn_delete_Click" 
                 Content="×" 
                 Padding="1,-5,1,1"/>
 
         <TextBlock Text="Группа:" 
                    VerticalAlignment="Center" 
-                   Foreground="Gray" 
-                   Margin="20,0,0,0">
-        </TextBlock>
+                   Foreground="Gray" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,5,0"/>
         <ComboBox x:Name="combobox_groups"
-                  SelectedIndex="0" 
                   VerticalContentAlignment="Center" 
-                  Margin="10,0,0,0" 
                   Style="{DynamicResource ModernComboBoxStyle}" 
                   MinWidth="80" 
-                  SelectionChanged="combobox_groups_SelectionChanged" Padding="6,3,45,3"/>
+                  SelectionChanged="combobox_groups_SelectionChanged" Padding="6,3,45,3" Grid.Column="2"/>
 
         <TextBlock Text="Кол-во учащихся:" 
                    VerticalAlignment="Center" 
-                   Margin="20,0,0,0" 
-                   Foreground="Gray">
-        </TextBlock>
-        <TextBox x:Name="edit_dosage" 
-                 Margin="10,0,0,0"
+                   Foreground="Gray" Grid.Column="3" Margin="0,0,5,0" HorizontalAlignment="Right"/>
+        <TextBox x:Name="edit_student_count"
                  FontSize="14" 
                  VerticalContentAlignment="Center" 
                  Padding="2,0,0,0" 
-                 MinWidth="40">
-        </TextBox>
+                 MinWidth="40" Grid.Column="4"/>
 
-    </StackPanel>
+    </Grid>
 </UserControl>
