@@ -47,7 +47,7 @@
             
             
             <!--ресурсы-->
-            <sys:String x:Key="TextSystemVersion">ver 0.2.0 alpha.</sys:String>
+            <sys:String x:Key="TextSystemVersion">ver 0.3.0 beta.</sys:String>
 
             <Color x:Key="AdministratorColor">#FFFAD7AC</Color>
             <Color x:Key="SupervisorColor">#FFE1D5E7</Color>

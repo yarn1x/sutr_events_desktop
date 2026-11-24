@@ -3,9 +3,11 @@ using college_events_desktop.Model;
 using college_events_desktop.Services;
 using college_events_desktop.View.Controls;
 using college_events_desktop.View.Windows;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -101,6 +103,108 @@ namespace college_events_desktop.View.Layers.Organizers
         {
             ApplyDateFilter();
         }
+
+        private void btn_export_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var fileName = FileNameSecurity.Build(
+                    ".xlsx",
+                    maxLength: 200,
+                    "Отчёт", _authorizedUser.user.surName, _authorizedUser.user.firstName, _authorizedUser.user.lastName, DateTime.Now.ToString("dd-MM-yyyy")
+                );
+                var sfd = new SaveFileDialog
+                {
+                    Filter = "Excel файл (*.xlsx)|*.xlsx",
+                    FileName = fileName
+                };
+                if (sfd.ShowDialog() != true) return;
+
+                var header = new List<KeyValuePair<string, string>>()
+                {
+                    new KeyValuePair<string, string>(
+                        "Количество мероприятий",
+                        edit_events_count.Text
+                    ),
+                    new KeyValuePair<string, string>(
+                        "Количество студентов",
+                        edit_students_count.Text
+                    ),
+                    new KeyValuePair<string, string>(
+                        "Количество кураторов",
+                        edit_supervisors_count.Text
+                    )
+                };
+
+                var table = new ExportTable
+                {
+                    Columns = new List<ExportColumn>
+                    {
+                        new ExportColumn
+                        {
+                            Header = "Мероприятие",
+                            ValueSelector = obj => ((OrganizerEvents)obj).title
+                        },
+                        new ExportColumn
+                        {
+                            Header = "Дата и время",
+                            ValueSelector = obj => ((OrganizerEvents)obj).startDatetime.ToString("G")
+                        },
+                        new ExportColumn
+                        {
+                            Header = "Описание",
+                            ValueSelector = obj => ((OrganizerEvents)obj).fullDescription
+                        },
+                        new ExportColumn
+                        {
+                            Header = "Слушатели",
+                            ValueSelector = obj => ((OrganizerEvents)obj).actualListenersCount.ToString()
+                        },
+                        new ExportColumn
+                        {
+                            Header = "Участники",
+                            ValueSelector = obj => ((OrganizerEvents)obj).actualParticipantsCount.ToString()
+                        },
+                        new ExportColumn
+                        {
+                            Header = "Супер-участники",
+                            ValueSelector = obj => ((OrganizerEvents)obj).actualSuperParticipantsCount.ToString()
+                        },
+                        new ExportColumn
+                        {
+                            Header = "Общий балл",
+                            ValueSelector = obj => ((OrganizerEvents)obj).totalScore.ToString()
+                        }
+                    },
+                    Rows = _dataService.organizerStatistic.events.Cast<object>().ToList()
+                };
+
+                ExportDataService service = new ExportDataService();
+                service.Export(sfd.FileName, header, table);
+            }
+            catch (Exception ex)
+            {
+                UserNotificationService.ShowError("Ошибка экспорта данных", ex, "page_OrganizerAA004");
+            }
+
+        }
+
+        private async void btn_open_diagram_Click(object sender, RoutedEventArgs e)
+        {
+            Point point = new Point()
+            {
+                X = 100,
+                Y = 0
+            };
+            TextPlaceholder text = new TextPlaceholder(stack_nav, point, "Пока в разработке.")
+            {
+                VerticalAlignment = VerticalAlignment.Center,
+            };
+            await text.ShowAsync();
+            await Task.Delay(1000);
+            await text.HideAsync();
+        }
+
         #endregion
 
 
@@ -118,6 +222,8 @@ namespace college_events_desktop.View.Layers.Organizers
                 datagrid_events.ItemsSource = _dataService.organizerStatistic.events.Where(evnt => evnt.startDatetime >= from && evnt.startDatetime <= to);
             }
         }
+
         #endregion
+
     }
 }

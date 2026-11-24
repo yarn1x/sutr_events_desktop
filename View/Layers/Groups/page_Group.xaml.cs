@@ -3,6 +3,7 @@ using college_events_desktop.Model;
 using college_events_desktop.Services;
 using college_events_desktop.View.Controls;
 using college_events_desktop.View.Windows;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -62,7 +63,6 @@ namespace college_events_desktop.View.Layers.Groups
                 try
                 {
                     await _dataService.LoadGroupStatisticAsync(_group.groupId);
-                    //DataContext = _dataService.groupStatistic;
                     datagrid_events.ItemsSource = _dataService.groupStatistic.events;
 
                     await _dataService.LoadCategoriesAsync();
@@ -120,7 +120,103 @@ namespace college_events_desktop.View.Layers.Groups
             _mainWindow.mainframe.GoBack();
         }
 
+        private void btn_export_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var fileName = FileNameSecurity.Build(
+                    ".xlsx",
+                    maxLength: 200,
+                    "Отчёт", _group.groupName, DateTime.Now.ToString("dd-MM-yyyy")
+                );
+                var sfd = new SaveFileDialog
+                {
+                    Filter = "Excel файл (*.xlsx)|*.xlsx",
+                    FileName = fileName
+                };
+                if (sfd.ShowDialog() != true) return;
+
+                var header = new List<KeyValuePair<string, string>>()
+                {
+                    new KeyValuePair<string, string>(
+                        "Количество мероприятий",
+                        edit_events_count.Text
+                    ),
+                    new KeyValuePair<string, string>(
+                        "Количество направлений мероприятия",
+                        edit_categories_count.Text
+                    ),
+                    new KeyValuePair<string, string>(
+                        "Баллы",
+                        edit_totalScore.Text
+                    ),
+                    new KeyValuePair<string, string>(
+                        "Куратор",
+                        edit_supervisor.Text
+                    )
+                };
+
+                var table = new ExportTable
+                {
+                    Columns = new List<ExportColumn>
+                    {
+                        new ExportColumn
+                        {
+                            Header = "Мероприятие",
+                            ValueSelector = obj => ((GroupEvents)obj).title
+                        },
+                        new ExportColumn
+                        {
+                            Header = "Слушатели",
+                            ValueSelector = obj => ((GroupEvents)obj).actualListenersCount.ToString()
+                        },
+                        new ExportColumn
+                        {
+                            Header = "Участники",
+                            ValueSelector = obj => ((GroupEvents)obj).actualParticipantsCount.ToString()
+                        },
+                        new ExportColumn
+                        {
+                            Header = "Супер-участники",
+                            ValueSelector = obj => ((GroupEvents)obj).actualSuperParticipantsCount.ToString()
+                        },
+                        new ExportColumn
+                        {
+                            Header = "Общий балл",
+                            ValueSelector = obj => ((GroupEvents)obj).totalScore.ToString()
+                        }
+                    },
+                    Rows = _dataService.groupStatistic.events.Cast<object>().ToList()
+                };
+
+                ExportDataService service = new ExportDataService();
+                service.Export(sfd.FileName, header, table);
+            }
+            catch (Exception ex)
+            {
+                UserNotificationService.ShowError("Ошибка экспорта данных", ex, "page_GroupAA004");
+            }
+        }
+
+        private async void btn_open_diagram_Click(object sender, RoutedEventArgs e)
+        {
+            Point point = new Point()
+            {
+                X = 100,
+                Y = 0
+            };
+            TextPlaceholder text = new TextPlaceholder(stack_nav, point, "Пока в разработке.")
+            {
+                VerticalAlignment = VerticalAlignment.Center,
+            };
+            await text.ShowAsync();
+            await Task.Delay(1000);
+            await text.HideAsync();
+        }
+
         #endregion
+
+
 
         #region Методы класса
 

@@ -3,21 +3,15 @@ using college_events_desktop.Model;
 using college_events_desktop.Services;
 using college_events_desktop.View.Controls;
 using college_events_desktop.View.Windows;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace college_events_desktop.View.Layers.Supervisors
 {
@@ -118,6 +112,107 @@ namespace college_events_desktop.View.Layers.Supervisors
             {
                 UserNotificationService.ShowError("Ошибка применения фильтра по направлению (категории).", ex, "page_SupervisorAA003");
             }
+        }
+
+        private void btn_export_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var fileName = FileNameSecurity.Build(
+                    ".xlsx",
+                    maxLength: 200,
+                    "Отчёт", _authorizedUser.user.surName, _authorizedUser.user.firstName, _authorizedUser.user.lastName, DateTime.Now.ToString("dd-MM-yyyy")
+                );
+                var sfd = new SaveFileDialog
+                {
+                    Filter = "Excel файл (*.xlsx)|*.xlsx",
+                    FileName = fileName
+                };
+                if (sfd.ShowDialog() != true) return;
+
+                var header = new List<KeyValuePair<string, string>>()
+                {
+                    new KeyValuePair<string, string>(
+                        "Количество мероприятий",
+                        edit_events_count.Text
+                    ),
+                    new KeyValuePair<string, string>(
+                        "Количество направлений мероприятия",
+                        edit_categories_count.Text
+                    ),
+                    new KeyValuePair<string, string>(
+                        "Баллы",
+                        edit_totalScore.Text
+                    ),
+                    new KeyValuePair<string, string>(
+                        "Группы",
+                        string.Join(", ", stack_groups.Children.OfType<SimpleTextPlaceholder>().Select(t => t.Text))
+                    )
+                };
+
+                var table = new ExportTable
+                {
+                    Columns = new List<ExportColumn>
+                    {
+
+                        new ExportColumn
+                        {
+                            Header = "Группа",
+                            ValueSelector = obj => ((SupervisorEvent)obj).groupName
+                        },
+                        new ExportColumn
+                        {
+                            Header = "Мероприятие",
+                            ValueSelector = obj => ((SupervisorEvent)obj).title
+                        },
+                        new ExportColumn
+                        {
+                            Header = "Слушатели",
+                            ValueSelector = obj => ((SupervisorEvent)obj).actualListenersCount.ToString()
+                        },
+                        new ExportColumn
+                        {
+                            Header = "Участники",
+                            ValueSelector = obj => ((SupervisorEvent)obj).actualParticipantsCount.ToString()
+                        },
+                        new ExportColumn
+                        {
+                            Header = "Супер-участники",
+                            ValueSelector = obj => ((SupervisorEvent)obj).actualSuperParticipantsCount.ToString()
+                        },
+                        new ExportColumn
+                        {
+                            Header = "Общий балл",
+                            ValueSelector = obj => ((SupervisorEvent)obj).totalScore.ToString()
+                        }
+                    },
+                    Rows = _dataService.supervisorStatistic.events.Cast<object>().ToList()
+                };
+
+                ExportDataService service = new ExportDataService();
+                service.Export(sfd.FileName, header, table);
+            }
+            catch (Exception ex)
+            {
+                UserNotificationService.ShowError("Ошибка экспорта данных", ex, "page_SupervisorAA004");
+            }
+
+        }
+
+        private async void btn_open_diagram_Click(object sender, RoutedEventArgs e)
+        {
+            Point point = new Point()
+            {
+                X = 100,
+                Y = 0
+            };
+            TextPlaceholder text = new TextPlaceholder(stack_nav, point, "Пока в разработке.")
+            {
+                VerticalAlignment = VerticalAlignment.Center,
+            };
+            await text.ShowAsync();
+            await Task.Delay(1000);
+            await text.HideAsync();
         }
     }
 }

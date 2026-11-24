@@ -17,11 +17,14 @@ namespace college_events_desktop.View.Controls
 {
     public partial class SimpleTextPlaceholder : UserControl
     {
+        public string Text;
+
         public SimpleTextPlaceholder(string text, Color Background, Color BorderBrush, Color Foreground)
         {
             InitializeComponent();
 
-            text_body.Text = text;
+            Text = text;
+            text_body.Text = Text;
             border_bg.Background = Brush(Background);
             border_bg.BorderBrush = Brush(BorderBrush);
             text_body.Foreground = Brush(Foreground);

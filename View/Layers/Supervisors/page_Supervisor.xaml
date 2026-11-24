@@ -201,8 +201,8 @@
 
         <!--Навигация-->
         <StackPanel x:Name="stack_nav" Margin="5" Orientation="Horizontal" Grid.Row="2">
-            <Button x:Name="btn_export" Style="{DynamicResource ButtonStyle_accent}" Width="140" FontSize="14" Content="Экспорт" Margin="10,0,0,0"/>
-            <Button x:Name="btn_open_diagram" Style="{DynamicResource ButtonStyle_accent}" Width="170" FontSize="14" Content="Показать диаграмму" Margin="10,0,0,0" Background="#FF0070CC"/>
+            <Button x:Name="btn_export" Style="{DynamicResource ButtonStyle_accent}" Width="140" FontSize="14" Content="Экспорт" Margin="10,0,0,0" Click="btn_export_Click"/>
+            <Button x:Name="btn_open_diagram" Style="{DynamicResource ButtonStyle_accent}" Width="170" FontSize="14" Content="Показать диаграмму" Margin="10,0,0,0" Background="#FF0070CC" Click="btn_open_diagram_Click"/>
         </StackPanel>
     </Grid>
 </Page>
